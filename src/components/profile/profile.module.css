@@ -1,0 +1,20 @@
+.profile {
+    background-color: #0E1621;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.avatar img {
+    border-radius: 50%;
+}
+
+.userName {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.user {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    background-color: #0E1621;
+}

@@ -1,0 +1,12 @@
+.page {
+    display: inline;
+    margin-right: 10px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+}
+
+.page:hover {
+    color: cornflowerblue;
+    transition: color 300ms;
+}
