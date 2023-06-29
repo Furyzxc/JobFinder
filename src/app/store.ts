@@ -4,16 +4,16 @@ import { configureStore } from "@reduxjs/toolkit";
 
 import { authSlice } from "../features/auth";
 import { profileSlice } from "../features/profile";
-import { friendProfileSlice } from "../features/friendProfile";
 import { usersSlice } from "../features/users";
 
 export const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
         profile: profileSlice.reducer,
-        friendProfile: friendProfileSlice.reducer,
         users: usersSlice.reducer
-    }
+    },
+
+    devTools: true
 })
 
 export type AppDispatch = typeof store.dispatch

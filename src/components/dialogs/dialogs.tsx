@@ -4,7 +4,10 @@ import React, { useState } from "react";
 
 import { Message } from "../message";
 
-import { MessageTypes } from "./dialogs.types.ts";
+export interface MessageTypes {
+    text: string
+}
+
 
 export const Dialogs = () => {
 
@@ -17,18 +20,14 @@ export const Dialogs = () => {
     }
 
     const sendMessage = () => {
-        setMessages([ ...messages, { text: inputValue } ])
+        setMessages([...messages, {text: inputValue}])
         setInputValue('')
     }
 
-    const handleSendClick = () => {
-        sendMessage()
-    }
+    const handleSendClick = () => sendMessage()
 
     const handleEnterKeyUp = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            sendMessage()
-        }
+        if (e.key === 'Enter') sendMessage()
     }
 
     return (
@@ -37,7 +36,9 @@ export const Dialogs = () => {
                 {messages?.map((message, index) => <Message key={index} {...message} />)}
             </div>
             <div>
-                <input value={inputValue}
+                <input className={s.input}
+                       value={inputValue}
+                       placeholder='Write a message...'
                        onChange={handleInputChange}
                        onKeyUp={handleEnterKeyUp}/>
                 <button onClick={handleSendClick}>Send</button>

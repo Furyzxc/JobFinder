@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { usersAPI } from "../../api/users-api.ts";
+import { toggleIsFetching } from "../auth";
 
 interface PayloadTypes {
     pageLength?: number,
@@ -14,7 +15,9 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers',
         thunkAPI.dispatch(setUsers(data.items))
         thunkAPI.dispatch(setTotalCount(data.totalCount))
 
-        payload.pageNumber && thunkAPI.dispatch(setCurrentPage(payload.pageNumber))
+        const pageNumber = payload.pageNumber
+
+        pageNumber && thunkAPI.dispatch(setCurrentPage(pageNumber))
     })
 
 interface Users {
@@ -63,13 +66,11 @@ export const usersSlice = createSlice({
     },
 
     extraReducers: builder => {
-        builder.addCase(fetchUsers.pending, (state) => {
-            state.isFetching = true
-        })
+        builder.addCase(fetchUsers.pending,
+            (state) => { toggleIsFetching(state, true) })
 
-        builder.addCase(fetchUsers.fulfilled, (state) => {
-            state.isFetching = false
-        })
+        builder.addCase(fetchUsers.fulfilled,
+            (state) => { toggleIsFetching(state, false) })
     }
 })
 

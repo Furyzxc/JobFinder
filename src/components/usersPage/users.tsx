@@ -19,6 +19,7 @@ import { fetchUsers } from "../../features/users";
 
 
 export interface UsersProps {
+    isAuth: boolean
     isFetching: boolean,
 
     users: UserProps[],
