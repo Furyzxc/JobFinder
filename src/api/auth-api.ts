@@ -1,13 +1,25 @@
-import { instance } from "./api.ts";
+import { api } from "./api.ts";
+import { AuthMeResponse, LoginResponse, RequestLoginBody } from "../types/api-types.ts";
 
-export const authApi = {
-    authMe() {
-        return instance.get('auth/me').then(res => res.data)
-    },
+export const authApi = api.injectEndpoints({
+    endpoints: build => ({
+        me: build.query<AuthMeResponse, void>({
+            query: () => 'auth/me'
+        }),
 
-    authLogin(email: string, password: string, rememberMe = false, captcha = false) {
-        return instance.post('auth/login', {
-            email, password, rememberMe, captcha
-        }).then(res => res.data)
-    }
-}
+        login: build.mutation<LoginResponse, RequestLoginBody>({
+            query: (body) => ({
+                url: 'auth/login',
+                method: 'post',
+                body
+            })
+        }),
+
+        logout: build.mutation({
+            query: () => ({
+                url: 'auth/logout',
+                method: 'post'
+            })
+        })
+    })
+})

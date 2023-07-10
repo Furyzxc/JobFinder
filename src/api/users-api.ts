@@ -1,16 +1,10 @@
-import { instance } from "./api.ts";
+import { api } from "./api.ts";
+import { GetUsersResponse, RequestUsersBody } from "../types/api-types.ts";
 
-export const usersAPI = {
-    getUsers (pageLength = 10, pageNumber = 1) {
-        return instance.get(`users?count=${pageLength}&page=${pageNumber}`).then(res => res.data)
-    },
-
-    followUser (userId: number) {
-        return instance.post('follow/' + userId).then(res => res.data)
-    },
-
-
-    unfollowUser (userId: number) {
-        return instance.delete('follow/' + userId).then(res => res.data)
-    }
-}
+export const usersApi = api.injectEndpoints({
+    endpoints: build => ({
+        getUsers: build.query<GetUsersResponse, RequestUsersBody>({
+            query: ({pageSize = 10, pageNumber = 1}) => `users?count=${pageSize}&page=${pageNumber}`
+        })
+    })
+})

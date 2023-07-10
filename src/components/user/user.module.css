@@ -2,17 +2,15 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
     height: 80px;
-    border-bottom: 2px solid cornflowerblue;
+    text-decoration: none;
 }
 
 .avatar img {
     max-height: 30px;
+    border-radius: 50%;
 }
 
 .userInfo {
-    display: grid;
-    grid-template-rows: 1fr 20px;
     font-family: 'Bahnschrift', sans-serif;
-    text-decoration: none;
-    color: #161b24;
+    color: white;
 }

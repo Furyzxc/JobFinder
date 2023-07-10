@@ -1,44 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { usersAPI } from "../../api/users-api.ts";
-import { profileAPI } from "../../api/profile-api.ts";
-import { toggleIsFetching } from "../auth";
+import { createSlice } from "@reduxjs/toolkit";
+import { profileApi } from "../../api/profile-api.ts";
 
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const toggleFollowingProgress = (state, payload: boolean) => { state.isFollowingProgress = payload }
-
-export const setUserProfile = createAsyncThunk('profile/setFriendProfile',
-    async (userId: number, thunkAPI) => {
-        const profile = await profileAPI.getProfile(userId)
-
-        thunkAPI.dispatch(setProfile(profile))
-    })
-
-export const follow = createAsyncThunk('profile/follow',
-    async (userId: number, thunkAPI) => {
-        const data = await usersAPI.followUser(userId)
-
-        if (data.resultCode === 0) {
-            thunkAPI.dispatch(followFriend())
-        }
-    }
-)
-
-export const unfollow = createAsyncThunk('profile/unfollow',
-    async (userId: number, thunkAPI) => {
-        const data = await usersAPI.unfollowUser(userId)
-
-        if (data.resultCode === 0) {
-            thunkAPI.dispatch(unfollowFriend())
-        }
-    }
-)
 
 interface Profile {
-    isFetching: boolean
     isFollowed: boolean
-    isFollowingProgress: boolean
 
     userId: number
     lookingForAJob: boolean
@@ -60,12 +25,12 @@ interface Profile {
         small: string | null
         large: string | null
     }
+
+    status: null | string
 }
 
 const initialState: Profile = {
-    isFetching: false,
     isFollowed: false,
-    isFollowingProgress: false,
 
     userId: 0,
     lookingForAJob: false,
@@ -86,56 +51,37 @@ const initialState: Profile = {
     photos: {
         small: null,
         large: null
-    }
+    },
+
+    status: null
 }
 
 
 export const profileSlice = createSlice({
-        name: 'friendProfile',
+        name: 'profile',
         initialState,
-        reducers: {
-            setProfile(state, action: PayloadAction<Profile>) {
-                return {
-                    ...state,
-                    ...action.payload
-                }
-            },
-
-            followFriend(state) {
-                state.isFollowed = true
-            },
-
-            unfollowFriend(state) {
-                state.isFollowed = false
-            },
-        },
+        reducers: {},
 
         extraReducers: builder => {
-            builder.addCase(setUserProfile.pending,
-                (state) => { toggleIsFetching(state,true)})
+            builder.addMatcher(profileApi.endpoints.getProfile.matchFulfilled, (state, action) => ({
+                    ...state,
+                    ...action.payload
+                })
+            )
 
-            builder.addCase(setUserProfile.fulfilled,
-                (state) => { toggleIsFetching(state,false) })
+            builder.addMatcher(profileApi.endpoints.getUserStatus.matchFulfilled, (state, action) => {
+                state.status = action.payload
+            })
 
-            builder.addCase(follow.pending,
-                (state) => { toggleFollowingProgress(state, true)})
+            builder.addMatcher(profileApi.endpoints.getIsFollowed.matchFulfilled, (state, action) => {
+                state.isFollowed = action.payload
+            })
 
-            builder.addCase(follow.fulfilled,
-                (state) => { toggleFollowingProgress(state, false) })
-
-            builder.addCase(unfollow.pending,
-                (state) => { toggleFollowingProgress(state, true)})
-
-            builder.addCase(unfollow.fulfilled,
-                (state) => { toggleFollowingProgress(state, false)})
+            builder.addMatcher(profileApi.endpoints.toggleIsFollowed.matchFulfilled, (state, action) => {
+                if (action.payload.resultCode === 0) state.isFollowed = !state.isFollowed
+            })
         }
     }
 )
-
-export const {
-    setProfile,
-    followFriend,
-    unfollowFriend
-} = profileSlice.actions
 
 

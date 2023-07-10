@@ -1,20 +1,21 @@
 // - Types
 
-import { UsersProps } from "../components/usersPage";
-import { ProfileProps } from "../components/profile";
-import { LoginProps } from "../components/login";
+import { UsersTypes } from "../features/users";
+import { ProfileProps } from "../pages/profile";
+import { LoginProps } from "../pages/login";
+import { DialogsProps } from '../pages/dialogs'
 
 // - Components
 
-import { NotFound } from "../components/notFoundPage";
-import { Profile } from "../components/profile";
-import { Dialogs } from "../components/dialogs";
-import { Users } from "../components/usersPage";
-import { Login } from "../components/login";
+import { NotFound } from "../pages/notFound";
+import { Login } from "../pages/login";
+import { ProfileContainer } from "../pages/profile";
+import { DialogsWithRedirect } from "../pages/dialogs";
+import { UsersContainer } from "../pages/users";
 
 // - Hooks
 
-import { useAppSelector } from "../app/hooks.ts";
+import { useAppSelector } from "../services/hooks.ts";
 
 // - Libraries
 
@@ -27,40 +28,35 @@ export const PageRouter = () => {
 
 
     // - Props
-    const isAuth = state.auth.isAuth
 
     const login: LoginProps = {
-        isFetching: state.profile.isFetching,
-        isAuth
+        ...state.auth
     }
-
 
     const profile: ProfileProps = {
         ...state.profile,
-        isAuth
     }
 
-    const users: UsersProps = {
-        ...state.users,
-        isAuth
+    const users: UsersTypes = {
+        ...state.users
     }
 
-
-    // --------------------------------------------
+    const dialogs: DialogsProps = {
+        ...state.dialogs
+    }
 
 
     return (
         <Routes>
+            <Route path='*' element={<NotFound />}/>
 
-            <Route path='*' element={<NotFound/>}/>
+            <Route path='/login' element={<Login {...login} />}/>
 
-            <Route path='/login' element={<Login {...login}/>}/>
+            <Route path='/profile/:userId?' element={<ProfileContainer { ...profile} />}/>
 
-            <Route path='/profile/:userId?' element={<Profile {...profile} />}/>
+            <Route path='/dialogs' element={<DialogsWithRedirect { ...dialogs} />}/>
 
-            <Route path='/dialogs' element={<Dialogs />}/>
-
-            <Route path='/users' element={<Users {...users}/>}/>
+            <Route path='/users' element={<UsersContainer {...users}/>}/>
         </Routes>
     )
 }

@@ -1,0 +1,13 @@
+.label {
+    left: 10%;
+    transform: translate(0, -18px);
+    background: linear-gradient(to right, #ff758c, #ff7eb3),
+    linear-gradient(to bottom, #ff7eb3, #ff758c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    position: absolute;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}

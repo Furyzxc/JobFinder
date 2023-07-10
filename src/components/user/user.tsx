@@ -4,24 +4,30 @@ import { Link } from "react-router-dom";
 
 import defaultAvatar from '../../assets/defaultAvatar.jpg'
 
-import { UserProps } from "./user.types.ts";
+export interface UserProps {
+    id: number,
+    name: string,
+    photos: {
+        small: null | string,
+        large: null | string
+    }
+    status: null | string
+}
 
 export const User = (props: UserProps) => {
 
     return (
-        <div className={s.user}>
+        <Link className={s.user} to={'/profile/' + props.id}>
             <div className={s.avatar}>
-                <img src={props.photos.small || props.photos.large || defaultAvatar}/>
+                <img src={props.photos.small || props.photos.large || defaultAvatar}
+                alt='user avatar'/>
             </div>
 
-            <Link className={s.userInfo} to={'/profile/' + props.id}>
+            <div className={s.userInfo}>
                 <div className={s.userName}>
                     {props.name}
                 </div>
-                <div className={s.userStatus}>
-                    {props.status || 'Here Has To Be Status'}
-                </div>
-            </Link>
-        </div>
+            </div>
+        </Link>
     )
 }
