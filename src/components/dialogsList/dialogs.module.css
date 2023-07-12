@@ -1,0 +1,54 @@
+.dialog {
+    max-height: 60px;
+    min-height: 60px;
+    user-select: none;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    border-radius: 4px;
+}
+
+.dialog:focus {
+    background-color: #2B5278;
+}
+.dialog:hover {
+    background-color: #212B35;
+    cursor: pointer;
+}
+
+.dialog:hover:focus {
+    background-color: #2B5278;
+}
+
+.dialogs::-webkit-scrollbar {
+    width: 5px;
+}
+
+.dialogs::-webkit-scrollbar-track {
+    border-radius: 2px;
+    background-color: #293038;
+}
+
+.dialogs::-webkit-scrollbar-thumb {
+    background-color: #54595F;
+    border-radius: 10px;
+}
+
+.dialogs::-webkit-scrollbar-track:hover {
+    background-color: #2D343C;
+}
+
+.dialogs:hover {
+    overflow-y: scroll;
+}
+
+.dialogs {
+    height: 100vh;
+    background-color: #17212B;
+}
+
+.time {
+    color: #8696A8;
+    font-size: 13px;
+    font-family: 'Spot Mono', monospace;
+}

@@ -1,5 +1,5 @@
 import { ComponentType } from "react";
-import {useAppSelector} from "../services/hooks.ts";
+import {useAppSelector} from "../app/hooks.ts";
 import {Navigate} from "react-router-dom";
 
 export const withLoginRedirect = <P extends object>(Component: ComponentType<P>): ComponentType<P> => (props) => {

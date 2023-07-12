@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { profileApi } from "../../api/profile-api.ts";
-import { FollowRequestBody } from "../../types/api-types.ts";
+import {FollowRequestBody} from "../../types/api/profile-types.ts";
 
 export const setUserProfile = createAsyncThunk('profile/setUserProfile',
     async (userId: number, { dispatch }) => {
@@ -15,7 +15,7 @@ export const getUserStatus = createAsyncThunk('profile/getUserStatus',
 
 export const setStatus = createAsyncThunk('profile/setStatus',
     async (status: string, { dispatch }) => {
-        await dispatch(profileApi.endpoints.setStatus.initiate({ status }))
+        await dispatch(profileApi.endpoints.setStatus.initiate({status}))
     })
 
 export const getIsFollowed = createAsyncThunk('profile/getIsFollowed',

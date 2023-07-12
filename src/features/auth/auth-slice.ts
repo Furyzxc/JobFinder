@@ -6,7 +6,7 @@ interface Auth {
     isAuth: boolean
 
     userInfo: {
-        id: number | null
+        id: number | undefined
         email: string | null
         login: string | null
     }
@@ -16,7 +16,7 @@ const initialState: Auth = {
     isAuth: false,
 
     userInfo: {
-        id: null,
+        id: undefined,
         email: null,
         login: null
     }
@@ -31,7 +31,7 @@ export const authSlice = createSlice({
         },
 
         clearUserData(state) {
-            state.userInfo.id = null
+            state.userInfo.id = undefined
             state.userInfo.email = null
             state.userInfo.login = null
         },
@@ -51,6 +51,7 @@ export const authSlice = createSlice({
 
         builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
             if (action.payload.resultCode === 0) state.isAuth = true
+            console.log(action)
         })
 
         builder.addMatcher(authApi.endpoints.logout.matchFulfilled, state => {

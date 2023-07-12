@@ -12,6 +12,7 @@ export interface UserProps {
         large: null | string
     }
     status: null | string
+    followed: boolean
 }
 
 export const User = (props: UserProps) => {
@@ -26,6 +27,9 @@ export const User = (props: UserProps) => {
             <div className={s.userInfo}>
                 <div className={s.userName}>
                     {props.name}
+                </div>
+                <div className={s.status}>
+                    {props.status}
                 </div>
             </div>
         </Link>

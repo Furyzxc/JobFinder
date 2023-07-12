@@ -1,16 +1,49 @@
 .user {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2.6fr 8fr;
     height: 80px;
     text-decoration: none;
+    width: 300px;
+    border: 2px solid #2D343C;
+    margin-bottom: 10px;
+    background-color: #120a1c;
+    border-radius: 10px;
+    user-select: none;
 }
 
 .avatar img {
-    max-height: 30px;
+    margin-left: 10px;
+    max-height: 50px;
     border-radius: 50%;
+    user-select: none;
+}
+
+.avatar {
+    padding-top: 10px;
 }
 
 .userInfo {
-    font-family: 'Bahnschrift', sans-serif;
+    text-align: center;
+    font-family: 'Bahtnschrift', sans-serif;
     color: white;
+}
+
+.userName {
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    color: #79A6FE;
+    transition: color 1s;
+}
+
+.user:hover .userInfo .userName {
+    color: white;
+    transition: color 2s;
+}
+
+.status {
+    color: grey;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+    overflow: hidden;
 }

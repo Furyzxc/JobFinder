@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "../../api/auth-api.ts";
-import { RequestLoginBody } from "../../types/api-types.ts";
+import {RequestLoginBody} from "../../types/api/auth-types.ts";
 
 export const authMe = createAsyncThunk('auth/authMe',
     async (_, { dispatch }) => {

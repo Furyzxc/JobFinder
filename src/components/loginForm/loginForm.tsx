@@ -8,7 +8,7 @@ import { authLogin } from "../../features/auth";
 
 // - Hooks
 
-import { useAppDispatch } from "../../services/hooks.ts";
+import { useAppDispatch } from "../../app/hooks.ts";
 
 // - Libraries
 

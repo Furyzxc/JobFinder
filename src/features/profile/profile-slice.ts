@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { profileApi } from "../../api/profile-api.ts";
+import {RootState} from "../../app/store.ts";
 
 
 interface Profile {
@@ -77,6 +78,14 @@ export const profileSlice = createSlice({
                 state.isFollowed = action.payload
             })
 
+            builder.addMatcher(profileApi.endpoints.setStatus.matchFulfilled, (state, action) => {
+                // if success setting request status value
+
+                if (action.payload.resultCode === 0) {
+                    state.status = action.meta.arg.originalArgs.status
+                }
+            })
+
             builder.addMatcher(profileApi.endpoints.toggleIsFollowed.matchFulfilled, (state, action) => {
                 if (action.payload.resultCode === 0) state.isFollowed = !state.isFollowed
             })
@@ -84,4 +93,4 @@ export const profileSlice = createSlice({
     }
 )
 
-
+export const getProfile = (state: RootState) => state.profile

@@ -1,9 +1,4 @@
 import s from './users.module.css'
-import { UserProps } from "../../components/user";
-
-// - Hooks
-
-import { useAppDispatch } from "../../services/hooks.ts";
 
 // - Components
 
@@ -11,39 +6,31 @@ import { User } from "../../components/user"
 
 // - Actions
 
-import { setCurrentPage } from "../../features/users";
+import { getUsers} from "../../features/users";
 import { withLoading } from "../../hoc/withLoading.tsx";
+import {Search} from "../../components/search";
+import {Div} from "../../components/common/div.tsx";
+import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
+import {getPages, setPage} from "../../features/paginator/paginator-slice.ts";
 
 // -----------------------
 
 
-export interface UsersProps {
-    users: UserProps[],
-
-    pageLength: number
-    currentPage: number,
-}
-
-const WeakUsers = ({users}: UsersProps) => {
-
+const WeakUsers = () => {
     const dispatch = useAppDispatch()
 
-    const handlePageClick = (pageNumber: number) => dispatch(setCurrentPage(pageNumber))
+    const users = useAppSelector(getUsers)
+    const pages = useAppSelector(getPages)
+    const handlePageClick = (pageNumber: number) => dispatch(setPage(pageNumber))
 
-
-    const pages = []
-    for (let i = 1; i <= 10; i++) pages.push(i)
 
     return (
         <div className={s.users}>
-            <div className={s.pages}>
-                {pages.map(page => (
-                    <div key={page}
-                         className={s.page}
-                         onClick={() => handlePageClick(page)}
-                    > {page} </div>
-                ))}
+            <div>
+                <Search />
             </div>
+
+            {!users[0] && <Div>Users not found</Div>}
 
             <div>
                 <ul className={s.usersList}>
@@ -53,6 +40,15 @@ const WeakUsers = ({users}: UsersProps) => {
                         </li>
                     ))}
                 </ul>
+            </div>
+
+            <div className={s.pages}>
+                {pages.map(page => (
+                    <div key={page}
+                         className={s.page}
+                         onClick={() => handlePageClick(page)}
+                    > {page} </div>
+                ))}
             </div>
         </div>
     )

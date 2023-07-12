@@ -1,5 +1,5 @@
 import { api } from "./api.ts";
-import { AuthMeResponse, LoginResponse, RequestLoginBody } from "../types/api-types.ts";
+import {AuthMeResponse, LoginResponse, RequestLoginBody} from "../types/api/auth-types.ts";
 
 export const authApi = api.injectEndpoints({
     endpoints: build => ({

@@ -1,16 +1,35 @@
-import { requestUsers } from "../../features/users/users-thunks.ts";
-import { Users, UsersProps } from "./users.tsx";
-import { useEffect } from "react";
-import { useAppDispatch } from "../../services/hooks.ts";
+import {Users} from "./users.tsx";
+import {useGetUsersQuery} from "../../api/users-api.ts";
+import {useEffect, useState} from "react";
+import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
+import {setUsers} from "../../features/users";
+import {getPaginator, setPages } from "../../features/paginator/paginator-slice.ts";
 
-export const UsersContainer = (props: UsersProps) => {
+export const UsersContainer = () => {
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        dispatch(requestUsers({pageNumber: props.currentPage}))
-    }, [dispatch, props.currentPage]);
+    const {page, term, count} = useAppSelector(getPaginator)
 
-    return (
-        <Users {...props}/>
-    );
+    const [isLoading, setIsLoading] = useState(false);
+
+    const {data, status} = useGetUsersQuery({page, count, term})
+
+    useEffect(() => {
+        setIsLoading(status === "pending")
+        const pages: number[] = [];
+
+        if (status === 'fulfilled' && data) {
+            dispatch(setUsers(data.items))
+
+            const pagesAmount = Math.ceil(data.totalCount / count);
+
+            for (let i = 1; i <= pagesAmount && i <= 10; i++) {
+                pages.push(i);
+            }
+        }
+
+        dispatch(setPages(pages));
+    }, [count, data, data?.items, dispatch, status]);
+
+    return <Users isLoading={isLoading}/>
 };

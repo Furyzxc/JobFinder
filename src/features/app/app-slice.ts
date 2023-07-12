@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authMe } from "../auth";
+import {RootState} from "../../app/store.ts";
 
 
 export const initializeApp = createAsyncThunk('app/initializeApp',
@@ -7,7 +8,7 @@ export const initializeApp = createAsyncThunk('app/initializeApp',
         const promise = await dispatch(authMe());
 
         Promise.all([promise])
-            .then(() => dispatch(initializedSuccess()) );
+            .then(() => dispatch(initializedSuccess()))
     })
 
 interface App {
@@ -31,3 +32,5 @@ export const appSlice = createSlice({
 export const {
     initializedSuccess
 } = appSlice.actions
+
+export const getAuth = (state: RootState) => state.auth.isAuth

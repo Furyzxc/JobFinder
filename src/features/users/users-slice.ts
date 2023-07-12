@@ -1,45 +1,27 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GetUsersResponse, UserResData } from "../../types/api-types.ts";
-import { usersApi } from "../../api/users-api.ts";
+import {UserResData} from "../../types/api/users-types.ts";
+import {RootState} from "../../app/store.ts";
 
 export interface UsersTypes {
-    isLoading: boolean
-
     users: UserResData[]
-    currentPage: number,
 }
 
 const initialState: UsersTypes = {
-    isLoading: false,
-
-    users: [],
-
-    currentPage: 1,
+    users: []
 }
 
 export const usersSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
-        setUsers(state, action: PayloadAction<GetUsersResponse>) {
-            state.users = action.payload.items
-        },
-
-        setCurrentPage(state, action: PayloadAction<number>) {
-            state.currentPage = action.payload
+        setUsers(state, action: PayloadAction<UserResData[]>) {
+            state.users = action.payload
         }
-    },
-
-    extraReducers: builder => {
-        builder.addMatcher(usersApi.endpoints.getUsers.matchFulfilled,
-            (state, action) => {
-                state.users = action.payload.items
-            })
     }
 })
 
 export const {
-    setUsers,
-    setCurrentPage,
+    setUsers
 } = usersSlice.actions
 
+export const getUsers = (state: RootState) => state.users.users

@@ -3,55 +3,62 @@ import defaultAvatar from '../../assets/defaultAvatar.jpg'
 
 // - Hooks
 
-import { useAppDispatch } from "../../services/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
+import {useStartChattingMutation} from "../../api/dialogs-api.ts";
+import React, {useEffect, useMemo, useState} from "react";
 
 // - Actions
 
-import { authLogout } from "../../features/auth";
+import {authLogout} from "../../features/auth";
+import {getProfile, toggleIsFollowed} from "../../features/profile";
 
-// - Components
+// - Components and hoc
 
-import { withLoginRedirect } from "../../hoc/login-redirect.tsx";
-import { UserInfo } from "../../components/userInfo";
-import { compose } from "@reduxjs/toolkit";
-import { toggleIsFollowed } from "../../features/profile";
+import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
+import {ProfileInfo} from "../../components/profileInfo";
+import {compose} from "@reduxjs/toolkit";
+import {Navigate} from "react-router-dom";
+import {setDialogName} from "../../features/dialogs";
 
 // ------------------------------------
 
-export interface ProfileProps {
-    isFollowed: boolean
 
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string | null
-    fullName: string
-
-    contacts: {
-        github: string | null
-        vk: string | null
-        facebook: string | null
-        instagram: string | null
-        twitter: string | null
-        website: string | null
-        youtube: string | null
-        mainLink: string | null
-    }
-
-    photos: {
-        small: string | null
-        large: string | null
-    }
-
-    status: string | null
-}
-
-const Profile = ({userId, isFollowed, ...props}: ProfileProps) => {
+const Profile = React.memo(() => {
     const dispatch = useAppDispatch()
 
-    const handleFollowClick = () => dispatch(toggleIsFollowed({userId, follow: true}))
-    const handleUnfollowClick = () => dispatch(toggleIsFollowed({userId, follow: false}))
+    const profile = useAppSelector(getProfile)
 
-    const handleLogout = () => dispatch(authLogout())
+    const {userId, isFollowed, ...props} = profile
+
+    const [startChatting, {data, isSuccess}] = useStartChattingMutation()
+    const [isChattingAccepted, setIsChattingAccepted] = useState(false)
+    const [isFollowingProgress, setIsFollowingProgress] = useState(false);
+
+    const handleToggleFollow = useMemo(
+        () => (follow: boolean) => {
+            dispatch(toggleIsFollowed({ userId, follow })).then(({ payload }) => {
+                // @ts-ignore
+                if (payload.resultCode === 0) setIsFollowingProgress(false);
+            });
+        },
+        [dispatch, userId]
+    );
+
+    const handleFollowClick = () => handleToggleFollow(true)
+    const handleUnfollowClick = () => handleToggleFollow(false)
+
+    const handleLogout = useMemo(() => () => dispatch(authLogout()), [dispatch])
+
+    const handleSendBtnClick = useMemo(() => () => {
+        startChatting(userId)
+        dispatch(setDialogName(props.fullName))
+    }, [dispatch, props.fullName, startChatting, userId]);
+
+    useEffect(() => {
+        if (isSuccess && data && data.resultCode === 0) setIsChattingAccepted(true)
+    }, [data, isSuccess]);
+
+    if (isChattingAccepted) return <Navigate to={'/dialogs/' + userId}/>
 
     return (
         <div className={s.profile}>
@@ -61,25 +68,29 @@ const Profile = ({userId, isFollowed, ...props}: ProfileProps) => {
                     <div className={s.logout} onClick={handleLogout}>LOGOUT</div>
                 </button>
             </div>
-
             <div>
-                <UserInfo {...props} />
+                <ProfileInfo {...props} />
+            </div>
+            <div>
+                <button onClick={handleSendBtnClick} className='materialBtn'>
+                    Send Message
+                </button>
             </div>
             <div>
                 {
                     isFollowed
-                        ? <button
-                            onClick={handleUnfollowClick}
-                            disabled={false}
+                        ? <button className='materialBtn materialBtnPrvt'
+                                  onClick={handleUnfollowClick}
+                                  disabled={isFollowingProgress}
                         >Unfollow</button>
-                        : <button
-                            onClick={handleFollowClick}
-                            disabled={false}
+                        : <button className='materialBtn materialBtn'
+                                  onClick={handleFollowClick}
+                                  disabled={isFollowingProgress}
                         >follow</button>
                 }
             </div>
         </div>
     )
-}
+})
 
 export const ProfileWithRedirect = compose(withLoginRedirect)(Profile)

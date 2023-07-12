@@ -1,10 +1,12 @@
 import { api } from "./api.ts";
-import { GetUsersResponse, RequestUsersBody } from "../types/api-types.ts";
+import {GetUsersResponse, RequestUsersBody} from "../types/api/users-types.ts";
 
 export const usersApi = api.injectEndpoints({
     endpoints: build => ({
         getUsers: build.query<GetUsersResponse, RequestUsersBody>({
-            query: ({pageSize = 10, pageNumber = 1}) => `users?count=${pageSize}&page=${pageNumber}`
+            query: ({count = 20, page = 1, term= '', friend = false}) => `users?count=${count}&page=${page}&term=${term}&friend=${friend}`
         })
     })
 })
+
+export const { useGetUsersQuery } = usersApi

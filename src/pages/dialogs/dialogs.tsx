@@ -1,4 +1,6 @@
 import s from './dialogs.module.css'
+import React from "react";
+import {compose} from "@reduxjs/toolkit";
 
 // - Components
 
@@ -9,33 +11,34 @@ import { DialogsList } from "../../components/dialogsList";
 // - HOC
 
 import { withLoginRedirect } from "../../hoc/login-redirect.tsx";
+import {withLoading} from "../../hoc/withLoading.tsx";
+import {useAppSelector} from "../../app/hooks.ts";
+import {getDialogName, getDialogs} from "../../features/dialogs";
 
 // --------------------
 
-// - Types
 
-export interface MessageTypes {
-    text: string
-}
-
-export interface DialogsProps {
-    messages: MessageTypes[]
-}
 
 // ------------------------
 
-export const Dialogs = (props: DialogsProps) => {
+export const Dialogs = React.memo(() => {
+    const dialogs = useAppSelector(getDialogs)
+    const dialogName = useAppSelector(getDialogName)
+
     return (
         <div className={s.dialogs}>
             <div>
-                <DialogsList />
+                <DialogsList dialogs={dialogs}/>
             </div>
-            <div>
-                <Messages messages={props.messages} />
+            <div className={s.chatContainer}>
+                <div className={s.title}>
+                    {dialogName}
+                </div>
+                <Messages />
                 <DialogsForm />
             </div>
         </div>
     )
-}
+})
 
-export const DialogsWithRedirect = withLoginRedirect(Dialogs)
+export const DialogsWithRedirect = compose(withLoading, withLoginRedirect)(Dialogs)

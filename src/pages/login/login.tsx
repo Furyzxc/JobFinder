@@ -9,14 +9,14 @@ import { LoginForm } from "../../components/loginForm";
 // - Libraries
 
 import { Navigate } from "react-router-dom";
+import {useAppSelector} from "../../app/hooks.ts";
+import {getAuth} from "../../features/app";
 
 // ----------------------------
 
-export interface LoginProps {
-    isAuth: boolean
-}
+export const Login = () => {
 
-export const Login = ({isAuth}: LoginProps) => {
+    const isAuth = useAppSelector(getAuth)
 
     if (isAuth) return <Navigate to='/profile' />
 

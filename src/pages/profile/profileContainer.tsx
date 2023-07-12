@@ -1,26 +1,25 @@
 import {useEffect} from "react";
-import {ProfileProps, ProfileWithRedirect} from "./profile";
-import {useAppDispatch, useAppSelector} from "../../services/hooks";
-import {useParams} from "react-router-dom";
+import {  ProfileWithRedirect} from "./profile";
+import {useAppDispatch, useAppSelector, useUserIdFromParams} from "../../app/hooks";
 import { getIsFollowed, getUserStatus, setUserProfile } from "../../features/profile";
+import {batch} from "react-redux";
 
 
-export const ProfileContainer = (props: ProfileProps) => {
+export const ProfileContainer = () => {
 
     const dispatch = useAppDispatch()
 
     const { id } = useAppSelector(state => state.auth.userInfo)
 
-    const {userId = id} = useParams()
-    const userID = Number(userId)
+    const userID = useUserIdFromParams(id)
 
     useEffect(() => {
-        Promise.all([
-            dispatch(setUserProfile(userID)),
-            dispatch(getUserStatus(userID)),
+        batch(() => {
+            dispatch(setUserProfile(userID))
+            dispatch(getUserStatus(userID))
             dispatch(getIsFollowed(userID))
-        ]).then(() => console.log('done'))
+        })
     }, [dispatch, userID]);
 
-    return <ProfileWithRedirect {...props} />
-};
+    return <ProfileWithRedirect />
+}
