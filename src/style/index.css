@@ -18,7 +18,7 @@ body, html {
 
 
 body {
-    background: #181828;
+    background: #0A1929;
     font-size: 14px;
     line-height: 1;
 }
@@ -496,144 +496,15 @@ input::placeholder, .rmb, .box h5 {
     }
 }
 
-.form__group {
-    font-family: 'Poppins', sans-serif;
-    position: relative;
-    padding: 15px 0 0;
-    margin-top: 10px;
-    width: 50%;
-}
-
-.form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 2px solid #9b9b9b;
-    outline: 0;
-    color: white;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.2s;
-}
-
-.form__field::placeholder {
-    color: #537883;
-    font-size: 14px;
-}
-
-
-.form__label {
-    user-select: none;
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 12px;
-    color: #9b9b9b;
-}
-
-.form__field:focus ~ .form__label {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 10px;
-    color: #11998e;
-    font-weight: 700;
-}
-
-.form__field:focus {
-    padding-bottom: 6px;
-    font-weight: 700;
-    border-width: 3px;
-    border-image: linear-gradient(to right, #11998e, #38ef7d) 1;
-}
-
-.materialBtnPrvt {
-    position: relative;
-    display: inline-block;
-    box-sizing: border-box;
-    border-radius: 4px;
-}
-
-.materialBtn {
-    padding: 0 16px;
-    min-width: 64px;
-    height: 36px;
-    vertical-align: middle;
-    text-align: center;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-    color: rgb(var(--pure-material-primary-rgb));
-    background-color: transparent;
-    font-family: var(--pure-material-font, "Roboto", "Segoe UI", BlinkMacSystemFont, system-ui, -apple-system);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 34px;
-    overflow: hidden;
-    outline: none;
-    cursor: pointer;
-}
-
-/* Overlay */
-.materialBtn::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: currentColor;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-/* Ripple */
-.materialBtn::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    border-radius: 50%;
-    padding: 50%;
-    width: 32px;
-    height: 32px;
-    background-color: currentColor;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1) ;
-    transition: opacity 1s, transform 0.5s;
-}
-
-/* Hover, Focus */
-.materialBtn:hover::before {
-    opacity: 0.04;
-}
-
-/*.materialBtn:focus::before {*/
-/*    opacity: 0.12;*/
-/*}*/
-
-/*.materialBtn:hover:focus::before {*/
-/*    opacity: 0.16;*/
-/*}*/
-
-/* Active */
-.materialBtn:active::after {
-    opacity: 0.16;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0s;
-}
-
-/* Disabled */
-.materialBtn:disabled {
-    cursor: initial;
-
-}
-
-.materialBtn:disabled::before, .materialBtn:disabled::after {
-    opacity: 0;
-}
 
 .searchContainer {
     margin-bottom: 20px;
+    padding-left: 150px;
+    color: white;
+    display: flex;
+}
+
+.friendIcon {
+    margin-top: 30px;
+    margin-left: 10px;
 }

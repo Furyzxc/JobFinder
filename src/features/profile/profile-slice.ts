@@ -1,7 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import { profileApi } from "../../api/profile-api.ts";
 import {RootState} from "../../app/store.ts";
-
 
 interface Profile {
     isFollowed: boolean
@@ -57,11 +56,17 @@ const initialState: Profile = {
     status: null
 }
 
-
 export const profileSlice = createSlice({
         name: 'profile',
         initialState,
-        reducers: {},
+        reducers: {
+            setInfo(state, action) {
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            }
+        },
 
         extraReducers: builder => {
             builder.addMatcher(profileApi.endpoints.getProfile.matchFulfilled, (state, action) => ({
@@ -92,5 +97,7 @@ export const profileSlice = createSlice({
         }
     }
 )
+
+export const { setInfo } = profileSlice.actions
 
 export const getProfile = (state: RootState) => state.profile

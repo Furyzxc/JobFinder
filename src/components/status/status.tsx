@@ -11,13 +11,11 @@ export const Status = ({statusText}: StatusProps) => {
     const dispatch = useAppDispatch()
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => dispatch(setStatus(e.target.value))
 
-
     return (
         <Input
-            name='status'
+            name='Status'
             placeholder='Write your status...'
             onBlur={handleBlur}
-            label='Status'
             key={1}
             value={statusText}
         />

@@ -11,6 +11,7 @@ import React, {useEffect, useMemo, useState} from "react";
 
 import {authLogout} from "../../features/auth";
 import {getProfile, toggleIsFollowed} from "../../features/profile";
+import {setDialogName} from "../../features/dialogs";
 
 // - Components and hoc
 
@@ -18,12 +19,16 @@ import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
 import {ProfileInfo} from "../../components/profileInfo";
 import {compose} from "@reduxjs/toolkit";
 import {Navigate} from "react-router-dom";
-import {setDialogName} from "../../features/dialogs";
+import {Button} from "@mui/material";
 
 // ------------------------------------
 
+interface ProfileProps {
+    isOwner: boolean
+}
 
-const Profile = React.memo(() => {
+
+const Profile = React.memo(({isOwner}: ProfileProps) => {
     const dispatch = useAppDispatch()
 
     const profile = useAppSelector(getProfile)
@@ -36,7 +41,7 @@ const Profile = React.memo(() => {
 
     const handleToggleFollow = useMemo(
         () => (follow: boolean) => {
-            dispatch(toggleIsFollowed({ userId, follow })).then(({ payload }) => {
+            dispatch(toggleIsFollowed({userId, follow})).then(({payload}) => {
                 // @ts-ignore
                 if (payload.resultCode === 0) setIsFollowingProgress(false);
             });
@@ -71,24 +76,29 @@ const Profile = React.memo(() => {
             <div>
                 <ProfileInfo {...props} />
             </div>
-            <div>
-                <button onClick={handleSendBtnClick} className='materialBtn'>
-                    Send Message
-                </button>
-            </div>
-            <div>
-                {
-                    isFollowed
-                        ? <button className='materialBtn materialBtnPrvt'
-                                  onClick={handleUnfollowClick}
-                                  disabled={isFollowingProgress}
-                        >Unfollow</button>
-                        : <button className='materialBtn materialBtn'
-                                  onClick={handleFollowClick}
-                                  disabled={isFollowingProgress}
-                        >follow</button>
-                }
-            </div>
+            {
+                !isOwner && (
+                    <div className={s.btns}>
+                        <span className={s.send}>
+                            <Button variant='outlined' onClick={handleSendBtnClick}>
+                                Send Message
+                            </Button>
+                        </span>
+                        <span>
+                            {
+                                isFollowed
+                                    ? <Button variant='outlined'
+                                              onClick={handleUnfollowClick}
+                                              disabled={isFollowingProgress}
+                                    >Unfollow</Button>
+                                    : <Button variant='outlined'
+                                              onClick={handleFollowClick}
+                                              disabled={isFollowingProgress}
+                                    >follow</Button>
+                            }
+                        </span>
+                    </div>)
+            }
         </div>
     )
 })

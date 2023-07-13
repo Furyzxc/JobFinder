@@ -4,31 +4,26 @@ import {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {setUsers} from "../../features/users";
 import {getPaginator, setPages } from "../../features/paginator/paginator-slice.ts";
+import {countPages} from "../../utils/count-pages.ts";
 
 export const UsersContainer = () => {
     const dispatch = useAppDispatch()
 
-    const {page, term, count} = useAppSelector(getPaginator)
+    const {page, term, count, friend} = useAppSelector(getPaginator)
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const {data, status} = useGetUsersQuery({page, count, term})
+    const {data, status} = useGetUsersQuery({page, count, term, friend})
 
     useEffect(() => {
         setIsLoading(status === "pending")
-        const pages: number[] = [];
 
         if (status === 'fulfilled' && data) {
+            const pages = countPages(data.totalCount, count)
+
             dispatch(setUsers(data.items))
-
-            const pagesAmount = Math.ceil(data.totalCount / count);
-
-            for (let i = 1; i <= pagesAmount && i <= 10; i++) {
-                pages.push(i);
-            }
+            dispatch(setPages(pages));
         }
-
-        dispatch(setPages(pages));
     }, [count, data, data?.items, dispatch, status]);
 
     return <Users isLoading={isLoading}/>

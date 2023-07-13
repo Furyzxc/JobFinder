@@ -1,54 +1,47 @@
 import s from './users.module.css'
 
-// - Components
+// - Components and hoc
 
-import { User } from "../../components/user"
+import {User} from "../../components/user"
+import {Paginator} from "../../components/paginator";
+import {Search} from "../../components/search";
+import {Div} from "../../components/common/div.tsx";
+import {withLoading} from "../../hoc/withLoading.tsx";
 
 // - Actions
 
-import { getUsers} from "../../features/users";
-import { withLoading } from "../../hoc/withLoading.tsx";
-import {Search} from "../../components/search";
-import {Div} from "../../components/common/div.tsx";
-import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
-import {getPages, setPage} from "../../features/paginator/paginator-slice.ts";
+import {getUsers} from "../../features/users";
+import {useAppSelector} from "../../app/hooks.ts";
 
 // -----------------------
 
 
 const WeakUsers = () => {
-    const dispatch = useAppDispatch()
-
     const users = useAppSelector(getUsers)
-    const pages = useAppSelector(getPages)
-    const handlePageClick = (pageNumber: number) => dispatch(setPage(pageNumber))
 
-
+    // @ts-ignore
     return (
         <div className={s.users}>
             <div>
-                <Search />
-            </div>
+                <div>
+                    <Search/>
+                </div>
 
-            {!users[0] && <Div>Users not found</Div>}
+                {!users[0] && <Div>Users not found</Div>}
+
+                <div>
+                    <ul className={s.usersList}>
+                        {users?.map(user => (
+                            <li key={user.id}>
+                                <User {...user} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
 
             <div>
-                <ul className={s.usersList}>
-                    {users?.map(user => (
-                        <li key={user.id}>
-                            <User {...user} />
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className={s.pages}>
-                {pages.map(page => (
-                    <div key={page}
-                         className={s.page}
-                         onClick={() => handlePageClick(page)}
-                    > {page} </div>
-                ))}
+                <Paginator/>
             </div>
         </div>
     )

@@ -11,6 +11,14 @@
     float: left;
 }
 
+.btns {
+    margin-top: -20px;
+}
+
+.send {
+    margin-right: 10px;
+}
+
 .logout {
     font-size: .8em;
     font-family: 'Oswald', sans-serif;

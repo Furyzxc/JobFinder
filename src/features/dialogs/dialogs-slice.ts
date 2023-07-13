@@ -4,6 +4,8 @@ import {GetDialogsResponse, MessageResponseType, SendMessageResponse} from "../.
 import {RootState} from "../../app/store.ts";
 
 interface Dialogs {
+    isLoading: boolean
+
     messages: MessageResponseType[]
     dialogs: GetDialogsResponse[]
 
@@ -11,6 +13,8 @@ interface Dialogs {
 }
 
 const initialState: Dialogs = {
+    isLoading: false,
+
     messages: [],
 
     dialogs: [],
@@ -39,6 +43,14 @@ export const dialogsSlice = createSlice({
             if (payload.resultCode === 0) state.messages.push(payload.data.message)
             console.log(state.messages)
         })
+
+        builder.addMatcher(dialogsApi.endpoints.getMessages.matchPending, (state) => {
+            state.isLoading = true
+        })
+
+        builder.addMatcher(dialogsApi.endpoints.getMessages.matchFulfilled, (state) => {
+            state.isLoading = false
+        })
     }
 })
 
@@ -51,3 +63,4 @@ export const {
 export const getMessages = (state: RootState) => state.dialogs.messages
 export const getDialogs = (state: RootState) => state.dialogs.dialogs
 export const getDialogName = (state: RootState) => state.dialogs.dialogName
+export const getDialogsLoading = (state: RootState) => state.dialogs.isLoading

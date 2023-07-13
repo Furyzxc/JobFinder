@@ -2,6 +2,8 @@ import {useAppDispatch, useUserIdFromParams} from "../../app/hooks.ts";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import {sendMessage} from "../../features/dialogs/dialogs-thunks.ts";
 import s from './dialogsForm.module.css'
+import {Button} from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 interface FormValues {
     input: string
@@ -25,9 +27,9 @@ export const DialogsForm = () => {
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
                 <Form className={s.dialogsForm}>
                     <Field type="text" name='input' placeholder="Type your message here..." className={s.input} autoComplete='off'/>
-                    <button type='submit' className='materialBtn materialBtnPrvt'>
+                    <Button variant="text" endIcon={<SendIcon />} type='submit'>
                         Send
-                    </button>
+                    </Button>
                 </Form>
         </Formik>
     )

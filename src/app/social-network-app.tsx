@@ -1,19 +1,19 @@
-import {Navigation} from "./components/navigation";
-import {Header} from "./components/header/header.tsx";
-import {useAppDispatch, useAppSelector} from "./app/hooks.ts";
+import {Navigation} from "../components/navigation";
+import {Header} from "../components/header/header.tsx";
+import {useAppDispatch, useAppSelector} from "./hooks.ts";
 import {useEffect} from "react";
-import {getAuth, initializeApp} from "./features/app";
-import {Preloader} from "./components/common";
-import {AnimatedBg} from "./components/animatedBg/animatedBg.tsx";
+import {getAuth, initializeApp} from "../features/app";
+import {Preloader} from "../components/common";
+import {AnimatedBg} from "../components/animatedBg/animatedBg.tsx";
 import {Route, Routes} from "react-router-dom";
-import {NotFound} from "./pages/notFound";
-import {Login} from "./pages/login";
-import {ProfileContainer} from "./pages/profile";
-import {DialogsContainer} from "./pages/dialogs/dialogsContainer.tsx";
-import {UsersContainer} from "./pages/users";
+import {NotFound} from "../pages/notFound";
+import {Login} from "../pages/login";
+import {ProfileContainer} from "../pages/profile";
+import {DialogsContainer} from "../pages/dialogs/dialogsContainer.tsx";
+import {UsersContainer} from "../pages/users";
 
 
-export const App = () => {
+export const SocialNetworkApp = () => {
 
     console.log('app rendered')
 

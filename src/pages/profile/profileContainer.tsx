@@ -3,6 +3,7 @@ import {  ProfileWithRedirect} from "./profile";
 import {useAppDispatch, useAppSelector, useUserIdFromParams} from "../../app/hooks";
 import { getIsFollowed, getUserStatus, setUserProfile } from "../../features/profile";
 import {batch} from "react-redux";
+import {useParams} from "react-router-dom";
 
 
 export const ProfileContainer = () => {
@@ -13,6 +14,12 @@ export const ProfileContainer = () => {
 
     const userID = useUserIdFromParams(id)
 
+    // If in url no user id then it is your profile
+
+    const { userId } = useParams()
+    const isOwner = !userId
+    // ---------------------
+
     useEffect(() => {
         batch(() => {
             dispatch(setUserProfile(userID))
@@ -21,5 +28,5 @@ export const ProfileContainer = () => {
         })
     }, [dispatch, userID]);
 
-    return <ProfileWithRedirect />
+    return <ProfileWithRedirect isOwner={isOwner} />
 }

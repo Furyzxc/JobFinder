@@ -3,6 +3,7 @@ import s from './user.module.css'
 import { Link } from "react-router-dom";
 
 import defaultAvatar from '../../assets/defaultAvatar.jpg'
+import {Avatar, Button} from "@mui/material";
 
 export interface UserProps {
     id: number,
@@ -18,10 +19,10 @@ export interface UserProps {
 export const User = (props: UserProps) => {
 
     return (
+        <Button variant='outlined'>
         <Link className={s.user} to={'/profile/' + props.id}>
             <div className={s.avatar}>
-                <img src={props.photos.small || props.photos.large || defaultAvatar}
-                alt='user avatar'/>
+                <Avatar src={props.photos.small || defaultAvatar} alt='user avatar'/>
             </div>
 
             <div className={s.userInfo}>
@@ -33,5 +34,6 @@ export const User = (props: UserProps) => {
                 </div>
             </div>
         </Link>
+        </Button>
     )
 }
