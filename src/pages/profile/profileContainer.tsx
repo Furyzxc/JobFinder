@@ -18,6 +18,7 @@ export const ProfileContainer = () => {
 
     const { userId } = useParams()
     const isOwner = !userId
+
     // ---------------------
 
     useEffect(() => {

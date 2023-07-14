@@ -59,14 +59,14 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 13px;
     color: #a1a4ad;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     margin-top: 84px;
     margin-bottom: 70px;
 }
 
 .box input[type = "text"], .box input[type = "password"] {
     display: block;
-    margin: 20px auto;
+    margin: 20px auto ;
     background: #262e49;
     border: 0;
     border-radius: 5px;
@@ -119,8 +119,8 @@ body {
 
 .btn1 {
     border: 0;
-    background: #7f5feb;
-    color: #dfdeee;
+    background: #90CAF9;
+    color: #13191F;
     border-radius: 100px;
     width: 340px;
     height: 49px;
@@ -133,7 +133,7 @@ body {
 }
 
 .btn1:hover {
-    background: #5d33e6;
+    background: #42A5F5;
 }
 
 .rmb {

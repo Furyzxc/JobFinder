@@ -1,6 +1,5 @@
 import {ChangeEvent, FocusEvent, useEffect, useState} from "react";
 import {TextField} from "@mui/material";
-import Box from '@mui/material/Box';
 
 interface InputProps {
     name: string;
@@ -20,7 +19,7 @@ export const Input = ({ name, onBlur, value }: InputProps) => {
     return (
         <div>
             <TextField
-                sx={{width: '400px'}}
+                sx={{width: '300px'}}
                 label={name} variant="standard"
                 value={inputValue}
                 onChange={handleInputChange}

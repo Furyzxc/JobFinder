@@ -74,7 +74,7 @@ const Profile = React.memo(({isOwner}: ProfileProps) => {
                 </button>
             </div>
             <div>
-                <ProfileInfo {...props} />
+                <ProfileInfo {...props} isOwner={isOwner}/>
             </div>
             {
                 !isOwner && (

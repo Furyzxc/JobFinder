@@ -1,16 +1,14 @@
 import s from './profileInfo.module.css'
 
-// images
-
-
-import github from '../../assets/contacts/git.png'
-import vk from '../../assets/contacts/vk.png'
-import facebook from '../../assets/contacts/facebook.png'
-import instagram from '../../assets/contacts/insta.png'
-import twitter from '../../assets/contacts/twitter.png'
-import website from '../../assets/contacts/website.png'
-import youtube from '../../assets/contacts/youtube.png'
-import mainLink from '../../assets/contacts/mainlink.png'
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LanguageIcon from '@mui/icons-material/Language';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import {Checkbox} from "@mui/material";
 
 
 interface DescriptionSectionProps {
@@ -32,6 +30,7 @@ interface DescriptionSectionProps {
 
 interface ContactNames {
     [key: string]: string
+
     github: string
     vk: string
     facebook: string
@@ -42,20 +41,27 @@ interface ContactNames {
     mainLink: string
 }
 
-const contactImages: ContactNames = {
-    github, vk, facebook, instagram, twitter, website, youtube, mainLink
+const contactImages = {
+    github: <GitHubIcon/>,
+    vk: <LinkedInIcon/>,
+    facebook: <FacebookIcon/>,
+    instagram: <InstagramIcon/>,
+    twitter: <TwitterIcon/>,
+    website: <LanguageIcon/>,
+    youtube: <YouTubeIcon/>,
+    mainLink: <TelegramIcon/>
 }
 
 
 const contactNames: ContactNames = {
     github: 'GitHub',
-    vk: 'VK',
+    vk: 'LinkedIn',
     facebook: 'Facebook',
     instagram: 'Instagram',
     twitter: 'Twitter',
     website: 'Website',
     youtube: 'YouTube',
-    mainLink: 'Main Link'
+    mainLink: 'Telegram'
 }
 
 export const DescriptionSection = ({contacts, lookingForAJobDescription, lookingForAJob}: DescriptionSectionProps) => {
@@ -64,8 +70,10 @@ export const DescriptionSection = ({contacts, lookingForAJobDescription, looking
         <div className={s.section}>
             <div className={s.jobInfo}>
                 <div className={s.first}>
-                    <div className={s.lfj}>Looking For A Job:</div>
-                    <div className={s.answer}>{lookingForAJob ? 'Yes' : 'No'}</div>
+                    <div className={s.lfj}>Looking for a job:</div>
+                    <div className={s.answer}>
+                        <Checkbox checked={lookingForAJob}/>
+                    </div>
                 </div>
                 <div className={s.second}>
                     <div className={s.lkfDescription}>
@@ -79,10 +87,11 @@ export const DescriptionSection = ({contacts, lookingForAJobDescription, looking
 
             <div className={s.contacts}>
                 {Object.keys(contacts).map((key, id) => (
-                    <a href={contacts[key] || '#'} className={s.contact} key={id}>
-                        <img src={contactImages[key]} alt='Icon'/>
+                    <a href={contacts[key] || '#'} className={s.contact} target='_blank' key={id}>
+                        {/*// @ts-ignore*/}
+                        <div>{contactImages[key]}</div>
                         <p>{contactNames[key]}</p>
-                        <div className={s.showContact}>  {contacts[key] ? contacts[key] : 'not specified'}</div>
+                        <div className={s.showContact}>  {contacts[key] ? contacts[key] : 'Not specified'}</div>
                     </a>
                 ))}
             </div>

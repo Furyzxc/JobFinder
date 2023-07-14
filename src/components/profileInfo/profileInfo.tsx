@@ -3,6 +3,8 @@ import {Status} from "../status";
 import {DescriptionSection} from "./descriptionSection.tsx";
 
 interface ProfileInfoProps {
+    isOwner: boolean
+
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
     fullName: string
@@ -26,30 +28,19 @@ interface ProfileInfoProps {
     status: null | string
 }
 
-export const ProfileInfo = ({photos, fullName, status, ...restProps}: ProfileInfoProps) => {
-
-    const bigPhoto = photos.large
+export const ProfileInfo = ({fullName, status, isOwner, ...restProps}: ProfileInfoProps) => {
 
     return (
         <div className={s.userInfo}>
-            <div className={s.bgImg}>
-                {
-                    bigPhoto
-                        ? <img alt='Big bg picture in profile' src={bigPhoto}/>
-                        : <div className={s.bgImgBody}></div>
-                }
-            </div>
-            <div>
-                <div className={s.underImgInfo}>
+                <div className={s.main}>
                     <div className={s.nickName}>
                         {fullName}
                     </div>
                     <div className={s.status}>
-                        <Status statusText={status}/>
+                        <Status statusText={status} isOwner={isOwner}/>
                     </div>
                 </div>
                 <DescriptionSection {...restProps}/>
             </div>
-        </div>
     );
 };

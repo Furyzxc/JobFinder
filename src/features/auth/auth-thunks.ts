@@ -10,7 +10,7 @@ export const authMe = createAsyncThunk('auth/authMe',
 
 export const authLogin = createAsyncThunk('auth/authLogin',
     async (body: RequestLoginBody, { dispatch }) => {
-        await dispatch(authApi.endpoints.login.initiate(body))
+        await dispatch(authApi.endpoints.login.initiate(body)).then(() => dispatch(authMe()))
     })
 
 

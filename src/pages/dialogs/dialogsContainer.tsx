@@ -13,5 +13,6 @@ export const DialogsContainer = () => {
         if (isSuccess && data) dispatch(setDialogs(data))
     }, [dispatch, isSuccess, data]);
 
+    // @ts-ignore
     return <DialogsWithRedirect isLoading={isLoading} />
 }

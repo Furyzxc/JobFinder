@@ -1,29 +1,15 @@
 .nickName {
     padding-top: 20px;
-    color: white;
-    font-size: 20px;
+    color: #42A5F5;
+    font-size: 25px;
 }
 
-.underImgInfo {
+.main {
+    height: 300px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
 }
 
-.bgImg {
-    padding-left: 200px;
-    height: 200px;
-    width: 700px;
-}
-
-.bgImgBody {
-    height: 100%;
-    background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
-}
-
-.bgImg img{
-    height: 200px;
-    width: 700px;
-}
 
 .jobInfo {
     color: white;
@@ -54,7 +40,6 @@
 
 .contact p {
     color: white;
-    text-align: center;
 }
 
 .contact {
@@ -68,7 +53,6 @@
 }
 
 .contacts {
-    margin-top: 40px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -76,13 +60,15 @@
 
 .showContact {
     display: none;
-    position: absolute;
-    left: 10px;
-    top: 0;
-    color: turquoise;
+    color: #42A5F5;
     font-family: 'Roboto', sans-serif;
 }
 
 .contact:hover .showContact {
     display: block;
+}
+
+.status {
+    padding-right: 200px;
+    padding-top: 30px;
 }

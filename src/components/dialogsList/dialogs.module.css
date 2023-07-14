@@ -43,13 +43,9 @@
     background-color: #2D343C;
 }
 
-.dialogs:hover {
-    overflow-y: scroll;
-}
-
 .dialogs {
     height: 100vh;
-    background-color: #17212B;
+    overflow-y: scroll;
 }
 
 .time {

@@ -4,7 +4,6 @@ import {useAppDispatch, useAppSelector} from "./hooks.ts";
 import {useEffect} from "react";
 import {getAuth, initializeApp} from "../features/app";
 import {Preloader} from "../components/common";
-import {AnimatedBg} from "../components/animatedBg/animatedBg.tsx";
 import {Route, Routes} from "react-router-dom";
 import {NotFound} from "../pages/notFound";
 import {Login} from "../pages/login";
@@ -15,7 +14,6 @@ import {UsersContainer} from "../pages/users";
 
 export const SocialNetworkApp = () => {
 
-    console.log('app rendered')
 
     const isAuth = useAppSelector(getAuth)
     const initialized = useAppSelector(state => state.app.initialized)
@@ -30,7 +28,7 @@ export const SocialNetworkApp = () => {
 
     return (
         <div>
-            <AnimatedBg/>
+            {/*<AnimatedBg/>*/}
             {!isAuth && <Header/>}
             <div className='App'>
                 <div>

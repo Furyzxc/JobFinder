@@ -12,7 +12,7 @@ export const dialogsApi = api.injectEndpoints({
         // get list of dialogs with your friend
 
         getDialogs: build.query<GetDialogsResponse[], void>({
-            query: () => 'dialogs'
+            query: () => 'dialogs',
         }),
 
         // get list of messages with your friend
