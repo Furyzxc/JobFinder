@@ -31,6 +31,7 @@
     flex-direction: column;
     justify-content: flex-end;
     background-color: #0E1621;
+    overflow: hidden;
 }
 
 .myMessage .time {

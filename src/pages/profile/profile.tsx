@@ -67,12 +67,12 @@ const Profile = React.memo(({isOwner}: ProfileProps) => {
 
     return (
         <div className={s.profile}>
-            <div className={s.navigation}>
+            {isOwner && <div className={s.navigation}>
                 <button className={s.button}>
                     <img alt='avatar' src={props.photos.small || defaultAvatar}/>
                     <div className={s.logout} onClick={handleLogout}>LOGOUT</div>
                 </button>
-            </div>
+            </div>}
             <div>
                 <ProfileInfo {...props} isOwner={isOwner}/>
             </div>

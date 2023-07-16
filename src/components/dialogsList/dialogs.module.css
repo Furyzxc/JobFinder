@@ -45,6 +45,7 @@
 
 .dialogs {
     height: 100vh;
+    background-color: #0A1929;
     overflow-y: scroll;
 }
 

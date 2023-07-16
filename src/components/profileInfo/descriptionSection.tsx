@@ -68,19 +68,21 @@ export const DescriptionSection = ({contacts, lookingForAJobDescription, looking
 
     return (
         <div className={s.section}>
-            <div className={s.jobInfo}>
-                <div className={s.first}>
-                    <div className={s.lfj}>Looking for a job:</div>
-                    <div className={s.answer}>
-                        <Checkbox checked={lookingForAJob}/>
+            <div className={s.container}>
+                <div className={s.jobInfo}>
+                    <div className={s.first}>
+                        <div className={s.lfj}>Looking for a job:</div>
+                        <div className={s.answer}>
+                            <Checkbox checked={lookingForAJob}/>
+                        </div>
                     </div>
-                </div>
-                <div className={s.second}>
-                    <div className={s.lkfDescription}>
-                        Description:
-                    </div>
-                    <div className={s.text}>
-                        {lookingForAJobDescription ? lookingForAJobDescription : 'Currently no description'}
+                    <div className={s.second}>
+                        <div className={s.lkfDescription}>
+                            Description:
+                        </div>
+                        <div className={s.text}>
+                            {lookingForAJobDescription ? lookingForAJobDescription : 'Currently no description'}
+                        </div>
                     </div>
                 </div>
             </div>

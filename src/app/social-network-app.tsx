@@ -28,7 +28,6 @@ export const SocialNetworkApp = () => {
 
     return (
         <div>
-            {/*<AnimatedBg/>*/}
             {!isAuth && <Header/>}
             <div className='App'>
                 <div>
@@ -37,6 +36,8 @@ export const SocialNetworkApp = () => {
                 <div>
                     <Routes>
                         <Route path='*' element={<NotFound/>}/>
+
+                        <Route path='/' element={<ProfileContainer/>}/>
 
                         <Route path='/login' element={<Login/>}/>
 
