@@ -11,7 +11,7 @@ interface Paginator {
 
 const initialState: Paginator = {
     pages: [],
-    count: 20,
+    count: 24,
     page: 1,
     term: '',
     friend: false

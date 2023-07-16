@@ -19,7 +19,7 @@ export const Input = ({ name, onBlur, value }: InputProps) => {
     return (
         <div>
             <TextField
-                sx={{width: '300px'}}
+                sx={{width: '210px'}}
                 label={name} variant="standard"
                 value={inputValue}
                 onChange={handleInputChange}

@@ -3,7 +3,7 @@ import s from './user.module.css'
 import { Link } from "react-router-dom";
 
 import defaultAvatar from '../../assets/defaultAvatar.jpg'
-import {Avatar, Button} from "@mui/material";
+import {Avatar, Button, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 
 export interface UserProps {
@@ -20,8 +20,8 @@ export interface UserProps {
 export const User = (props: UserProps) => {
 
     return (
-        <Box sx={{display: 'block', width: '300px'}}>
-        <Button variant='outlined' sx={{width: '100%'}}>
+        <Box sx={{display: 'block', width: '210px'}}>
+        <Button variant='outlined' sx={{width: '100%', textTransform: 'none'}}>
         <Link className={s.user} to={'/profile/' + props.id}>
             <div className={s.avatar}>
                 <Avatar src={props.photos.small || defaultAvatar} alt='user avatar'/>
@@ -31,9 +31,9 @@ export const User = (props: UserProps) => {
                 <div className={s.userName}>
                     {props.name}
                 </div>
-                <div className={s.status}>
+                <Typography className={s.status} sx={{color: 'grey'}}>
                     {props.status}
-                </div>
+                </Typography>
             </div>
         </Link>
         </Button>

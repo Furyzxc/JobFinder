@@ -4,7 +4,7 @@ import {Navigate} from "react-router-dom";
 
 export const withLoginRedirect = <P extends object>(Component: ComponentType<P>): ComponentType<P> => (props) => {
     const isAuth = useAppSelector(state => state.auth.isAuth)
-
+debugger
     if (!isAuth) return <Navigate to='/login' />
 
     return <Component {...props} />

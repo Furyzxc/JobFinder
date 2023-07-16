@@ -4,7 +4,7 @@ import { authSlice } from "../features/auth";
 import { profileSlice } from "../features/profile";
 import { dialogsSlice } from "../features/dialogs";
 import { usersSlice } from "../features/users";
-import { paginatorSlice } from "../features/paginator/paginator-slice.ts";
+import { paginatorSlice } from "../features/paginator";
 import { api } from "../api/api.ts";
 
 export const rootReducer = combineReducers({

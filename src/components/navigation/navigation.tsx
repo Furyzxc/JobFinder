@@ -18,7 +18,7 @@ function HomeIcon(props: SvgIconProps) {
 
 export const Navigation = () => {
     return (
-        <Box className={s.box} sx={{pl: '20px'}} >
+        <Box className={s.box} sx={{pl: '20px', height: '70vh'}} >
 
             <Link to='/profile'><HomeIcon/></Link>
 

@@ -1,12 +1,13 @@
 import {useEffect} from "react";
-import {  ProfileWithRedirect} from "./profile";
+import {Profile} from "./profile";
 import {useAppDispatch, useAppSelector, useUserIdFromParams} from "../../app/hooks";
 import { getIsFollowed, getUserStatus, setUserProfile } from "../../features/profile";
 import {batch} from "react-redux";
 import {useParams} from "react-router-dom";
+import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
 
 
-export const ProfileContainer = () => {
+const ProfileContainer = () => {
 
     const dispatch = useAppDispatch()
 
@@ -29,5 +30,7 @@ export const ProfileContainer = () => {
         })
     }, [dispatch, userID]);
 
-    return <ProfileWithRedirect isOwner={isOwner} />
+    return <Profile isOwner={isOwner} />
 }
+
+export const ProfileWithRedirect = withLoginRedirect(ProfileContainer)

@@ -39,9 +39,9 @@
 }
 
 .status {
-    color: grey;
+    text-transform: none;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 250px;
+    max-width: 160px;
     overflow: hidden;
 }

@@ -21,6 +21,10 @@
     max-width: 300px;
 }
 
+.userInfo {
+    padding-left: 20px;
+}
+
 .container {
     margin-bottom: 40px;
 }

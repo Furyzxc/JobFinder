@@ -6,7 +6,7 @@ interface Auth {
     isAuth: boolean
 
     userInfo: {
-        id: number | undefined
+        id: number
         email: string | null
         login: string | null
     }
@@ -16,7 +16,7 @@ const initialState: Auth = {
     isAuth: false,
 
     userInfo: {
-        id: undefined,
+        id: 0,
         email: null,
         login: null
     }
@@ -31,7 +31,7 @@ export const authSlice = createSlice({
         },
 
         clearUserData(state) {
-            state.userInfo.id = undefined
+            state.userInfo.id = 0
             state.userInfo.email = null
             state.userInfo.login = null
         },

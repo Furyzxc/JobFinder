@@ -1,7 +1,3 @@
-// - Styles
-
-import s from './loginForm.module.css'
-
 // - Actions
 
 import { authLogin } from "../../features/auth";
@@ -50,11 +46,12 @@ export const LoginForm = () => {
         <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={loginSchema}>
             {({isSubmitting}) => (
             <Form name="form1" className="box">
-                <h5>Sign in to your account.</h5>
-                <ErrorMessage name='email' component='span' className={s.label}/>
+                <h4>Sign in to your account.</h4>
+                <div className='login-form'>
+                <ErrorMessage name='email' component='span' className='label'/>
                 <Field type="text" name="email" placeholder={'Email'}
                        autoComplete="off"/>
-                <ErrorMessage name='password' component='span' className={s.label}/>
+                <ErrorMessage name='password' component='span' className='label'/>
                 <Field type="password" name="password"
                        placeholder={'Password'}
                        id="pwd" autoComplete="off"/>
@@ -63,7 +60,7 @@ export const LoginForm = () => {
                     <span className='labelspan'></span>
                     <small className="rmb">Remember me</small>
                 </label>
-                <a href="#" className="forgetpass">Forget Password?</a>
+                </div>
                 <button className="btn1" type='submit' disabled={isSubmitting}>Sign in</button>
             </Form>
             )}

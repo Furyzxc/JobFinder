@@ -13,7 +13,7 @@ export const Paginator = () => {
         <div className={s.pages}>
             {pages.length > 1 &&
                     pages.map(page => (
-                        <Button key={page} variant='outlined'
+                        <Button key={page} variant='outlined' sx={{width: '100%', maxWidth: '70px'}}
                                 onClick={() => handlePageClick(page)}
                         > {page} </Button>
                     ))
