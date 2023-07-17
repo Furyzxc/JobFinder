@@ -11,7 +11,7 @@
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 0.7fr 6fr 0.7fr;
+    grid-template-rows: 0.5fr 6fr 0.5fr;
 }
 
 
@@ -44,6 +44,6 @@
     color: white;
     letter-spacing: -0.8px;
     font-family: 'Spot Mono', monospace;
-    padding: 20px 0 0 15px;
+    padding: 10px 0 0 15px;
     font-size: 16px;
 }
