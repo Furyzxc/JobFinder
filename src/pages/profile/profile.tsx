@@ -19,6 +19,7 @@ import {ProfileInfo} from "../../components/profileInfo";
 import {Navigate} from "react-router-dom";
 import {Button} from "@mui/material";
 import {Follow} from "../../components/follow";
+import {withLoading} from "../../hoc/withLoading.tsx";
 
 // ------------------------------------
 
@@ -26,7 +27,7 @@ interface ProfileProps {
     isOwner: boolean
 }
 
-export const Profile = React.memo(({isOwner}: ProfileProps) => {
+const Profile = React.memo(({isOwner}: ProfileProps) => {
     const dispatch = useAppDispatch()
 
     const profile = useAppSelector(getProfile)
@@ -76,3 +77,5 @@ export const Profile = React.memo(({isOwner}: ProfileProps) => {
         </div>
     )
 })
+
+export const ProfileWithLoading = withLoading(Profile)

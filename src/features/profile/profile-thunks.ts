@@ -2,6 +2,16 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {profileApi} from "../../api/profile-api.ts";
 import {FollowRequestBody} from "../../types/api/profile-types.ts";
 import {setIsFollowed, setStatusInfo, setUserInfo} from "./profile-slice.ts";
+import {batch} from "react-redux";
+
+export const getUserData = createAsyncThunk('profile/getUserData',
+    async (id: number, { dispatch }) => {
+        await batch(() => {
+            dispatch(setUserProfile(id))
+            dispatch(getUserStatus(id))
+            dispatch(getIsFollowed(id))
+        })
+    })
 
 export const setUserProfile = createAsyncThunk('profile/setUserProfile',
     async (userId: number, {dispatch}) => {

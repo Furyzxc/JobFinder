@@ -21,7 +21,7 @@ const WeakUsers = () => {
 
     // @ts-ignore
     return (
-        <div className={s.users}>
+        <div className={s.users + ' height'}>
             <div>
                 <div>
                     <Search/>

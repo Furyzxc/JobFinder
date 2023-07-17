@@ -2,8 +2,10 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {profileApi} from "../../api/profile-api.ts";
 import {RootState} from "../../app/store.ts";
 import {ProfileResponseBody} from "../../types/api/profile-types.ts";
+import {getUserData} from "./profile-thunks.ts";
 
 interface Profile {
+    isLoading: boolean
     isFollowed: boolean
 
     userId: number
@@ -32,6 +34,7 @@ interface Profile {
 
 const initialState: Profile = {
     isFollowed: false,
+    isLoading: false,
 
     userId: 0,
     lookingForAJob: false,
@@ -78,6 +81,14 @@ export const profileSlice = createSlice({
         },
 
         extraReducers: builder => {
+            builder.addCase(getUserData.pending, state => {
+                state.isLoading = true
+            })
+
+            builder.addCase(getUserData.fulfilled, state => {
+                state.isLoading = false
+            })
+
             builder.addMatcher(profileApi.endpoints.setStatus.matchFulfilled, (state, action) => {
                 // if success setting request status value
 
@@ -96,3 +107,4 @@ export const {
 } = profileSlice.actions
 
 export const getProfile = (state: RootState) => state.profile
+export const getProfileLoading = (state: RootState) => state.profile.isLoading

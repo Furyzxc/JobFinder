@@ -6,6 +6,11 @@
     background-color: #0E1621;
 }
 
+.messages {
+    position: relative;
+    overflow-x: hidden;
+}
+
 .chatContainer {
     width: 100%;
     overflow: hidden;
