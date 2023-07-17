@@ -19,6 +19,7 @@ export const authMe = createAsyncThunk('auth/authMe',
 
 export const authLogin = createAsyncThunk('auth/authLogin',
     async (body: RequestLoginBody, {dispatch}) => {
+        // @ts-ignore
         await dispatch(authApi.endpoints.login.initiate(body)).then(({data}) => {
             if (data && data.resultCode === 0) dispatch(authMe())
             else {
