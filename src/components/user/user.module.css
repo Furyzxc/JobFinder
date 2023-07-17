@@ -1,29 +1,28 @@
 .user {
     display: grid;
-    grid-template-columns: 2.6fr 8fr;
+    grid-template-rows: 1fr 4fr;
     height: 80px;
     text-decoration: none;
     width: 100%;
-    margin-bottom: 10px;
-    border-radius: 10px;
     user-select: none;
 }
 
 .avatar img {
-    margin-left: 10px;
     max-height: 50px;
     border-radius: 50%;
     user-select: none;
 }
 
 .avatar {
-    padding-top: 10px;
+
 }
 
 .userInfo {
     text-align: center;
     font-family: 'Bahtnschrift', sans-serif;
     color: white;
+    display: grid;
+    grid-template-columns: 50px 1fr;
 }
 
 .userName {

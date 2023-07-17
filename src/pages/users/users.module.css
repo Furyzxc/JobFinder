@@ -8,8 +8,9 @@
 .usersList {
     flex-wrap: wrap;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     overflow: auto;
+    gap: max(2%, 10px);
     max-height: 85vh;
 }
 

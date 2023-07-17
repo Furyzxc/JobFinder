@@ -8,6 +8,7 @@
     padding: 4px 0 0 5px;
     position: relative;
     grid-template-columns: 1fr;
+    word-break: break-word;
 }
 
 .myMessage {
@@ -32,7 +33,10 @@
     justify-content: flex-end;
     background-color: #0E1621;
     overflow: hidden;
+    min-height: 100%;
 }
+
+
 
 .myMessage .time {
     color: #7D9FAB;
@@ -78,10 +82,4 @@
 
 .new {
     margin: 1px 8px;
-}
-
-.messages {
-    overflow-y: scroll;
-    max-height: 300px;
-    position: relative;
 }

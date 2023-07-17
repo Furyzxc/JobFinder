@@ -23,15 +23,15 @@ export const User = (props: UserProps) => {
         <Box sx={{display: 'block', width: '210px'}}>
         <Button variant='outlined' sx={{width: '100%', textTransform: 'none'}}>
         <Link className={s.user} to={'/profile/' + props.id}>
-            <div className={s.avatar}>
-                <Avatar src={props.photos.small || defaultAvatar} alt='user avatar'/>
+            <div className={s.userName}>
+                {props.name}
             </div>
 
             <div className={s.userInfo}>
-                <div className={s.userName}>
-                    {props.name}
+                <div className={s.avatar}>
+                    <Avatar src={props.photos.small || defaultAvatar} alt='user avatar'/>
                 </div>
-                <Typography className={s.status} sx={{color: 'grey'}}>
+                <Typography className={s.status} sx={{color: 'grey', fontSize: '12px'}}>
                     {props.status}
                 </Typography>
             </div>
