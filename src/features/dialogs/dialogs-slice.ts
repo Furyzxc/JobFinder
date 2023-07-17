@@ -41,7 +41,6 @@ export const dialogsSlice = createSlice({
     extraReducers: builder => {
         builder.addMatcher(dialogsApi.endpoints.sendMessage.matchFulfilled, (state, { payload }: PayloadAction<SendMessageResponse>) => {
             if (payload.resultCode === 0) state.messages.push(payload.data.message)
-            console.log(state.messages)
         })
 
         builder.addMatcher(dialogsApi.endpoints.getMessages.matchPending, (state) => {

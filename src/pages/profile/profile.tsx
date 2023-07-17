@@ -5,12 +5,12 @@ import defaultAvatar from '../../assets/defaultAvatar.jpg'
 
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {useStartChattingMutation} from "../../api/dialogs-api.ts";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 // - Actions
 
 import {authLogout} from "../../features/auth";
-import { getProfile } from "../../features/profile";
+import {getProfile } from "../../features/profile";
 import {setDialogName} from "../../features/dialogs";
 
 // - Components and hoc
@@ -36,13 +36,12 @@ export const Profile = React.memo(({isOwner}: ProfileProps) => {
     const [startChatting, {data, isSuccess}] = useStartChattingMutation()
     const [isChattingAccepted, setIsChattingAccepted] = useState(false)
 
-    const handleLogout = useMemo(() => () => dispatch(authLogout()), [dispatch])
+    const handleLogout = () => dispatch(authLogout())
 
-    const handleSendBtnClick = useMemo(() => () => {
+    const handleSendBtnClick = () => {
         startChatting(userId)
         dispatch(setDialogName(props.fullName))
-    }, [dispatch, props.fullName, startChatting, userId]);
-
+    }
 
     useEffect(() => {
         if (isSuccess && data && data.resultCode === 0) setIsChattingAccepted(true)

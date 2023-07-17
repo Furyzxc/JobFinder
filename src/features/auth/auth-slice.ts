@@ -51,7 +51,6 @@ export const authSlice = createSlice({
 
         builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
             if (action.payload.resultCode === 0) state.isAuth = true
-            console.log(action)
         })
 
         builder.addMatcher(authApi.endpoints.logout.matchFulfilled, state => {

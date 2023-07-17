@@ -13,7 +13,7 @@ export const Follow = ({isFollowed, userId}: FollowProps) => {
 
     const [isFollowingProgress, setIsFollowingProgress] = useState(false);
 
-    const handleToggleFollow = () => (follow: boolean) => {
+    const handleToggleFollow = (follow: boolean) => {
             dispatch(toggleIsFollowed({userId, follow})).then(({payload}) => {
                 // @ts-ignore
                 if (payload.resultCode === 0) setIsFollowingProgress(false);
@@ -23,8 +23,7 @@ export const Follow = ({isFollowed, userId}: FollowProps) => {
     const handleFollowClick = () => handleToggleFollow(true)
     const handleUnfollowClick = () => handleToggleFollow(false)
 
-    return isFollowed
-            ? <Button variant='outlined'
+    return isFollowed ? <Button variant='outlined'
                       onClick={handleUnfollowClick}
                       disabled={isFollowingProgress}
             >Unfollow</Button>
