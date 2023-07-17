@@ -43,10 +43,10 @@ To get started with JobFinder, follow these steps:
 
 All Rights Reserved.
 
-This repository and its contents are private and proprietary to [Furyzxc]. No part of this code may be reproduced, modified, or distributed in any form without prior written permission from the copyright holder.
+This repository and its contents are private and proprietary to Furyzxc. No part of this code may be reproduced, modified, or distributed in any form without prior written permission from the copyright holder.
 
 ---
-© [Furyzxc]
+© Furyzxc
 
 ---
 
