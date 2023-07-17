@@ -36,7 +36,7 @@ export const Dialogs = React.memo(() => {
             {!userId ? (
                     <Div>Start chatting</Div>)
                 : (
-                    <div className={s.chatContainer}>
+                    <div className={s.chatContainer + ' phone'}>
                         <div className={s.title}>
                             {dialogName}
                         </div>
