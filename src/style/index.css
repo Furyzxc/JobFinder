@@ -10,7 +10,7 @@
 
 @media only screen and (max-width: 768px) {
     body, .height {
-        height: calc(100vh - 56px); /* Adjust the value (56px) based on your device's navigation bar height */
+        height: calc(100vh - 90px); /* Adjust the value (56px) based on your device's navigation bar height */
     }
 }
 
