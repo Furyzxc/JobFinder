@@ -9,7 +9,6 @@ export const authMe = createAsyncThunk('auth/authMe',
         try {
             await dispatch(authApi.endpoints.me.initiate())
                 .then(({data}) => {
-                    debugger
                     if (data && data.resultCode === 0) {
                         dispatch(setUserData(data.data))
                         dispatch(toggleIsAuth(true))
@@ -27,7 +26,6 @@ export const authLogin = createAsyncThunk('auth/authLogin',
     async (body: RequestLoginBody, {dispatch}) => {
     try {
         await dispatch(authApi.endpoints.login.initiate(body)).then(({data}: any) => {
-            debugger
             if (data && data.resultCode === 0) dispatch(authMe())
             else {
                 data && data.messages.length > 0

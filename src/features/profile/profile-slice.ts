@@ -1,6 +1,7 @@
-import {createSlice} from "@reduxjs/toolkit";
-import { profileApi } from "../../api/profile-api.ts";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {profileApi} from "../../api/profile-api.ts";
 import {RootState} from "../../app/store.ts";
+import {ProfileResponseBody} from "../../types/api/profile-types.ts";
 
 interface Profile {
     isFollowed: boolean
@@ -60,29 +61,23 @@ export const profileSlice = createSlice({
         name: 'profile',
         initialState,
         reducers: {
-            setInfo(state, action) {
+            setUserInfo(state, action: PayloadAction<ProfileResponseBody>) {
                 return {
                     ...state,
                     ...action.payload
                 }
+            },
+
+            setStatusInfo(state, action: PayloadAction<string>) {
+                state.status = action.payload
+            },
+
+            setIsFollowed(state, action: PayloadAction<boolean>) {
+                state.isFollowed = action.payload
             }
         },
 
         extraReducers: builder => {
-            builder.addMatcher(profileApi.endpoints.getProfile.matchFulfilled, (state, action) => ({
-                    ...state,
-                    ...action.payload
-                })
-            )
-
-            builder.addMatcher(profileApi.endpoints.getUserStatus.matchFulfilled, (state, action) => {
-                state.status = action.payload
-            })
-
-            builder.addMatcher(profileApi.endpoints.getIsFollowed.matchFulfilled, (state, action) => {
-                state.isFollowed = action.payload
-            })
-
             builder.addMatcher(profileApi.endpoints.setStatus.matchFulfilled, (state, action) => {
                 // if success setting request status value
 
@@ -90,14 +85,14 @@ export const profileSlice = createSlice({
                     state.status = action.meta.arg.originalArgs.status
                 }
             })
-
-            builder.addMatcher(profileApi.endpoints.toggleIsFollowed.matchFulfilled, (state, action) => {
-                if (action.payload.resultCode === 0) state.isFollowed = !state.isFollowed
-            })
         }
     }
 )
 
-export const { setInfo } = profileSlice.actions
+export const {
+    setUserInfo,
+    setStatusInfo,
+    setIsFollowed
+} = profileSlice.actions
 
 export const getProfile = (state: RootState) => state.profile

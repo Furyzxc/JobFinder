@@ -20,7 +20,6 @@ export const Message = ({body, addedAt, clName, viewed}: MessageProps) => {
                 {time}
             </div>
             <div className={s.tick}>
-                {/*// @ts-ignore*/}
                 <DoneAllIcon fontSize='12' sx={{color: viewed ? '#66B7F6' : 'white'}} />
             </div>
         </div>

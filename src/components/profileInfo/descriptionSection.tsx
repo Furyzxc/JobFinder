@@ -89,7 +89,7 @@ export const DescriptionSection = ({contacts, lookingForAJobDescription, looking
 
             <div className={s.contacts}>
                 {Object.keys(contacts).map((key, id) => (
-                    <a href={contacts[key] || '#'} className={s.contact} target='_blank' key={id}>
+                    <a href={contacts[key] || ''} className={s.contact} key={id}>
                         {/*// @ts-ignore*/}
                         <div>{contactImages[key]}</div>
                         <p>{contactNames[key]}</p>

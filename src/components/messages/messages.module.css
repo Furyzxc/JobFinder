@@ -1,14 +1,14 @@
 .message {
     border-radius: 5px;
-    max-width: 400px;
+    max-width: min(80%, 400px);
     width: max-content;
     min-height: 30px;
     min-width: 110px;
     display: grid;
     padding: 4px 0 0 5px;
     position: relative;
+    grid-template-columns: 1fr;
 }
-
 
 .myMessage {
     background-color: #2B5278;
@@ -40,7 +40,7 @@
 
 .friendMessage {
     grid-template-columns: 1fr 40px;
-    margin: 0 0 10px 60px;
+    margin: 0 0 10px 5%;
     background-color: #182533;
 }
 
@@ -56,6 +56,7 @@
     color: white;
     font-size: 13px;
     font-family: 'Source Sans Pro', sans-serif;
+    /*width: min-content;*/
 }
 
 .time {
@@ -82,22 +83,5 @@
 .messages {
     overflow-y: scroll;
     max-height: 300px;
-}
-
-.messages::-webkit-scrollbar {
-    width: 5px;
-}
-
-.messages::-webkit-scrollbar-track {
-    border-radius: 2px;
-    background-color: #293038;
-}
-
-.messages::-webkit-scrollbar-thumb {
-    background-color: #54595F;
-    border-radius: 10px;
-}
-
-.messages::-webkit-scrollbar-track:hover {
-    background-color: #2D343C;
+    position: relative;
 }

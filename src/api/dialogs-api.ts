@@ -1,9 +1,7 @@
 import {api} from "./api.ts";
 import {
-    GetDialogsResponse, GetMessagesRequest, GetMessagesResponse,
-    SendMessageRequest,
-    SendMessageResponse,
-    StartChattingResponse
+    GetDialogsResponse, MessagesRequest, MessagesResponse,
+    SendMessageRequest, SendMessageResponse, StartChattingResponse
 } from "../types/api/dialogs-types.ts";
 
 export const dialogsApi = api.injectEndpoints({
@@ -16,7 +14,7 @@ export const dialogsApi = api.injectEndpoints({
         }),
 
         // get list of messages with your friend, max count is 20
-        getMessages: build.query<GetMessagesResponse, GetMessagesRequest>({
+        requestMessages: build.query<MessagesResponse, MessagesRequest>({
             query: ({id, count = 20}) => 'dialogs/' + id + `/messages?count=${count}`
         }),
 
@@ -42,6 +40,5 @@ export const dialogsApi = api.injectEndpoints({
 
 export const {
     useStartChattingMutation,
-    useLazyGetMessagesQuery,
     useGetDialogsQuery
 } = dialogsApi

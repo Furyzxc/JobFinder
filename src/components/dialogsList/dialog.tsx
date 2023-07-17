@@ -3,21 +3,17 @@ import {Link} from "react-router-dom";
 import s from './dialogs.module.css'
 import {GetDialogsResponse} from "../../types/api/dialogs-types.ts";
 import {formatTime} from "../../utils/formatTime.ts";
-import {useLazyGetMessagesQuery} from "../../api/dialogs-api.ts";
-import {setDialogName, setMessages} from "../../features/dialogs";
+import {requestMessages, setDialogName} from "../../features/dialogs";
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 
 export const Dialog = ({userName, id, lastDialogActivityDate, hasNewMessages}: GetDialogsResponse) => {
     const dispatch = useAppDispatch()
 
-
-    const [getMessages] = useLazyGetMessagesQuery()
-
     const time = formatTime(lastDialogActivityDate)
-    const handleClick = async () => {
+
+    const handleClick = () => {
         dispatch(setDialogName(userName))
-        const {data} = await getMessages({id})
-        if (data?.items) dispatch(setMessages(data.items))
+        dispatch(requestMessages({id}))
     }
 
     return (

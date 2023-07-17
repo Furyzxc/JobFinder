@@ -8,9 +8,6 @@ export interface ToggleFollowResponse {
 }
 
 
-
-// profile-api
-
 export interface ProfileResponseBody {
     userId: number
     lookingForAJob: boolean

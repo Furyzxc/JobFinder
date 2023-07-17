@@ -43,11 +43,11 @@ export const dialogsSlice = createSlice({
             if (payload.resultCode === 0) state.messages.push(payload.data.message)
         })
 
-        builder.addMatcher(dialogsApi.endpoints.getMessages.matchPending, (state) => {
+        builder.addMatcher(dialogsApi.endpoints.requestMessages.matchPending, (state) => {
             state.isLoading = true
         })
 
-        builder.addMatcher(dialogsApi.endpoints.getMessages.matchFulfilled, (state) => {
+        builder.addMatcher(dialogsApi.endpoints.requestMessages.matchFulfilled, (state) => {
             state.isLoading = false
         })
     }

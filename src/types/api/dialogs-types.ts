@@ -56,13 +56,13 @@ export interface MessageResponseType { // From GetMessageResponse
 }
 
 
-export interface GetMessagesResponse {
+export interface MessagesResponse {
     error: unknown | null
     items: MessageResponseType[]
     totalCount: number
 }
 
-export interface GetMessagesRequest {
+export interface MessagesRequest {
     id: number,
     count?: number
 }

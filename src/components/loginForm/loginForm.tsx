@@ -1,4 +1,5 @@
 import s from './loginForm.module.css'
+import { LoginFormField } from './loginFormField.tsx'
 
 // - Actions
 
@@ -10,7 +11,7 @@ import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 
 // - Libraries
 
-import {Form, Field, Formik, ErrorMessage} from 'formik';
+import {Form, Formik, ErrorMessage} from 'formik';
 import * as Yup from 'yup'
 
 // ---------------------------
@@ -57,14 +58,11 @@ export const LoginForm = () => {
                     <div className={s.loginForm}>
                         {error ? <span className={s.label}> {error} </span>
                             : <ErrorMessage name='email' component='span' className={s.label}/>}
-                        <Field type="text" name="email" placeholder='Email'
-                               autoComplete="off"/>
+                        <LoginFormField type="text" name="email" placeholder='Email' />
                         <ErrorMessage name='password' component='span' className={s.label}/>
-                        <Field type="password" name="password"
-                               placeholder='Password'
-                               id="pwd" autoComplete="off"/>
+                        <LoginFormField type="password" name="password" placeholder='Password'/>
                         <label>
-                            <Field type="checkbox" name='rememberMe' className={s.checkbox}/>
+                            <LoginFormField type="checkbox" name='rememberMe' classes={s.checkbox}/>
                             <span className={s.labelspan}></span>
                             <small className={s.rmb}>Remember me</small>
                         </label>
