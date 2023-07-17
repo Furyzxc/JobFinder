@@ -58,7 +58,7 @@
     background: #90CAF9;
     color: #13191F;
     border-radius: 100px;
-    width: 85%;
+    min-width: 85%;
     height: 49px;
     font-size: 16px;
     position: absolute;
