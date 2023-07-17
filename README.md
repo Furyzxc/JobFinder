@@ -41,7 +41,12 @@ To get started with JobFinder, follow these steps:
 
 ## License
 
-JobFinder is licensed under the [MIT License](LICENSE).
+All Rights Reserved.
+
+This repository and its contents are private and proprietary to [Furyzxc]. No part of this code may be reproduced, modified, or distributed in any form without prior written permission from the copyright holder.
+
+---
+© [Furyzxc]
 
 ---
 
