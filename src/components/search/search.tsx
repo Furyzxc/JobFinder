@@ -3,9 +3,9 @@ import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {FocusEvent} from "react";
 import {setFriend, getFriend, setSearchingTerm} from "../../features/paginator";
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
-import React from 'react'
+import s from './search.module.css'
 
-export const Search = React.memo(() => {
+export const Search = () => {
     const dispatch = useAppDispatch()
     const friend = useAppSelector(getFriend)
 
@@ -14,7 +14,7 @@ export const Search = React.memo(() => {
 
 
     return (
-        <div className='searchContainer'>
+        <div className={s.searchContainer}>
             <Input name='Search' value={''} key={2} onBlur={handleBlur} />
             {/*// @ts-ignore*/}
             <GroupRoundedIcon variant='outlined' fontSize='small'
@@ -22,4 +22,4 @@ export const Search = React.memo(() => {
                               onClick={handleIconClick}/>
         </div>
     )
-});
+}

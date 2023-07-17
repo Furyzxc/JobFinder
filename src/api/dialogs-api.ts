@@ -15,9 +15,9 @@ export const dialogsApi = api.injectEndpoints({
             query: () => 'dialogs',
         }),
 
-        // get list of messages with your friend
+        // get list of messages with your friend, max count is 20
         getMessages: build.query<GetMessagesResponse, GetMessagesRequest>({
-            query: ({id, count = 30}) => 'dialogs/' + id + `/messages?count=${count}`
+            query: ({id, count = 20}) => 'dialogs/' + id + `/messages?count=${count}`
         }),
 
         // Start dialog with a person

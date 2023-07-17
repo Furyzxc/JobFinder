@@ -29,7 +29,7 @@ const WeakUsers = () => {
 
                 <div className={s.wrapper}>
                     {!users[0] && <Div>Users not found</Div>}
-                    <ul className={s.usersList}>
+                    <ul className={s.usersList + ' scroll'}>
                         {users?.map(user => (
                             <li key={user.id}>
                                 <User {...user} />

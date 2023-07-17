@@ -6,14 +6,14 @@ import {getMessages} from "../../features/dialogs";
 import {withLoading} from "../../hoc/withLoading.tsx";
 const Messages = () => {
     const messages = useAppSelector(getMessages)
-    const userChatId = useUserIdFromParams()
+    const { id} = useUserIdFromParams()
 
     return (
             <div className={s.flexbox}>
                 {!messages[0] && <Div>Enter your first message</Div>}
-                {messages.map((message, id) => (
-                    <Message {...message} key={id}
-                             clName={message.senderId === userChatId ? s.friendMessage : s.myMessage}/>
+                {messages.map(message => (
+                    <Message {...message} key={message.id}
+                             clName={message.senderId === id ? s.friendMessage : s.myMessage}/>
                 ))}
             </div>
     );

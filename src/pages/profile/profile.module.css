@@ -55,3 +55,7 @@
 .button:hover .logout, .button:focus .logout{
     opacity: .9;
 }
+
+.profile {
+    overflow: auto;
+}

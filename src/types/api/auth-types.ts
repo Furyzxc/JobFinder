@@ -16,5 +16,8 @@ export interface AuthMeResponse {
 }
 
 export interface LoginResponse {
+    data: unknown
+    messages: string[]
+    fieldsErrors: unknown[]
     resultCode: number
 }

@@ -1,25 +1,29 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { authApi } from "../../api/auth-api.ts";
+import {RootState} from "../../app/store.ts";
 
 
 interface Auth {
     isAuth: boolean
 
     userInfo: {
-        id: number
+        id: number | null
         email: string | null
         login: string | null
     }
+
+    error: string | null
 }
 
 const initialState: Auth = {
     isAuth: false,
 
     userInfo: {
-        id: 0,
+        id: null,
         email: null,
         login: null
-    }
+    },
+
+    error: null
 }
 
 export const authSlice = createSlice({
@@ -30,36 +34,27 @@ export const authSlice = createSlice({
             state.userInfo = action.payload
         },
 
-        clearUserData(state) {
-            state.userInfo.id = 0
-            state.userInfo.email = null
-            state.userInfo.login = null
+        clearUserData({ userInfo}) {
+            userInfo.id = null
+            userInfo.email = null
+            userInfo.login = null
         },
 
         toggleIsAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload
+        },
+
+        setError(state, action: PayloadAction<string>) {
+            state.error = action.payload
         }
-    },
-
-    extraReducers: builder => {
-        builder.addMatcher(authApi.endpoints.me.matchFulfilled, (state, action) => {
-            if (action.payload.resultCode === 0) {
-                state.isAuth = true
-                state.userInfo = action.payload.data
-            }
-        })
-
-        builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
-            if (action.payload.resultCode === 0) state.isAuth = true
-        })
-
-        builder.addMatcher(authApi.endpoints.logout.matchFulfilled, state => {
-            state.isAuth = false
-        })
     }
 })
 
 export const {
     setUserData,
-    toggleIsAuth
+    toggleIsAuth,
+    clearUserData,
+    setError
 } = authSlice.actions
+
+export const getError = (state: RootState) => state.auth.error

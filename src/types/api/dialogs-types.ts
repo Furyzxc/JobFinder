@@ -62,7 +62,7 @@ export interface GetMessagesResponse {
     totalCount: number
 }
 
-export interface  GetMessagesRequest {
+export interface GetMessagesRequest {
     id: number,
     count?: number
 }

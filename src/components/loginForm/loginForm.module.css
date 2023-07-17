@@ -1,0 +1,111 @@
+.box {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.box h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #5c6bc0;
+    text-align:center;
+    font-size: 120%;
+    margin-top: 84px;
+    margin-bottom: 70px;
+}
+
+
+.box input[type = "text"], .box input[type = "password"] {
+    display: block;
+    margin: 1.5em auto;
+    background: #262e49;
+    border: 0;
+    border-radius: 5px;
+    padding: 14px 10px;
+    width: 80%;
+    outline: none;
+    color: #d6d6d6;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+
+}
+
+.box input[type = "text"]:focus, .box input[type = "password"]:focus {
+    border: 1px solid #79A6FE;
+
+}
+
+.checkbox {
+    display: none;
+}
+
+/* style the artificial checkbox */
+.labelspan {
+    height: 13px;
+    width: 13px;
+    border: 2px solid #464d64;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    float: left;
+    left: 7.5%;
+}
+
+.btn1 {
+    border: 0;
+    background: #90CAF9;
+    color: #13191F;
+    border-radius: 100px;
+    width: 85%;
+    height: 49px;
+    font-size: 16px;
+    position: absolute;
+    top: 79%;
+    left: 8%;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.label {
+    left: 10%;
+    transform: translate(0, -18px);
+    background: linear-gradient(to right, #ff758c, #ff7eb3),
+    linear-gradient(to bottom, #ff7eb3, #ff758c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    position: absolute;
+    font-size: 12px;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+}
+
+.btn1:hover {
+    background: #42A5F5;
+}
+
+.rmb {
+    position: absolute;
+    margin-left: 15%;
+    margin-top: -3px;
+    color: #dfdeee;
+    font-size: 13px;
+}
+
+
+[type=checkbox]:checked + span:before { /* <-- style its checked state */
+    font-size: 17px;
+    content: "∎";
+    position: absolute;
+    color: #896cec;
+    top: -10px;
+    right: -2px;
+    width: 13px;
+    user-select: none;
+}
+
+.rmb, .box h4 {
+    user-select: none;
+}

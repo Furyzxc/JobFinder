@@ -14,12 +14,12 @@ export const DialogsForm = () => {
 
     const dispatch = useAppDispatch()
 
-    const userId = useUserIdFromParams()
+    const { id } = useUserIdFromParams()
 
     const initialValues: FormValues = {input: ''}
 
     const handleSubmit = ({input}: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
-        input && dispatch(sendMessage({userId, body: input}))
+        input && dispatch(sendMessage({userId: id, body: input}))
         resetForm()
     }
 

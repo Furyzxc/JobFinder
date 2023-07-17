@@ -1,31 +1,26 @@
 import s from './dialogs.module.css'
 import React from "react";
-import {compose} from "@reduxjs/toolkit";
 
-// - Components
+// - Components & HOC
 
 import {LoadingMessages} from "../../components/messages";
 import {DialogsForm} from "../../components/dialogsForm";
 import {DialogsList} from "../../components/dialogsList";
-
-// - HOC
-
-import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
+import {Div} from "../../components/common/div.tsx";
 import {withLoading} from "../../hoc/withLoading.tsx";
+
+// - Actions & Hooks
+
 import {useAppSelector, useUserIdFromParams} from "../../app/hooks.ts";
 import {getDialogName, getDialogs, getDialogsLoading} from "../../features/dialogs";
-import {Div} from "../../components/common/div.tsx";
-
-// --------------------
 
 
-// ------------------------
 
 export const Dialogs = React.memo(() => {
     const dialogs = useAppSelector(getDialogs)
     const dialogName = useAppSelector(getDialogName)
     const isLoading = useAppSelector(getDialogsLoading)
-    const userId = useUserIdFromParams()
+    const { id } = useUserIdFromParams()
 
     return (
 
@@ -33,14 +28,14 @@ export const Dialogs = React.memo(() => {
             <div>
                 <DialogsList dialogs={dialogs}/>
             </div>
-            {!userId ? (
+            {!id ? (
                     <Div>Start chatting</Div>)
                 : (
                     <div className={s.chatContainer + ' phone'}>
                         <div className={s.title}>
                             {dialogName}
                         </div>
-                        <div className={s.messages}>
+                        <div className={s.messages + ' scroll'}>
                         <LoadingMessages isLoading={isLoading}/>
                         </div>
                         <DialogsForm/>
@@ -50,4 +45,4 @@ export const Dialogs = React.memo(() => {
     )
 })
 
-export const DialogsWithRedirect = compose(withLoading, withLoginRedirect)(Dialogs)
+export const DialogsWithLoading = withLoading(Dialogs)

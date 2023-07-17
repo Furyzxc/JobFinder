@@ -50,7 +50,7 @@ export const Profile = React.memo(({isOwner}: ProfileProps) => {
     if (isChattingAccepted) return <Navigate to={'/dialogs/' + userId}/>
 
     return (
-        <div className={s.profile}>
+        <div className={s.profile + ' scroll'}>
             {isOwner && <div className={s.navigation}>
                 <button className={s.button}>
                     <img alt='avatar' src={props.photos.small || defaultAvatar}/>

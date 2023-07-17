@@ -8,7 +8,7 @@ import {Route, Routes} from "react-router-dom";
 import {NotFound} from "../pages/notFound";
 import {Login} from "../pages/login";
 import { ProfileWithRedirect} from "../pages/profile";
-import {DialogsContainer} from "../pages/dialogs/dialogsContainer.tsx";
+import {DialogsWithRedirect} from "../pages/dialogs";
 import {UsersContainer} from "../pages/users";
 
 
@@ -43,7 +43,7 @@ export const SocialNetworkApp = () => {
 
                         <Route path='/profile/:userId?' element={<ProfileWithRedirect />}/>
 
-                        <Route path='/dialogs/:userId?' element={<DialogsContainer/>}/>
+                        <Route path='/dialogs/:userId?' element={<DialogsWithRedirect />}/>
 
                         <Route path='/users' element={<UsersContainer/>}/>
                     </Routes>

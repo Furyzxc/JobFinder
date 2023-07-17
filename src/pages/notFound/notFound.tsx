@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import {Button} from "@mui/material";
+import s from './notFound.module.css'
 
 export const NotFound = () => {
 
@@ -15,7 +16,7 @@ export const NotFound = () => {
                 </Button>
             </div>
             <div>
-                <Link className="homepage-btn" to='/profile'>Home page</Link>
+                <Link className={s.homepageBtn} to='/profile'>Home page</Link>
             </div>
         </div>
     )
