@@ -47,11 +47,11 @@
     overflow: hidden
 }
 
-.button:hover {
+.button:hover, button:focus {
     width: 140px;
     cursor: pointer;
 }
 
-.button:hover .logout{
+.button:hover .logout, .button:focus .logout{
     opacity: .9;
 }

@@ -19,7 +19,7 @@ export const UsersContainer = () => {
         setIsLoading(status === "pending")
 
         if (status === 'fulfilled' && data) {
-            const pages = countPages(data.totalCount, count)
+            const pages = countPages(data.totalCount, count, 18)
 
             dispatch(setUsers(data.items))
             dispatch(setPages(pages));
