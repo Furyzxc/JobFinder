@@ -11,7 +11,7 @@
     height: 100vh;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 0.7fr 6fr 0.9fr;
+    grid-template-rows: 0.7fr 6fr 0.7fr;
 }
 
 
