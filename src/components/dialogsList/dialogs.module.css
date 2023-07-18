@@ -25,26 +25,8 @@
     background-color: #2B5278;
 }
 
-.dialogs::-webkit-scrollbar {
-    width: 5px;
-}
-
-.dialogs::-webkit-scrollbar-track {
-    border-radius: 2px;
-    background-color: #293038;
-}
-
-.dialogs::-webkit-scrollbar-thumb {
-    background-color: #54595F;
-    border-radius: 10px;
-}
-
-.dialogs::-webkit-scrollbar-track:hover {
-    background-color: #2D343C;
-}
 
 .dialogs {
-    height: 100vh;
     background-color: #0A1929;
     overflow-y: scroll;
 }

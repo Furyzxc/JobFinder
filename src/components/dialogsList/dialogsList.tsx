@@ -8,7 +8,7 @@ interface DialogsListProps {
 
 export const DialogsList = ({dialogs}: DialogsListProps) => {
     return (
-        <div className={s.dialogs}>
+        <div className={s.dialogs + ' scroll height'}>
             {dialogs.map(dialog => <Dialog key={dialog.id} {...dialog} />)}
         </div>
     );

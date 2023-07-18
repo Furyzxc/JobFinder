@@ -11,9 +11,14 @@
     justify-content: flex-start;
     overflow: auto;
     gap: max(2%, 10px);
-    max-height: 85vh;
+    max-height: 86vh;
 }
 
+@media (max-width: 768px) {
+    .usersList {
+        height: calc(86vh - 56px);
+    }
+}
 
 .users {
     display: grid;
