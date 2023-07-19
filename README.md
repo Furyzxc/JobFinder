@@ -32,7 +32,7 @@ To get started with JobFinder, follow these steps:
 1. Clone the repository: `git clone https://github.com/Furyzxc/social-network-2023.git`
 2. Install the required dependencies: `npm install`
 3. Set up the database and environment variables.
-4. Run the application: `npm start`
+4. Run the application: `npm run dev`
 
 ## Technologies Used
 
