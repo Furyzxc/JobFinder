@@ -33,7 +33,7 @@ const Profile = React.memo(({isOwner}: ProfileProps) => {
     const profile = useAppSelector(getProfile)
 
     const { userId, isFollowed, ...props} = profile
-
+    console.log(isFollowed)
     const [startChatting, {data, isSuccess}] = useStartChattingMutation()
     const [isChattingAccepted, setIsChattingAccepted] = useState(false)
 

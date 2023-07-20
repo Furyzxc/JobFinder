@@ -34,7 +34,7 @@ export const setStatus = createAsyncThunk('profile/setStatus',
 export const getIsFollowed = createAsyncThunk('profile/getIsFollowed',
     async (userId: number, {dispatch}) => {
         await dispatch(profileApi.endpoints.getIsFollowed.initiate(userId)).then(({data}) => {
-            data && dispatch(setIsFollowed(data))
+            dispatch(setIsFollowed(data || false))
         })
     })
 

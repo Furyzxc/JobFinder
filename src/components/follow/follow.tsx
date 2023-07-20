@@ -24,9 +24,8 @@ export const Follow = ({isFollowed, userId}: FollowProps) => {
     return isFollowed ? <Button variant='outlined'
                                 onClick={handleUnfollowClick}
                                 disabled={isFollowingProgress}
-        >Unfollow</Button>
-        : <Button variant='outlined'
-                  onClick={handleFollowClick}
-                  disabled={isFollowingProgress}
-        >follow</Button>
+    >Unfollow</Button> : <Button variant='outlined'
+                                 onClick={handleFollowClick}
+                                 disabled={isFollowingProgress}
+    >follow</Button>
 };
