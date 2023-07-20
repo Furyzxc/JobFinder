@@ -1,12 +1,12 @@
 import {useAppDispatch} from "../../app/hooks.ts";
 import {Link} from "react-router-dom";
 import s from './dialogs.module.css'
-import {GetDialogsResponse} from "../../types/api/dialogs-types.ts";
+import {DialogsResponse} from "../../types/api/dialogs-types.ts";
 import {formatTime} from "../../utils/formatTime.ts";
 import {requestMessages, setDialogName} from "../../features/dialogs";
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
 
-export const Dialog = ({userName, id, lastDialogActivityDate, hasNewMessages}: GetDialogsResponse) => {
+export const Dialog = ({userName, id, lastDialogActivityDate, hasNewMessages}: DialogsResponse) => {
     const dispatch = useAppDispatch()
 
     const time = formatTime(lastDialogActivityDate)
