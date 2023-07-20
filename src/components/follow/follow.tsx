@@ -21,10 +21,10 @@ export const Follow = ({isFollowed, userId}: FollowProps) => {
     const handleFollowClick = () => handleToggleFollow(true)
     const handleUnfollowClick = () => handleToggleFollow(false)
 
-    return isFollowed ? <Button variant='outlined'
+    return isFollowed ? <Button variant='outlined' sx={{width: '140px'}}
                                 onClick={handleUnfollowClick}
                                 disabled={isFollowingProgress}
-    >Unfollow</Button> : <Button variant='outlined'
+    >Unfollow</Button> : <Button variant='outlined' sx={{width: '140px'}}
                                  onClick={handleFollowClick}
                                  disabled={isFollowingProgress}
     >follow</Button>

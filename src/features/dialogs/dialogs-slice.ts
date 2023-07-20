@@ -1,13 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, isAnyOf, PayloadAction} from "@reduxjs/toolkit";
 import {dialogsApi} from "../../api/dialogs-api.ts";
-import {GetDialogsResponse, MessageResponseType, SendMessageResponse} from "../../types/api/dialogs-types.ts";
+import {DialogsResponse, MessageResponseType, SendMessageResponse} from "../../types/api/dialogs-types.ts";
 import {RootState} from "../../app/store.ts";
+import {requestDialogs, requestMessages} from "./dialogs-thunks.ts";
 
 interface Dialogs {
     isLoading: boolean
 
     messages: MessageResponseType[]
-    dialogs: GetDialogsResponse[]
+    dialogs: DialogsResponse[]
 
     dialogName: string
 }
@@ -29,7 +30,7 @@ export const dialogsSlice = createSlice({
             state.messages = action.payload
         },
 
-        setDialogs(state, action: PayloadAction<GetDialogsResponse[]>) {
+        setDialogs(state, action: PayloadAction<DialogsResponse[]>) {
             state.dialogs = action.payload
         },
 
@@ -43,11 +44,12 @@ export const dialogsSlice = createSlice({
             if (payload.resultCode === 0) state.messages.push(payload.data.message)
         })
 
-        builder.addMatcher(dialogsApi.endpoints.requestMessages.matchPending, (state) => {
+        builder.addMatcher(isAnyOf(requestMessages.pending, requestDialogs.pending), (state) => {
             state.isLoading = true
         })
 
-        builder.addMatcher(dialogsApi.endpoints.requestMessages.matchFulfilled, (state) => {
+        builder.addMatcher(isAnyOf(requestMessages.fulfilled, requestDialogs.fulfilled),
+            (state) => {
             state.isLoading = false
         })
     }

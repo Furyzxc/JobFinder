@@ -1,6 +1,6 @@
 import {api} from "./api.ts";
 import {
-    GetDialogsResponse, MessagesRequest, MessagesResponse,
+    DialogsResponse, MessagesRequest, MessagesResponse,
     SendMessageRequest, SendMessageResponse, StartChattingResponse
 } from "../types/api/dialogs-types.ts";
 
@@ -9,7 +9,7 @@ export const dialogsApi = api.injectEndpoints({
 
         // get list of dialogs with your friend
 
-        getDialogs: build.query<GetDialogsResponse[], void>({
+        requestDialogs: build.query<DialogsResponse[], void>({
             query: () => 'dialogs',
         }),
 
@@ -40,5 +40,4 @@ export const dialogsApi = api.injectEndpoints({
 
 export const {
     useStartChattingMutation,
-    useGetDialogsQuery
 } = dialogsApi

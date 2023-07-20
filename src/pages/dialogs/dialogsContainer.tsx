@@ -1,18 +1,17 @@
-import {useAppDispatch} from "../../app/hooks.ts";
+import {useAppDispatch, useAppSelector } from "../../app/hooks.ts";
 import {useEffect} from "react";
 import {DialogsWithLoading} from "./dialogs.tsx";
-import {setDialogs} from "../../features/dialogs";
-import {useGetDialogsQuery} from "../../api/dialogs-api.ts";
+import {getDialogsLoading, requestDialogs} from "../../features/dialogs";
 import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
 
 const DialogsContainer = () => {
     const dispatch = useAppDispatch()
 
-    const { isLoading, data, isSuccess } = useGetDialogsQuery()
+    const isLoading = useAppSelector(getDialogsLoading)
 
     useEffect(() => {
-        if (isSuccess && data) dispatch(setDialogs(data))
-    }, [dispatch, isSuccess, data]);
+        dispatch(requestDialogs())
+    }, [dispatch]);
 
     return <DialogsWithLoading isLoading={isLoading} />
 }

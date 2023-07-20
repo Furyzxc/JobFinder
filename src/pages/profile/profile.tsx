@@ -65,7 +65,7 @@ const Profile = React.memo(({isOwner}: ProfileProps) => {
                 !isOwner && (
                     <div className={s.btns}>
                         <span className={s.send}>
-                            <Button variant='outlined' onClick={handleSendBtnClick}>
+                            <Button variant='outlined' onClick={handleSendBtnClick} sx={{width: '140px'}}>
                                 Send Message
                             </Button>
                         </span>

@@ -21,7 +21,7 @@ export const User = (props: UserProps) => {
 
     return (
         <Box sx={{display: 'block', width: '210px'}}>
-        <Button variant='outlined' sx={{width: '100%', textTransform: 'none'}}>
+        <Button variant='outlined' sx={{width: '100%', textTransform: 'none', minWidth: '100%'}} disableRipple>
         <Link className={s.user} to={'/profile/' + props.id}>
             <div className={s.userName}>
                 {props.name}

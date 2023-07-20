@@ -5,7 +5,7 @@ export interface StartChattingResponse {
     resultCode: number
 }
 
-export interface GetDialogsResponse {
+export interface DialogsResponse {
     id: number
     userName: string
     hasNewMessages: false
