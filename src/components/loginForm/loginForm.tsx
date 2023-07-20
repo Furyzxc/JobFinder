@@ -61,10 +61,10 @@ export const LoginForm = () => {
                         <LoginFormField type="text" name="email" placeholder='Email' />
                         <ErrorMessage name='password' component='span' className={s.label}/>
                         <LoginFormField type="password" name="password" placeholder='Password'/>
-                        <label>
+                        <label className={s.customCheckbox}>
                             <LoginFormField type="checkbox" name='rememberMe' classes={s.checkbox}/>
-                            <span className={s.labelspan}></span>
-                            <small className={s.rmb}>Remember me</small>
+                            <span className={s.checkmark}></span>
+                            <span className={s.rmb}>Remember me</span>
                         </label>
                     </div>
                     <button className={s.btn1} type='submit' disabled={isSubmitting}>Sign in</button>

@@ -6,10 +6,10 @@
 .box h4 {
     font-family: 'Source Sans Pro', sans-serif;
     color: #5c6bc0;
-    text-align:center;
     font-size: 120%;
     margin-top: 84px;
     margin-bottom: 70px;
+    text-align: center;
 }
 
 
@@ -34,23 +34,6 @@
 .box input[type = "text"]:focus, .box input[type = "password"]:focus {
     border: 1px solid #79A6FE;
 
-}
-
-.checkbox {
-    display: none;
-}
-
-/* style the artificial checkbox */
-.labelspan {
-    height: 13px;
-    width: 13px;
-    border: 2px solid #464d64;
-    border-radius: 2px;
-    display: inline-block;
-    position: relative;
-    cursor: pointer;
-    float: left;
-    left: 7.5%;
 }
 
 .btn1 {
@@ -87,24 +70,64 @@
 }
 
 .rmb {
-    position: absolute;
-    margin-left: 15%;
-    margin-top: -3px;
+    margin-left: 2%;
+    padding-bottom: 3px;
     color: #dfdeee;
     font-size: 13px;
+    height: 18px;
+    top: 5px;
 }
 
-
-[type=checkbox]:checked + span:before { /* <-- style its checked state */
-    font-size: 17px;
-    content: "∎";
-    position: absolute;
-    color: #896cec;
-    top: -10px;
-    right: -2px;
-    width: 13px;
+.customCheckbox {
     user-select: none;
+    cursor: pointer;
+    margin-left: 10%;
 }
+
+/* Hide the default checkbox */
+.customCheckbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Style the custom checkbox */
+.customCheckbox .checkmark {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: background-color 0.3s ease; /* Add a transition effect for smooth color change */
+}
+
+/* Style the checked state */
+.customCheckbox input:checked + .checkmark {
+    background-color: #896cec; /* Change the background color when checked */
+}
+
+/* Add a checkmark icon using pseudo-element */
+.customCheckbox .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Show the checkmark when checkbox is checked */
+.customCheckbox input:checked + .checkmark::after {
+    display: block;
+}
+
 
 .rmb, .box h4 {
     user-select: none;

@@ -1,9 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, isAnyOf, PayloadAction} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store.ts";
+import {authLogin, authMe} from "./auth-thunks.ts";
 
 
 interface Auth {
     isAuth: boolean
+    isLoading: boolean
 
     userInfo: {
         id: number | null
@@ -16,6 +18,7 @@ interface Auth {
 
 const initialState: Auth = {
     isAuth: false,
+    isLoading: false,
 
     userInfo: {
         id: null,
@@ -47,6 +50,14 @@ export const authSlice = createSlice({
         setError(state, action: PayloadAction<string>) {
             state.error = action.payload
         }
+    },
+
+    extraReducers: builder => {
+        builder.addMatcher(isAnyOf(authMe.pending, authLogin.pending),
+            state => { state.isLoading = true })
+
+        builder.addMatcher(isAnyOf(authMe.fulfilled, authLogin.fulfilled),
+            state => { state.isLoading = false })
     }
 })
 
@@ -58,3 +69,4 @@ export const {
 } = authSlice.actions
 
 export const getError = (state: RootState) => state.auth.error
+export const getAuthLoading = (state: RootState) => state.auth.isLoading

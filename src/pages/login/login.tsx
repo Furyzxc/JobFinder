@@ -3,8 +3,10 @@ import {Navigate} from "react-router-dom";
 import {useAppSelector} from "../../app/hooks.ts";
 import {getAuth} from "../../features/app";
 import s from './login.module.css'
+import {withLoading} from "../../hoc/withLoading.tsx";
+import {getAuthLoading} from "../../features/auth";
 
-export const Login = () => {
+const WeakLogin = () => {
 
     const isAuth = useAppSelector(getAuth)
 
@@ -16,3 +18,12 @@ export const Login = () => {
         </div>
     )
 }
+
+const LoginWithLoading = withLoading(WeakLogin)
+
+export const Login = () => {
+    const isLoading = useAppSelector(getAuthLoading)
+
+    return <LoginWithLoading isLoading={isLoading} />
+}
+

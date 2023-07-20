@@ -1,8 +1,9 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice, isAnyOf, PayloadAction} from "@reduxjs/toolkit";
 import {profileApi} from "../../api/profile-api.ts";
 import {RootState} from "../../app/store.ts";
 import {ProfileResponseBody} from "../../types/api/profile-types.ts";
 import {getUserData} from "./profile-thunks.ts";
+import {authLogout} from "../auth";
 
 interface Profile {
     isLoading: boolean
@@ -81,11 +82,11 @@ export const profileSlice = createSlice({
         },
 
         extraReducers: builder => {
-            builder.addCase(getUserData.pending, state => {
+            builder.addMatcher(isAnyOf(getUserData.pending, authLogout.pending), state => {
                 state.isLoading = true
             })
 
-            builder.addCase(getUserData.fulfilled, state => {
+            builder.addMatcher(isAnyOf(getUserData.fulfilled, authLogout.fulfilled), state => {
                 state.isLoading = false
             })
 

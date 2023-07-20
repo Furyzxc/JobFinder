@@ -7,7 +7,7 @@ import {handleError} from "../../utils/handleError.ts";
 export const authMe = createAsyncThunk('auth/authMe',
     async (_, {dispatch}) => {
         try {
-            await dispatch(authApi.endpoints.me.initiate())
+            await dispatch(authApi.endpoints.me.initiate(undefined, {forceRefetch: true}))
                 .then(({data}) => {
                     if (data && data.resultCode === 0) {
                         dispatch(setUserData(data.data))
@@ -20,7 +20,6 @@ export const authMe = createAsyncThunk('auth/authMe',
             handleError(dispatch)
         }
     })
-
 
 export const authLogin = createAsyncThunk('auth/authLogin',
     async (body: RequestLoginBody, {dispatch}) => {
