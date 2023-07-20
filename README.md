@@ -13,7 +13,7 @@
 
 Welcome to JobFinder, the powerful social network that helps people connect, communicate, and find job opportunities. Whether you're looking to expand your professional network, search for jobs, or collaborate with like-minded individuals, JobFinder is the platform to make it happen.
 
-Visit our website: [social-network-2023.netlify.app](social-network-2023.netlify.app)
+Visit our website: [https://jobfinder-social-network.netlify.app](https://jobfinder-social-network.netlify.app)
 
 ## Features
 
@@ -29,10 +29,10 @@ Visit our website: [social-network-2023.netlify.app](social-network-2023.netlify
 
 To get started with JobFinder, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/Furyzxc/social-network-2023.git`
+1. Clone the repository: `git clone https://github.com/Furyzxc/JobFinder.git`
 2. Install the required dependencies: `npm install`
 3. Set up the database and environment variables.
-4. Run the application: `npm start`
+4. Run the application: `npm run dev`
 
 ## Technologies Used
 
