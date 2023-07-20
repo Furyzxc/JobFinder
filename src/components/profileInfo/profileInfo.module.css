@@ -2,12 +2,11 @@
     padding-top: 20px;
     color: #42A5F5;
     font-size: 25px;
-    text-align: center;
 }
 
 .main {
     padding-top: 100px;
-    height: 300px;
+    height: 250px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
