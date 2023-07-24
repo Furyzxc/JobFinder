@@ -2,16 +2,16 @@ import s from './users.module.css'
 
 // - Components and hoc
 
-import {User} from "../../components/user"
-import {Paginator} from "../../components/paginator";
-import {Search} from "../../components/search";
-import {Div} from "../../components/common/div.tsx";
-import {withLoading} from "../../hoc/withLoading.tsx";
+import { User } from "@/entities/user"
+import { Paginator } from "@/features/paginator";
+import { Search } from "@/entities/search";
+import { Div } from "@/shared/ui/div/div.tsx";
+import { withLoading } from "@/shared/hoc/withLoading.tsx";
 
 // - Actions
 
-import {getUsers} from "../../features/users";
-import {useAppSelector} from "../../app/hooks.ts";
+import { getUsers } from "@/slices/users";
+import { useAppSelector } from "@/app/hooks.ts";
 
 // -----------------------
 
@@ -19,7 +19,6 @@ import {useAppSelector} from "../../app/hooks.ts";
 const WeakUsers = () => {
     const users = useAppSelector(getUsers)
 
-    // @ts-ignore
     return (
         <div className={s.users + ' height'}>
             <div>

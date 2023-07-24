@@ -1,0 +1,62 @@
+.showContact {
+    display: none;
+    position: absolute;
+    color: #42A5F5;
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact:hover .showContact {
+    display: block;
+}
+
+.contact {
+    position: relative;
+    width: 21%;
+    height: 60px;
+    margin-bottom: 60px;
+    user-select: none;
+    color: white;
+    text-decoration: none;
+}
+
+.contacts {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 250px;
+}
+
+.jobInfo {
+    color: white;
+}
+
+
+.answer, .lkfDescription, .lfj {
+    font-size: 18px;
+    display: inline-block;
+}
+
+.first {
+    margin-bottom: 30px;
+}
+
+.container {
+    margin-bottom: 40px;
+}
+
+
+.text {
+    color: grey;
+}
+
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.contact p {
+    color: white;
+}

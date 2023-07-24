@@ -1,25 +1,25 @@
 import s from './profile.module.css'
-import defaultAvatar from '../../assets/defaultAvatar.jpg'
+import defaultAvatar from '@/assets/defaultAvatar.jpg'
 
 // - Hooks
 
-import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
-import {useStartChattingMutation} from "../../api/dialogs-api.ts";
-import React, {useEffect, useState} from "react";
+import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
+import { useStartChattingMutation } from '@/slices/dialogs'
+import React, { useEffect, useState } from "react";
 
 // - Actions
 
-import {authLogout} from "../../features/auth";
-import {getProfile } from "../../features/profile";
-import {setDialogName} from "../../features/dialogs";
+import { authLogout } from "@/slices/auth";
+import { getProfile } from "@/slices/profile";
+import { setDialogName } from "@/slices/dialogs";
 
 // - Components and hoc
 
-import {ProfileInfo} from "../../components/profileInfo";
-import {Navigate} from "react-router-dom";
-import {Button} from "@mui/material";
-import {Follow} from "../../components/follow";
-import {withLoading} from "../../hoc/withLoading.tsx";
+import { ProfileInfo } from "@/features/profileInfo";
+import { Navigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import { Follow } from "@/entities/follow";
+import { withLoading } from "@/shared/hoc/withLoading.tsx";
 
 // ------------------------------------
 
@@ -32,8 +32,8 @@ const Profile = React.memo(({isOwner}: ProfileProps) => {
 
     const profile = useAppSelector(getProfile)
 
-    const { userId, isFollowed, ...props} = profile
-    console.log(isFollowed)
+    const {userId, isFollowed, ...props} = profile
+
     const [startChatting, {data, isSuccess}] = useStartChattingMutation()
     const [isChattingAccepted, setIsChattingAccepted] = useState(false)
 

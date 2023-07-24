@@ -1,10 +1,9 @@
-import {useAppDispatch, useAppSelector } from "../../app/hooks.ts";
-import {useEffect} from "react";
-import {DialogsWithLoading} from "./dialogs.tsx";
-import {getDialogsLoading, requestDialogs} from "../../features/dialogs";
-import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
+import { useAppDispatch, useAppSelector } from "../../app/hooks.ts";
+import { useEffect } from "react";
+import { DialogsWithLoading } from "./dialogs.tsx";
+import { getDialogsLoading, requestDialogs } from "@/slices/dialogs";
 
-const DialogsContainer = () => {
+export const DialogsContainer = () => {
     const dispatch = useAppDispatch()
 
     const isLoading = useAppSelector(getDialogsLoading)
@@ -13,7 +12,5 @@ const DialogsContainer = () => {
         dispatch(requestDialogs())
     }, [dispatch]);
 
-    return <DialogsWithLoading isLoading={isLoading} />
+    return <DialogsWithLoading isLoading={isLoading}/>
 }
-
-export const DialogsWithRedirect = withLoginRedirect(DialogsContainer)

@@ -1,16 +1,15 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { ProfileWithLoading } from "./profile";
-import {useAppDispatch, useAppSelector, useUserIdFromParams} from "../../app/hooks";
-import {getProfileLoading, getUserData} from "../../features/profile";
-import {withLoginRedirect} from "../../hoc/login-redirect.tsx";
+import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
+import { getProfileLoading, getUserData } from "@/slices/profile";
 
 
-const ProfileContainer = () => {
+export const ProfileContainer = () => {
 
     const dispatch = useAppDispatch()
     const isLoading = useAppSelector(getProfileLoading)
 
-    const { id: myId } = useAppSelector(state => state.auth.userInfo)
+    const {id: myId} = useAppSelector(state => state.auth.userInfo)
 
     const {id, isOwner} = useUserIdFromParams(myId)
 
@@ -19,7 +18,5 @@ const ProfileContainer = () => {
         dispatch(getUserData(id))
     }, [dispatch, id]);
 
-    return <ProfileWithLoading isOwner={isOwner} isLoading={isLoading} />
+    return <ProfileWithLoading isOwner={isOwner} isLoading={isLoading}/>
 }
-
-export const ProfileWithRedirect = withLoginRedirect(ProfileContainer)

@@ -1,10 +1,9 @@
-import {Users} from "./users.tsx";
-import {useGetUsersQuery} from "../../api/users-api.ts";
-import {useEffect, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
-import {setUsers} from "../../features/users";
-import {getPaginator, setPages } from "../../features/paginator/paginator-slice.ts";
-import {countPages} from "../../utils/count-pages.ts";
+import { Users } from "./users.tsx";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
+import { setUsers, useGetUsersQuery } from "@/slices/users";
+import { getPaginator, setPages } from "@/slices/paginator";
+import { countPages } from "@/shared/utils/count-pages.ts";
 
 export const UsersContainer = () => {
     const dispatch = useAppDispatch()

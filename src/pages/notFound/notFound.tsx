@@ -1,6 +1,6 @@
-import {Link} from "react-router-dom";
-import {useState} from "react";
-import {Button} from "@mui/material";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Button } from "@mui/material";
 import s from './notFound.module.css'
 
 export const NotFound = () => {

@@ -3,24 +3,23 @@ import React from "react";
 
 // - Components & HOC
 
-import {LoadingMessages} from "../../components/messages";
-import {DialogsForm} from "../../components/dialogsForm";
-import {DialogsList} from "../../components/dialogsList";
-import {Div} from "../../components/common/div.tsx";
-import {withLoading} from "../../hoc/withLoading.tsx";
+import { LoadingMessages } from "@/features/messages";
+import { DialogsForm } from "@/features/dialogsForm";
+import { DialogsList } from "@/features/dialogsList";
+import { Div } from "@/shared/ui/div/div.tsx";
+import { withLoading } from "@/shared/hoc/withLoading.tsx";
 
 // - Actions & Hooks
 
-import {useAppSelector, useUserIdFromParams} from "../../app/hooks.ts";
-import {getDialogName, getDialogs, getDialogsLoading} from "../../features/dialogs";
-
+import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
+import { getDialogName, getDialogs, getDialogsLoading } from "@/slices/dialogs";
 
 
 export const Dialogs = React.memo(() => {
     const dialogs = useAppSelector(getDialogs)
     const dialogName = useAppSelector(getDialogName)
     const isLoading = useAppSelector(getDialogsLoading)
-    const { id } = useUserIdFromParams()
+    const {id} = useUserIdFromParams()
 
     return (
 
@@ -36,7 +35,7 @@ export const Dialogs = React.memo(() => {
                             {dialogName}
                         </div>
                         <div className={s.messages + ' scroll'}>
-                        <LoadingMessages isLoading={isLoading}/>
+                            <LoadingMessages isLoading={isLoading}/>
                         </div>
                         <DialogsForm/>
                     </div>)

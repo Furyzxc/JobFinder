@@ -1,0 +1,21 @@
+.nickName {
+    padding-top: 20px;
+    color: #42A5F5;
+    font-size: 25px;
+}
+
+.main {
+    padding-top: 100px;
+    height: 250px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.userInfo {
+    padding-left: 20px;
+}
+
+
+.status {
+    text-align: center;
+}
