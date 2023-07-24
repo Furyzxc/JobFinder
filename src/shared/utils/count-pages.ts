@@ -1,4 +1,4 @@
-export const countPages = (totalCount: number, count: number, max: number) => {
+export const countPages = (totalCount: number, count = 20, max: number) => {
     const pages: number[] = []
 
     const pagesAmount = Math.ceil(totalCount / count);

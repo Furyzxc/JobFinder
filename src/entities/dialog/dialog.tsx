@@ -2,18 +2,17 @@ import s from './dialog.module.css'
 import { DialogsResponse } from "@/shared/types/api/dialogs-types.ts";
 import { formatTime } from "@/shared/utils/formatTime.ts";
 import { useAppDispatch } from "@/app/hooks.ts";
-import { requestMessages, setDialogName } from "@/slices/dialogs";
+import { setDialogName } from "@/slices/dialogs";
 import { Link } from "react-router-dom";
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
+import React from 'react'
 
-export const Dialog = ({userName, id, lastDialogActivityDate, hasNewMessages}: DialogsResponse) => {
+export const Dialog = React.memo(({userName, id, lastDialogActivityDate, hasNewMessages}: DialogsResponse) => {
     const dispatch = useAppDispatch()
 
     const time = formatTime(lastDialogActivityDate)
-
     const handleClick = () => {
         dispatch(setDialogName(userName))
-        dispatch(requestMessages({id}))
     }
 
     return (
@@ -31,4 +30,4 @@ export const Dialog = ({userName, id, lastDialogActivityDate, hasNewMessages}: D
             </div> }
         </Link>
     );
-};
+})

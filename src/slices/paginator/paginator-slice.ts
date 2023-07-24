@@ -1,5 +1,5 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../app/appStore.ts";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "@/app/appStore.ts";
 
 interface Paginator {
     pages: number[]

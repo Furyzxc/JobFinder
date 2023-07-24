@@ -1,17 +1,17 @@
 import s from './loginForm.module.css'
-import { LoginFormField } from '../../entities/loginField/loginFormField.tsx'
+import { LoginFormField } from '@/entities/loginField'
 
 // - Actions
 
-import {authLogin, getError} from "@/slices/auth";
+import { authLogin, getError } from "@/slices/auth";
 
 // - Hooks
 
-import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
+import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
 
 // - Libraries
 
-import {Form, Formik, ErrorMessage} from 'formik';
+import { Form, Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup'
 
 // ---------------------------
@@ -58,7 +58,7 @@ export const LoginForm = () => {
                     <div className={s.loginForm}>
                         {error ? <span className={s.label}> {error} </span>
                             : <ErrorMessage name='email' component='span' className={s.label}/>}
-                        <LoginFormField type="text" name="email" placeholder='Email' />
+                        <LoginFormField type="text" name="email" placeholder='Email'/>
                         <ErrorMessage name='password' component='span' className={s.label}/>
                         <LoginFormField type="password" name="password" placeholder='Password'/>
                         <label className={s.customCheckbox}>

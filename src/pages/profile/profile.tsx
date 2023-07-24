@@ -3,79 +3,61 @@ import defaultAvatar from '@/assets/defaultAvatar.jpg'
 
 // - Hooks
 
-import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
-import { useStartChattingMutation } from '@/slices/dialogs'
-import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
+import React, { useEffect } from "react";
 
 // - Actions
 
 import { authLogout } from "@/slices/auth";
-import { getProfile } from "@/slices/profile";
-import { setDialogName } from "@/slices/dialogs";
+import { getProfile, getUserData } from "@/slices/profile";
 
 // - Components and hoc
 
 import { ProfileInfo } from "@/features/profileInfo";
-import { Navigate } from "react-router-dom";
-import { Button } from "@mui/material";
-import { Follow } from "@/entities/follow";
-import { withLoading } from "@/shared/hoc/withLoading.tsx";
+import { WithLoading } from "@/shared/hoc/withLoading.tsx";
+import { UserProfileBtns } from "@/features/userProfileBtns";
 
 // ------------------------------------
 
-interface ProfileProps {
-    isOwner: boolean
-}
 
-const Profile = React.memo(({isOwner}: ProfileProps) => {
+export const Profile = React.memo(() => {
     const dispatch = useAppDispatch()
 
-    const profile = useAppSelector(getProfile)
+    const {
+        userId, isFollowed,
+        isLoading, ...props
+    } = useAppSelector(getProfile)
 
-    const {userId, isFollowed, ...props} = profile
+    const { id: myId} = useAppSelector(state => state.auth.userInfo)
 
-    const [startChatting, {data, isSuccess}] = useStartChattingMutation()
-    const [isChattingAccepted, setIsChattingAccepted] = useState(false)
+    // if no user id in url then returns owner id
+    const { id, isOwner} = useUserIdFromParams(myId)
 
+    // dispatch thunk that fills the profile state
+    useEffect(() => {
+        dispatch(getUserData(id))
+    }, [dispatch, id]);
+
+
+    // sign out from account
     const handleLogout = () => dispatch(authLogout())
 
-    const handleSendBtnClick = () => {
-        startChatting(userId)
-        dispatch(setDialogName(props.fullName))
-    }
-
-    useEffect(() => {
-        if (isSuccess && data && data.resultCode === 0) setIsChattingAccepted(true)
-    }, [data, isSuccess]);
-
-    if (isChattingAccepted) return <Navigate to={'/dialogs/' + userId}/>
-
     return (
-        <div className={s.profile}>
-            {isOwner && <div className={s.navigation}>
-                <button className={s.button}>
-                    <img alt='avatar' src={props.photos.small || defaultAvatar}/>
-                    <div className={s.logout} onClick={handleLogout}>LOGOUT</div>
-                </button>
-            </div>}
-            <div>
-                <ProfileInfo {...props} isOwner={isOwner}/>
+        <WithLoading isLoading={isLoading}>
+            <div className={s.profile}>
+                {isOwner && <div className={s.navigation}>
+                    <button className={s.button}>
+                        <img alt='avatar' src={props.photos.small || defaultAvatar}/>
+                        <div className={s.logout} onClick={handleLogout}>LOGOUT</div>
+                    </button>
+                </div>}
+                <div>
+                    <ProfileInfo {...props} isOwner={isOwner}/>
+                </div>
+                <div>
+                    {!isOwner && <UserProfileBtns userId={userId} fullName={props.fullName} isFollowed={isFollowed} />}
+                </div>
             </div>
-            {
-                !isOwner && (
-                    <div className={s.btns}>
-                        <span className={s.send}>
-                            <Button variant='outlined' onClick={handleSendBtnClick} sx={{width: '140px'}}>
-                                Send Message
-                            </Button>
-                        </span>
-                        <span>
-                            <Follow isFollowed={isFollowed} userId={userId}/>
-                        </span>
-                    </div>)
-            }
-        </div>
+        </WithLoading>
     )
 })
-
-export const ProfileWithLoading = withLoading(Profile)

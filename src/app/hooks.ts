@@ -6,8 +6,10 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 export const useUserIdFromParams = (id?: number | null) => {
+    // if no user id in url returns id from parameters and sets isOwner on true
 
     const {userId = id } = useParams()
+
     return {
         id: Number(userId),
         isOwner: userId === id

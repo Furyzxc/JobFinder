@@ -1,16 +1,17 @@
-import { ComponentType } from "react";
+import { ReactNode } from "react";
 import { Preloader } from "@/shared/ui/preloader/preloader.tsx";
+import React from 'react'
 
 export interface WithLoadingTypes {
     isLoading: boolean
+    children: ReactNode
 }
 
-export const withLoading = <T extends object>(Component: ComponentType<T>) => (props: WithLoadingTypes & T) => {
-    const {isLoading, ...restProps} = props
+export const WithLoading = ({isLoading, children}: WithLoadingTypes) => {
 
     if (isLoading) return (
         <Preloader/>
     )
 
-    return <Component {...restProps as T} />
+    return <React.Fragment>{children}</React.Fragment>
 }

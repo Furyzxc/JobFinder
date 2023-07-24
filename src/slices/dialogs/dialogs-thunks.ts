@@ -17,6 +17,5 @@ export const requestDialogs = createAsyncThunk('dialogs/requestDialogs',
 export const requestMessages = createAsyncThunk('dialogs/requestMessages',
     async ({id, count}: MessagesRequest, {dispatch}) => {
         await dispatch(dialogsApi.endpoints.requestMessages.initiate({id, count}, {forceRefetch: true}))
-            .then(({data}) => data && dispatch(setMessages(data.items))
-            )
+            .then(({data}) => data && dispatch(setMessages(data.items)))
     })

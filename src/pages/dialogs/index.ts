@@ -1,1 +1,1 @@
-export * from './dialogsContainer.tsx'
+export * from './dialogs.tsx'

@@ -3,12 +3,17 @@
     display: grid;
     grid-template-columns: 1fr 4fr;
     position: relative;
-    background-color: #0E1621;
 }
 
 .messages {
     position: relative;
+    background-color: #0E1621;
     overflow-x: hidden;
+}
+
+.dialogsList {
+    height: 100vh;
+    position: relative;
 }
 
 .chatContainer {

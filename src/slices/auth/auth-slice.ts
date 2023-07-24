@@ -1,6 +1,6 @@
-import {createSlice, isAnyOf, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../app/appStore.ts";
-import {authLogin, authMe} from "./auth-thunks.ts";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "@/app/appStore.ts";
+import { authLogin, authMe } from "./auth-thunks.ts";
 
 
 interface Auth {
@@ -37,7 +37,7 @@ export const authSlice = createSlice({
             state.userInfo = action.payload
         },
 
-        clearUserData({ userInfo}) {
+        clearUserData({userInfo}) {
             userInfo.id = null
             userInfo.email = null
             userInfo.login = null
@@ -54,10 +54,14 @@ export const authSlice = createSlice({
 
     extraReducers: builder => {
         builder.addMatcher(isAnyOf(authMe.pending, authLogin.pending),
-            state => { state.isLoading = true })
+            state => {
+                state.isLoading = true
+            })
 
         builder.addMatcher(isAnyOf(authMe.fulfilled, authLogin.fulfilled),
-            state => { state.isLoading = false })
+            state => {
+                state.isLoading = false
+            })
     }
 })
 

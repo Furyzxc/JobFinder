@@ -4,14 +4,16 @@ import { formatTime } from "@/shared/utils/formatTime.ts";
 import { MessageResponseType } from "@/shared/types/api/dialogs-types.ts";
 
 interface MessageProps extends MessageResponseType {
-    clName: string
+    me: boolean
 }
 
-export const Message = ({body, addedAt, clName, viewed}: MessageProps) => {
+export const Message = ({body, addedAt, me, viewed}: MessageProps) => {
     const time = formatTime(addedAt)
 
+    const clNames = [s.message, me ? s.myMessage : s.friendMessage]
+
     return (
-        <div className={clName + ' ' + s.message}>
+        <div className={clNames.join(' ')}>
             <div className={s.text}>
                 {body}
             </div>

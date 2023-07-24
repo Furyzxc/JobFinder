@@ -3,28 +3,26 @@ import React from "react";
 
 // - Components & HOC
 
-import { LoadingMessages } from "@/features/messages";
+import { Messages } from "@/features/messages";
 import { DialogsForm } from "@/features/dialogsForm";
 import { DialogsList } from "@/features/dialogsList";
 import { Div } from "@/shared/ui/div/div.tsx";
-import { withLoading } from "@/shared/hoc/withLoading.tsx";
 
 // - Actions & Hooks
 
 import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
-import { getDialogName, getDialogs, getDialogsLoading } from "@/slices/dialogs";
+import { getDialogName, getDialogs } from "@/slices/dialogs";
 
 
 export const Dialogs = React.memo(() => {
     const dialogs = useAppSelector(getDialogs)
     const dialogName = useAppSelector(getDialogName)
-    const isLoading = useAppSelector(getDialogsLoading)
     const {id} = useUserIdFromParams()
 
     return (
 
         <div className={s.dialogs}>
-            <div>
+            <div className={s.dialogsList}>
                 <DialogsList dialogs={dialogs}/>
             </div>
             {!id ? (
@@ -35,7 +33,7 @@ export const Dialogs = React.memo(() => {
                             {dialogName}
                         </div>
                         <div className={s.messages + ' scroll'}>
-                            <LoadingMessages isLoading={isLoading}/>
+                                <Messages/>
                         </div>
                         <DialogsForm/>
                     </div>)
@@ -43,5 +41,3 @@ export const Dialogs = React.memo(() => {
         </div>
     )
 })
-
-export const DialogsWithLoading = withLoading(Dialogs)

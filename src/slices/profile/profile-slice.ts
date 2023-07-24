@@ -108,4 +108,3 @@ export const {
 } = profileSlice.actions
 
 export const getProfile = (state: RootState) => state.profile
-export const getProfileLoading = (state: RootState) => state.profile.isLoading
