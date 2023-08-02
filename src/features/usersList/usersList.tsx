@@ -3,12 +3,12 @@ import s from "@/pages/users/users.module.css";
 import { User } from "@/entities/user";
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
 import { getUsers, selectUsersLoading } from "@/slices/users";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { getPaginator } from "@/slices/paginator";
 import { requestUsers } from "@/slices/users/users-thunks.ts";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 
-export const UsersList = React.memo(() => {
+export const UsersList = () => {
     const dispatch = useAppDispatch()
 
     const isLoading = useAppSelector(selectUsersLoading)
@@ -34,4 +34,4 @@ export const UsersList = React.memo(() => {
             </ul>
         </WithLoading>
     );
-});
+}

@@ -1,4 +1,4 @@
-import { DialogsResponse, MessageResponseType, SendMessageResponse } from "@/shared/types/api/dialogs-types.ts";
+import { DialogsResponse, MessageResponseType } from "@/shared/types/api/dialogs-types.ts";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { dialogsApi } from "./dialogs-api.ts";
 import { requestDialogs, requestMessages } from "./dialogs-thunks.ts";
@@ -30,28 +30,20 @@ export const dialogsSlice = createSlice({
     name: 'dialogs',
     initialState,
     reducers: {
-        setMessages(state, action: PayloadAction<MessageResponseType[]>) {
-            state.messages = action.payload
-        },
-
-        setDialogs(state, action: PayloadAction<DialogsResponse[]>) {
-            state.dialogs = action.payload
-        },
-
         setDialogName(state, action: PayloadAction<string>) {
             state.dialogName = action.payload
         }
     },
 
     extraReducers: builder => {
-        builder.addCase(requestMessages.pending,(state) => {
+        builder.addCase(requestMessages.pending, (state) => {
             state.isLoading = true
         })
 
         builder.addCase(requestMessages.fulfilled,
             (state) => {
-            state.isLoading = false
-        })
+                state.isLoading = false
+            })
 
         builder.addCase(requestDialogs.pending, (state) => {
             state.dialogsListLoading = true
@@ -62,15 +54,21 @@ export const dialogsSlice = createSlice({
                 state.dialogsListLoading = false
             })
 
-        builder.addMatcher(dialogsApi.endpoints.sendMessage.matchFulfilled, (state, { payload }: PayloadAction<SendMessageResponse>) => {
+        builder.addMatcher(dialogsApi.endpoints.sendMessage.matchFulfilled, (state, {payload}) => {
             if (payload.resultCode === 0) state.messages.push(payload.data.message)
+        })
+
+        builder.addMatcher(dialogsApi.endpoints.requestDialogs.matchFulfilled, (state, {payload}) => {
+            state.dialogs = payload
+        })
+
+        builder.addMatcher(dialogsApi.endpoints.requestMessages.matchFulfilled, (state, {payload}) => {
+            state.messages = payload.items
         })
     }
 })
 
 export const {
-    setMessages,
-    setDialogs,
     setDialogName
 } = dialogsSlice.actions
 

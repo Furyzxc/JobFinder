@@ -1,6 +1,7 @@
 import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/app/appStore.ts";
 import { authLogin, authMe } from "./auth-thunks.ts";
+import { authApi } from "@/slices/auth/auth-api.ts";
 
 
 interface Auth {
@@ -33,10 +34,6 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setUserData(state, action: PayloadAction<typeof initialState.userInfo>) {
-            state.userInfo = action.payload
-        },
-
         clearUserData({userInfo}) {
             userInfo.id = null
             userInfo.email = null
@@ -62,11 +59,16 @@ export const authSlice = createSlice({
             state => {
                 state.isLoading = false
             })
+
+        builder.addMatcher(authApi.endpoints.me.matchFulfilled,
+            (state, action) => {
+                state.isAuth = true
+                state.userInfo = action.payload.data
+            })
     }
 })
 
 export const {
-    setUserData,
     toggleIsAuth,
     clearUserData,
     setError

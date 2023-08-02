@@ -4,7 +4,7 @@ import { api } from "@/shared/api/baseApi.ts";
 export const authApi = api.injectEndpoints({
     endpoints: build => ({
         me: build.query<AuthMeResponse, void>({
-            query: () => 'auth/me'
+            query: () => 'auth/me',
         }),
 
         login: build.mutation<LoginResponse, RequestLoginBody>({

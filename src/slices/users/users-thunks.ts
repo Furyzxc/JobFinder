@@ -8,13 +8,15 @@ import { setPages } from "@/slices/paginator";
 // gets users from server and sets it up in the state
 export const requestUsers = createAsyncThunk('users/requestUsers',
     async (body: RequestUsersBody, {dispatch}) => {
-        await dispatch(usersApi.endpoints.getUsers.initiate(body))
-            .then(({data}) => {
-                if (data) {
-                    const pages = countPages(data.totalCount, body.count, 18)
+        const response = await dispatch(usersApi.endpoints.getUsers.initiate(body))
 
-                    dispatch(setPages(pages))
-                    dispatch(setUsers(data.items))
-                }
-            })
+        if ('data' in response) {
+            const {data} = response
+            if (data) {
+                const pages = countPages(data.totalCount, body.count, 18)
+
+                dispatch(setPages(pages))
+                dispatch(setUsers(data.items))
+            }
+        }
     })

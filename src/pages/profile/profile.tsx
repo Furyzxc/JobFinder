@@ -4,7 +4,7 @@ import defaultAvatar from '@/assets/defaultAvatar.jpg'
 // - Hooks
 
 import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 // - Actions
 
@@ -20,7 +20,7 @@ import { UserProfileBtns } from "@/features/userProfileBtns";
 // ------------------------------------
 
 
-export const Profile = React.memo(() => {
+export const Profile = () => {
     const dispatch = useAppDispatch()
 
     const {
@@ -60,4 +60,4 @@ export const Profile = React.memo(() => {
             </div>
         </WithLoading>
     )
-})
+}

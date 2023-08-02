@@ -5,9 +5,8 @@ import { useAppDispatch } from "@/app/hooks.ts";
 import { setDialogName } from "@/slices/dialogs";
 import { Link } from "react-router-dom";
 import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded';
-import React from 'react'
 
-export const Dialog = React.memo(({userName, id, lastDialogActivityDate, hasNewMessages}: DialogsResponse) => {
+export const Dialog = ({userName, id, lastDialogActivityDate, hasNewMessages}: DialogsResponse) => {
     const dispatch = useAppDispatch()
 
     const time = formatTime(lastDialogActivityDate)
@@ -30,4 +29,4 @@ export const Dialog = React.memo(({userName, id, lastDialogActivityDate, hasNewM
             </div> }
         </Link>
     );
-})
+}

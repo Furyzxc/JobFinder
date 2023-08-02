@@ -1,9 +1,8 @@
-import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { profileApi } from "./profile-api.ts";
 import { RootState } from "@/app/appStore.ts";
 import { getUserData } from "./profile-thunks.ts";
 import { authLogout } from "../auth";
-import { ProfileResponseBody } from "@/shared/types/api/profile-types.ts";
 
 interface Profile {
     isLoading: boolean
@@ -64,22 +63,7 @@ const initialState: Profile = {
 export const profileSlice = createSlice({
         name: 'profile',
         initialState,
-        reducers: {
-            setUserInfo(state, action: PayloadAction<ProfileResponseBody>) {
-                return {
-                    ...state,
-                    ...action.payload
-                }
-            },
-
-            setStatusInfo(state, action: PayloadAction<string>) {
-                state.status = action.payload
-            },
-
-            setIsFollowed(state, action: PayloadAction<boolean>) {
-                state.isFollowed = action.payload
-            }
-        },
+        reducers: {},
 
         extraReducers: builder => {
             builder.addMatcher(isAnyOf(getUserData.pending, authLogout.pending), state => {
@@ -90,6 +74,17 @@ export const profileSlice = createSlice({
                 state.isLoading = false
             })
 
+            builder.addMatcher(profileApi.endpoints.getProfile.matchFulfilled, (state, action) => {
+                return {
+                    ...state,
+                    ...action.payload
+                }
+            })
+
+            builder.addMatcher(profileApi.endpoints.getUserStatus.matchFulfilled, (state, action) => {
+                state.status = action.payload
+            })
+
             builder.addMatcher(profileApi.endpoints.setStatus.matchFulfilled, (state, action) => {
                 // if success setting request status value
 
@@ -97,14 +92,19 @@ export const profileSlice = createSlice({
                     state.status = action.meta.arg.originalArgs.status
                 }
             })
+
+            builder.addMatcher(profileApi.endpoints.getIsFollowed.matchFulfilled, (state, action) => {
+                state.isFollowed = action.payload
+            })
+
+            builder.addMatcher(profileApi.endpoints.toggleIsFollowed.matchFulfilled, (state, action) => {
+                if (action.payload.resultCode === 0) {
+                    state.isFollowed = !state.isFollowed
+                }
+            })
+
         }
     }
 )
-
-export const {
-    setUserInfo,
-    setStatusInfo,
-    setIsFollowed
-} = profileSlice.actions
 
 export const getProfile = (state: RootState) => state.profile

@@ -4,13 +4,13 @@ import { DialogsResponse } from "@/shared/types/api/dialogs-types.ts";
 import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
 import { requestDialogs, selectDialogsListLoading } from "@/slices/dialogs";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 interface DialogsListProps {
     dialogs: DialogsResponse[]
 }
 
-export const DialogsList = React.memo(({dialogs}: DialogsListProps) => {
+export const DialogsList = ({dialogs}: DialogsListProps) => {
     const dispatch = useAppDispatch()
 
     const isLoading = useAppSelector(selectDialogsListLoading)
@@ -27,4 +27,4 @@ export const DialogsList = React.memo(({dialogs}: DialogsListProps) => {
             </div>
         </WithLoading>
     );
-})
+}

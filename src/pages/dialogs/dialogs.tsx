@@ -1,5 +1,4 @@
 import s from './dialogs.module.css'
-import React from "react";
 
 // - Components & HOC
 
@@ -14,7 +13,7 @@ import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
 import { getDialogName, getDialogs } from "@/slices/dialogs";
 
 
-export const Dialogs = React.memo(() => {
+export const Dialogs = () => {
     const dialogs = useAppSelector(getDialogs)
     const dialogName = useAppSelector(getDialogName)
     const {id} = useUserIdFromParams()
@@ -40,4 +39,4 @@ export const Dialogs = React.memo(() => {
             }
         </div>
     )
-})
+}
