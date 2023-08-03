@@ -3,7 +3,6 @@
 ![JobFinder Logo](https://github.com/Furyzxc/social-network-2023/blob/f8bebba9648ccf8455b1928f94d27b105677ee3e/public/melon.png)
 
 ## Table of Contents
-
 - [Introduction](#introduction)
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -14,7 +13,7 @@
 
 Welcome to JobFinder, the powerful social network that helps people connect, communicate, and find job opportunities. Whether you're looking to expand your professional network, search for jobs, or collaborate with like-minded individuals, JobFinder is the platform to make it happen.
 
-Visit our website: [https://jobfinder-social-network.netlify.app](https://jobfinder-social-network.netlify.app)
+Visit our website: [social-network-2023.netlify.app](social-network-2023.netlify.app)
 
 ## Features
 
@@ -30,10 +29,10 @@ Visit our website: [https://jobfinder-social-network.netlify.app](https://jobfin
 
 To get started with JobFinder, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/Furyzxc/JobFinder.git`
+1. Clone the repository: `git clone https://github.com/Furyzxc/social-network-2023.git`
 2. Install the required dependencies: `npm install`
-3. Set up environment variables.
-4. Run the application: `npm run dev`
+3. Set up the database and environment variables.
+4. Run the application: `npm start`
 
 ## Technologies Used
 
@@ -42,13 +41,7 @@ To get started with JobFinder, follow these steps:
 
 ## License
 
-All Rights Reserved.
-
-This repository and its contents are private and proprietary to Furyzxc. No part of this code may be reproduced, modified, or distributed in any form without prior written permission from the copyright holder.
-
----
-
-© Furyzxc
+JobFinder is licensed under the [MIT License](LICENSE).
 
 ---
 
