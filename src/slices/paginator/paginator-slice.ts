@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/app/appStore.ts";
+import { usersApi } from "@/slices/users/users-api.ts";
+import { countPages } from "@/shared/utils/count-pages.ts";
 
 interface Paginator {
     pages: number[]
     count: number
     page: number,
     term: string
-    friend: boolean
+    friend: boolean | null
 }
 
 const initialState: Paginator = {
@@ -14,17 +16,13 @@ const initialState: Paginator = {
     count: 24,
     page: 1,
     term: '',
-    friend: false
+    friend: null
 }
 
 export const paginatorSlice = createSlice({
     name: 'paginator',
     initialState,
     reducers: {
-        setPages(state, action: PayloadAction<number[]>) {
-            state.pages = action.payload
-        },
-
         setPage(state, action: PayloadAction<number>) {
             state.page = action.payload
         },
@@ -38,17 +36,25 @@ export const paginatorSlice = createSlice({
             state.friend = action.payload
             state.page = 1
         }
+    },
+
+    extraReducers: builder => {
+        builder.addMatcher(usersApi.endpoints.getUsers.matchFulfilled, (state, action) => {
+            state.pages = countPages(action.payload.totalCount, state.count, 18)
+        })
+
+        builder.addMatcher(usersApi.endpoints.getUsers.matchRejected, (state) => {
+            state.pages = []
+        })
     }
 })
 
 export const {
     setPage,
     setSearchingTerm,
-    setPages,
     setFriend
 } = paginatorSlice.actions
 
 export const getPages = (state: RootState) => state.paginator.pages
 export const getPaginator = (state: RootState) => state.paginator
-
 export const getFriend = (state: RootState) => state.paginator.friend

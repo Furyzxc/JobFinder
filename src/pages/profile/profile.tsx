@@ -1,61 +1,30 @@
 import s from './profile.module.css'
-import defaultAvatar from '@/assets/defaultAvatar.jpg'
-
-// - Hooks
-
-import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
-import { useEffect } from "react";
-
-// - Actions
-
-import { authLogout } from "@/slices/auth";
-import { getProfile, getUserData } from "@/slices/profile";
-
-// - Components and hoc
-
+import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
 import { ProfileInfo } from "@/features/profileInfo";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 import { UserProfileBtns } from "@/features/userProfileBtns";
-
-// ------------------------------------
+import { selectProfileLoading } from "@/slices/profile";
+import { LogoutBtn } from "@/entities/logoutBtn/logoutBtn.tsx";
 
 
 export const Profile = () => {
-    const dispatch = useAppDispatch()
-
-    const {
-        userId, isFollowed,
-        isLoading, ...props
-    } = useAppSelector(getProfile)
-
-    const { id: myId} = useAppSelector(state => state.auth.userInfo)
+    const isLoading = useAppSelector(selectProfileLoading)
+    const {id: myId} = useAppSelector(state => state.auth.userInfo)
 
     // if no user id in url then returns owner id
-    const { id, isOwner} = useUserIdFromParams(myId)
-
-    // dispatch thunk that fills the profile state
-    useEffect(() => {
-        dispatch(getUserData(id))
-    }, [dispatch, id]);
-
-
-    // sign out from account
-    const handleLogout = () => dispatch(authLogout())
+    const {id, isOwner} = useUserIdFromParams(myId)
 
     return (
         <WithLoading isLoading={isLoading}>
             <div className={s.profile}>
                 {isOwner && <div className={s.navigation}>
-                    <button className={s.button}>
-                        <img alt='avatar' src={props.photos.small || defaultAvatar}/>
-                        <div className={s.logout} onClick={handleLogout}>LOGOUT</div>
-                    </button>
+                    <LogoutBtn/>
                 </div>}
                 <div>
-                    <ProfileInfo {...props} isOwner={isOwner}/>
+                    <ProfileInfo id={id} isOwner={isOwner}/>
                 </div>
                 <div>
-                    {!isOwner && <UserProfileBtns userId={userId} fullName={props.fullName} isFollowed={isFollowed} />}
+                    {!isOwner && <UserProfileBtns userId={id}/>}
                 </div>
             </div>
         </WithLoading>

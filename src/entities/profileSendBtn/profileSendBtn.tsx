@@ -3,23 +3,26 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { setDialogName, useStartChattingMutation } from "@/slices/dialogs";
 import { Navigate } from "react-router-dom";
-import { useAppDispatch } from "@/app/hooks.ts";
+import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
+import { selectProfileName } from "@/slices/profile";
 
 interface PropsType {
-    fullName: string
     userId: number
 }
 
-export const ProfileSendBtn = ({fullName, userId}: PropsType) => {
+export const ProfileSendBtn = ({userId}: PropsType) => {
     const dispatch = useAppDispatch()
+    const userName = useAppSelector(selectProfileName)
 
-    const [startChatting, {data, isSuccess}] = useStartChattingMutation()
+    const [startChatting, {data, isSuccess, isLoading}] = useStartChattingMutation()
     const [isChattingAccepted, setIsChattingAccepted] = useState(false)
 
     // sends request on endpoint after click on send message button
     const handleSendBtnClick = () => {
-        startChatting(userId)
-        dispatch(setDialogName(fullName))
+        if (userName) {
+            startChatting(userId)
+            dispatch(setDialogName(userName))
+        }
     }
 
     // Navigates to dialogs page after success response from server
@@ -32,7 +35,7 @@ export const ProfileSendBtn = ({fullName, userId}: PropsType) => {
 
     return (
         <span className={s.send}>
-            <Button variant='outlined' onClick={handleSendBtnClick} sx={{width: '140px'}}>
+            <Button variant='outlined' onClick={handleSendBtnClick} sx={{width: '140px'}} disabled={isLoading}>
                 Send Message
             </Button>
         </span>

@@ -1,41 +1,48 @@
 import { Button } from "@mui/material";
-import { useState } from "react";
-import { toggleIsFollowed } from "@/slices/profile";
-import { useAppDispatch } from "@/app/hooks.ts";
+import { useEffect, useState } from 'react'
+import { useGetIsFollowedQuery, useToggleIsFollowedMutation } from "@/slices/profile";
 
 interface FollowProps {
-    isFollowed: boolean
     userId: number
 }
 
-export const Follow = ({isFollowed, userId}: FollowProps) => {
-    const dispatch = useAppDispatch()
+const SUCCESS_CODE = 0
 
-    // for button disabling
-    const [isFollowingProgress, setIsFollowingProgress] = useState(false);
+export const Follow = ({userId}: FollowProps) => {
+    const [isFollowed, setIsFollowed] = useState(false)
+
+    const {data: isFollowedResponse} = useGetIsFollowedQuery(userId)
+
+    const [toggleIsFollowed, {data, isSuccess, isLoading}] = useToggleIsFollowedMutation()
 
     // dispatch thunk on button click and after its execution enable button
-    const handleToggleFollow = async (follow: boolean) => {
-        setIsFollowingProgress(true)
-
-        await dispatch(toggleIsFollowed({userId, follow}))
-
-        setIsFollowingProgress(false)
+    const handleToggleFollow = (follow: boolean) => {
+        toggleIsFollowed({userId, follow})
     }
 
     const handleFollowClick = () => handleToggleFollow(true)
     const handleUnfollowClick = () => handleToggleFollow(false)
+
+    useEffect(() => {
+        if (isFollowedResponse !== undefined) setIsFollowed(isFollowedResponse)
+    }, [isFollowedResponse]);
+
+    useEffect(() => {
+        if (isSuccess && data && data.resultCode === SUCCESS_CODE) {
+            setIsFollowed(prev => !prev)
+        }
+    }, [data, isSuccess]);
 
     return (
         <span>{
             isFollowed
                 ? <Button variant='outlined' sx={{width: '140px'}}
                           onClick={handleUnfollowClick}
-                          disabled={isFollowingProgress}
+                          disabled={isLoading}
                 >Unfollow</Button>
                 : <Button variant='outlined' sx={{width: '140px'}}
                           onClick={handleFollowClick}
-                          disabled={isFollowingProgress}
+                          disabled={isLoading}
                 >follow</Button>
         }</span>
     )

@@ -1,26 +1,35 @@
 import s from './status.module.css'
-import React from 'react'
-import { useAppDispatch } from "@/app/hooks.ts";
-import { setStatus } from "@/slices/profile";
+import { useState, useEffect, FocusEvent } from 'react'
+import { useGetUserStatusQuery, useSetStatusMutation } from "@/slices/profile";
 import { Typography } from "@mui/material";
 import { Input } from "@/shared/ui/input/input.tsx";
 
 interface StatusProps {
-    statusText: string | null
     isOwner: boolean
+    userId: number
 }
 
 
-export const Status = ({statusText, isOwner}: StatusProps) => {
-    const dispatch = useAppDispatch()
-    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => dispatch(setStatus(e.target.value))
+export const Status = ({isOwner, userId}: StatusProps) => {
+    const { data: statusValueResponse, isSuccess } = useGetUserStatusQuery(userId)
+    const [setStatus] = useSetStatusMutation()
+
+    const [statusValue, setStatusValue] = useState('')
+
+    useEffect(() => {
+        if (isSuccess && statusValueResponse) setStatusValue(statusValueResponse)
+    }, [isSuccess, statusValueResponse]);
+
+
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => setStatus({status: e.target.value})
+    
 
     if (!isOwner) return <div className={s.userStatus}>
         <Typography
             sx={{fontSize: 18, color: 'white', borderBottom: '2px solid #42A5F5', mb: '20px'}}
         > Status </Typography>
         <Typography variant='h6'>
-            {statusText || <span style={{color: 'grey'}}>
+            {statusValue || <span style={{color: 'grey'}}>
                 User did not enter status
             </span>}
         </Typography></div>
@@ -30,7 +39,7 @@ export const Status = ({statusText, isOwner}: StatusProps) => {
             name='Status'
             onBlur={handleBlur}
             key={1}
-            value={statusText}
+            value={statusValue}
         />
     )
 };

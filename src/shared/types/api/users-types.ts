@@ -20,5 +20,5 @@ export interface RequestUsersBody {
     count?: number
     page?: number
     term?: string
-    friend?: boolean
+    friend?: boolean | null
 }

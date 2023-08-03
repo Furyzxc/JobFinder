@@ -1,4 +1,5 @@
 import s from './description.module.css'
+import { ReactNode } from 'react'
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -8,7 +9,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import {Checkbox} from "@mui/material";
+import { Checkbox } from "@mui/material";
 
 
 interface DescriptionSectionProps {
@@ -41,7 +42,20 @@ interface ContactNames {
     mainLink: string
 }
 
-const contactImages = {
+interface ContactImages {
+    [key: string]: ReactNode
+
+    github: ReactNode
+    vk: ReactNode
+    facebook: ReactNode
+    instagram: ReactNode
+    twitter: ReactNode
+    website: ReactNode
+    youtube: ReactNode
+    mainLink: ReactNode
+}
+
+const contactImages: ContactImages = {
     github: <GitHubIcon/>,
     vk: <LinkedInIcon/>,
     facebook: <FacebookIcon/>,
@@ -90,7 +104,6 @@ export const DescriptionSection = ({contacts, lookingForAJobDescription, looking
             <div className={s.contacts}>
                 {Object.keys(contacts).map((key, id) => (
                     <a href={contacts[key] || ''} className={s.contact} key={id}>
-                        {/*// @ts-ignore*/}
                         <div>{contactImages[key]}</div>
                         <p>{contactNames[key]}</p>
                         <div className={s.showContact}>  {contacts[key] ? contacts[key] : 'Not specified'}</div>

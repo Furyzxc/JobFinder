@@ -10,11 +10,10 @@ import { Div } from "@/shared/ui/div/div.tsx";
 // - Actions & Hooks
 
 import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
-import { getDialogName, getDialogs } from "@/slices/dialogs";
+import { getDialogName } from "@/slices/dialogs";
 
 
 export const Dialogs = () => {
-    const dialogs = useAppSelector(getDialogs)
     const dialogName = useAppSelector(getDialogName)
     const {id} = useUserIdFromParams()
 
@@ -22,7 +21,7 @@ export const Dialogs = () => {
 
         <div className={s.dialogs}>
             <div className={s.dialogsList}>
-                <DialogsList dialogs={dialogs}/>
+                <DialogsList/>
             </div>
             {!id ? (
                     <Div>Start chatting</Div>)

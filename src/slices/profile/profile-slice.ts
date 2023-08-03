@@ -1,110 +1,52 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { profileApi } from "./profile-api.ts";
 import { RootState } from "@/app/appStore.ts";
-import { getUserData } from "./profile-thunks.ts";
-import { authLogout } from "../auth";
 
 interface Profile {
     isLoading: boolean
-    isFollowed: boolean
 
-    userId: number
-    lookingForAJob: boolean
-    lookingForAJobDescription: string | null
-    fullName: string
-
-    contacts: {
-        github: string | null
-        vk: string | null
-        facebook: string | null
-        instagram: string | null
-        twitter: string | null
-        website: string | null
-        youtube: string | null
-        mainLink: string | null
-    }
-
-    photos: {
-        small: string | null
-        large: string | null
-    }
-
-    status: null | string
+    name: string | null,
+    avatar: string | null
 }
 
 const initialState: Profile = {
-    isFollowed: false,
     isLoading: false,
-
-    userId: 0,
-    lookingForAJob: false,
-    lookingForAJobDescription: null,
-    fullName: '',
-
-    contacts: {
-        github: null,
-        vk: null,
-        facebook: null,
-        instagram: null,
-        twitter: null,
-        website: null,
-        youtube: null,
-        mainLink: null
-    },
-
-    photos: {
-        small: null,
-        large: null
-    },
-
-    status: null
+    name: null,
+    avatar: null
 }
 
 export const profileSlice = createSlice({
         name: 'profile',
         initialState,
-        reducers: {},
+        reducers: {
+            setProfileName(state, action: PayloadAction<string>) {
+                state.name = action.payload
+            },
+
+            setAvatar(state, action: PayloadAction<string | null>) {
+                state.avatar = action.payload
+            }
+        },
 
         extraReducers: builder => {
-            builder.addMatcher(isAnyOf(getUserData.pending, authLogout.pending), state => {
+            const { getProfile, getIsFollowed, getUserStatus } = profileApi.endpoints
+
+            builder.addMatcher(isAnyOf(getProfile.matchPending, getIsFollowed.matchPending, getUserStatus.matchPending), state => {
                 state.isLoading = true
             })
 
-            builder.addMatcher(isAnyOf(getUserData.fulfilled, authLogout.fulfilled), state => {
+            builder.addMatcher(isAnyOf(getProfile.matchFulfilled, getIsFollowed.matchFulfilled, getUserStatus.matchFulfilled), state => {
                 state.isLoading = false
             })
-
-            builder.addMatcher(profileApi.endpoints.getProfile.matchFulfilled, (state, action) => {
-                return {
-                    ...state,
-                    ...action.payload
-                }
-            })
-
-            builder.addMatcher(profileApi.endpoints.getUserStatus.matchFulfilled, (state, action) => {
-                state.status = action.payload
-            })
-
-            builder.addMatcher(profileApi.endpoints.setStatus.matchFulfilled, (state, action) => {
-                // if success setting request status value
-
-                if (action.payload.resultCode === 0) {
-                    state.status = action.meta.arg.originalArgs.status
-                }
-            })
-
-            builder.addMatcher(profileApi.endpoints.getIsFollowed.matchFulfilled, (state, action) => {
-                state.isFollowed = action.payload
-            })
-
-            builder.addMatcher(profileApi.endpoints.toggleIsFollowed.matchFulfilled, (state, action) => {
-                if (action.payload.resultCode === 0) {
-                    state.isFollowed = !state.isFollowed
-                }
-            })
-
         }
     }
 )
 
-export const getProfile = (state: RootState) => state.profile
+export const {
+    setProfileName,
+    setAvatar
+} = profileSlice.actions
+
+export const selectProfileLoading = (state: RootState) => state.profile.isLoading
+export const selectProfileName = (state: RootState) => state.profile.name
+export const selectProfileAvatar = (state: RootState) => state.profile.avatar

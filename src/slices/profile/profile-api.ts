@@ -36,3 +36,11 @@ export const profileApi = api.injectEndpoints({
         })
     })
 })
+
+export const {
+    useGetProfileQuery,
+    useGetIsFollowedQuery,
+    useToggleIsFollowedMutation,
+    useGetUserStatusQuery,
+    useSetStatusMutation
+} = profileApi

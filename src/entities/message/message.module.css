@@ -24,6 +24,9 @@
     letter-spacing: -0.7px;
     user-select: none;
     font-size: 10px;
+    word-wrap: initial;
+    white-space: nowrap;
+    word-break: keep-all;
     margin: auto auto 0 auto;
 }
 

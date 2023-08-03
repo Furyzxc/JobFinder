@@ -15,9 +15,8 @@ export const Search = () => {
 
     return (
         <div className={s.searchContainer}>
-            <Input name='Search' value={''} key={2} onBlur={handleBlur} />
-            {/*// @ts-ignore*/}
-            <GroupRoundedIcon variant='outlined' fontSize='small'
+            <Input name='Search' value={''} key={2} onBlur={handleBlur}/>
+            <GroupRoundedIcon fontSize='small'
                               sx={{color: friend ? '#265D97' : 'white', mt: '20px', ml: '10px'}}
                               onClick={handleIconClick}/>
         </div>

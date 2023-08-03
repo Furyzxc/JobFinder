@@ -1,46 +1,38 @@
 import s from './profileInfo.module.css'
+import { useEffect } from 'react'
 import { Status } from "@/entities/status";
 import { DescriptionSection } from "@/entities/profileDescription";
+import { setAvatar, setProfileName, useGetProfileQuery } from "@/slices/profile";
+import { useAppDispatch } from "@/app/hooks.ts";
 
-interface ProfileInfoProps {
+type PropsType = {
     isOwner: boolean
-
-    lookingForAJob: boolean
-    lookingForAJobDescription: string | null
-    fullName: string
-
-    contacts: {
-        github: string | null
-        vk: string | null
-        facebook: string | null
-        instagram: string | null
-        twitter: string | null
-        website: string | null
-        youtube: string | null
-        mainLink: string | null
-    }
-
-    photos: {
-        small: string | null
-        large: string | null
-    }
-
-    status: null | string
+    id: number
 }
 
-export const ProfileInfo = ({fullName, status, isOwner, ...restProps}: ProfileInfoProps) => {
+export const ProfileInfo = ({id, isOwner}: PropsType) => {
+    const dispatch = useAppDispatch()
+
+    const {data, isSuccess} = useGetProfileQuery(id)
+
+    useEffect(() => {
+        if (isSuccess && data) {
+            dispatch(setProfileName(data.fullName))
+            dispatch(setAvatar(data.photos.small))
+        }
+    }, [data, dispatch, isSuccess]);
 
     return (
         <div className={s.userInfo}>
             <div className={s.main}>
                 <div className={s.nickName}>
-                    {fullName}
+                    {data?.fullName}
                 </div>
                 <div className={s.status}>
-                    <Status statusText={status} isOwner={isOwner}/>
+                    <Status isOwner={isOwner} userId={id}/>
                 </div>
             </div>
-            <DescriptionSection {...restProps}/>
+            {data && <DescriptionSection {...data}/>}
         </div>
     );
 };

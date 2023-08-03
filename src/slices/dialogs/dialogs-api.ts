@@ -9,14 +9,14 @@ export const dialogsApi = api.injectEndpoints({
     endpoints: build => ({
 
         // get list of dialogs with your friend
-
         requestDialogs: build.query<DialogsResponse[], void>({
             query: () => 'dialogs',
         }),
 
         // get list of messages with your friend, max count is 20
         requestMessages: build.query<MessagesResponse, MessagesRequest>({
-            query: ({id, count = 20}) => 'dialogs/' + id + `/messages?count=${count}`
+            query: ({id, count = 20}) => 'dialogs/' + id + `/messages?count=${count}`,
+            providesTags: () => ['MESSAGES']
         }),
 
         // Start dialog with a person
@@ -34,11 +34,16 @@ export const dialogsApi = api.injectEndpoints({
                 url: 'dialogs/' + userId + '/messages',
                 method: 'post',
                 body: {body}
-            })
+            }),
+            invalidatesTags: ['MESSAGES']
         })
     })
 })
 
+
 export const {
     useStartChattingMutation,
+    useRequestDialogsQuery,
+    useLazyRequestMessagesQuery,
+    useSendMessageMutation
 } = dialogsApi
