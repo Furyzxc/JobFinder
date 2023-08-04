@@ -1,3 +1,7 @@
+.dialogsContainer {
+    position: fixed;
+}
+
 .dialogs {
     color: white;
     display: grid;

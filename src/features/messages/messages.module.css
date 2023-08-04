@@ -5,4 +5,5 @@
     background-color: #0E1621;
     overflow: hidden;
     min-height: 100%;
+    position: relative;
 }

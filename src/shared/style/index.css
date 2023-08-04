@@ -7,6 +7,7 @@
 .App {
     display: grid;
     grid-template-columns: 50px 1fr;
+    position: relative;
 }
 
 .height {

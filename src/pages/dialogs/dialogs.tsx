@@ -21,6 +21,7 @@ export const Dialogs = () => {
 
     return (
         <WithError isError={isError}>
+            <div className={s.dialogContainer}>
         <div className={s.dialogs}>
             <div className={s.dialogsList}>
                 <DialogsList/>
@@ -39,6 +40,7 @@ export const Dialogs = () => {
                     </div>)
             }
         </div>
+            </div>
         </WithError>
     )
 }
