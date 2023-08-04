@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
 import { profileApi } from "./profile-api.ts";
 import { RootState } from "@/app/appStore.ts";
 
@@ -31,7 +31,7 @@ export const profileSlice = createSlice({
         },
 
         extraReducers: builder => {
-            const { getProfile, getIsFollowed, getUserStatus } = profileApi.endpoints
+            const {getProfile, getIsFollowed, getUserStatus} = profileApi.endpoints
 
             builder.addMatcher(isAnyOf(getProfile.matchPending, getIsFollowed.matchPending, getUserStatus.matchPending), state => {
                 state.isLoading = true
@@ -54,6 +54,21 @@ export const {
     setProfileName,
     setAvatar
 } = profileSlice.actions
+
+
+export const requestProfileDataThunk = createAsyncThunk('profile/requestProfileDataThunk',
+    async (id: number, {dispatch}) => {
+        const {getProfile, getIsFollowed, getUserStatus} = profileApi.endpoints
+
+        const promise = await Promise.all([
+            dispatch(getProfile.initiate(id)),
+            dispatch(getIsFollowed.initiate(id)),
+            dispatch(getUserStatus.initiate(id))
+        ])
+
+        console.log(promise)
+    })
+
 
 export const selectProfileLoading = (state: RootState) => state.profile.isLoading
 export const selectProfileError = (state: RootState) => state.profile.isError

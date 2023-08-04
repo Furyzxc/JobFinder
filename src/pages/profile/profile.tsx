@@ -1,11 +1,12 @@
 import s from './profile.module.css'
-import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
+import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
 import { ProfileInfo } from "@/features/profileInfo";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 import { UserProfileBtns } from "@/features/userProfileBtns";
-import { selectProfileError, selectProfileLoading } from "@/slices/profile";
+import { requestProfileDataThunk, selectProfileError, selectProfileLoading } from "@/slices/profile";
 import { LogoutBtn } from "@/entities/logoutBtn/logoutBtn.tsx";
 import { WithError } from "@/shared/hoc/withError.tsx";
+import { useEffect } from 'react';
 
 
 export const Profile = () => {
@@ -16,6 +17,12 @@ export const Profile = () => {
 
     // if no user id in url then returns owner id
     const {id, isOwner} = useUserIdFromParams(myId)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(requestProfileDataThunk(id))
+    }, [dispatch, id]);
 
     return (
         <WithLoading isLoading={isLoading}>
