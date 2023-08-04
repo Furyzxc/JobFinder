@@ -15,7 +15,7 @@ export interface UserProps {
     followed: boolean
 }
 
-export const COLORS: string[] = [
+export const COLORS = [
     '#f44336',
     '#e91e63',
     '#9c27b0',
