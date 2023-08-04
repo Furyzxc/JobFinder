@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { rootReducer } from "@/app/rootReducer.ts";
-import { api } from "@/shared/api/baseApi.ts";
+import { baseApi } from "@/shared/api/baseApi.ts";
 
 
 export const appStore = configureStore({
     reducer: rootReducer,
 
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(api.middleware),
+        getDefaultMiddleware().concat(baseApi.middleware),
 
     devTools: true
 })

@@ -11,6 +11,10 @@ export interface DialogsResponse {
     hasNewMessages: false
     lastDialogActivityDate: string //'2023-07-11T23:47:06.07'
     lastUserActivityDate: string //'2023-07-11T21:04:10.95'
+    photos: {
+        small: null | string
+        large: null | string
+    }
 }
 
 export interface SendMessageRequest {

@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Preloader } from "@/shared/ui/preloader/preloader.tsx";
-import React from 'react'
 
 export interface WithLoadingTypes {
     isLoading: boolean
@@ -13,5 +12,5 @@ export const WithLoading = ({isLoading, children}: WithLoadingTypes) => {
         <Preloader/>
     )
 
-    return <React.Fragment>{children}</React.Fragment>
+    return <>{children}</>
 }

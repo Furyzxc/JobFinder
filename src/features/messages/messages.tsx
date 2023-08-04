@@ -6,6 +6,7 @@ import { Div } from "@/shared/ui/div/div.tsx";
 import { useParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
+import { WithError } from "@/shared/hoc/withError.tsx";
 
 export const Messages = () => {
     const ref = useRef(null);
@@ -16,7 +17,7 @@ export const Messages = () => {
 
     const id = Number(userId)
 
-    const [requestMessages, { data, isFetching }] = useLazyRequestMessagesQuery()
+    const [requestMessages, {data, isFetching, isError}] = useLazyRequestMessagesQuery()
 
     useEffect(() => {
         if (id) requestMessages({id})
@@ -29,14 +30,16 @@ export const Messages = () => {
 
     return (
         <WithLoading isLoading={isFetching}>
-            <div className={s.flexbox}>
-                {!data?.items[0] && <Div>Enter your first message</Div>}
-                {data?.items.map(message => (
-                    <Message {...message} key={message.id}
-                             me={message.senderId !== id}/>
-                ))}
-                <div ref={ref}/>
-            </div>
+            <WithError isError={isError}>
+                <div className={s.flexbox}>
+                    {!data?.items[0] && <Div>Enter your first message</Div>}
+                    {data?.items.map(message => (
+                        <Message {...message} key={message.id}
+                                 me={message.senderId !== id}/>
+                    ))}
+                    <div ref={ref}/>
+                </div>
+            </WithError>
         </WithLoading>
     );
 };

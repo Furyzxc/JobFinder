@@ -10,15 +10,17 @@ import { Div } from "@/shared/ui/div/div.tsx";
 // - Actions & Hooks
 
 import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
-import { getDialogName } from "@/slices/dialogs";
+import { getDialogName, selectDialogsError } from "@/slices/dialogs";
+import { WithError } from "@/shared/hoc/withError.tsx";
 
 
 export const Dialogs = () => {
+    const isError = useAppSelector(selectDialogsError)
     const dialogName = useAppSelector(getDialogName)
     const {id} = useUserIdFromParams()
 
     return (
-
+        <WithError isError={isError}>
         <div className={s.dialogs}>
             <div className={s.dialogsList}>
                 <DialogsList/>
@@ -37,5 +39,6 @@ export const Dialogs = () => {
                     </div>)
             }
         </div>
+        </WithError>
     )
 }

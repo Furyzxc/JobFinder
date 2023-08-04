@@ -1,7 +1,7 @@
 import { AuthMeResponse, LoginResponse, RequestLoginBody } from "@/shared/types/api/auth-types.ts";
-import { api } from "@/shared/api/baseApi.ts";
+import { baseApi } from "@/shared/api/baseApi.ts";
 
-export const authApi = api.injectEndpoints({
+export const authApi = baseApi.injectEndpoints({
     endpoints: build => ({
         me: build.query<AuthMeResponse, void>({
             query: () => 'auth/me',

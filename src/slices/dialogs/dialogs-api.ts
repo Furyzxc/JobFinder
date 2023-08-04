@@ -1,16 +1,17 @@
-import { api } from "@/shared/api/baseApi.ts";
+import { baseApi } from "@/shared/api/baseApi.ts";
 import {
     DialogsResponse, MessagesRequest, MessagesResponse,
     SendMessageRequest, SendMessageResponse, StartChattingResponse
 } from "@/shared/types/api/dialogs-types.ts";
 
 
-export const dialogsApi = api.injectEndpoints({
+export const dialogsApi = baseApi.injectEndpoints({
     endpoints: build => ({
 
         // get list of dialogs with your friend
         requestDialogs: build.query<DialogsResponse[], void>({
             query: () => 'dialogs',
+            providesTags: () => ['DIALOGS']
         }),
 
         // get list of messages with your friend, max count is 20
@@ -24,7 +25,8 @@ export const dialogsApi = api.injectEndpoints({
             query: (userId) => ({
                 url: 'dialogs/' + userId,
                 method: 'put'
-            })
+            }),
+            invalidatesTags: ['DIALOGS']
         }),
 
         //send message to your friend

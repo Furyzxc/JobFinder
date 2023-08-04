@@ -1,4 +1,4 @@
-import { api } from "@/shared/api/baseApi.ts";
+import { baseApi } from "@/shared/api/baseApi.ts";
 import {
     FollowRequestBody, ProfileResponseBody,
     SetStatusRequestBody, StatusCode,
@@ -6,7 +6,7 @@ import {
 } from "@/shared/types/api/profile-types.ts";
 
 
-export const profileApi = api.injectEndpoints({
+export const profileApi = baseApi.injectEndpoints({
     endpoints: build => ({
         getProfile: build.query<ProfileResponseBody, number>({
             query: (userId) => 'profile/' + userId

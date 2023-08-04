@@ -1,7 +1,7 @@
 import { useAppSelector } from "./hooks.ts";
 import { selectIsAuth } from "@/slices/auth";
 import { Navigate } from "react-router-dom";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type GuestGuardProps = {
     children: ReactNode
@@ -14,7 +14,7 @@ export const GuestGuard = ({children}: GuestGuardProps) => {
 
     if (!isAuthorized) return <Navigate to="/login"/>
 
-    return <React.Fragment>{children}</React.Fragment>;
+    return <>{children}</>;
 }
 
 type AuthGuardProps = {
@@ -27,5 +27,5 @@ export const AuthGuard = ({children}: AuthGuardProps) => {
 
     if (isAuthorized) return <Navigate to="/"/>
 
-    return <React.Fragment>{children}</React.Fragment>;
+    return <>{children}</>;
 }

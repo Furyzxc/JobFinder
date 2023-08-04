@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const apiKey = import.meta.env.VITE_API_KEY
 
-export const api = createApi({
+export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         credentials: 'include',
@@ -14,7 +14,7 @@ export const api = createApi({
             return headers
         }
     }),
-    tagTypes: ['MESSAGES'],
+    tagTypes: ['MESSAGES', 'DIALOGS'],
 
     endpoints: () => ({})
 })
