@@ -39,9 +39,7 @@ export const dialogsSlice = createSlice({
     }
 })
 
-export const {
-    setDialogName
-} = dialogsSlice.actions
+export const dialogsActions= dialogsSlice.actions
 
 export const getDialogName = (state: RootState) => state.dialogs.dialogName
 export const selectDialogsError = (state: RootState) => state.dialogs.isError

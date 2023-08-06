@@ -49,11 +49,7 @@ export const paginatorSlice = createSlice({
     }
 })
 
-export const {
-    setPage,
-    setSearchingTerm,
-    setFriend
-} = paginatorSlice.actions
+export const paginatorActions = paginatorSlice.actions
 
 export const getPages = (state: RootState) => state.paginator.pages
 export const getPaginator = (state: RootState) => state.paginator

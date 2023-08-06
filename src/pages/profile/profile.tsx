@@ -1,5 +1,5 @@
 import s from './profile.module.css'
-import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
+import { useAppDispatch, useAppSelector, useUserIdFromParams } from "@/shared/model/hooks.ts";
 import { ProfileInfo } from "@/features/profileInfo";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 import { UserProfileBtns } from "@/features/userProfileBtns";

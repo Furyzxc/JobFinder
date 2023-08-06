@@ -9,7 +9,7 @@ import { Div } from "@/shared/ui/div/div.tsx";
 
 // - Actions & Hooks
 
-import { useAppSelector, useUserIdFromParams } from "@/app/hooks.ts";
+import { useAppSelector, useUserIdFromParams } from "@/shared/model/hooks.ts";
 import { getDialogName, selectDialogsError } from "@/slices/dialogs";
 import { WithError } from "@/shared/hoc/withError.tsx";
 

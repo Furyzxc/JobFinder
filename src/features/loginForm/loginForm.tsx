@@ -7,7 +7,7 @@ import { authLogin, getError } from "@/slices/auth";
 
 // - Hooks
 
-import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
+import { useAppDispatch, useAppSelector } from "@/shared/model/hooks.ts";
 
 // - Libraries
 

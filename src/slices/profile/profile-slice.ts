@@ -50,23 +50,18 @@ export const profileSlice = createSlice({
     }
 )
 
-export const {
-    setProfileName,
-    setAvatar
-} = profileSlice.actions
+export const profileActions = profileSlice.actions
 
 
 export const requestProfileDataThunk = createAsyncThunk('profile/requestProfileDataThunk',
     async (id: number, {dispatch}) => {
         const {getProfile, getIsFollowed, getUserStatus} = profileApi.endpoints
 
-        const promise = await Promise.all([
+        await Promise.all([
             dispatch(getProfile.initiate(id)),
             dispatch(getIsFollowed.initiate(id)),
             dispatch(getUserStatus.initiate(id))
         ])
-
-        console.log(promise)
     })
 
 

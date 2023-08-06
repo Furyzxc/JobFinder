@@ -1,4 +1,4 @@
-import { useUserIdFromParams} from "@/app/hooks.ts";
+import { useUserIdFromParams} from "@/shared/model/hooks.ts";
 import { Field, Form, Formik, FormikHelpers } from "formik";
 import { useSendMessageMutation } from "@/slices/dialogs";
 import s from './dialogsForm.module.css'

@@ -2,8 +2,8 @@ import s from './profileInfo.module.css'
 import { useEffect } from 'react'
 import { Status } from "@/entities/status";
 import { DescriptionSection } from "@/entities/profileDescription";
-import { setAvatar, setProfileName, useGetProfileQuery } from "@/slices/profile";
-import { useAppDispatch } from "@/app/hooks.ts";
+import { useGetProfileQuery } from "@/slices/profile";
+import { useActions } from "@/shared/model/hooks.ts";
 
 type PropsType = {
     isOwner: boolean
@@ -11,16 +11,16 @@ type PropsType = {
 }
 
 export const ProfileInfo = ({id, isOwner}: PropsType) => {
-    const dispatch = useAppDispatch()
+    const { setProfileName, setAvatar } = useActions()
 
     const {data, isSuccess} = useGetProfileQuery(id)
 
     useEffect(() => {
         if (isSuccess && data) {
-            dispatch(setProfileName(data.fullName))
-            dispatch(setAvatar(data.photos.small))
+            setProfileName(data.fullName)
+            setAvatar(data.photos.small)
         }
-    }, [data, dispatch, isSuccess]);
+    }, [data, isSuccess, setAvatar, setProfileName]);
 
     return (
         <div className={s.userInfo}>

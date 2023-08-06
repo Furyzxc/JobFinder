@@ -1,5 +1,5 @@
 import { LoginForm } from "@/features/loginForm";
-import { useAppSelector } from "@/app/hooks.ts";
+import { useAppSelector } from "@/shared/model/hooks.ts";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 import { getAuthLoading } from "@/slices/auth";
 import s from './login.module.css'

@@ -1,13 +1,13 @@
 import s from "@/pages/users/users.module.css";
-import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
-import { getPages, setPage } from "@/slices/paginator";
+import { useActions, useAppSelector } from "@/shared/model/hooks.ts";
+import { getPages } from "@/slices/paginator";
 import { Button } from "@mui/material";
 
 export const Paginator = () => {
-    const dispatch = useAppDispatch()
+    const { setPage } = useActions()
 
     const pages = useAppSelector(getPages)
-    const handlePageClick = (pageNumber: number) => dispatch(setPage(pageNumber))
+    const handlePageClick = (pageNumber: number) => setPage(pageNumber)
 
     return (
         <div className={s.pages}>

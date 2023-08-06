@@ -1,5 +1,5 @@
 import s from './messages.module.css'
-import { useAppDispatch } from "@/app/hooks.ts";
+import { useAppDispatch } from "@/shared/model/hooks.ts";
 import { useLazyRequestMessagesQuery } from "@/slices/dialogs";
 import { Message } from "@/entities/message";
 import { Div } from "@/shared/ui/div/div.tsx";

@@ -1,16 +1,16 @@
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import s from './search.module.css'
-import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
-import { getFriend, setFriend, setSearchingTerm } from "@/slices/paginator";
+import { useActions, useAppSelector } from "@/shared/model/hooks.ts";
+import { getFriend } from "@/slices/paginator";
 import { Input } from "@/shared/ui/input/input.tsx";
 import { FocusEvent } from 'react'
 
 export const Search = () => {
-    const dispatch = useAppDispatch()
+    const { setFriend, setSearchingTerm } = useActions()
     const friend = useAppSelector(getFriend)
 
-    const handleIconClick = () => dispatch(setFriend(!friend))
-    const handleBlur = (e: FocusEvent<HTMLInputElement>) => dispatch(setSearchingTerm(e.target.value))
+    const handleIconClick = () => setFriend(!friend)
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => setSearchingTerm(e.target.value)
 
 
     return (

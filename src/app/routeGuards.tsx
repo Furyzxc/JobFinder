@@ -1,4 +1,4 @@
-import { useAppSelector } from "./hooks.ts";
+import { useAppSelector } from "@/shared/model/hooks.ts";
 import { selectIsAuth } from "@/slices/auth";
 import { Navigate } from "react-router-dom";
 import { ReactNode } from "react";

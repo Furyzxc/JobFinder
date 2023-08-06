@@ -1,7 +1,7 @@
 import { Div } from "@/shared/ui/div";
 import s from "@/pages/users/users.module.css";
 import { User } from "@/entities/user";
-import { useAppSelector } from "@/app/hooks.ts";
+import { useAppSelector } from "@/shared/model/hooks.ts";
 import { useGetUsersQuery } from "@/slices/users/users-api.ts";
 import { getPaginator } from "@/slices/paginator";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";

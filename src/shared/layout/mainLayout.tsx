@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useAppSelector } from "@/app/hooks.ts";
+import { useAppSelector } from "@/shared/model/hooks.ts";
 import { selectIsAuth } from "@/slices/auth";
 import { Header } from "@/shared/ui/header";
 import { Navigation } from "@/features/navigation";

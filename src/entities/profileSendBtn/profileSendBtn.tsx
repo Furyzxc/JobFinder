@@ -1,9 +1,9 @@
 import s from "./sendBtn.module.css";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { setDialogName, useStartChattingMutation } from "@/slices/dialogs";
+import { useStartChattingMutation } from "@/slices/dialogs";
 import { Navigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "@/app/hooks.ts";
+import { useActions, useAppSelector } from "@/shared/model/hooks.ts";
 import { selectProfileName } from "@/slices/profile";
 
 interface PropsType {
@@ -11,7 +11,7 @@ interface PropsType {
 }
 
 export const ProfileSendBtn = ({userId}: PropsType) => {
-    const dispatch = useAppDispatch()
+    const { setDialogName } = useActions()
     const userName = useAppSelector(selectProfileName)
 
     const [startChatting, {data, isSuccess, isLoading}] = useStartChattingMutation()
@@ -21,7 +21,7 @@ export const ProfileSendBtn = ({userId}: PropsType) => {
     const handleSendBtnClick = () => {
         if (userName) {
             startChatting(userId)
-            dispatch(setDialogName(userName))
+            setDialogName(userName)
         }
     }
 
