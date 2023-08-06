@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
-import { useAppSelector } from "@/shared/model/hooks.ts";
-import { selectIsAuth } from "@/slices/auth";
+import { useAuth } from "@/shared/model/hooks.ts";
 import { Header } from "@/shared/ui/header";
 import { Navigation } from "@/features/navigation";
 
@@ -9,7 +8,7 @@ interface MainLayoutProps {
 }
 
 export const MainLayout = ({children}: MainLayoutProps) => {
-    const isAuth = useAppSelector(selectIsAuth)
+    const isAuth = useAuth()
 
     return (
         <div>

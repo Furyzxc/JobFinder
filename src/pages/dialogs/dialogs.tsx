@@ -1,17 +1,11 @@
 import s from './dialogs.module.css'
-
-// - Components & HOC
-
 import { Messages } from "@/features/messages";
 import { DialogsForm } from "@/features/dialogsForm";
 import { DialogsList } from "@/features/dialogsList";
 import { Div } from "@/shared/ui/div/div.tsx";
-
-// - Actions & Hooks
-
 import { useAppSelector, useUserIdFromParams } from "@/shared/model/hooks.ts";
 import { getDialogName, selectDialogsError } from "@/slices/dialogs";
-import { WithError } from "@/shared/hoc/withError.tsx";
+import { WithError } from "@/shared/hoc";
 
 
 export const Dialogs = () => {

@@ -3,6 +3,7 @@ import { RootState } from "@/app/appStore.ts";
 import { authLogin, authMe } from "./auth-thunks.ts";
 import { authApi } from "@/slices/auth/auth-api.ts";
 
+const SUCCESS_CODE = 0
 
 interface Auth {
     isAuth: boolean
@@ -61,9 +62,11 @@ export const authSlice = createSlice({
             })
 
         builder.addMatcher(authApi.endpoints.me.matchFulfilled,
-            (state, action) => {
-                state.isAuth = true
-                state.userInfo = action.payload.data
+            (state, {payload}) => {
+                if (payload.resultCode === SUCCESS_CODE) {
+                    state.isAuth = true
+                    state.userInfo = payload.data
+                }
             })
     }
 })
