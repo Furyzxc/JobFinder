@@ -8,54 +8,60 @@ import { AuthGuard, GuestGuard } from "./routeGuards.tsx";
 import { MainLayout } from "../shared/layout/mainLayout.tsx";
 
 export const appRouter = createBrowserRouter([
-    {
-        path: '*', element: (
-            <MainLayout>
-                <NotFound/>
-            </MainLayout>
-        )
-    },
-    {
-        path: '/', element: (
-            <MainLayout>
-                <GuestGuard>
-                    <Profile/>
-                </GuestGuard>
-            </MainLayout>
-        )
-    },
-    {
-        path: '/login', element: (
-            <MainLayout>
-                <AuthGuard>
-                    <Login/>
-                </AuthGuard>
-            </MainLayout>
-        )
-    },
-    {
-        path: '/profile/:userId?', element: (
-            <MainLayout>
-                <GuestGuard>
-                    <Profile/>
-                </GuestGuard>
-            </MainLayout>
-        )
-    },
-    {
-        path: '/dialogs/:userId?', element: (
-            <MainLayout>
-                <GuestGuard>
-                    <Dialogs/>
-                </GuestGuard>
-            </MainLayout>
-        )
-    },
-    {
-        path: '/users', element: (
-            <MainLayout>
-                <Users />
-            </MainLayout>
-        )
-    }
-])
+  {
+    path: "*",
+    element: (
+      <MainLayout>
+        <NotFound />
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/",
+    element: (
+      <MainLayout>
+        <GuestGuard>
+          <Profile />
+        </GuestGuard>
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <MainLayout>
+        <AuthGuard>
+          <Login />
+        </AuthGuard>
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/profile/:userId?",
+    element: (
+      <MainLayout>
+        <GuestGuard>
+          <Profile />
+        </GuestGuard>
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/dialogs/:userId?",
+    element: (
+      <MainLayout>
+        <GuestGuard>
+          <Dialogs />
+        </GuestGuard>
+      </MainLayout>
+    ),
+  },
+  {
+    path: "/users",
+    element: (
+      <MainLayout>
+        <Users />
+      </MainLayout>
+    ),
+  },
+]);

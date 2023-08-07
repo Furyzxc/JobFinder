@@ -4,23 +4,21 @@ import { Header } from "@/shared/ui/header";
 import { Navigation } from "@/features/navigation";
 
 interface MainLayoutProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
-export const MainLayout = ({children}: MainLayoutProps) => {
-    const isAuth = useAuth()
+export const MainLayout = ({ children }: MainLayoutProps) => {
+  const isAuth = useAuth();
 
-    return (
+  return (
+    <div>
+      {!isAuth && <Header />}
+      <div className="App">
         <div>
-            {!isAuth && <Header/>}
-            <div className='App'>
-                <div>
-                    <Navigation/>
-                </div>
-                <div>
-                    {children}
-                </div>
-            </div>
+          <Navigation />
         </div>
-    );
+        <div>{children}</div>
+      </div>
+    </div>
+  );
 };

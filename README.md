@@ -3,6 +3,7 @@
 ![JobFinder Logo](https://github.com/Furyzxc/social-network-2023/blob/f8bebba9648ccf8455b1928f94d27b105677ee3e/public/melon.png)
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -46,6 +47,7 @@ All Rights Reserved.
 This repository and its contents are private and proprietary to Furyzxc. No part of this code may be reproduced, modified, or distributed in any form without prior written permission from the copyright holder.
 
 ---
+
 © Furyzxc
 
 ---

@@ -1,1 +1,1 @@
-export * from './paginator-slice.ts'
+export * from "./paginator-slice.ts";

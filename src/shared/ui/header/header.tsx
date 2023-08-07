@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import s from "./sign.module.css";
 
 export const Header = () => {
-    return (
-        <Button variant='outlined' sx={{position: 'absolute', top: '0', right: '5%'}}>
-            <Link to='/login' style={{color: '#1976D2', textDecoration: 'none'}}>
-                Sign in
-            </Link>
-        </Button>
-    )
-}
+  return (
+    <Button
+      variant="outlined"
+      sx={{ position: "absolute", top: "0", right: "5%" }}
+    >
+      <Link to="/login" className={s.link}>
+        Sign in
+      </Link>
+    </Button>
+  );
+};

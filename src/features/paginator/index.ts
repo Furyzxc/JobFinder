@@ -1,1 +1,1 @@
-export * from './paginator.tsx'
+export * from "./paginator.tsx";

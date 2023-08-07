@@ -1,45 +1,51 @@
-import s from './status.module.css'
-import { useState, useEffect, FocusEvent } from 'react'
+import s from "./status.module.css";
+import { useState, useEffect, FocusEvent } from "react";
 import { useGetUserStatusQuery, useSetStatusMutation } from "@/slices/profile";
 import { Typography } from "@mui/material";
 import { Input } from "@/shared/ui/input/input.tsx";
 
 interface StatusProps {
-    isOwner: boolean
-    userId: number
+  isOwner: boolean;
+  userId: number;
 }
 
+export const Status = ({ isOwner, userId }: StatusProps) => {
+  const { data: statusValueResponse, isSuccess } =
+    useGetUserStatusQuery(userId);
+  const [setStatus] = useSetStatusMutation();
 
-export const Status = ({isOwner, userId}: StatusProps) => {
-    const { data: statusValueResponse, isSuccess } = useGetUserStatusQuery(userId)
-    const [setStatus] = useSetStatusMutation()
+  const [statusValue, setStatusValue] = useState("");
 
-    const [statusValue, setStatusValue] = useState('')
+  useEffect(() => {
+    if (isSuccess && statusValueResponse) setStatusValue(statusValueResponse);
+  }, [isSuccess, statusValueResponse]);
 
-    useEffect(() => {
-        if (isSuccess && statusValueResponse) setStatusValue(statusValueResponse)
-    }, [isSuccess, statusValueResponse]);
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) =>
+    setStatus({ status: e.target.value });
 
-
-    const handleBlur = (e: FocusEvent<HTMLInputElement>) => setStatus({status: e.target.value})
-    
-
-    if (!isOwner) return <div className={s.userStatus}>
-        <Typography
-            sx={{fontSize: 18, color: 'white', borderBottom: '2px solid #42A5F5', mb: '20px'}}
-        > Status </Typography>
-        <Typography variant='h6'>
-            {statusValue || <span style={{color: 'grey'}}>
-                User did not enter status
-            </span>}
-        </Typography></div>
-
+  if (!isOwner)
     return (
-        <Input
-            name='Status'
-            onBlur={handleBlur}
-            key={1}
-            value={statusValue}
-        />
-    )
+      <div className={s.userStatus}>
+        <Typography
+          sx={{
+            fontSize: 18,
+            color: "white",
+            borderBottom: "2px solid #42A5F5",
+            mb: "20px",
+          }}
+        >
+          {" "}
+          Status{" "}
+        </Typography>
+        <Typography variant="h6">
+          {statusValue || (
+            <span style={{ color: "grey" }}>User did not enter status</span>
+          )}
+        </Typography>
+      </div>
+    );
+
+  return (
+    <Input name="Status" onBlur={handleBlur} key={1} value={statusValue} />
+  );
 };

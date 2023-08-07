@@ -1,4 +1,4 @@
-import s from './messages.module.css'
+import s from "./messages.module.css";
 import { useAppDispatch } from "@/shared/model/hooks.ts";
 import { useLazyRequestMessagesQuery } from "@/slices/dialogs";
 import { Message } from "@/entities/message";
@@ -9,37 +9,40 @@ import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 import { WithError } from "@/shared/hoc/withError.tsx";
 
 export const Messages = () => {
-    const ref = useRef(null);
+  const ref = useRef(null) as any;
 
-    const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
-    const {userId} = useParams()
+  const { userId } = useParams();
 
-    const id = Number(userId)
+  const id = Number(userId);
 
-    const [requestMessages, {data, isFetching, isError}] = useLazyRequestMessagesQuery()
+  const [requestMessages, { data, isFetching, isError }] =
+    useLazyRequestMessagesQuery();
 
-    useEffect(() => {
-        if (id) requestMessages({id})
-    }, [dispatch, id, requestMessages]);
+  useEffect(() => {
+    if (id) requestMessages({ id });
+  }, [dispatch, id, requestMessages]);
 
-    useEffect(() => {
-        // @ts-ignore
-        ref.current?.scrollIntoView()
-    }, [data?.items]);
+  useEffect(() => {
+    ref.current?.scrollIntoView();
+  }, [data?.items]);
 
-    return (
-        <WithLoading isLoading={isFetching}>
-            <WithError isError={isError}>
-                <div className={s.flexbox}>
-                    {!data?.items[0] && <Div>Enter your first message</Div>}
-                    {data?.items.map(message => (
-                        <Message {...message} key={message.id}
-                                 me={message.senderId !== id}/>
-                    ))}
-                    <div ref={ref}/>
-                </div>
-            </WithError>
-        </WithLoading>
-    );
+  return (
+    <WithLoading isLoading={isFetching}>
+      <WithError isError={isError}>
+        <div className={s.flexbox}>
+          {!data?.items[0] && <Div>Enter your first message</Div>}
+          {data?.items.map((message) => (
+            <Message
+              {...message}
+              key={message.id}
+              me={message.senderId !== id}
+            />
+          ))}
+          <div ref={ref} />
+        </div>
+      </WithError>
+    </WithLoading>
+  );
 };

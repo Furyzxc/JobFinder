@@ -1,1 +1,1 @@
-export * from './dialogsList.tsx'
+export * from "./dialogsList.tsx";

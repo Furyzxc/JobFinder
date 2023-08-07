@@ -7,37 +7,43 @@ import { useActions, useAppSelector } from "@/shared/model/hooks.ts";
 import { selectProfileName } from "@/slices/profile";
 
 interface PropsType {
-    userId: number
+  userId: number;
 }
 
-export const ProfileSendBtn = ({userId}: PropsType) => {
-    const { setDialogName } = useActions()
-    const userName = useAppSelector(selectProfileName)
+export const ProfileSendBtn = ({ userId }: PropsType) => {
+  const { setDialogName } = useActions();
+  const userName = useAppSelector(selectProfileName);
 
-    const [startChatting, {data, isSuccess, isLoading}] = useStartChattingMutation()
-    const [isChattingAccepted, setIsChattingAccepted] = useState(false)
+  const [startChatting, { data, isSuccess, isLoading }] =
+    useStartChattingMutation();
+  const [isChattingAccepted, setIsChattingAccepted] = useState(false);
 
-    // sends request on endpoint after click on send message button
-    const handleSendBtnClick = () => {
-        if (userName) {
-            startChatting(userId)
-            setDialogName(userName)
-        }
+  // sends request on endpoint after click on send message button
+  const handleSendBtnClick = () => {
+    if (userName) {
+      startChatting(userId);
+      setDialogName(userName);
     }
+  };
 
-    // Navigates to dialogs page after success response from server
+  // Navigates to dialogs page after success response from server
 
-    useEffect(() => {
-        if (isSuccess && data && data.resultCode === 0) setIsChattingAccepted(true)
-    }, [data, isSuccess]);
+  useEffect(() => {
+    if (isSuccess && data && data.resultCode === 0) setIsChattingAccepted(true);
+  }, [data, isSuccess]);
 
-    if (isChattingAccepted) return <Navigate to={'/dialogs/' + userId}/>
+  if (isChattingAccepted) return <Navigate to={"/dialogs/" + userId} />;
 
-    return (
-        <span className={s.send}>
-            <Button variant='outlined' onClick={handleSendBtnClick} sx={{width: '140px'}} disabled={isLoading}>
-                Send Message
-            </Button>
-        </span>
-    );
+  return (
+    <span className={s.send}>
+      <Button
+        variant="outlined"
+        onClick={handleSendBtnClick}
+        sx={{ width: "140px" }}
+        disabled={isLoading}
+      >
+        Send Message
+      </Button>
+    </span>
+  );
 };

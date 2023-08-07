@@ -7,21 +7,20 @@ import { getPaginator } from "@/slices/paginator";
 import { WithLoading } from "@/shared/hoc/withLoading.tsx";
 
 export const UsersList = () => {
+  const { page, term, count, friend } = useAppSelector(getPaginator);
 
-    const {page, term, count, friend} = useAppSelector(getPaginator)
+  const { isLoading, data } = useGetUsersQuery({ count, page, term, friend });
 
-    const { isLoading, data } = useGetUsersQuery({count, page, term, friend})
-
-    return (
-        <WithLoading isLoading={isLoading}>
-            {!data?.items[0] && <Div>Users not found</Div>}
-            <ul className={s.usersList + ' scroll'}>
-                {data?.items.map(user => (
-                    <li key={user.id}>
-                        <User {...user} />
-                    </li>
-                ))}
-            </ul>
-        </WithLoading>
-    );
-}
+  return (
+    <WithLoading isLoading={isLoading}>
+      {!data?.items[0] && <Div>Users not found</Div>}
+      <ul className={s.usersList + " scroll"}>
+        {data?.items.map((user) => (
+          <li key={user.id}>
+            <User {...user} />
+          </li>
+        ))}
+      </ul>
+    </WithLoading>
+  );
+};

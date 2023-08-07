@@ -3,28 +3,27 @@ import { Navigate } from "react-router-dom";
 import { ReactNode } from "react";
 
 type GuestGuardProps = {
-    children: ReactNode
-}
-
+  children: ReactNode;
+};
 
 // Component to guard routes accessible only to guests (non-authenticated users)
-export const GuestGuard = ({children}: GuestGuardProps) => {
-    const isAuthorized = useAuth()
+export const GuestGuard = ({ children }: GuestGuardProps) => {
+  const isAuthorized = useAuth();
 
-    if (!isAuthorized) return <Navigate to="/login"/>
+  if (!isAuthorized) return <Navigate to="/login" />;
 
-    return <>{children}</>;
-}
+  return <>{children}</>;
+};
 
 type AuthGuardProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
 // Component to guard routes accessible only to authenticated users
-export const AuthGuard = ({children}: AuthGuardProps) => {
-    const isAuthorized = useAuth()
+export const AuthGuard = ({ children }: AuthGuardProps) => {
+  const isAuthorized = useAuth();
 
-    if (isAuthorized) return <Navigate to="/"/>
+  if (isAuthorized) return <Navigate to="/" />;
 
-    return <>{children}</>;
-}
+  return <>{children}</>;
+};

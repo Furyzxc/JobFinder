@@ -3,14 +3,14 @@ import { ProfileSendBtn } from "@/entities/profileSendBtn/profileSendBtn.tsx";
 import { Follow } from "@/entities/follow";
 
 interface PropsType {
-    userId: number
+  userId: number;
 }
 
-export const UserProfileBtns = ({userId}: PropsType) => {
-    return (
-        <div className={s.btns}>
-            <ProfileSendBtn userId={userId}/>
-            <Follow userId={userId}/>
-        </div>
-    );
+export const UserProfileBtns = ({ userId }: PropsType) => {
+  return (
+    <div className={s.btns}>
+      <ProfileSendBtn userId={userId} />
+      <Follow userId={userId} />
+    </div>
+  );
 };

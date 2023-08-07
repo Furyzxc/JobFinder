@@ -5,11 +5,10 @@ import { dialogsSlice } from "@/slices/dialogs";
 import { paginatorSlice } from "@/slices/paginator";
 import { baseApi } from "@/shared/api/baseApi.ts";
 
-
 export const rootReducer = combineReducers({
-    [authSlice.name]: authSlice.reducer,
-    [profileSlice.name]: profileSlice.reducer,
-    [dialogsSlice.name]: dialogsSlice.reducer,
-    [paginatorSlice.name]: paginatorSlice.reducer,
-    [baseApi.reducerPath]: baseApi.reducer
-})
+  [authSlice.name]: authSlice.reducer,
+  [profileSlice.name]: profileSlice.reducer,
+  [dialogsSlice.name]: dialogsSlice.reducer,
+  [paginatorSlice.name]: paginatorSlice.reducer,
+  [baseApi.reducerPath]: baseApi.reducer,
+});
