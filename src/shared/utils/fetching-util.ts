@@ -1,4 +1,4 @@
 // @ts-ignore
 export const toggleIsFetching = (state, payload: boolean) => {
-  state.isFetching = payload;
-};
+	state.isFetching = payload
+}

@@ -1,34 +1,34 @@
-import s from "./dialog.module.css";
-import { DialogsResponse } from "@/shared/types/api/dialogs-types.ts";
-import { formatTime } from "@/shared/utils/formatTime.ts";
-import { useActions } from "@/shared/model/hooks.ts";
-import { Link } from "react-router-dom";
-import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded'
+import { Link } from 'react-router-dom'
+import { useActions } from '@/shared/model/hooks.ts'
+import { DialogsResponse } from '@/shared/types/api/dialogs-types.ts'
+import { formatTime } from '@/shared/utils/formatTime.ts'
+import s from './dialog.module.css'
 
 export const Dialog = ({
-  userName,
-  id,
-  lastDialogActivityDate,
-  hasNewMessages,
+	userName,
+	id,
+	lastDialogActivityDate,
+	hasNewMessages,
 }: DialogsResponse) => {
-  const { setDialogName } = useActions();
+	const { setDialogName } = useActions()
 
-  const time = formatTime(lastDialogActivityDate);
-  const handleClick = () => {
-    setDialogName(userName);
-  };
+	const time = formatTime(lastDialogActivityDate)
+	const handleClick = () => {
+		setDialogName(userName)
+	}
 
-  return (
-    <Link to={"/dialogs/" + id} onClick={handleClick} className={s.dialog}>
-      <div>
-        <div className={s.name}>{userName}</div>
-        <div className={s.time}>{time}</div>
-      </div>
-      {hasNewMessages && (
-        <div className={s.icon}>
-          <MailOutlineRoundedIcon fontSize="small" />
-        </div>
-      )}
-    </Link>
-  );
-};
+	return (
+		<Link to={'/dialogs/' + id} onClick={handleClick} className={s.dialog}>
+			<div>
+				<div className={s.name}>{userName}</div>
+				<div className={s.time}>{time}</div>
+			</div>
+			{hasNewMessages && (
+				<div className={s.icon}>
+					<MailOutlineRoundedIcon fontSize='small' />
+				</div>
+			)}
+		</Link>
+	)
+}

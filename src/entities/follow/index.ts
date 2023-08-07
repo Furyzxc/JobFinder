@@ -1,1 +1,1 @@
-export * from "./follow.tsx";
+export * from './follow.tsx'

@@ -1,15 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { rootReducer } from "@/app/rootReducer.ts";
-import { baseApi } from "@/shared/api/baseApi.ts";
+import { configureStore } from '@reduxjs/toolkit'
+import { rootReducer } from '@/app/rootReducer.ts'
+import { baseApi } from '@/shared/api/baseApi.ts'
 
 export const appStore = configureStore({
-  reducer: rootReducer,
+	reducer: rootReducer,
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(baseApi.middleware),
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().concat(baseApi.middleware),
 
-  devTools: true,
-});
+	devTools: true,
+})
 
-export type AppDispatch = typeof appStore.dispatch;
-export type RootState = ReturnType<typeof appStore.getState>;
+export type AppDispatch = typeof appStore.dispatch
+export type RootState = ReturnType<typeof appStore.getState>

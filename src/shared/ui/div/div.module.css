@@ -1,12 +1,12 @@
 .container {
-  background-color: #1c2a37;
-  color: white;
-  top: 45%;
-  left: 50%;
-  position: absolute;
-  border-radius: 10px;
+	background-color: #1c2a37;
+	color: white;
+	top: 45%;
+	left: 50%;
+	position: absolute;
+	border-radius: 10px;
 }
 
 .new {
-  margin: 1px 8px;
+	margin: 1px 8px;
 }

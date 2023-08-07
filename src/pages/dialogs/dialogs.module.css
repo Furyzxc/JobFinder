@@ -1,38 +1,38 @@
 .dialogsContainer {
-  position: fixed;
+	position: fixed;
 }
 
 .dialogs {
-  color: white;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  position: relative;
+	color: white;
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	position: relative;
 }
 
 .messages {
-  position: relative;
-  background-color: #0e1621;
-  overflow-x: hidden;
+	position: relative;
+	background-color: #0e1621;
+	overflow-x: hidden;
 }
 
 .dialogsList {
-  height: 100vh;
-  position: relative;
+	height: 100vh;
+	position: relative;
 }
 
 .chatContainer {
-  width: 100%;
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: 0.5fr 6fr 0.5fr;
+	width: 100%;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: 0.5fr 6fr 0.5fr;
 }
 
 .title {
-  user-select: none;
-  background-color: #17212b;
-  color: white;
-  letter-spacing: -0.8px;
-  font-family: "Spot Mono", monospace;
-  padding: 10px 0 0 15px;
-  font-size: 16px;
+	user-select: none;
+	background-color: #17212b;
+	color: white;
+	letter-spacing: -0.8px;
+	font-family: 'Spot Mono', monospace;
+	padding: 10px 0 0 15px;
+	font-size: 16px;
 }

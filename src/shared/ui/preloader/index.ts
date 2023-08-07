@@ -1,1 +1,1 @@
-export * from "./preloader.tsx";
+export * from './preloader.tsx'

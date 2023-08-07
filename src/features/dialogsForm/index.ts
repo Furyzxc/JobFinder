@@ -1,1 +1,1 @@
-export * from "./dialogsForm.tsx";
+export * from './dialogsForm.tsx'

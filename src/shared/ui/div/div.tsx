@@ -1,14 +1,14 @@
-import s from "./div.module.css";
-import { ReactNode } from "react";
+import { ReactNode } from 'react'
+import s from './div.module.css'
 
 interface DivProps {
-  children: ReactNode;
+	children: ReactNode
 }
 
 export const Div = ({ children }: DivProps) => {
-  return (
-    <div className={s.container}>
-      <div className={s.new}>{children}</div>
-    </div>
-  );
-};
+	return (
+		<div className={s.container}>
+			<div className={s.new}>{children}</div>
+		</div>
+	)
+}

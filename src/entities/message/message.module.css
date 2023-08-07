@@ -1,64 +1,64 @@
 .friendMessage {
-  grid-template-columns: 1fr 40px;
-  margin: 0 0 10px 5%;
-  background-color: #182533;
+	grid-template-columns: 1fr 40px;
+	margin: 0 0 10px 5%;
+	background-color: #182533;
 }
 
 .friendMessage .time {
-  color: #6b7f8f;
+	color: #6b7f8f;
 }
 
 .friendMessage .tick {
-  display: none;
+	display: none;
 }
 
 .text {
-  color: white;
-  font-size: 13px;
-  font-family: "Source Sans Pro", sans-serif;
-  /*width: min-content;*/
+	color: white;
+	font-size: 13px;
+	font-family: 'Source Sans Pro', sans-serif;
+	/*width: min-content;*/
 }
 
 .time {
-  font-family: "opensans", sans-serif;
-  letter-spacing: -0.7px;
-  user-select: none;
-  font-size: 10px;
-  word-wrap: initial;
-  white-space: nowrap;
-  word-break: keep-all;
-  margin: auto auto 0 auto;
+	font-family: 'opensans', sans-serif;
+	letter-spacing: -0.7px;
+	user-select: none;
+	font-size: 10px;
+	word-wrap: initial;
+	white-space: nowrap;
+	word-break: keep-all;
+	margin: auto auto 0 auto;
 }
 
 .myMessage .time {
-  color: #7d9fab;
+	color: #7d9fab;
 }
 
 .message {
-  border-radius: 5px;
-  max-width: min(80%, 400px);
-  width: max-content;
-  min-height: 30px;
-  min-width: 110px;
-  display: grid;
-  padding: 4px 0 0 5px;
-  position: relative;
-  word-break: break-word;
-  line-height: 18px;
+	border-radius: 5px;
+	max-width: min(80%, 400px);
+	width: max-content;
+	min-height: 30px;
+	min-width: 110px;
+	display: grid;
+	padding: 4px 0 0 5px;
+	position: relative;
+	word-break: break-word;
+	line-height: 18px;
 }
 
 .myMessage {
-  background-color: #2b5278;
-  grid-template-columns: 1fr 40px 20px;
-  margin: 0 20px 10px auto;
+	background-color: #2b5278;
+	grid-template-columns: 1fr 40px 20px;
+	margin: 0 20px 10px auto;
 }
 
 .myMessage .time {
-  padding-left: 3px;
+	padding-left: 3px;
 }
 
 .myMessage .tick {
-  position: absolute;
-  bottom: -1px;
-  right: 5px;
+	position: absolute;
+	bottom: -1px;
+	right: 5px;
 }

@@ -1,2 +1,2 @@
-export * from "./dialogs-slice.ts";
-export * from "./dialogs-api.ts";
+export * from './dialogs-slice.ts'
+export * from './dialogs-api.ts'

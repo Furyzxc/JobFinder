@@ -1,23 +1,23 @@
 export interface RequestLoginBody {
-  email: string;
-  password: string;
-  rememberMe?: boolean;
-  captcha?: boolean;
+	email: string
+	password: string
+	rememberMe?: boolean
+	captcha?: boolean
 }
 
 export interface AuthMeResponse {
-  resultCode: number;
-  messages: unknown;
-  data: {
-    id: number;
-    email: string;
-    login: string;
-  };
+	resultCode: number
+	messages: unknown
+	data: {
+		id: number
+		email: string
+		login: string
+	}
 }
 
 export interface LoginResponse {
-  data: unknown;
-  messages: string[];
-  fieldsErrors: unknown[];
-  resultCode: number;
+	data: unknown
+	messages: string[]
+	fieldsErrors: unknown[]
+	resultCode: number
 }

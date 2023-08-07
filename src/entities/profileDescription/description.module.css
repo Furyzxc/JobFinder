@@ -1,61 +1,61 @@
 .showContact {
-  display: none;
-  position: absolute;
-  color: #42a5f5;
-  font-family: "Roboto", sans-serif;
+	display: none;
+	position: absolute;
+	color: #42a5f5;
+	font-family: 'Roboto', sans-serif;
 }
 
 .contact:hover .showContact {
-  display: block;
+	display: block;
 }
 
 .contact {
-  position: relative;
-  width: 21%;
-  height: 60px;
-  margin-bottom: 60px;
-  user-select: none;
-  color: white;
-  text-decoration: none;
+	position: relative;
+	width: 21%;
+	height: 60px;
+	margin-bottom: 60px;
+	user-select: none;
+	color: white;
+	text-decoration: none;
 }
 
 .contacts {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  min-width: 250px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	min-width: 250px;
 }
 
 .jobInfo {
-  color: white;
+	color: white;
 }
 
 .answer,
 .lkfDescription,
 .lfj {
-  font-size: 18px;
-  display: inline-block;
+	font-size: 18px;
+	display: inline-block;
 }
 
 .first {
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .container {
-  margin-bottom: 40px;
+	margin-bottom: 40px;
 }
 
 .text {
-  color: grey;
+	color: grey;
 }
 
 .section {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-between;
 }
 
 .contact p {
-  color: white;
+	color: white;
 }
