@@ -1,5 +1,5 @@
+import { Alert } from '@mui/material'
 import { ReactNode } from 'react'
-import s from './div.module.css'
 
 interface DivProps {
 	children: ReactNode
@@ -7,8 +7,20 @@ interface DivProps {
 
 export const Div = ({ children }: DivProps) => {
 	return (
-		<div className={s.container}>
-			<div className={s.new}>{children}</div>
-		</div>
+		<Alert
+			severity='success'
+			color='info'
+			sx={{
+				width: '50%',
+				color: '#98C1D2FF',
+				textAlign: 'center',
+				backgroundColor: '#071318',
+				position: 'absolute',
+				top: '40%',
+				left: '30%',
+			}}
+		>
+			{children}
+		</Alert>
 	)
 }

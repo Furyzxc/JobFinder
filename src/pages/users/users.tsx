@@ -6,19 +6,11 @@ import s from './users.module.css'
 export const Users = () => {
 	return (
 		<div className={s.users + ' height'}>
+			<Search />
 			<div>
-				<div>
-					<Search />
-				</div>
-
-				<div>
-					<UsersList />
-				</div>
+				<UsersList />
 			</div>
-
-			<div>
-				<Paginator />
-			</div>
+			<Paginator />
 		</div>
 	)
 }

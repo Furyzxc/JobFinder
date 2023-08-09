@@ -1,5 +1,6 @@
+import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
-import { useAppSelector, useUserIdFromParams } from '@/shared/model/hooks.ts'
+import { useAppSelector } from '@/shared/model/hooks.ts'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { DialogsForm } from '@/features/dialogsForm'
 import { DialogsList } from '@/features/dialogsList'
@@ -10,7 +11,7 @@ import s from './dialogs.module.css'
 export const Dialogs = () => {
 	const isError = useAppSelector(selectDialogsError)
 	const dialogName = useAppSelector(getDialogName)
-	const { id } = useUserIdFromParams()
+	const { userId } = useParams()
 
 	return (
 		<WithError isError={isError}>
@@ -19,7 +20,7 @@ export const Dialogs = () => {
 					<div className={s.dialogsList}>
 						<DialogsList />
 					</div>
-					{!id ? (
+					{!userId ? (
 						<Div>Start chatting</Div>
 					) : (
 						<div className={s.chatContainer + ' height'}>

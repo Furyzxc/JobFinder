@@ -1,28 +1,34 @@
-import { Button } from '@mui/material'
+import { ArrowBack, ArrowForward } from '@mui/icons-material'
+import { Grid, Pagination, PaginationItem } from '@mui/material'
 import { useActions, useAppSelector } from '@/shared/model/hooks.ts'
-import s from '@/pages/users/users.module.css'
-import { getPages } from '@/slices/paginator'
+import { getPagesCount } from '@/slices/paginator'
 
 export const Paginator = () => {
 	const { setPage } = useActions()
 
-	const pages = useAppSelector(getPages)
-	const handlePageClick = (pageNumber: number) => setPage(pageNumber)
+	const pagesCount = useAppSelector(getPagesCount)
+	const handleChange = (_: any, value: number) => setPage(value)
 
-	return (
-		<div className={s.pages}>
-			{pages.length > 1 &&
-				pages.map(page => (
-					<Button
-						key={page}
-						variant='outlined'
-						sx={{ width: '100%', maxWidth: '70px' }}
-						onClick={() => handlePageClick(page)}
-					>
-						{' '}
-						{page}{' '}
-					</Button>
-				))}
-		</div>
-	)
+	if (pagesCount > 1) {
+		return (
+			<Grid item>
+				<Pagination
+					onChange={handleChange}
+					color={'primary'}
+					sx={{ margin: 'auto', width: 'max-content' }}
+					count={pagesCount}
+					renderItem={item => {
+						return (
+							<PaginationItem
+								sx={{ color: 'white', maxWidth: '32px' }}
+								slots={{ previous: ArrowBack, next: ArrowForward }}
+								{...item}
+							/>
+						)
+					}}
+				/>
+			</Grid>
+		)
+	}
+	return null
 }

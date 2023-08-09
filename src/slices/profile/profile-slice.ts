@@ -8,11 +8,11 @@ import { RootState } from '@/app/appStore.ts'
 import { profileApi } from './profile-api.ts'
 
 interface Profile {
-	isLoading: boolean
-	isError: boolean
+	isLoading: boolean // loader
+	isError: boolean // if error occured during
 
-	name: string | null
-	avatar: string | null
+	name: string | null // user name of profile
+	avatar: string | null // avatar of profile (photos.small)
 }
 
 const initialState: Profile = {

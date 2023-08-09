@@ -1,10 +1,23 @@
 import { createTheme } from '@mui/material'
 
 export const appTheme = createTheme({
+	palette: {
+		primary: {
+			main: '#757ce8',
+		},
+	},
 	components: {
 		MuiButton: {
 			defaultProps: {
 				size: 'small',
+			},
+		},
+
+		MuiPaginationItem: {
+			styleOverrides: {
+				ellipsis: {
+					color: 'white',
+				},
 			},
 		},
 

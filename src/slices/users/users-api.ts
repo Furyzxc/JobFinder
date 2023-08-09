@@ -6,6 +6,10 @@ import {
 
 export const usersApi = baseApi.injectEndpoints({
 	endpoints: build => ({
+		// recieves
+		// 1. array of users
+		// 2. total count of users
+		// 3. error - string or null
 		getUsers: build.query<GetUsersResponse, RequestUsersBody>({
 			query: ({ count = 20, page = 1, term = '', friend = null }) =>
 				`users?count=${count}&page=${page}&term=${term}${

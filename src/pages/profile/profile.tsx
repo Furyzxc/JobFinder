@@ -4,46 +4,46 @@ import { WithLoading } from '@/shared/hoc/withLoading.tsx'
 import {
 	useAppDispatch,
 	useAppSelector,
-	useUserIdFromParams,
+	useProfileLoadingError,
+	useUserDetails,
 } from '@/shared/model/hooks.ts'
 import { LogoutBtn } from '@/entities/logoutBtn/logoutBtn.tsx'
 import { ProfileInfo } from '@/features/profileInfo'
 import { UserProfileBtns } from '@/features/userProfileBtns'
-import {
-	requestProfileDataThunk,
-	selectProfileError,
-	selectProfileLoading,
-} from '@/slices/profile'
+import { requestProfileDataThunk } from '@/slices/profile'
 import s from './profile.module.css'
 
 export const Profile = () => {
-	const isLoading = useAppSelector(selectProfileLoading)
-	const isError = useAppSelector(selectProfileError)
+	const { isLoading, isError } = useProfileLoadingError()
 
 	const { id: myId } = useAppSelector(state => state.auth.userInfo)
 
 	// if no user id in url then returns owner id
-	const { id, isOwner } = useUserIdFromParams(myId)
+	const { id, isOwner } = useUserDetails(myId)
 
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		dispatch(requestProfileDataThunk(id))
+		id && dispatch(requestProfileDataThunk(id))
 	}, [dispatch, id])
 
 	return (
 		<WithLoading isLoading={isLoading}>
-			<WithError isError={isError}>
+			<WithError isError={isError || !id}>
 				<div className={s.profile}>
 					{isOwner && (
 						<div className={s.navigation}>
 							<LogoutBtn />
 						</div>
 					)}
-					<div>
-						<ProfileInfo id={id} isOwner={isOwner} />
-					</div>
-					<div>{!isOwner && <UserProfileBtns userId={id} />}</div>
+					{id && (
+						<>
+							<div>
+								<ProfileInfo id={id} isOwner={isOwner} />
+							</div>
+							<div>{!isOwner && <UserProfileBtns userId={id} />}</div>
+						</>
+					)}
 				</div>
 			</WithError>
 		</WithLoading>

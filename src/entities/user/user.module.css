@@ -1,45 +1,19 @@
 .user {
-	display: grid;
-	grid-template-rows: 1fr 4fr;
 	height: 80px;
-	text-decoration: none;
 	width: 100%;
 	user-select: none;
+	border: 1px solid #318CE7FF;
+	border-radius: 4px;
+	overflow: hidden;
+	cursor: pointer;
 }
 
-.avatar img {
-	max-height: 50px;
-	border-radius: 50%;
-	user-select: none;
-}
 
-.avatar {
-}
-
-.userInfo {
-	text-align: center;
-	font-family: 'Bahtnschrift', sans-serif;
-	color: white;
-	display: grid;
-	grid-template-columns: 50px 1fr;
-}
-
-.userName {
-	font-family: 'Roboto', sans-serif;
-	font-size: 18px;
-	color: #79a6fe;
-	transition: color 1s;
-}
-
-.user:hover .userInfo .userName {
-	color: white;
-	transition: color 2s;
-}
 
 .status {
-	text-transform: none;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 160px;
 	overflow: hidden;
+	max-width: 160px;
+	text-align: start;
+	word-break: break-word;
+	word-wrap: break-word;
 }

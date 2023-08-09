@@ -1,14 +1,9 @@
-// - Libraries
 import { ErrorMessage, Form, Formik } from 'formik'
 import * as Yup from 'yup'
-// - Hooks
 import { useAppDispatch, useAppSelector } from '@/shared/model/hooks.ts'
 import { LoginFormField } from '@/entities/loginField'
-// - Actions
 import { authLogin, getError } from '@/slices/auth'
 import s from './loginForm.module.css'
-
-// ---------------------------
 
 interface FormValues {
 	email: string

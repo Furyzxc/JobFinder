@@ -1,33 +1,41 @@
 .dialog {
-	max-height: 60px;
-	min-height: 60px;
-	user-select: none;
-	text-decoration: none;
-	position: relative;
-	color: white;
-	display: grid;
-	grid-template-columns: 4fr 1fr;
+    user-select: none;
+    text-decoration: none;
+    color: white;
 }
 
-.icon {
-	margin-top: 10px;
-}
 
 .dialog:focus {
-	background-color: #2b5278;
+    background-color: #2b5278;
 }
 
 .dialog:hover {
-	background-color: #212b35;
-	cursor: pointer;
+    background-color: #212b35;
+    cursor: pointer;
 }
 
 .dialog:hover:focus {
-	background-color: #2b5278;
+    background-color: #2b5278;
+}
+
+.name {
+    overflow: hidden;
 }
 
 .time {
-	color: #8696a8;
-	font-size: 13px;
-	font-family: 'Spot Mono', monospace;
+    color: #8696a8;
+    font-size: 13px;
 }
+
+@media (max-width: 968px) {
+    .time {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .avatar {
+        display: none;
+    }
+}
+

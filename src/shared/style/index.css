@@ -40,6 +40,7 @@ input::placeholder {
 }
 
 .scroll {
+	scrollbar-gutter: stable;
 	overflow-y: auto;
 }
 

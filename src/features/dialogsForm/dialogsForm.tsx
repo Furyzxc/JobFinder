@@ -1,7 +1,7 @@
 import SendIcon from '@mui/icons-material/Send'
 import { Button } from '@mui/material'
 import { Field, Form, Formik, FormikHelpers } from 'formik'
-import { useUserIdFromParams } from '@/shared/model/hooks.ts'
+import { useParams } from 'react-router-dom'
 import { useSendMessageMutation } from '@/slices/dialogs'
 import s from './dialogsForm.module.css'
 
@@ -10,7 +10,7 @@ interface FormValues {
 }
 
 export const DialogsForm = () => {
-	const { id } = useUserIdFromParams()
+	const { userId } = useParams()
 
 	const initialValues: FormValues = { input: '' }
 
@@ -20,7 +20,7 @@ export const DialogsForm = () => {
 		{ input }: FormValues,
 		{ resetForm }: FormikHelpers<FormValues>
 	) => {
-		input && sendMessage({ userId: id, body: input })
+		input && userId && sendMessage({ userId: +userId, body: input })
 		resetForm()
 	}
 

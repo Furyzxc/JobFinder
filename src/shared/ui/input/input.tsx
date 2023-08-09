@@ -20,7 +20,7 @@ export const Input = ({ name, onBlur, value }: InputProps) => {
 	return (
 		<div>
 			<TextField
-				sx={{ width: '210px' }}
+				sx={{ width: '100%' }}
 				label={name}
 				variant='standard'
 				value={inputValue}

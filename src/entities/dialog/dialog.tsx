@@ -1,34 +1,45 @@
-import MailOutlineRoundedIcon from '@mui/icons-material/MailOutlineRounded'
+import { Grid } from '@mui/material'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { useActions } from '@/shared/model/hooks.ts'
+import { useActions, useFormattedTime } from '@/shared/model/hooks.ts'
 import { DialogsResponse } from '@/shared/types/api/dialogs-types.ts'
-import { formatTime } from '@/shared/utils/formatTime.ts'
+import { UserAvatar } from '@/entities/avatar'
 import s from './dialog.module.css'
 
-export const Dialog = ({
-	userName,
-	id,
-	lastDialogActivityDate,
-	hasNewMessages,
-}: DialogsResponse) => {
-	const { setDialogName } = useActions()
+export const Dialog = memo(
+	({
+		userName,
+		id,
+		lastDialogActivityDate,
+		photos: { small },
+	}: DialogsResponse) => {
+		const { setDialogName } = useActions()
 
-	const time = formatTime(lastDialogActivityDate)
-	const handleClick = () => {
-		setDialogName(userName)
+		const time = useFormattedTime(lastDialogActivityDate)
+		const handleClick = () => {
+			setDialogName(userName)
+		}
+
+		return (
+			<Link to={'/dialogs/' + id} onClick={handleClick} className={s.dialog}>
+				<Grid
+					container
+					sx={{
+						minHeight: '54px',
+						backgroundColor: 'inherit',
+					}}
+				>
+					<Grid item xs={3} sx={{ pb: '5px', pt: '5px' }} className={s.avatar}>
+						<UserAvatar avatar={small} name={userName} />
+					</Grid>
+					<Grid item xs md className={s.name}>
+						{userName}
+					</Grid>
+					<Grid item xs={3} className={s.time}>
+						{time}
+					</Grid>
+				</Grid>
+			</Link>
+		)
 	}
-
-	return (
-		<Link to={'/dialogs/' + id} onClick={handleClick} className={s.dialog}>
-			<div>
-				<div className={s.name}>{userName}</div>
-				<div className={s.time}>{time}</div>
-			</div>
-			{hasNewMessages && (
-				<div className={s.icon}>
-					<MailOutlineRoundedIcon fontSize='small' />
-				</div>
-			)}
-		</Link>
-	)
-}
+)

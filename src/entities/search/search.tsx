@@ -1,9 +1,9 @@
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded'
+import { Grid } from '@mui/material'
 import { FocusEvent } from 'react'
 import { useActions, useAppSelector } from '@/shared/model/hooks.ts'
 import { Input } from '@/shared/ui/input/input.tsx'
 import { getFriend } from '@/slices/paginator'
-import s from './search.module.css'
 
 export const Search = () => {
 	const { setFriend, setSearchingTerm } = useActions()
@@ -14,13 +14,18 @@ export const Search = () => {
 		setSearchingTerm(e.target.value)
 
 	return (
-		<div className={s.searchContainer}>
-			<Input name='Search' value={''} key={2} onBlur={handleBlur} />
-			<GroupRoundedIcon
-				fontSize='small'
-				sx={{ color: friend ? '#265D97' : 'white', mt: '20px', ml: '10px' }}
-				onClick={handleIconClick}
-			/>
-		</div>
+		<Grid container spacing={2} sx={{ ml: '10px' }}>
+			<Grid item xs={4}>
+				<Input name='Search' value={''} key={2} onBlur={handleBlur} />
+			</Grid>
+			<Grid item xs={1}>
+				<GroupRoundedIcon
+					fontSize='small'
+					color={'primary'}
+					sx={{ color: friend ? '#265D97' : 'white', mt: '20px' }}
+					onClick={handleIconClick}
+				/>
+			</Grid>
+		</Grid>
 	)
 }

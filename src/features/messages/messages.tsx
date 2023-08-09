@@ -1,45 +1,60 @@
-import { useEffect, useRef } from 'react'
+import { Chip, Divider } from '@mui/material'
+import dayjs from 'dayjs'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc/withError.tsx'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
-import { useAppDispatch } from '@/shared/model/hooks.ts'
+import { useScrollIntoView } from '@/shared/model/hooks.ts'
+import { MessageResponseType } from '@/shared/types/api/dialogs-types.ts'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { Message } from '@/entities/message'
-import { useLazyRequestMessagesQuery } from '@/slices/dialogs'
+import { useRequestMessagesQuery } from '@/slices/dialogs'
 import s from './messages.module.css'
 
 export const Messages = () => {
-	const ref = useRef(null) as any
+	const { userId = 0 } = useParams()
 
-	const dispatch = useAppDispatch()
+	const { data, isFetching, isError } = useRequestMessagesQuery(
+		{ id: +userId },
+		{ skip: !userId }
+	)
 
-	const { userId } = useParams()
+	const messages = data?.items
 
-	const id = Number(userId)
+	const { ref } = useScrollIntoView(messages)
 
-	const [requestMessages, { data, isFetching, isError }] =
-		useLazyRequestMessagesQuery()
+	const fromNow = (addedAt: string) => dayjs(addedAt).fromNow()
 
-	useEffect(() => {
-		if (id) requestMessages({ id })
-	}, [dispatch, id, requestMessages])
+	const isExist = (message: MessageResponseType, index: number) => {
+		return !!messages?.find((mes, i) => {
+			if (index === i) return
 
-	useEffect(() => {
-		ref.current?.scrollIntoView()
-	}, [data?.items])
+			return fromNow(mes.addedAt) === fromNow(message.addedAt)
+		})
+	}
 
 	return (
 		<WithLoading isLoading={isFetching}>
 			<WithError isError={isError}>
 				<div className={s.flexbox}>
-					{!data?.items[0] && <Div>Enter your first message</Div>}
-					{data?.items.map(message => (
-						<Message
-							{...message}
-							key={message.id}
-							me={message.senderId !== id}
-						/>
-					))}
+					{messages && messages.length > 0 ? (
+						messages.map((message, index) => {
+							return (
+								<div className={s.mesContainer} key={message.id}>
+									<Message {...message} me={message.senderId !== userId} />
+									{!isExist(message, index) && (
+										<Divider sx={{ mb: '10px', textTransform: 'none' }}>
+											<Chip
+												color={'primary'}
+												label={fromNow(message.addedAt)}
+											/>
+										</Divider>
+									)}
+								</div>
+							)
+						})
+					) : (
+						<Div>Enter your first message</Div>
+					)}
 					<div ref={ref} />
 				</div>
 			</WithError>

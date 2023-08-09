@@ -48,6 +48,6 @@ export const dialogsApi = baseApi.injectEndpoints({
 export const {
 	useStartChattingMutation,
 	useRequestDialogsQuery,
-	useLazyRequestMessagesQuery,
+	useRequestMessagesQuery,
 	useSendMessageMutation,
 } = dialogsApi
