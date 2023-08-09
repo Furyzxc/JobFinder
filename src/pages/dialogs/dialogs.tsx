@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
 import { useAppSelector } from '@/shared/model/hooks.ts'
@@ -15,24 +16,24 @@ export const Dialogs = () => {
 
 	return (
 		<WithError isError={isError}>
-			<div className={s.dialogContainer}>
-				<div className={s.dialogs}>
-					<div className={s.dialogsList}>
-						<DialogsList />
-					</div>
-					{!userId ? (
-						<Div>Start chatting</Div>
-					) : (
-						<div className={s.chatContainer + ' height'}>
+			<Grid container>
+				<Grid item xs={3} className={s.dialogsList}>
+					<DialogsList />
+				</Grid>
+				<Grid item xs={9} className={s.chatContainer + ' height'}>
+					{userId ? (
+						<>
 							<div className={s.title}>{dialogName}</div>
 							<div className={s.messages + ' scroll'}>
 								<Messages />
 							</div>
-							<DialogsForm />
-						</div>
+							<DialogsForm />{' '}
+						</>
+					) : (
+						<Div>Start Chatting</Div>
 					)}
-				</div>
-			</div>
+				</Grid>
+			</Grid>
 		</WithError>
 	)
 }

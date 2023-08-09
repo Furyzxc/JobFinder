@@ -81,22 +81,27 @@ export const useScrollIntoView = (
 	const ref = useRef()
 
 	useEffect(() => {
-		if (ref.current) {
-			;(ref.current as HTMLDivElement).scrollIntoView()
-		}
+		if (ref.current) (ref.current as HTMLDivElement).scrollIntoView()
 	}, [messages])
 
 	return { ref }
 }
 
 // hook for formatting time to 10:48 AM style
-export const useFormattedTime = (date: string) => {
-	return dayjs(date).format('HH:mm A')
+export const useFormattedTime = (date: string, pattern: string) => {
+	return dayjs(date).format(pattern)
 }
 
 interface UseProfileOutput {
 	isLoading: boolean
 	isError: boolean
+}
+
+export const useDialogsTime = (date: string) => {
+	return useFormattedTime(
+		date,
+		dayjs().isSame(dayjs(date), 'day') ? 'HH:mm A' : 'DD/MM/YYYY'
+	)
 }
 
 // gives profile error and loading

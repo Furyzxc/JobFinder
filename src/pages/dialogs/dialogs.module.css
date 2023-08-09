@@ -1,13 +1,4 @@
-.dialogsContainer {
-	position: fixed;
-}
 
-.dialogs {
-	color: white;
-	display: grid;
-	grid-template-columns: 1fr 4fr;
-	position: relative;
-}
 
 .messages {
 	position: relative;
@@ -21,6 +12,7 @@
 }
 
 .chatContainer {
+	position: relative;
 	width: 100%;
 	overflow: hidden;
 	display: grid;

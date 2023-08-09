@@ -9,7 +9,7 @@ interface MessageProps extends MessageResponseType {
 }
 
 export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
-	const time = useFormattedTime(addedAt)
+	const time = useFormattedTime(addedAt, 'HH:mm A')
 
 	return (
 		<div>

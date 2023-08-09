@@ -1,7 +1,7 @@
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { useActions, useFormattedTime } from '@/shared/model/hooks.ts'
+import { useActions, useDialogsTime } from '@/shared/model/hooks.ts'
 import { DialogsResponse } from '@/shared/types/api/dialogs-types.ts'
 import { UserAvatar } from '@/entities/avatar'
 import s from './dialog.module.css'
@@ -15,7 +15,8 @@ export const Dialog = memo(
 	}: DialogsResponse) => {
 		const { setDialogName } = useActions()
 
-		const time = useFormattedTime(lastDialogActivityDate)
+		const time = useDialogsTime(lastDialogActivityDate)
+
 		const handleClick = () => {
 			setDialogName(userName)
 		}
@@ -25,6 +26,7 @@ export const Dialog = memo(
 				<Grid
 					container
 					sx={{
+						position: 'relative',
 						minHeight: '54px',
 						backgroundColor: 'inherit',
 					}}
@@ -32,12 +34,10 @@ export const Dialog = memo(
 					<Grid item xs={3} sx={{ pb: '5px', pt: '5px' }} className={s.avatar}>
 						<UserAvatar avatar={small} name={userName} />
 					</Grid>
-					<Grid item xs md className={s.name}>
-						{userName}
+					<Grid item xs={12} md={9} sm={9} sx={{ pt: '10px' }}>
+						<Typography noWrap>{userName}</Typography>
 					</Grid>
-					<Grid item xs={3} className={s.time}>
-						{time}
-					</Grid>
+					<div className={s.time}>{time}</div>
 				</Grid>
 			</Link>
 		)

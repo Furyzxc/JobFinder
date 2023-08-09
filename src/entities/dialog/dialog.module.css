@@ -18,24 +18,16 @@
     background-color: #2b5278;
 }
 
-.name {
-    overflow: hidden;
-}
-
 .time {
     color: #8696a8;
+    position: absolute;
+    top: 0;
+    right: 4px;
     font-size: 13px;
 }
 
-@media (max-width: 968px) {
-    .time {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 840px) {
     .avatar {
         display: none;
     }
 }
-
