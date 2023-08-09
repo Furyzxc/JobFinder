@@ -1,79 +1,10 @@
-import FacebookIcon from '@mui/icons-material/Facebook'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import LanguageIcon from '@mui/icons-material/Language'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import TelegramIcon from '@mui/icons-material/Telegram'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import YouTubeIcon from '@mui/icons-material/YouTube'
-import { Checkbox } from '@mui/material'
-import { ReactNode } from 'react'
+import { Button, Grid, Typography } from '@mui/material'
 import s from './description.module.css'
-
-interface DescriptionSectionProps {
-	lookingForAJob: boolean
-	lookingForAJobDescription: string | null
-
-	contacts: {
-		[key: string]: string | null
-		github: string | null
-		vk: string | null
-		facebook: string | null
-		instagram: string | null
-		twitter: string | null
-		website: string | null
-		youtube: string | null
-		mainLink: string | null
-	}
-}
-
-interface ContactNames {
-	[key: string]: string
-
-	github: string
-	vk: string
-	facebook: string
-	instagram: string
-	twitter: string
-	website: string
-	youtube: string
-	mainLink: string
-}
-
-interface ContactImages {
-	[key: string]: ReactNode
-
-	github: ReactNode
-	vk: ReactNode
-	facebook: ReactNode
-	instagram: ReactNode
-	twitter: ReactNode
-	website: ReactNode
-	youtube: ReactNode
-	mainLink: ReactNode
-}
-
-const contactImages: ContactImages = {
-	github: <GitHubIcon />,
-	vk: <LinkedInIcon />,
-	facebook: <FacebookIcon />,
-	instagram: <InstagramIcon />,
-	twitter: <TwitterIcon />,
-	website: <LanguageIcon />,
-	youtube: <YouTubeIcon />,
-	mainLink: <TelegramIcon />,
-}
-
-const contactNames: ContactNames = {
-	github: 'GitHub',
-	vk: 'LinkedIn',
-	facebook: 'Facebook',
-	instagram: 'Instagram',
-	twitter: 'Twitter',
-	website: 'Website',
-	youtube: 'YouTube',
-	mainLink: 'Telegram',
-}
+import {
+	DescriptionSectionProps,
+	contactImages,
+	contactNames,
+} from './objects.tsx'
 
 export const DescriptionSection = ({
 	contacts,
@@ -81,38 +12,60 @@ export const DescriptionSection = ({
 	lookingForAJob,
 }: DescriptionSectionProps) => {
 	return (
-		<div className={s.section}>
-			<div className={s.container}>
-				<div className={s.jobInfo}>
-					<div className={s.first}>
-						<div className={s.lfj}>Looking for a job:</div>
-						<div className={s.answer}>
-							<Checkbox checked={lookingForAJob} />
-						</div>
-					</div>
-					<div className={s.second}>
-						<div className={s.lkfDescription}>Description:</div>
-						<div className={s.text}>
-							{lookingForAJobDescription
-								? lookingForAJobDescription
-								: 'Currently no description'}
-						</div>
-					</div>
-				</div>
-			</div>
+		<Grid container>
+			<Grid item xs={6} sx={{ mb: '40px' }}>
+				<Grid container sx={{ color: 'white', fontSize: '18px' }}>
+					<Grid item container sx={{ mb: '30px' }} spacing={2}>
+						<Grid item xs={'auto'}>
+							<Typography>Looking for a job:</Typography>
+						</Grid>
+						<Grid item xs={1}>
+							<Button variant='text' sx={{ width: '140px' }}>
+								{JSON.stringify(lookingForAJob)}
+							</Button>
+						</Grid>
+					</Grid>
+					<Grid item container spacing={2}>
+						<Grid item>
+							<Typography>Description:</Typography>
+						</Grid>
+						<Grid item>
+							<Typography variant={'h6'} color={'primary'}>
+								{lookingForAJobDescription
+									? lookingForAJobDescription
+									: 'Currently no description'}
+							</Typography>
+						</Grid>
+					</Grid>
+				</Grid>
+			</Grid>
 
-			<div className={s.contacts}>
-				{Object.keys(contacts).map((key, id) => (
-					<a href={contacts[key] || ''} className={s.contact} key={id}>
-						<div>{contactImages[key]}</div>
-						<p>{contactNames[key]}</p>
-						<div className={s.showContact}>
-							{' '}
-							{contacts[key] ? contacts[key] : 'Not specified'}
-						</div>
-					</a>
+			<Grid item container spacing={2} xs={6} sx={{ minWidth: '300px' }}>
+				{Object.keys(contacts).map(key => (
+					<Grid item xs={3} sx={{ mb: '60px' }} key={key}>
+						<a href={contacts[key] || ''} className={s.contact}>
+							<Grid container>
+								<Grid item xs={12}>
+									{contactImages[key]}
+								</Grid>
+								<Grid item xs={12}>
+									{contactNames[key]}
+								</Grid>
+								<Grid
+									className={s.showContact}
+									sx={{
+										color: '#42a5f5',
+										position: 'absolute',
+										bottom: '-20px',
+									}}
+								>
+									{contacts[key] ? contacts[key] : 'Not specified'}
+								</Grid>
+							</Grid>
+						</a>
+					</Grid>
 				))}
-			</div>
-		</div>
+			</Grid>
+		</Grid>
 	)
 }

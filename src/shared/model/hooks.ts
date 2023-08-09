@@ -81,8 +81,9 @@ export const useScrollIntoView = (
 	const ref = useRef()
 
 	useEffect(() => {
-		// @ts-ignore
-		ref.current?.scrollIntoView()
+		if (ref.current) {
+			;(ref.current as HTMLDivElement).scrollIntoView()
+		}
 	}, [messages])
 
 	return { ref }
@@ -97,6 +98,7 @@ interface UseProfileOutput {
 	isLoading: boolean
 	isError: boolean
 }
+
 // gives profile error and loading
 export const useProfileLoadingError = (): UseProfileOutput => {
 	return {

@@ -1,3 +1,4 @@
+import { Box, Grid } from '@mui/material'
 import { useEffect } from 'react'
 import { useActions } from '@/shared/model/hooks.ts'
 import { DescriptionSection } from '@/entities/profileDescription'
@@ -13,24 +14,26 @@ type PropsType = {
 export const ProfileInfo = ({ id, isOwner }: PropsType) => {
 	const { setProfileName, setAvatar } = useActions()
 
-	const { data, isSuccess } = useGetProfileQuery(id)
+	const { data: profileData, isSuccess } = useGetProfileQuery(id)
 
 	useEffect(() => {
-		if (isSuccess && data) {
-			setProfileName(data.fullName)
-			setAvatar(data.photos.small)
+		if (isSuccess && profileData) {
+			setProfileName(profileData.fullName)
+			setAvatar(profileData.photos.small)
 		}
-	}, [data, isSuccess, setAvatar, setProfileName])
+	}, [profileData, isSuccess, setProfileName, setAvatar])
 
 	return (
-		<div className={s.userInfo}>
-			<div className={s.main}>
-				<div className={s.nickName}>{data?.fullName}</div>
-				<div className={s.status}>
+		<Box sx={{ pl: '20px' }}>
+			<Grid container sx={{ pt: '70px', mb: '50px' }}>
+				<Grid item xs={6} className={s.nickName}>
+					{profileData?.fullName}
+				</Grid>
+				<Grid item xs={5}>
 					<Status isOwner={isOwner} userId={id} />
-				</div>
-			</div>
-			{data && <DescriptionSection {...data} />}
-		</div>
+				</Grid>
+			</Grid>
+			{profileData && <DescriptionSection {...profileData} />}
+		</Box>
 	)
 }
