@@ -22,16 +22,16 @@ export const UsersList = () => {
 	)
 
 	return (
-		<WithLoading isLoading={isFetching}>
-			<WithError isError={isError}>
-				<Grid container className={s.usersList + ' scroll'}>
+		<Grid container className={s.usersList + ' scroll'}>
+			<WithLoading isLoading={isFetching}>
+				<WithError isError={isError}>
 					{data?.items && data?.items.length > 0 ? (
 						data?.items.map(user => <User {...user} key={user.id} />)
 					) : (
 						<Div>Users not found</Div>
 					)}
-				</Grid>
-			</WithError>
-		</WithLoading>
+				</WithError>
+			</WithLoading>
+		</Grid>
 	)
 }

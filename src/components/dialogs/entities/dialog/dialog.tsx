@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { useAnimate, useInView } from 'framer-motion'
 import { memo, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useActions, useDialogsTime } from '@/shared/model/hooks.ts'
+import { useDialogsTime } from '@/shared/model/hooks.ts'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { DialogsResponse } from '../../api/types.ts'
 import s from './dialog.module.css'
@@ -14,8 +14,6 @@ export const Dialog = memo(
 		lastDialogActivityDate,
 		photos: { small },
 	}: DialogsResponse) => {
-		const { setDialogName } = useActions()
-
 		const [scope, animate] = useAnimate()
 		const isInView = useInView(scope)
 
@@ -25,17 +23,8 @@ export const Dialog = memo(
 
 		const time = useDialogsTime(lastDialogActivityDate)
 
-		const handleClick = () => {
-			setDialogName(userName)
-		}
-
 		return (
-			<Link
-				to={'/dialogs/' + id}
-				onClick={handleClick}
-				className={s.dialog}
-				ref={scope}
-			>
+			<Link to={'/dialogs/' + id} className={s.dialog} ref={scope}>
 				<Stack
 					direction={'row'}
 					spacing={1}

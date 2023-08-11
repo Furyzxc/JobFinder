@@ -1,0 +1,15 @@
+.messages {
+    position: relative;
+    background-color: #0D1117;
+    overflow-x: hidden;
+}
+
+.title {
+    user-select: none;
+    background-color: #161B22;
+    color: white;
+    letter-spacing: -0.8px;
+    font-family: 'Spot Mono', monospace;
+    padding: 10px 0 0 15px;
+    font-size: 16px;
+}

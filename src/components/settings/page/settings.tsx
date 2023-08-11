@@ -16,7 +16,7 @@ export const Settings = () => {
 					direction={'column'}
 					spacing={4}
 					className={'height scroll'}
-					sx={{ pt: '15px' }}
+					sx={{ p: '15px 0 0 20px' }}
 				>
 					<div>
 						<Header />

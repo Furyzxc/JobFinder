@@ -1,7 +1,6 @@
 import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useActions } from '@/shared/model/hooks.ts'
 import { useStartChattingMutation } from '../../api/api.ts'
 import { useProfile } from '../../model/hooks.ts'
 import s from './sendBtn.module.css'
@@ -11,7 +10,6 @@ interface PropsType {
 }
 
 export const ProfileSendBtn = ({ userId }: PropsType) => {
-	const { setDialogName } = useActions()
 	const { name: userName } = useProfile()
 
 	const [startChatting, { data, isSuccess, isLoading }] =
@@ -22,7 +20,6 @@ export const ProfileSendBtn = ({ userId }: PropsType) => {
 	const handleSendBtnClick = () => {
 		if (userName) {
 			startChatting(userId)
-			setDialogName(userName)
 		}
 	}
 

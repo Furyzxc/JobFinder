@@ -1,8 +1,9 @@
 import { useAuthInfo } from '@/components/authorization'
 import { useGetProfileQuery, useGetUserStatusQuery } from '@/components/profile'
+import { ProfileResponseBody } from '@/components/profile/api/types.ts'
 
 interface Owner {
-	info: any
+	info: (ProfileResponseBody & { status: string }) | undefined | any
 	isLoading: boolean
 	isError: boolean
 }

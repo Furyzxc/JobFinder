@@ -20,7 +20,7 @@ export const COLORS = [
 ] as const
 
 type PropsType = {
-	avatar: string | null | undefined
+	avatar?: string | null
 	name: string
 	size?: string
 }

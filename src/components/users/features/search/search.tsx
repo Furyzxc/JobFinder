@@ -17,7 +17,7 @@ export const Search = () => {
 	const handleInputChange = (value: string) => setInputValue(value)
 
 	return (
-		<Grid container sx={{ mt: '5px' }}>
+		<Grid container sx={{ m: '10px 0 0 20px' }}>
 			<Grid item xs={9} md={4} sm={6}>
 				<Input
 					placeholder={'Search'}

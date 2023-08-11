@@ -16,7 +16,7 @@ export const Profile = () => {
 	} = useOwnerInfo()
 
 	return (
-		<Stack direction={'column'} spacing={2}>
+		<Stack direction={'column'} spacing={2} sx={{ overflowX: 'hidden' }}>
 			<div>
 				<Typography
 					variant={'h6'}
@@ -26,15 +26,15 @@ export const Profile = () => {
 					Public Profile
 				</Typography>
 			</div>
-			<Grid container>
-				<Grid item xs={7} sm={7}>
+			<Grid container wrap={'wrap-reverse'} spacing={2}>
+				<Grid item xs={12} sm={7}>
 					{entities.map(({ name, description, ...inputProps }) => (
 						<Section name={name} description={description} key={name}>
 							<Input {...inputProps} />
 						</Section>
 					))}
 				</Grid>
-				<Grid item xs={4} sm={4}>
+				<Grid item xs={12} sm={4}>
 					<Stack>
 						<Typography>Public picture</Typography>
 						<UserAvatar avatar={avatar} name={name} size={'150px'} />
@@ -51,6 +51,8 @@ export const Profile = () => {
 			>
 				Update profile
 			</Button>
+			<br />
+			<br />
 		</Stack>
 	)
 }

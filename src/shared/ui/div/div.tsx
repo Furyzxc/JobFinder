@@ -12,9 +12,9 @@ export const Div = ({ children }: DivProps) => {
 			color='info'
 			sx={{
 				width: '50%',
-				color: '#98C1D2FF',
+				// color: '#98C1D2',
 				textAlign: 'center',
-				backgroundColor: '#071318',
+				backgroundColor: '#161B22',
 				position: 'absolute',
 				top: '40%',
 				left: '30%',

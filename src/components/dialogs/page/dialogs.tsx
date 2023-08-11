@@ -1,18 +1,15 @@
 import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
-import { useAppSelector } from '@/shared/model/hooks.ts'
 import { Div } from '@/shared/ui/div/div.tsx'
-import { DialogsForm } from '../features/dialogsForm'
-import { DialogsList } from '../features/dialogsList'
-import { Messages } from '../features/messages'
-import { getDialogName, selectDialogsError } from '../model/slice.ts'
-import s from '@/components/dialogs/page/dialogs.module.css'
+import { useRequestDialogsQuery } from '../api/api.ts'
+import s from './dialogs.module.css'
+import { Chat } from '@/components/dialogs/features/chat'
+import { DialogsList } from '@/components/dialogs/features/dialogsList'
 
 export const Dialogs = () => {
-	const isError = useAppSelector(selectDialogsError)
-	const dialogName = useAppSelector(getDialogName)
 	const { userId } = useParams()
+	const { isError } = useRequestDialogsQuery()
 
 	return (
 		<WithError isError={isError}>
@@ -27,21 +24,7 @@ export const Dialogs = () => {
 					direction={'column'}
 					className={s.chatContainer}
 				>
-					{userId ? (
-						<>
-							<Grid item xs={1} className={s.title}>
-								{dialogName}
-							</Grid>
-							<Grid item xs={10} className={s.messages + ' scroll'}>
-								<Messages />
-							</Grid>
-							<Grid item xs={1}>
-								<DialogsForm />
-							</Grid>
-						</>
-					) : (
-						<Div>Start Chatting</Div>
-					)}
+					{userId ? <Chat id={+userId} /> : <Div>Start Chatting</Div>}
 				</Grid>
 			</Grid>
 		</WithError>

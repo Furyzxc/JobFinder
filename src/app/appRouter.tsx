@@ -30,11 +30,9 @@ export const appRouter = createBrowserRouter([
 	{
 		path: '/login',
 		element: (
-			<MainLayout>
-				<AuthGuard>
-					<Login />
-				</AuthGuard>
-			</MainLayout>
+			<AuthGuard>
+				<Login />
+			</AuthGuard>
 		),
 	},
 	{
