@@ -1,0 +1,36 @@
+
+
+.messages {
+	position: relative;
+	background-color: #0D1117;
+	overflow-x: hidden;
+}
+
+.dialogsList {
+	height: calc(100vh - 50px);
+	/*min-height: calc(100vh - 64px);*/
+	position: relative;
+}
+
+@media (max-width: 768px) {
+	.dialogsList, .chatContainer {
+		height: calc(100vh - 56px - 64px);
+	}
+}
+
+.chatContainer {
+	/*min-height: calc(100vh - 64px);*/
+	position: relative;
+	height: calc(100vh - 50px);
+	overflow: hidden;
+}
+
+.title {
+	user-select: none;
+	background-color: #161B22;
+	color: white;
+	letter-spacing: -0.8px;
+	font-family: 'Spot Mono', monospace;
+	padding: 10px 0 0 15px;
+	font-size: 16px;
+}

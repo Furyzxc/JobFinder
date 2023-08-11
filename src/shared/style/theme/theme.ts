@@ -2,17 +2,13 @@ import { createTheme } from '@mui/material'
 
 export const appTheme = createTheme({
 	palette: {
+		mode: 'dark',
 		primary: {
-			main: '#757ce8',
+			main: '#2F80F6',
 		},
 	},
-	components: {
-		MuiButton: {
-			defaultProps: {
-				size: 'small',
-			},
-		},
 
+	components: {
 		MuiPaginationItem: {
 			styleOverrides: {
 				ellipsis: {
@@ -21,28 +17,10 @@ export const appTheme = createTheme({
 			},
 		},
 
-		MuiCheckbox: {
+		MuiSvgIcon: {
 			styleOverrides: {
 				root: {
-					color: '#B6BABF',
-				},
-			},
-		},
-
-		MuiInput: {
-			styleOverrides: {
-				root: {
-					color: '#B6BABF',
-					fontSize: '14px',
-					paddingTop: '10px',
-				},
-			},
-		},
-
-		MuiInputLabel: {
-			styleOverrides: {
-				root: {
-					color: '#9AA0A7',
+					color: '#7D8590',
 				},
 			},
 		},
@@ -50,7 +28,7 @@ export const appTheme = createTheme({
 		MuiTypography: {
 			styleOverrides: {
 				root: {
-					color: '#42A5F5',
+					color: '#E6EDF3',
 					fontSize: '16px',
 				},
 			},

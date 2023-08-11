@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Dialogs } from '@/pages/dialogs'
-import { Login } from '@/pages/login'
-import { NotFound } from '@/pages/notFound'
-import { Profile } from '@/pages/profile'
-import { Users } from '@/pages/users'
 import { MainLayout } from '../shared/layout/mainLayout.tsx'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
+import { Login } from '@/components/authorization'
+import { Dialogs } from '@/components/dialogs'
+import { NotFound } from '@/components/notFound'
+import { Profile } from '@/components/profile'
+import { Settings } from '@/components/settings'
+import { Users } from '@/components/users'
 
 export const appRouter = createBrowserRouter([
 	{
@@ -61,6 +62,14 @@ export const appRouter = createBrowserRouter([
 		element: (
 			<MainLayout>
 				<Users />
+			</MainLayout>
+		),
+	},
+	{
+		path: '/settings/*',
+		element: (
+			<MainLayout>
+				<Settings />
 			</MainLayout>
 		),
 	},

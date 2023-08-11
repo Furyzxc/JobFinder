@@ -3,11 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Mono:wght@600&family=Roboto:wght@400;500&display=swap');
 @import url('./reset.css');
 
-.App {
-	display: grid;
-	grid-template-columns: 50px 1fr;
-	position: relative;
-}
 
 .height {
 	height: 100vh;
@@ -23,14 +18,13 @@ html {
 }
 
 @media (max-width: 768px) {
-	body,
 	.height {
 		height: calc(100vh - 56px);
 	}
 }
 
 body {
-	background: #0a1929;
+	background: #0D1117;
 	font-size: 14px;
 	line-height: 1;
 }

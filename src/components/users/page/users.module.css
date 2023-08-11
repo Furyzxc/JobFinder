@@ -1,0 +1,12 @@
+.users {
+    max-height: 100vh;
+    display: grid;
+    grid-template-rows: 50px 1fr 33px;
+    margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+    .users {
+        max-height: calc(100vh - 56px);
+    }
+}

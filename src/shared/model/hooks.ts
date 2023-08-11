@@ -12,9 +12,7 @@ import {
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { rootActions } from '@/shared/model/rootActions.ts'
-import { MessageResponseType } from '@/shared/types/api/dialogs-types.ts'
-import { selectIsAuth } from '@/slices/auth'
-import { selectProfileError, selectProfileLoading } from '@/slices/profile'
+import { MessageResponseType } from '@/components/dialogs'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
@@ -41,10 +39,6 @@ export const useActions = () => {
 	return useMemo(() => bindActionCreators(rootActions, dispatch), [dispatch])
 }
 
-export const useAuth = () => {
-	return useAppSelector(selectIsAuth)
-}
-
 interface useOutsideOutput {
 	ref: any
 	isShow: boolean
@@ -63,9 +57,16 @@ export const useOutside = (initialIsVisible: boolean): useOutsideOutput => {
 	}
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, true)
-		return document.removeEventListener('click', handleClickOutside, true)
-	})
+		if (isShow) {
+			document.addEventListener('mousedown', handleClickOutside)
+		} else {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [isShow])
 
 	return { ref, isShow, setIsShow }
 }
@@ -92,22 +93,9 @@ export const useFormattedTime = (date: string, pattern: string) => {
 	return dayjs(date).format(pattern)
 }
 
-interface UseProfileOutput {
-	isLoading: boolean
-	isError: boolean
-}
-
 export const useDialogsTime = (date: string) => {
 	return useFormattedTime(
 		date,
 		dayjs().isSame(dayjs(date), 'day') ? 'HH:mm A' : 'DD/MM/YYYY'
 	)
-}
-
-// gives profile error and loading
-export const useProfileLoadingError = (): UseProfileOutput => {
-	return {
-		isLoading: useAppSelector(selectProfileLoading),
-		isError: useAppSelector(selectProfileError),
-	}
 }

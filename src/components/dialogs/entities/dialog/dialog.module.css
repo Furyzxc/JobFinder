@@ -1,0 +1,32 @@
+.dialog {
+    user-select: none;
+    text-decoration: none;
+    color: white;
+    opacity: 0;
+}
+
+
+.dialog:focus {
+    background-color: #2b5278;
+}
+
+.dialog:hover {
+    background-color: #212b35;
+    cursor: pointer;
+}
+
+.dialog:hover:focus {
+    background-color: #2b5278;
+}
+
+.time {
+    position: absolute;
+    top: 0;
+    right: 4px;
+}
+
+@media (max-width: 840px) {
+    .avatar {
+        display: none;
+    }
+}

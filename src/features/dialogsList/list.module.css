@@ -1,9 +1,0 @@
-.list {
-    background-color: #0a1929;
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-.list:hover {
-    overflow-y: auto;
-}

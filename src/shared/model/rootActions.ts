@@ -1,6 +1,6 @@
-import { dialogsActions } from '@/slices/dialogs'
-import { paginatorActions } from '@/slices/paginator'
-import { profileActions } from '@/slices/profile'
+import { dialogsActions } from '@/components/dialogs'
+import { profileActions } from '@/components/profile/profile'
+import { paginatorActions } from '@/components/users'
 
 export const rootActions = {
 	...dialogsActions,

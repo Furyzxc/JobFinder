@@ -1,34 +1,45 @@
 import { TextField } from '@mui/material'
-import { ChangeEvent, FocusEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FocusEvent } from 'react'
 
 interface InputProps {
-	name: string
 	onBlur?: (event: FocusEvent<HTMLInputElement>) => void
-	value: string | null
+	onChange?: (value: string) => void
+	value?: string
+	label?: string
+	multiline?: boolean
+	defaultValue?: string
+	ref?: any
+	placeholder?: string
 }
 
-export const Input = ({ name, onBlur, value }: InputProps) => {
-	const [inputValue, setInputValue] = useState('')
-
-	useEffect(() => {
-		value && setInputValue(value)
-	}, [value])
-
+export const Input = ({
+	onBlur,
+	value,
+	onChange,
+	label,
+	multiline,
+	defaultValue,
+	ref,
+	placeholder,
+}: InputProps) => {
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) =>
-		setInputValue(e.target.value)
+		onChange && onChange(e.target.value)
 
 	return (
-		<div>
-			<TextField
-				sx={{ width: '100%' }}
-				label={name}
-				variant='standard'
-				value={inputValue}
-				onChange={handleInputChange}
-				name={name}
-				onBlur={onBlur}
-				autoComplete='off'
-			/>
-		</div>
+		<TextField
+			size={'small'}
+			defaultValue={defaultValue}
+			maxRows={4}
+			multiline={multiline}
+			hiddenLabel={!!label}
+			label={label}
+			autoComplete='off'
+			sx={{ width: '80%' }}
+			value={value}
+			onChange={handleInputChange}
+			onBlur={onBlur}
+			inputRef={ref}
+			placeholder={placeholder}
+		/>
 	)
 }
