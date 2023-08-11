@@ -14,13 +14,14 @@ export const Dialogs = () => {
 	return (
 		<WithError isError={isError}>
 			<Grid container>
-				<Grid item xs={3} className={s.dialogsList}>
+				<Grid item xs={4} sm={3} className={s.dialogsList}>
 					<DialogsList />
 				</Grid>
 				<Grid
 					item
 					container
-					xs={9}
+					xs={8}
+					sm={9}
 					direction={'column'}
 					className={s.chatContainer}
 				>
