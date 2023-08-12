@@ -14,7 +14,7 @@ export const Chat = ({ id }: PropsType) => {
 	const dialogName = profile?.fullName
 
 	return (
-		<>
+		<Grid direction={'column'} container className={s.chatContainer}>
 			<Grid item xs={1} className={s.title}>
 				{dialogName && dialogName}
 			</Grid>
@@ -24,6 +24,6 @@ export const Chat = ({ id }: PropsType) => {
 			<Grid item xs={1}>
 				<DialogsForm />
 			</Grid>
-		</>
+		</Grid>
 	)
 }

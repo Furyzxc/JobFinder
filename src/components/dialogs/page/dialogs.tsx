@@ -17,14 +17,7 @@ export const Dialogs = () => {
 				<Grid item xs={4} sm={3} className={s.dialogsList}>
 					<DialogsList />
 				</Grid>
-				<Grid
-					item
-					container
-					xs={8}
-					sm={9}
-					direction={'column'}
-					className={s.chatContainer}
-				>
+				<Grid item xs={8} sm={9}>
 					{userId ? <Chat id={+userId} /> : <Div>Start Chatting</Div>}
 				</Grid>
 			</Grid>

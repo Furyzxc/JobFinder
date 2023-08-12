@@ -9,7 +9,7 @@ export const DialogsList = () => {
 
 	return (
 		<WithLoading isLoading={isLoading}>
-			<Stack direction={'column'} className={s.list + ' scroll height'}>
+			<Stack direction={'column'} className={s.list + ' scroll'}>
 				{data?.map(dialog => <Dialog key={dialog.id} {...dialog} />)}
 			</Stack>
 		</WithLoading>

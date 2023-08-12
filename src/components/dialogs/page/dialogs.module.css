@@ -4,15 +4,9 @@
 	position: relative;
 }
 
+
 @media (max-width: 768px) {
-	.dialogsList, .chatContainer {
+	.dialogsList {
 		height: calc(100vh - 56px - 50px);
 	}
 }
-
-.chatContainer {
-	position: relative;
-	height: calc(100vh - 50px);
-	overflow: hidden;
-}
-

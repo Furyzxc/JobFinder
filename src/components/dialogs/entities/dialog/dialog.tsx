@@ -27,7 +27,7 @@ export const Dialog = memo(
 			<Link to={'/dialogs/' + id} className={s.dialog} ref={scope}>
 				<Stack
 					direction={'row'}
-					spacing={1}
+					// spacing={1}
 					sx={{
 						position: 'relative',
 						pt: '7px',
@@ -35,7 +35,7 @@ export const Dialog = memo(
 						backgroundColor: 'inherit',
 					}}
 				>
-					<Box className={s.avatar}>
+					<Box className={s.avatar} sx={{ mr: '5px' }}>
 						<UserAvatar avatar={small} name={userName} />
 					</Box>
 					<Box sx={{ pt: '10px' }}>

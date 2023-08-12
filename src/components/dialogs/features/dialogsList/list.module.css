@@ -2,8 +2,15 @@
     background-color: #161B22;
     overflow-y: hidden;
     overflow-x: hidden;
+    height: calc(100vh - 50px);
 }
 
 .list:hover {
     overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .list {
+        height: calc(100vh - 50px - 56px);
+    }
 }
