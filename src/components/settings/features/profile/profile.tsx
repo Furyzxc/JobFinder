@@ -5,6 +5,7 @@ import { useEntities, useOwnerInfo } from '../../model/hooks'
 import s from './style.module.css'
 import { Section } from '@/components/settings/entities/profileSection/profileSection.tsx'
 import { SocialLinks } from '@/components/settings/entities/socialLinks'
+import { useProfileRef } from '@/components/settings/model/hooks/useProfileRef.ts'
 
 export const Profile = () => {
 	const entities = useEntities()
@@ -14,6 +15,10 @@ export const Profile = () => {
 			photos: { small: avatar },
 		},
 	} = useOwnerInfo()
+
+	const { nameRef } = useProfileRef()
+
+	console.log(nameRef)
 
 	return (
 		<Stack direction={'column'} spacing={2} sx={{ overflowX: 'hidden' }}>
@@ -28,9 +33,9 @@ export const Profile = () => {
 			</div>
 			<Grid container wrap={'wrap-reverse'} spacing={2}>
 				<Grid item xs={12} sm={7}>
-					{entities.map(({ name, description, ...inputProps }) => (
+					{entities.map(({ name, description, ref, ...inputProps }) => (
 						<Section name={name} description={description} key={name}>
-							<Input {...inputProps} />
+							<Input inputRef={ref} {...inputProps} />
 						</Section>
 					))}
 				</Grid>

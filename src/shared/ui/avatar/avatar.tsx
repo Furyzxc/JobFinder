@@ -1,5 +1,7 @@
 import { Avatar } from '@mui/material'
+import { memo } from 'react'
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const COLORS = [
 	'#f44336',
 	'#e91e63',
@@ -25,7 +27,7 @@ type PropsType = {
 	size?: string
 }
 
-export const UserAvatar = ({ avatar, name, size }: PropsType) => {
+export const UserAvatar = memo(({ avatar, name, size }: PropsType) => {
 	let sx
 
 	const randomColor = COLORS[Math.floor(Math.random() * COLORS.length)]
@@ -39,4 +41,4 @@ export const UserAvatar = ({ avatar, name, size }: PropsType) => {
 			{name[0].toUpperCase()}
 		</Avatar>
 	)
-}
+})

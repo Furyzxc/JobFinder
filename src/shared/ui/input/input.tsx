@@ -8,7 +8,7 @@ interface InputProps {
 	label?: string
 	multiline?: boolean
 	defaultValue?: string
-	ref?: any
+	inputRef?: any
 	placeholder?: string
 }
 
@@ -19,7 +19,7 @@ export const Input = ({
 	label,
 	multiline,
 	defaultValue,
-	ref,
+	inputRef,
 	placeholder,
 }: InputProps) => {
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -38,7 +38,7 @@ export const Input = ({
 			value={value}
 			onChange={handleInputChange}
 			onBlur={onBlur}
-			inputRef={ref}
+			inputRef={inputRef}
 			placeholder={placeholder}
 		/>
 	)

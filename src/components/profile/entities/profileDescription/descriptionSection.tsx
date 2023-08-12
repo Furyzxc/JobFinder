@@ -40,11 +40,17 @@ export const DescriptionSection = ({
 						<a href={contacts[key] || ''} className={s.contact}>
 							<Stack direction={'column'}>
 								{contactImages[key]}
-								<Typography variant={'h6'}>{contactNames[key]}</Typography>
+								<Typography
+									variant={'h3'}
+									sx={{ fontSize: '14px', opacity: contacts[key] ? 1 : 0.5 }}
+								>
+									{contactNames[key]}
+								</Typography>
 								<Typography
 									variant={'h4'}
 									className={s.showContact}
 									sx={{
+										fontSize: '12px',
 										color: '#42a5f5',
 										position: 'absolute',
 										bottom: '-20px',

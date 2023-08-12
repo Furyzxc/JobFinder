@@ -140,3 +140,12 @@ input {
     vertical-align: baseline;
     background: transparent;
 }
+
+/* Remove default focus and active background */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    background-color: transparent; /* Remove the default blue background */
+}

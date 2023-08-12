@@ -3,10 +3,13 @@
     text-decoration: none;
     color: white;
     opacity: 0;
+    position: relative;
+    padding-top: 7px;
+    min-height: 54px;
 }
 
 
-.dialog:focus {
+.selected {
     background-color: #2b5278;
 }
 
@@ -15,7 +18,7 @@
     cursor: pointer;
 }
 
-.dialog:hover:focus {
+.selected:hover {
     background-color: #2b5278;
 }
 
