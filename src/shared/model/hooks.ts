@@ -11,7 +11,7 @@ import {
 } from 'react'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { rootActions } from '@/shared/model/rootActions.ts'
+import { rootActions } from '@/app/rootActions.ts'
 import { MessageResponseType } from '@/components/dialogs'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()

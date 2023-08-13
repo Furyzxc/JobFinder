@@ -11,17 +11,17 @@ type PropsType = {
 export const Chat = ({ id }: PropsType) => {
 	const { data: profile } = useGetProfileQuery(id)
 
-	const dialogName = profile?.fullName
+	const dialogName = profile?.name
 
 	return (
 		<Grid direction={'column'} container className={s.chatContainer}>
 			<Grid item xs={1} className={s.title}>
 				{dialogName && dialogName}
 			</Grid>
-			<Grid item xs={10} className={s.messages + ' scroll'}>
+			<Grid item xs className={s.messages + ' scroll'}>
 				<Messages />
 			</Grid>
-			<Grid item xs={1}>
+			<Grid item xs={0.6}>
 				<DialogsForm />
 			</Grid>
 		</Grid>

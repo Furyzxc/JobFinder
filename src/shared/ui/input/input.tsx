@@ -2,13 +2,12 @@ import { TextField } from '@mui/material'
 import { ChangeEvent, FocusEvent } from 'react'
 
 interface InputProps {
-	onBlur?: (event: FocusEvent<HTMLInputElement>) => void
+	onBlur?: (value: string) => void
 	onChange?: (value: string) => void
 	value?: string
 	label?: string
 	multiline?: boolean
-	defaultValue?: string
-	inputRef?: any
+	defaultValue?: string | null
 	placeholder?: string
 }
 
@@ -19,11 +18,13 @@ export const Input = ({
 	label,
 	multiline,
 	defaultValue,
-	inputRef,
 	placeholder,
 }: InputProps) => {
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) =>
 		onChange && onChange(e.target.value)
+
+	const handleBlur = (e: FocusEvent<HTMLInputElement>) =>
+		onBlur && onBlur(e.target.value)
 
 	return (
 		<TextField
@@ -37,8 +38,7 @@ export const Input = ({
 			sx={{ width: '80%' }}
 			value={value}
 			onChange={handleInputChange}
-			onBlur={onBlur}
-			inputRef={inputRef}
+			onBlur={handleBlur}
 			placeholder={placeholder}
 		/>
 	)

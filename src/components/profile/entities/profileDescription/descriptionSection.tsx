@@ -7,7 +7,7 @@ import {
 } from './objects.tsx'
 
 export const DescriptionSection = ({
-	contacts,
+	socialAccounts,
 	lookingForAJobDescription,
 	lookingForAJob,
 }: DescriptionSectionProps) => {
@@ -35,14 +35,17 @@ export const DescriptionSection = ({
 			</Grid>
 
 			<Grid item container spacing={2} xs={6} sx={{ minWidth: '300px' }}>
-				{Object.keys(contacts).map(key => (
+				{Object.keys(socialAccounts).map(key => (
 					<Grid item xs={3} sx={{ mb: '60px' }} key={key}>
-						<a href={contacts[key] || ''} className={s.contact}>
+						<a href={socialAccounts[key] || ''} className={s.contact}>
 							<Stack direction={'column'}>
 								{contactImages[key]}
 								<Typography
 									variant={'h3'}
-									sx={{ fontSize: '14px', opacity: contacts[key] ? 1 : 0.5 }}
+									sx={{
+										fontSize: '14px',
+										opacity: socialAccounts[key] ? 1 : 0.5,
+									}}
 								>
 									{contactNames[key]}
 								</Typography>
@@ -56,7 +59,7 @@ export const DescriptionSection = ({
 										bottom: '-20px',
 									}}
 								>
-									{contacts[key] ? contacts[key] : 'Not specified'}
+									{socialAccounts[key] ? socialAccounts[key] : 'Not specified'}
 								</Typography>
 							</Stack>
 						</a>

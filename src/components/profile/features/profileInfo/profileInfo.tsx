@@ -1,10 +1,10 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import { useActions } from '@/shared/model/hooks.ts'
+import { useGetProfileQuery } from '../../api/api.ts'
+import { Bio } from '../../entities/bio'
 import { DescriptionSection } from '../../entities/profileDescription'
-import { Status } from '../../entities/status'
 import s from './profileInfo.module.css'
-import { useGetProfileQuery } from '@/components/profile/profile'
 
 type PropsType = {
 	id: number
@@ -17,8 +17,8 @@ export const ProfileInfo = ({ id }: PropsType) => {
 
 	useEffect(() => {
 		if (isSuccess && profileData) {
-			setProfileName(profileData.fullName)
-			setAvatar(profileData.photos.small)
+			setProfileName(profileData.name)
+			setAvatar(profileData.photos.avatar)
 		}
 	}, [profileData, isSuccess, setProfileName, setAvatar])
 
@@ -27,11 +27,11 @@ export const ProfileInfo = ({ id }: PropsType) => {
 			<Grid container sx={{ pt: '70px', mb: '50px' }}>
 				<Grid item xs={6} className={s.nickName}>
 					<Typography variant={'h6'} sx={{ fontSize: '25px' }}>
-						{profileData?.fullName}
+						{profileData?.name}
 					</Typography>
 				</Grid>
 				<Grid item xs={5}>
-					<Status userId={id} />
+					<Bio userId={id} />
 				</Grid>
 			</Grid>
 			{profileData && <DescriptionSection {...profileData} />}

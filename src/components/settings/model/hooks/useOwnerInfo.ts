@@ -1,9 +1,9 @@
 import { useAuthInfo } from '@/components/authorization'
-import { useGetProfileQuery, useGetUserStatusQuery } from '@/components/profile'
+import { useGetProfileQuery } from '@/components/profile'
 import { ProfileResponseBody } from '@/components/profile/api/types.ts'
 
 interface Owner {
-	info: (ProfileResponseBody & { status: string }) | undefined | any
+	info: ProfileResponseBody | undefined
 	isLoading: boolean
 	isError: boolean
 }
@@ -14,25 +14,16 @@ export const useOwnerInfo = (): Owner => {
 
 	const {
 		data: profile,
-		isLoading: loading,
-		isError: error,
+		isLoading,
+		isError,
 		// @ts-ignore
 	} = useGetProfileQuery(id, {
 		skip: !id,
 	})
 
-	const {
-		data: status,
+	return {
+		info: profile,
 		isLoading,
 		isError,
-		// @ts-ignore
-	} = useGetUserStatusQuery(id, {
-		skip: !id,
-	})
-
-	return {
-		info: { ...profile, status },
-		isLoading: [loading, isLoading].some(loading => loading),
-		isError: [error, isError].some(err => err),
 	}
 }

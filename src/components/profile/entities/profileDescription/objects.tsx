@@ -14,16 +14,16 @@ export interface DescriptionSectionProps {
 	lookingForAJob: boolean
 	lookingForAJobDescription: string | null
 
-	contacts: {
+	socialAccounts: {
 		[key: string]: string | null
 		github: string | null
-		vk: string | null
+		linkedin: string | null
 		facebook: string | null
 		instagram: string | null
 		twitter: string | null
 		website: string | null
 		youtube: string | null
-		mainLink: string | null
+		telegram: string | null
 	}
 }
 
@@ -31,46 +31,46 @@ export interface ContactNames {
 	[key: string]: string
 
 	github: string
-	vk: string
+	linkedin: string
 	facebook: string
 	instagram: string
 	twitter: string
 	website: string
 	youtube: string
-	mainLink: string
+	telegram: string
 }
 
 export interface ContactImages {
 	[key: string]: ReactNode
 
 	github: ReactNode
-	vk: ReactNode
+	linkedin: ReactNode
 	facebook: ReactNode
 	instagram: ReactNode
 	twitter: ReactNode
 	website: ReactNode
 	youtube: ReactNode
-	mainLink: ReactNode
+	telegram: ReactNode
 }
 
 export const contactImages: ContactImages = {
 	github: <GitHub />,
-	vk: <LinkedIn />,
+	linkedin: <LinkedIn />,
 	facebook: <Facebook />,
 	instagram: <Instagram />,
 	twitter: <Twitter />,
 	website: <Language />,
 	youtube: <YouTube />,
-	mainLink: <Telegram />,
+	telegram: <Telegram />,
 }
 
 export const contactNames: ContactNames = {
 	github: 'GitHub',
-	vk: 'LinkedIn',
+	linkedin: 'LinkedIn',
 	facebook: 'Facebook',
 	instagram: 'Instagram',
 	twitter: 'Twitter',
 	website: 'Website',
 	youtube: 'YouTube',
-	mainLink: 'Telegram',
+	telegram: 'Telegram',
 }

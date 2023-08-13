@@ -1,24 +1,21 @@
 import { Button, Grid, Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
-import { Input } from '@/shared/ui/input'
-import { useEntities, useOwnerInfo } from '../../model/hooks'
+import { useOwnerInfo } from '../../model/hooks'
 import s from './style.module.css'
+import { BioAndName } from '@/components/settings/entities/bioAndName/bioAndName.tsx'
 import { Section } from '@/components/settings/entities/profileSection/profileSection.tsx'
 import { SocialLinks } from '@/components/settings/entities/socialLinks'
-import { useProfileRef } from '@/components/settings/model/hooks/useProfileRef.ts'
+import { useProfileUpdate } from '@/components/settings/model/hooks/useProfileUpdate.ts'
 
 export const Profile = () => {
-	const entities = useEntities()
-	const {
-		info: {
-			fullName: name,
-			photos: { small: avatar },
-		},
-	} = useOwnerInfo()
+	const { info } = useOwnerInfo()
 
-	const { nameRef } = useProfileRef()
+	const name = info?.name
+	const avatar = info?.photos.avatar
 
-	console.log(nameRef)
+	// trigger that sends ajax request that changes profile data
+	const [updateProfile] = useProfileUpdate()
+	const handleUpdateBtnClick = () => updateProfile()
 
 	return (
 		<Stack direction={'column'} spacing={2} sx={{ overflowX: 'hidden' }}>
@@ -33,16 +30,12 @@ export const Profile = () => {
 			</div>
 			<Grid container wrap={'wrap-reverse'} spacing={2}>
 				<Grid item xs={12} sm={7}>
-					{entities.map(({ name, description, ref, ...inputProps }) => (
-						<Section name={name} description={description} key={name}>
-							<Input inputRef={ref} {...inputProps} />
-						</Section>
-					))}
+					<BioAndName />
 				</Grid>
 				<Grid item xs={12} sm={4}>
 					<Stack>
 						<Typography>Public picture</Typography>
-						<UserAvatar avatar={avatar} name={name} size={'150px'} />
+						<UserAvatar avatar={avatar} name={name || ''} size={'150px'} />
 					</Stack>
 				</Grid>
 			</Grid>
@@ -53,6 +46,7 @@ export const Profile = () => {
 				variant={'contained'}
 				sx={{ background: '#238636', maxWidth: '130px' }}
 				size={'small'}
+				onClick={handleUpdateBtnClick}
 			>
 				Update profile
 			</Button>

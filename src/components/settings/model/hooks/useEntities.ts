@@ -1,36 +1,43 @@
+import { useActions } from '@/shared/model/hooks.ts'
 import { useOwnerInfo } from './useOwnerInfo.ts'
-import { useProfileRef } from '@/components/settings/model/hooks/useProfileRef.ts'
 
 interface Entity {
 	name: string
-	defaultValue: string
-
-	ref: any
+	defaultValue: string | undefined | null
+	onBlur: (value: string) => void
 	description?: string
 	multiline?: boolean
 }
 
 export const useEntities = (): Entity[] => {
-	const {
-		info: { fullName, status },
-	} = useOwnerInfo()
+	const { info } = useOwnerInfo()
 
-	const { nameRef, bioRef } = useProfileRef()
+	const name = info?.name
+	const bio = info?.bio
+
+	const { setMainValue } = useActions()
+
+	const setFieldValue = (fieldName: 'name' | 'bio') => (value: string) =>
+		setMainValue({ fieldName, value })
+
+	// setting name and bio to state
+	name && setFieldValue('name')(name)
+	bio && setFieldValue('bio')(bio)
 
 	const entities: Entity[] = []
 
 	// mutates entities
 	const addEntity = (
 		name: string,
-		ref: any,
-		defaultValue: string,
+		defaultValue: string | undefined | null,
+		onBlur: (value: string) => void,
 		description?: string,
 		multiline?: boolean
 	) => {
 		entities.push({
 			name,
-			ref,
 			defaultValue,
+			onBlur,
 			description,
 			multiline,
 		})
@@ -38,12 +45,12 @@ export const useEntities = (): Entity[] => {
 
 	addEntity(
 		'Name',
-		nameRef,
-		fullName,
+		name,
+		setFieldValue('name'),
 		'Your name will appear around JobFinder.'
 	)
 
-	addEntity('Bio', bioRef, status, undefined, true)
+	addEntity('Bio', bio, setFieldValue('bio'), undefined, true)
 
 	return entities
 }

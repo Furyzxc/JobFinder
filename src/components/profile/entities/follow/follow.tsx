@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import {
 	useGetIsFollowedQuery,
 	useToggleIsFollowedMutation,
-} from '@/components/profile/profile'
+} from '../../api/api.ts'
 
 interface FollowProps {
 	userId: number

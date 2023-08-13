@@ -1,30 +1,58 @@
 import { Box, Grid, Stack, TextField } from '@mui/material'
+import { ChangeEvent, memo, useEffect } from 'react'
+import { useActions } from '@/shared/model/hooks.ts'
 import { useSocialLinks } from '../../model/hooks'
+import { useSocialAccounts } from '@/components/settings/model/hooks/useSocialAccounts.ts'
+import { Link } from '@/components/settings/model/hooks/useSocialLinks.tsx'
+
+const SocialAccount = memo(({ icon, defaultValue, name }: Link) => {
+	const socialAccounts = useSocialAccounts()
+	const value = socialAccounts[name]
+	const { setAccountValue } = useActions()
+
+	useEffect(() => {
+		setAccountValue({ fieldName: name, value: defaultValue })
+	}, [defaultValue, name, setAccountValue])
+
+	const setValue = (value: string) =>
+		setAccountValue({ fieldName: name, value })
+
+	const handleChange = ({
+		target,
+	}: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+		setValue(target.value)
+
+	return (
+		<Grid container>
+			<Grid item xs={1.5} md={0.6} sm={0.6}>
+				<Box sx={{ pt: '5px' }}>{icon}</Box>
+			</Grid>
+			<Grid item xs={10} md={7} sm={8}>
+				<TextField
+					value={value}
+					onChange={handleChange}
+					inputProps={{ style: { fontSize: 12 } }}
+					placeholder={'Link to social profile'}
+					sx={{
+						fontSize: '12px',
+						fontWeight: '100',
+						width: '100%',
+						backgroundColor: '#0D1117',
+					}}
+					size={'small'}
+				/>
+			</Grid>
+		</Grid>
+	)
+})
 
 export const SocialLinks = () => {
 	const links = useSocialLinks()
 
 	return (
 		<Stack direction={'column'} spacing={1}>
-			{links.map(({ icon }) => (
-				<Grid container key={Math.random()}>
-					<Grid item xs={1.5} md={0.6} sm={0.6}>
-						<Box sx={{ pt: '5px' }}>{icon}</Box>
-					</Grid>
-					<Grid item xs={10} md={7} sm={8}>
-						<TextField
-							inputProps={{ style: { fontSize: 12 } }}
-							placeholder={'Link to social profile'}
-							sx={{
-								fontSize: '12px',
-								fontWeight: '100',
-								width: '100%',
-								backgroundColor: '#0D1117',
-							}}
-							size={'small'}
-						/>
-					</Grid>
-				</Grid>
+			{links.map(linkProps => (
+				<SocialAccount {...linkProps} />
 			))}
 		</Stack>
 	)

@@ -10,8 +10,8 @@ export const Header = () => {
 	const { info } = useOwnerInfo()
 
 	const {
-		fullName: name,
-		photos: { small: avatar },
+		name,
+		photos: { avatar },
 	} = info as ProfileResponseBody
 
 	if (name) {

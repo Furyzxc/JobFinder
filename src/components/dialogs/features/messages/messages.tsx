@@ -5,7 +5,6 @@ import { WithError } from '@/shared/hoc/withError.tsx'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { useRequestMessagesQuery } from '../../api/api.ts'
-import { MessageResponseType } from '../../api/types.ts'
 import s from './messages.module.css'
 import { Message } from '@/components/dialogs/entities/message'
 
@@ -19,16 +18,19 @@ export const Messages = () => {
 
 	const messages = data?.items
 
-	// const { ref } = useScrollIntoView(messages)
+	const dates: string[] = []
 
-	const fromNow = (addedAt: string) => dayjs(addedAt).fromNow()
+	const formattedToDDMMYYYY = (addedAt: string) =>
+		dayjs(addedAt).format('DD/MM/YYYY')
 
-	const isExist = (message: MessageResponseType, index: number) => {
-		return !!messages?.find((mes, i) => {
-			if (index === i) return
+	const isExist = (addedAt: string) => {
+		const formattedTime = formattedToDDMMYYYY(addedAt)
 
-			return fromNow(mes.addedAt) === fromNow(message.addedAt)
-		})
+		if (!dates.includes(formattedTime)) {
+			dates.push(formattedTime)
+			return false
+		}
+		return true
 	}
 
 	return (
@@ -36,25 +38,24 @@ export const Messages = () => {
 			<WithError isError={isError}>
 				<div className={s.flexbox}>
 					{messages && messages.length > 0 ? (
-						messages.map((message, index) => {
+						messages.map(message => {
 							return (
 								<div className={s.mesContainer} key={message.id}>
-									<Message {...message} me={message.senderId !== userId} />
-									{!isExist(message, index) && (
+									{!isExist(message.addedAt) && (
 										<Divider sx={{ mb: '10px', textTransform: 'none' }}>
 											<Chip
 												color={'primary'}
-												label={fromNow(message.addedAt)}
+												label={formattedToDDMMYYYY(message.addedAt)}
 											/>
 										</Divider>
 									)}
+									<Message {...message} me={message.senderId !== userId} />
 								</div>
 							)
 						})
 					) : (
 						<Div>Enter your first message</Div>
 					)}
-					{/*<div ref={ref} />*/}
 				</div>
 			</WithError>
 		</WithLoading>

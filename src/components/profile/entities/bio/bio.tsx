@@ -1,16 +1,16 @@
 import { Typography } from '@mui/material'
-import s from './status.module.css'
-import { useGetUserStatusQuery } from '@/components/profile/profile'
+import { useGetProfileQuery } from '../../api/api.ts'
+import s from './bio.module.css'
 
 type PropsType = {
 	userId: number
 }
 
-export const Status = ({ userId }: PropsType) => {
-	const { data: statusValue } = useGetUserStatusQuery(userId)
+export const Bio = ({ userId }: PropsType) => {
+	const { data: profileData } = useGetProfileQuery(userId)
 
 	return (
-		<div className={s.userStatus}>
+		<div className={s.bio}>
 			<Typography
 				sx={{
 					fontSize: 18,
@@ -23,7 +23,7 @@ export const Status = ({ userId }: PropsType) => {
 				Bio
 			</Typography>
 			<Typography variant='h6' sx={{ textAlign: 'center' }}>
-				{statusValue || 'User did not enter status'}
+				{profileData?.bio || 'User did not enter bio'}
 			</Typography>
 		</div>
 	)
