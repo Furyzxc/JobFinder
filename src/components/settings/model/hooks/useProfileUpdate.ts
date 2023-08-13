@@ -8,6 +8,11 @@ import {
 type Output = [
 	// function that call update
 	trigger: () => void,
+	data: {
+		isLoading: boolean
+		isError: boolean
+		data: EditProfileResponse | undefined
+	},
 ]
 
 export const useProfileUpdate = (): Output => {
@@ -39,7 +44,8 @@ export const useProfileUpdate = (): Output => {
 		}
 	}
 
-	const [editProfile] = useEditProfileInfoMutation()
+	const [editProfile, { isLoading, isError, data }] =
+		useEditProfileInfoMutation()
 
 	return [
 		() => {
@@ -56,6 +62,11 @@ export const useProfileUpdate = (): Output => {
 
 				editProfile(editProfileBody)
 			}
+		},
+		{
+			isLoading,
+			isError,
+			data,
 		},
 	]
 }
