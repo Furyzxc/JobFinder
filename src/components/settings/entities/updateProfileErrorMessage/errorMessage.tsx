@@ -1,35 +1,27 @@
-import { CloseSharp } from '@mui/icons-material'
-import { Grid, Typography } from '@mui/material'
 import { useActions } from '@/shared/model/hooks.ts'
-import { useProfileSettings } from '../../model/hooks/useProfileSettings.ts'
-import s from './style.module.css'
+import { ErrorMessage } from '@/shared/ui/errorMessage'
+import { useProfileSettings } from '@/components/settings/model/hooks'
 
-export const ErrorMessage = () => {
+export const UpdateErrorMessage = () => {
 	const { updateProfileErrorMessage } = useProfileSettings()
 
 	const { clearErrorMessage } = useActions()
 
 	const handleCrossClick = () => clearErrorMessage()
 
-	if (updateProfileErrorMessage)
+	if (updateProfileErrorMessage) {
 		return (
-			<Grid
-				container
-				className={s.error}
-				sx={{
-					backgroundColor: '#25171C',
-					p: '20px 16px',
+			<div
+				style={{
 					width: '95%',
-					fontSize: '14px',
 				}}
 			>
-				<Grid item xs>
-					<Typography variant={'h1'}>{updateProfileErrorMessage}</Typography>
-				</Grid>
-				<Grid item sx={{ cursor: 'pointer' }} onClick={handleCrossClick}>
-					<CloseSharp sx={{ color: '#E34B45', fontSize: '15px', mt: '2px' }} />
-				</Grid>
-			</Grid>
+				<ErrorMessage
+					message={updateProfileErrorMessage}
+					onCrossClick={handleCrossClick}
+				/>
+			</div>
 		)
+	}
 	return null
 }

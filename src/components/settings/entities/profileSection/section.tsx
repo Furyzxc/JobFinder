@@ -5,12 +5,29 @@ export interface Section {
 	name: string
 	description?: string
 	children: ReactNode
+	paragraphFont?: string // fontsize
+	paragraphColor?: string // typography color
+	paragraphPL?: string // padding left
 }
 
-export const Section = ({ name, description, children }: Section) => {
+export const Section = ({
+	name,
+	description,
+	children,
+	paragraphFont,
+	paragraphColor,
+	paragraphPL,
+}: Section) => {
 	return (
 		<Stack spacing={1}>
-			<Typography variant={'h6'} sx={{ fontSize: '14px' }}>
+			<Typography
+				variant={'h6'}
+				sx={{
+					fontSize: paragraphFont || '14px',
+					color: paragraphColor,
+					pl: paragraphPL,
+				}}
+			>
 				{name}
 			</Typography>
 			{children}

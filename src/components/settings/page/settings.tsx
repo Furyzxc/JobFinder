@@ -4,6 +4,7 @@ import { WithError, WithLoading } from '@/shared/hoc'
 import { Header } from '../features/header'
 import { Navigation } from '../features/navigation'
 import { Profile } from '../features/profile'
+import { Account } from '@/components/settings/features/account'
 import { useOwnerInfo } from '@/components/settings/model/hooks'
 
 export const Settings = () => {
@@ -28,6 +29,7 @@ export const Settings = () => {
 						<Grid item xs={12} sm={9}>
 							<Routes>
 								<Route path='profile' element={<Profile />} />
+								<Route path='account' element={<Account />} />
 							</Routes>
 						</Grid>
 					</Grid>

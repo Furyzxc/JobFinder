@@ -6,8 +6,8 @@ import {
 } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
 import { handleError } from '@/shared/utils/handleError.ts'
+import { api } from '../api/api.ts'
 import { RequestLoginBody } from '../api/types.ts'
-import { authApi } from '@/components/authorization/api/api.ts'
 
 const SUCCESS_CODE = 0 as number
 
@@ -33,7 +33,7 @@ const initialState: Auth = {
 		email: null,
 		login: null,
 	},
-
+	// error message
 	error: null,
 }
 
@@ -41,16 +41,6 @@ export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		clearUserData({ userInfo }) {
-			userInfo.id = null
-			userInfo.email = null
-			userInfo.login = null
-		},
-
-		toggleIsAuth(state, action: PayloadAction<boolean>) {
-			state.isAuthorized = action.payload
-		},
-
 		setError(state, action: PayloadAction<string>) {
 			state.error = action.payload
 		},
@@ -58,29 +48,45 @@ export const authSlice = createSlice({
 
 	extraReducers: builder => {
 		builder.addMatcher(isAnyOf(authMe.pending, authLogin.pending), state => {
+			// turning isLoading when requests are processing
 			state.isLoading = true
 		})
 
 		builder.addMatcher(
 			isAnyOf(authMe.fulfilled, authLogin.fulfilled),
 			state => {
+				// turning isLoading when requests have finished processing
 				state.isLoading = false
 			}
 		)
 
 		builder.addMatcher(
-			authApi.endpoints.me.matchFulfilled,
+			api.endpoints.me.matchFulfilled,
 			(state, { payload }) => {
 				if (payload.resultCode === SUCCESS_CODE) {
+					// if request is successful we set authorized to true
+					// and setting user data from server response
 					state.isAuthorized = true
 					state.userInfo = payload.data
 				}
 			}
 		)
+
+		builder.addMatcher(
+			api.endpoints.logout.matchFulfilled,
+			({ userInfo, ...state }) => {
+				state.isAuthorized = false
+
+				// clearing state's user info
+				userInfo.id = null
+				userInfo.email = null
+				userInfo.login = null
+			}
+		)
 	},
 })
 
-export const { toggleIsAuth, clearUserData, setError } = authSlice.actions
+export const { setError } = authSlice.actions
 
 export const selectAuthState = (state: RootState) => state.auth
 
@@ -89,7 +95,7 @@ export const authMe = createAsyncThunk(
 	async (_, { dispatch }) => {
 		try {
 			await dispatch(
-				authApi.endpoints.me.initiate(undefined, { forceRefetch: true })
+				api.endpoints.me.initiate(undefined, { forceRefetch: true })
 			)
 		} catch {
 			handleError(dispatch)
@@ -101,29 +107,28 @@ export const authLogin = createAsyncThunk(
 	'auth/authLogin',
 	async (body: RequestLoginBody, { dispatch }) => {
 		try {
-			const response = await dispatch(authApi.endpoints.login.initiate(body))
+			const response = await dispatch(api.endpoints.login.initiate(body))
+
+			// check if response contains data, because there may be error
 			if ('data' in response) {
+				// taking data from response
 				const { data } = response
-				if (data && data.resultCode === 0) {
+
+				if (data.resultCode === SUCCESS_CODE) {
+					// if request is successful we send auth me request on server, that authorizes us
 					dispatch(authMe())
 				} else {
-					data && data.messages.length > 0
-						? dispatch(setError(data.messages[0]))
-						: handleError(dispatch)
+					// if request is failed we set error message
+					data.messages.length > 0
+						? dispatch(setError(data.messages[0])) // if server gave us error message we set it to the state
+						: handleError(dispatch) // otherwise set 'Some error occurred' error message
 				}
 			}
 		} catch (error) {
+			// set 'Some error occurred' error message to state
 			handleError(dispatch)
 		}
 	}
 )
 
-export const authLogout = createAsyncThunk(
-	'auth/authLogout',
-	async (_, { dispatch }) => {
-		await dispatch(authApi.endpoints.logout.initiate())
-
-		dispatch(toggleIsAuth(false))
-		dispatch(clearUserData())
-	}
-)
+export const authActions = authSlice.actions

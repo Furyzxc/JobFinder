@@ -1,16 +1,32 @@
+import { LockOutlined } from '@mui/icons-material'
+import { Avatar, Box, Container, Typography } from '@mui/material'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
+import { Form } from '../features/form'
 import { useAuth } from '../model/hooks.ts'
-import { LoginForm } from '@/components/authorization/features/loginForm'
-import s from '@/components/authorization/page/login.module.css'
 
 export const Login = () => {
 	const { isLoading } = useAuth()
 
 	return (
 		<WithLoading isLoading={isLoading}>
-			<div className={s.container1}>
-				<LoginForm />
-			</div>
+			<Container component='main' maxWidth='xs'>
+				<Box
+					sx={{
+						marginTop: 8,
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+					}}
+				>
+					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+						<LockOutlined />
+					</Avatar>
+					<Typography component='h1' variant='h5'>
+						Sign in
+					</Typography>
+					<Form />
+				</Box>
+			</Container>
 		</WithLoading>
 	)
 }

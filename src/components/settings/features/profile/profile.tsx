@@ -1,12 +1,12 @@
 import { Grid, Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
+import { BioAndName } from '../../entities/bioAndName'
+import { Section } from '../../entities/profileSection'
+import { SocialLinks } from '../../entities/socialLinks'
+import { Title } from '../../entities/title'
+import { UpdateProfile } from '../../entities/updateProfileBtn'
+import { UpdateErrorMessage } from '../../entities/updateProfileErrorMessage'
 import { useOwnerInfo } from '../../model/hooks'
-import s from './style.module.css'
-import { BioAndName } from '@/components/settings/entities/bioAndName/bioAndName.tsx'
-import { Section } from '@/components/settings/entities/profileSection/profileSection.tsx'
-import { SocialLinks } from '@/components/settings/entities/socialLinks'
-import { UpdateProfile } from '@/components/settings/entities/updateProfileBtn/updateProfile.tsx'
-import { ErrorMessage } from '@/components/settings/entities/updateProfileErrorMessage/errorMessage.tsx'
 
 export const Profile = () => {
 	const { info } = useOwnerInfo()
@@ -16,16 +16,8 @@ export const Profile = () => {
 
 	return (
 		<Stack direction={'column'} spacing={2} sx={{ overflowX: 'hidden' }}>
-			<ErrorMessage />
-			<div>
-				<Typography
-					variant={'h6'}
-					className={s.title}
-					sx={{ fontSize: '25px' }}
-				>
-					Public Profile
-				</Typography>
-			</div>
+			<UpdateErrorMessage />
+			<Title name={'Public Profile'} />
 			<Grid container wrap={'wrap-reverse'} spacing={2}>
 				<Grid item xs={12} sm={7}>
 					<BioAndName />

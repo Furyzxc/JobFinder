@@ -67,7 +67,9 @@ export const appRouter = createBrowserRouter([
 		path: '/settings/*',
 		element: (
 			<MainLayout>
-				<Settings />
+				<GuestGuard>
+					<Settings />
+				</GuestGuard>
 			</MainLayout>
 		),
 	},

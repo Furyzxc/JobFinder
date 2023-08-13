@@ -1,7 +1,7 @@
 import { baseApi } from '@/shared/api/baseApi.ts'
 import { AuthMeResponse, LoginResponse, RequestLoginBody } from './types.ts'
 
-export const authApi = baseApi.injectEndpoints({
+export const api = baseApi.injectEndpoints({
 	endpoints: build => ({
 		me: build.query<AuthMeResponse, void>({
 			query: () => 'auth/me',
@@ -23,3 +23,5 @@ export const authApi = baseApi.injectEndpoints({
 		}),
 	}),
 })
+
+export const { useLogoutMutation } = api

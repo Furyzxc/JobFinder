@@ -2,12 +2,12 @@ import { PermIdentityOutlined, SettingsOutlined } from '@mui/icons-material'
 import { ReactNode } from 'react'
 
 export interface IEntity {
-	name: string
-	icon: ReactNode
-	path: string
+	name: string // navigation element name
+	icon: ReactNode // navigation element icon that displays on left side
+	path: string // path that element navigates after click
 }
 
-export const entities: IEntity[] = [
+export const useSettingsNavigation = (): IEntity[] => [
 	{
 		name: 'Public profile',
 		icon: <PermIdentityOutlined />,
