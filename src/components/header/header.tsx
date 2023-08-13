@@ -14,7 +14,7 @@ export const AuthorizedHeader = () => {
 	const { info } = useOwnerInfo()
 
 	const name = info?.name
-	const avatar = info?.avatar
+	const avatar = info?.photos.avatar
 
 	return (
 		<Box>

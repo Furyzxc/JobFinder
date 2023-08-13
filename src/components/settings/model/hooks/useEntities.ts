@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useActions } from '@/shared/model/hooks.ts'
 import { useOwnerInfo } from './useOwnerInfo.ts'
 
@@ -21,8 +22,10 @@ export const useEntities = (): Entity[] => {
 		setMainValue({ fieldName, value })
 
 	// setting name and bio to state
-	name && setFieldValue('name')(name)
-	bio && setFieldValue('bio')(bio)
+	useEffect(() => {
+		name && setFieldValue('name')(name)
+		bio && setFieldValue('bio')(bio)
+	}, [bio, name, setFieldValue])
 
 	const entities: Entity[] = []
 

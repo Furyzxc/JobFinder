@@ -1,5 +1,5 @@
 import { Box, Grid, Stack, TextField } from '@mui/material'
-import { ChangeEvent, memo, useEffect } from 'react'
+import { ChangeEvent, memo, useEffect, useMemo } from 'react'
 import { useActions } from '@/shared/model/hooks.ts'
 import { useSocialLinks } from '../../model/hooks'
 import { useSocialAccounts } from '@/components/settings/model/hooks/useSocialAccounts.ts'
@@ -12,15 +12,28 @@ const SocialAccount = memo(({ icon, defaultValue, name }: Link) => {
 
 	useEffect(() => {
 		setAccountValue({ fieldName: name, value: defaultValue })
-	}, [defaultValue, name, setAccountValue])
+	}, [])
 
-	const setValue = (value: string) =>
-		setAccountValue({ fieldName: name, value })
+	const setValue = useMemo(
+		() => (value: string) => {
+			setAccountValue({ fieldName: name, value })
+		},
+		[name, setAccountValue]
+	)
 
-	const handleChange = ({
-		target,
-	}: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+	const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		setValue(target.value)
+	}
+
+	const handleBlur = ({ target: { value } }: FocusEvent<HTMLInputElement>) => {
+		if (value) {
+			if (!value.startsWith('https://')) {
+				setValue('https://' + value)
+			} else {
+				setValue(value)
+			}
+		}
+	}
 
 	return (
 		<Grid container>
@@ -31,6 +44,7 @@ const SocialAccount = memo(({ icon, defaultValue, name }: Link) => {
 				<TextField
 					value={value}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					inputProps={{ style: { fontSize: 12 } }}
 					placeholder={'Link to social profile'}
 					sx={{
