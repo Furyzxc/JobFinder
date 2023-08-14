@@ -1,13 +1,7 @@
 import { useParams } from 'react-router-dom'
-import { useAppSelector } from '@/shared/model/hooks'
 import { ProfileResponseBody } from '../api/types.ts'
-import { selectProfile } from './slice.ts'
 import { useAuthInfo } from '@/components/authorization'
 import { useGetProfileQuery } from '@/components/profile'
-
-export const useProfile = () => {
-	return useAppSelector(selectProfile)
-}
 
 interface UserIdFromParamsOutput {
 	id: number | undefined
@@ -32,21 +26,24 @@ interface MainInfo {
 }
 
 interface GetProfile {
-	data: ProfileResponseBody | undefined
+	profileData: ProfileResponseBody | undefined
+	isLoading: boolean
+	isError: boolean
+	isOwner: boolean
 }
 
 export const useGetProfile = (): GetProfile => {
-	const { id } = useUserDetails()
+	const { id, isOwner } = useUserDetails()
 
-	const { data } = useGetProfileQuery(id || 0, {
+	const { data, isLoading, isError } = useGetProfileQuery(id || 0, {
 		skip: !id,
 	})
 
-	return { data }
+	return { profileData: data, isLoading, isError, isOwner }
 }
 
 export const useMainInfo = (): MainInfo[] | undefined => {
-	const { data: userProfile } = useGetProfile()
+	const { profileData: userProfile } = useGetProfile()
 
 	if (userProfile) {
 		return [
@@ -71,21 +68,21 @@ interface JobInfo {
 }
 
 export const useJobInfo = (): JobInfo[] | undefined => {
-	const { data } = useGetProfile()
+	const { profileData } = useGetProfile()
 
-	if (data) {
+	if (profileData) {
 		return [
 			{
 				key: Math.random(),
 				name: 'Looking for a job',
-				textValue: data.lookingForAJob
+				textValue: profileData.lookingForAJob
 					? 'Currently open to job opportunities'
 					: 'Not currently seeking a job',
 			},
 			{
 				key: Math.random(),
 				name: 'Description',
-				textValue: data.lookingForAJobDescription || '',
+				textValue: profileData.lookingForAJobDescription || '',
 				multiline: true,
 			},
 		]

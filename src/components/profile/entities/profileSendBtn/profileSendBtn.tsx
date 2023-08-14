@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useStartChattingMutation } from '../../api/api.ts'
-import { useProfile } from '../../model/hooks.ts'
+import { useGetProfile } from '../../model/hooks.ts'
 import s from './sendBtn.module.css'
 
 interface PropsType {
@@ -10,7 +10,7 @@ interface PropsType {
 }
 
 export const ProfileSendBtn = ({ userId }: PropsType) => {
-	const { name: userName } = useProfile()
+	const { profileData } = useGetProfile()
 
 	const [startChatting, { data, isSuccess, isLoading }] =
 		useStartChattingMutation()
@@ -18,7 +18,7 @@ export const ProfileSendBtn = ({ userId }: PropsType) => {
 
 	// sends request on endpoint after click on send message button
 	const handleSendBtnClick = () => {
-		if (userName) {
+		if (profileData) {
 			startChatting(userId)
 		}
 	}

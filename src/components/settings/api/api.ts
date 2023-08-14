@@ -11,6 +11,7 @@ export const api = baseApi.injectEndpoints({
 				method: 'PUT',
 				body,
 			}),
+			invalidatesTags: ['PROFILE'],
 		}),
 
 		editProfileStatus: build.mutation<EditProfileResponse, string>({

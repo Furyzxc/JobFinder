@@ -31,6 +31,7 @@ export const DialogsForm = memo(() => {
 			<TextField
 				{...register('input', { required: true })}
 				disabled={isLoading}
+				autoFocus
 				size={'small'}
 				placeholder='Type your message here...'
 				sx={{ width: '100%', mb: '1px' }}

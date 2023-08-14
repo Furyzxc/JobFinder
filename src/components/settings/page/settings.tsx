@@ -14,31 +14,31 @@ export const Settings = () => {
 	const { ref } = useSmoothAppearance()
 
 	return (
-		<Stack
-			direction={'column'}
-			spacing={4}
-			className={'noNavigationHeight scroll'}
-			sx={{ p: '15px 0 0 20px' }}
-			ref={ref}
-		>
+		<div ref={ref}>
 			<WithLoading isLoading={isLoading}>
 				<WithError isError={isError}>
-					<div>
-						<Header />
-					</div>
-					<Grid container>
-						<Grid item xs={11} sm={3} sx={{ mb: '30px' }}>
-							<Navigation />
+					<Stack
+						sx={{ p: '15px 0 0 20px' }}
+						spacing={4}
+						className={'noNavigationHeight scroll'}
+					>
+						<div>
+							<Header />
+						</div>
+						<Grid container>
+							<Grid item xs={11} sm={3} sx={{ mb: '30px' }}>
+								<Navigation />
+							</Grid>
+							<Grid item xs={12} sm={9}>
+								<Routes>
+									<Route path='*' element={<Profile />} />
+									<Route path='account' element={<Account />} />
+								</Routes>
+							</Grid>
 						</Grid>
-						<Grid item xs={12} sm={9}>
-							<Routes>
-								<Route path='*' element={<Profile />} />
-								<Route path='account' element={<Account />} />
-							</Routes>
-						</Grid>
-					</Grid>
+					</Stack>
 				</WithError>
 			</WithLoading>
-		</Stack>
+		</div>
 	)
 }

@@ -15,6 +15,7 @@ export const api = baseApi.injectEndpoints({
 		getProfile: build.query<ProfileResponseBody, number>({
 			query: userId => 'profile/' + userId,
 			transformResponse: (res: TransformType) => transformProfileRes(res),
+			providesTags: () => ['PROFILE'],
 		}),
 
 		getUserStatus: build.query<string, number>({

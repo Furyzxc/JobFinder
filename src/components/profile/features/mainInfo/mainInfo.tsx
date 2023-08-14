@@ -3,26 +3,22 @@ import { UserAvatar } from '@/shared/ui/avatar'
 import { useAuthInfo } from '@/components/authorization'
 import { useGetProfile, useMainInfo } from '@/components/profile/model/hooks.ts'
 
-type PropsType = {
-	isOwner: boolean
-}
-
-export const MainInfo = ({ isOwner }: PropsType) => {
+export const MainInfo = () => {
 	const entities = useMainInfo()
-	const { data } = useGetProfile()
+	const { profileData, isOwner } = useGetProfile()
 	const { login } = useAuthInfo()
 
-	if (entities && data && login) {
+	if (entities && profileData && login) {
 		return (
 			<Stack spacing={1} sx={{ mb: '20px' }}>
 				<UserAvatar
-					avatar={data.photos.avatar}
-					name={data.name}
+					avatar={profileData.photos.avatar}
+					name={profileData.name}
 					size={'296px'}
 				/>
 				<Stack>
 					<Typography variant={'h6'} sx={{ fontSize: '25px' }}>
-						{data.name}
+						{profileData.name}
 					</Typography>
 					{isOwner && (
 						<Typography
@@ -34,7 +30,7 @@ export const MainInfo = ({ isOwner }: PropsType) => {
 					)}
 				</Stack>
 				<Typography variant={'h2'} sx={{ fontSize: '20px' }}>
-					{data.bio}
+					{profileData.bio}
 				</Typography>
 			</Stack>
 		)

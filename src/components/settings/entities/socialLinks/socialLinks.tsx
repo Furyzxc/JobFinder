@@ -35,27 +35,28 @@ const SocialAccount = memo(({ icon, defaultValue, name }: Link) => {
 	}
 
 	return (
-		<Grid container>
-			<Grid item xs={1.5} md={0.6} sm={0.6}>
-				<Box sx={{ pt: '5px' }}>{icon}</Box>
+		<Stack direction={'row'}>
+			<Box sx={{ pt: '5px', mr: '10px' }}>{icon}</Box>
+			{/*// <Grid item xs={10} md={7} sm={8}>*/}
+			<Grid container>
+				<Grid item xs={10} md={7} sm={8}>
+					<TextField
+						value={value}
+						onChange={handleChange}
+						onBlur={handleBlur}
+						inputProps={{ style: { fontSize: 12 } }}
+						placeholder={'Link to social profile'}
+						sx={{
+							fontSize: '12px',
+							fontWeight: '100',
+							width: '100%',
+							backgroundColor: '#0D1117',
+						}}
+						size={'small'}
+					/>
+				</Grid>
 			</Grid>
-			<Grid item xs={10} md={7} sm={8}>
-				<TextField
-					value={value}
-					onChange={handleChange}
-					onBlur={handleBlur}
-					inputProps={{ style: { fontSize: 12 } }}
-					placeholder={'Link to social profile'}
-					sx={{
-						fontSize: '12px',
-						fontWeight: '100',
-						width: '100%',
-						backgroundColor: '#0D1117',
-					}}
-					size={'small'}
-				/>
-			</Grid>
-		</Grid>
+		</Stack>
 	)
 })
 
