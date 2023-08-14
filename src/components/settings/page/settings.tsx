@@ -16,7 +16,7 @@ export const Settings = () => {
 				<Stack
 					direction={'column'}
 					spacing={4}
-					className={'height scroll'}
+					className={'noNavigationHeight scroll'}
 					sx={{ p: '15px 0 0 20px' }}
 				>
 					<div>

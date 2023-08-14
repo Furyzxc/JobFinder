@@ -9,6 +9,8 @@ type PropsType = {
 	navRef: any
 }
 
+const SECOND = 1
+
 export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 	const icons = useIcons()
 
@@ -17,7 +19,7 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 
 	useEffect(() => {
 		if (isInView) {
-			animate(scope.current, { left: 0 })
+			animate(scope.current, { left: 0 }, { duration: 0.1 * SECOND })
 		}
 	}, [animate, isInView, scope])
 
@@ -33,8 +35,9 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 			ref={scope}
 			className={'height'}
 			sx={{
+				overflow: 'hidden',
 				position: 'absolute',
-				width: '150%',
+				width: '100%',
 				top: 0,
 				left: -300,
 				zIndex: 1,
@@ -42,11 +45,12 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 			}}
 		>
 			<Box
+				className={'height'}
 				sx={{
 					background: '#161B22',
-					height: '100%',
 					width: '300px',
 					p: '0 10px',
+					overflow: 'hidden',
 				}}
 				ref={navRef}
 			>

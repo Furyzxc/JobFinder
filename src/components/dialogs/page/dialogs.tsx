@@ -5,7 +5,6 @@ import { Div } from '@/shared/ui/div/div.tsx'
 import { useRequestDialogsQuery } from '../api/api.ts'
 import { Chat } from '../features/chat'
 import { DialogsList } from '../features/dialogsList'
-import s from './dialogs.module.css'
 
 export const Dialogs = () => {
 	const { userId } = useParams()
@@ -14,7 +13,13 @@ export const Dialogs = () => {
 	return (
 		<WithError isError={isError}>
 			<Grid container>
-				<Grid item xs={4} sm={3} className={s.dialogsList}>
+				<Grid
+					item
+					xs={4}
+					sm={3}
+					sx={{ position: 'relative' }}
+					className={'noNavigationHeight'}
+				>
 					<DialogsList />
 				</Grid>
 				<Grid sx={{ position: 'relative' }} item xs={8} sm={9}>

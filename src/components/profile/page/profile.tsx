@@ -24,12 +24,12 @@ export const Profile = () => {
 	return (
 		<WithLoading isLoading={isLoading}>
 			<WithError isError={isError || !id}>
-				<Container sx={{ pt: '10px' }}>
+				<Container sx={{ pt: '10px' }} className={'noNavigationHeight scroll'}>
 					<Grid container>
 						<Grid item xs={12} sm={6} md={4}>
 							<MainInfo isOwner={isOwner} />
 						</Grid>
-						<Grid item xs={12} sm={6} md={8}>
+						<Grid item xs={12} sm={6} md={8} sx={{ mb: '20px' }}>
 							<JobInfo />
 						</Grid>
 					</Grid>
