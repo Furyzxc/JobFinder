@@ -9,71 +9,69 @@ import {
 	YouTube,
 } from '@mui/icons-material'
 import { ReactNode } from 'react'
+import { SocialAccountsType } from '../slice.ts'
 import { useOwnerInfo } from './useOwnerInfo.ts'
-import { SocialAccountsType } from '@/components/settings/model/slice.ts'
 
 export interface Link {
-	key: number
-	name: SocialAccountsType
-	defaultValue: string
-	icon: ReactNode
+	key: number // react key
+	name: SocialAccountsType // link name
+	defaultValue: string // value from store's state
+	icon: ReactNode // link's icon
 }
 
+// Common data for social media links
+const socialMediaLinks: Omit<Link, 'defaultValue' | 'key'>[] = [
+	{
+		name: 'github',
+		icon: <GitHub />,
+	},
+	{
+		name: 'linkedin',
+		icon: <LinkedIn />,
+	},
+	{
+		name: 'facebook',
+		icon: <Facebook />,
+	},
+	{
+		name: 'instagram',
+		icon: <Instagram />,
+	},
+	{
+		name: 'twitter',
+		icon: <Twitter />,
+	},
+	{
+		name: 'website',
+		icon: <Language />,
+	},
+	{
+		name: 'youtube',
+		icon: <YouTube />,
+	},
+	{
+		name: 'telegram',
+		icon: <Telegram />,
+	},
+]
+
+/**
+ * Generates an array of social media links with their associated data.
+ * @returns array of social media links.
+ */
 export const useSocialLinks = (): Link[] => {
 	const { info } = useOwnerInfo()
 	const socialAccounts = info?.socialAccounts
-
+	// if exists
 	if (socialAccounts) {
-		return [
-			{
-				key: Math.random(),
-				name: 'github',
-				defaultValue: socialAccounts['github'] || '',
-				icon: <GitHub />,
-			},
-			{
-				key: Math.random(),
-				name: 'linkedin',
-				defaultValue: socialAccounts['linkedin'] || '',
-				icon: <LinkedIn />,
-			},
-			{
-				key: Math.random(),
-				name: 'facebook',
-				defaultValue: socialAccounts['facebook'] || '',
-				icon: <Facebook />,
-			},
-			{
-				key: Math.random(),
-				name: 'instagram',
-				defaultValue: socialAccounts['instagram'] || '',
-				icon: <Instagram />,
-			},
-			{
-				key: Math.random(),
-				name: 'twitter',
-				defaultValue: socialAccounts['twitter'] || '',
-				icon: <Twitter />,
-			},
-			{
-				key: Math.random(),
-				name: 'website',
-				defaultValue: socialAccounts['website'] || '',
-				icon: <Language />,
-			},
-			{
-				key: Math.random(),
-				name: 'youtube',
-				defaultValue: socialAccounts['youtube'] || '',
-				icon: <YouTube />,
-			},
-			{
-				key: Math.random(),
-				name: 'telegram',
-				defaultValue: socialAccounts['telegram'] || '',
-				icon: <Telegram />,
-			},
-		]
+		// Map social media link data to Link objects, adding key and default value
+		return socialMediaLinks.map(link => ({
+			key: Math.random(),
+			name: link.name,
+			defaultValue: socialAccounts[link.name] || '',
+			icon: link.icon,
+		}))
 	}
+
 	return []
 }

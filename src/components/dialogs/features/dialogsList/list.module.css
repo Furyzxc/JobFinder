@@ -12,6 +12,6 @@
 @media (max-width: 768px) {
     .list {
         height: calc(100vh - 50px - 56px);
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }

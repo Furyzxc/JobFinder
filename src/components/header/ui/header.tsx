@@ -1,6 +1,7 @@
-import { GitHub, Menu } from '@mui/icons-material'
-import { Box, Stack, Typography } from '@mui/material'
+import { Menu } from '@mui/icons-material'
+import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import site_icon from '@/assets/melon.png'
 import { useOutside } from '@/shared/model/hooks.ts'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { useHeaderPageName } from '@/components/header/model/hooks.ts'
@@ -33,7 +34,11 @@ export const AuthorizedHeader = () => {
 					sx={{ height: '31px', cursor: 'pointer' }}
 					onClick={handleMenuClik}
 				/>
-				<GitHub sx={{ height: '31px', width: '31px', cursor: 'pointer' }} />
+				<Avatar
+					src={site_icon}
+					alt='user avatar'
+					sx={{ height: '31px', width: '31px' }}
+				/>
 				<Typography sx={{ pt: '4px', width: '85%' }}>{pageName}</Typography>
 				<Link to={'/profile'} style={{ marginTop: '-5px', cursor: 'pointer' }}>
 					{name && <UserAvatar avatar={avatar} name={name} />}
