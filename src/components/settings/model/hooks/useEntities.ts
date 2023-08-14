@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useActions } from '@/shared/model/hooks.ts'
 import { useOwnerInfo } from './useOwnerInfo.ts'
+import { useSetFieldValue } from '@/components/settings/model/hooks/useSetFieldValue.ts'
 
 interface Entity {
 	name: string
@@ -16,15 +16,12 @@ export const useEntities = (): Entity[] => {
 	const name = info?.name
 	const bio = info?.bio
 
-	const { setMainValue } = useActions()
-
-	const setFieldValue = (fieldName: 'name' | 'bio') => (value: string) =>
-		setMainValue({ fieldName, value })
+	const [setFieldValue] = useSetFieldValue()
 
 	// setting name and bio to state
 	useEffect(() => {
-		name && setFieldValue('name')(name)
-		bio && setFieldValue('bio')(bio)
+		name && setFieldValue('name', name)
+		bio && setFieldValue('bio', bio)
 	}, [bio, name, setFieldValue])
 
 	const entities: Entity[] = []
@@ -49,11 +46,17 @@ export const useEntities = (): Entity[] => {
 	addEntity(
 		'Name',
 		name,
-		setFieldValue('name'),
+		(value: string) => setFieldValue('name', value),
 		'Your name will appear around JobFinder.'
 	)
 
-	addEntity('Bio', bio, setFieldValue('bio'), undefined, true)
+	addEntity(
+		'Bio',
+		bio,
+		(value: string) => setFieldValue('bio', value),
+		undefined,
+		true
+	)
 
 	return entities
 }

@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/shared/model/hooks.ts'
+import { useAppSelector } from '@/shared/model/hooks'
 import { selectPaginator, selectUsersState } from './slice.ts'
 
 export const useUsersState = () => {

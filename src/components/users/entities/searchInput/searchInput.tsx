@@ -1,4 +1,4 @@
-import { useActions } from '@/shared/model/hooks.ts'
+import { useActions } from '@/shared/model/hooks'
 import { Input } from '@/shared/ui/input'
 import { useUsersState } from '@/components/users/model/hooks.ts'
 

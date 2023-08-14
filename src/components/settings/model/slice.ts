@@ -16,6 +16,8 @@ interface SocialAccounts {
 interface ProfileSettings {
 	name: string
 	bio: string
+	isLookingForJob: boolean
+	jobDescription: string
 
 	socialAccounts: SocialAccounts
 
@@ -27,6 +29,8 @@ interface ProfileSettings {
 const initialState: ProfileSettings = {
 	name: '',
 	bio: '',
+	isLookingForJob: false,
+	jobDescription: '',
 
 	socialAccounts: {
 		github: '',
@@ -44,9 +48,15 @@ const initialState: ProfileSettings = {
 	isError: false,
 }
 
-interface SetMainValueAction {
-	fieldName: 'name' | 'bio'
-	value: string
+export type MainFieldType =
+	| 'name'
+	| 'bio'
+	| 'jobDescription'
+	| 'isLookingForJob'
+
+type SetMainValueAction = {
+	fieldName: 'name' | 'bio' | 'jobDescription' | 'isLookingForJob'
+	value: string | boolean
 }
 
 export type SocialAccountsType =
@@ -71,7 +81,25 @@ export const profileSettingsSlice = createSlice({
 	initialState,
 	reducers: {
 		setMainValue(state, { payload }: PayloadAction<SetMainValueAction>) {
-			state[payload.fieldName] = payload.value
+			const { fieldName, value } = payload
+
+			if (
+				// if payload refers to string value
+				typeof value === 'string' &&
+				(fieldName === 'name' ||
+					fieldName === 'bio' ||
+					fieldName === 'jobDescription')
+			) {
+				// setting string value
+				state[fieldName] = value
+			} else if (
+				// if payload refers boolean value (radio buttons)
+				fieldName === 'isLookingForJob' &&
+				typeof value === 'boolean'
+			) {
+				// setting boolean value
+				state.isLookingForJob = value
+			}
 		},
 
 		setAccountValue(state, { payload }: PayloadAction<SetAccountValueAction>) {

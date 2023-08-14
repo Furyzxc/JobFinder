@@ -1,6 +1,6 @@
 import DoneAllIcon from '@mui/icons-material/DoneAll'
 import { clsx } from 'clsx'
-import { useFormattedTime } from '@/shared/model/hooks.ts'
+import { useFormattedTime } from '@/shared/model/hooks'
 import { MessageResponseType } from '../../api/types.ts'
 import s from './message.module.css'
 

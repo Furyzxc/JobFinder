@@ -7,7 +7,7 @@ interface InputProps {
 	value?: string
 	label?: string
 	multiline?: boolean
-	defaultValue?: string | null
+	defaultValue?: string | null | boolean
 	placeholder?: string
 	disabled?: boolean
 }

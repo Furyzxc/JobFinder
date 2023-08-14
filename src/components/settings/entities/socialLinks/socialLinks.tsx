@@ -1,9 +1,8 @@
 import { Box, Grid, Stack, TextField } from '@mui/material'
 import { ChangeEvent, FocusEvent, memo, useEffect, useMemo } from 'react'
-import { useActions } from '@/shared/model/hooks.ts'
+import { useActions } from '@/shared/model/hooks'
 import { useSocialLinks } from '../../model/hooks'
-import { useSocialAccounts } from '@/components/settings/model/hooks/useSocialAccounts.ts'
-import { Link } from '@/components/settings/model/hooks/useSocialLinks.tsx'
+import { Link, useSocialAccounts } from '../../model/hooks'
 
 const SocialAccount = memo(({ icon, defaultValue, name }: Link) => {
 	const socialAccounts = useSocialAccounts()

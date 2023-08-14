@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { useRequestDialogsQuery } from '../api/api.ts'
 import { Chat } from '../features/chat'
@@ -10,9 +11,11 @@ export const Dialogs = () => {
 	const { userId } = useParams()
 	const { isError } = useRequestDialogsQuery()
 
+	const { ref } = useSmoothAppearance()
+
 	return (
-		<WithError isError={isError}>
-			<Grid container>
+		<Grid container ref={ref}>
+			<WithError isError={isError}>
 				<Grid
 					item
 					xs={4}
@@ -25,7 +28,7 @@ export const Dialogs = () => {
 				<Grid sx={{ position: 'relative' }} item xs={8} sm={9}>
 					{userId ? <Chat id={+userId} /> : <Div>Start Chatting</Div>}
 				</Grid>
-			</Grid>
-		</WithError>
+			</WithError>
+		</Grid>
 	)
 }

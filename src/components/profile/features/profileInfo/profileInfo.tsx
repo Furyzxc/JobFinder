@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from '@mui/material'
 import { useEffect } from 'react'
-import { useActions } from '@/shared/model/hooks.ts'
+import { useActions } from '@/shared/model/hooks'
 import { useGetProfileQuery } from '../../api/api.ts'
 import { Bio } from '../../entities/bio'
 import { DescriptionSection } from '../../entities/profileDescription'

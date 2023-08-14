@@ -1,4 +1,4 @@
-import { useActions } from '@/shared/model/hooks.ts'
+import { useActions } from '@/shared/model/hooks'
 import { ErrorMessage } from '@/shared/ui/errorMessage'
 
 type PropsType = {

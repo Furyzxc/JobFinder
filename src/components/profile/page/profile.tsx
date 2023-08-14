@@ -1,8 +1,7 @@
 import { Container, Grid } from '@mui/material'
 import { useEffect } from 'react'
-import { WithError } from '@/shared/hoc/withError.tsx'
-import { WithLoading } from '@/shared/hoc/withLoading.tsx'
-import { useAppDispatch } from '@/shared/model/hooks.ts'
+import { WithError, WithLoading } from '@/shared/hoc'
+import { useAppDispatch, useSmoothAppearance } from '@/shared/model/hooks'
 import { JobInfo } from '../features/jobInfo'
 import { MainInfo } from '../features/mainInfo'
 import { useProfile, useUserDetails } from '../model/hooks.ts'
@@ -15,6 +14,8 @@ export const Profile = () => {
 	// otherwise id is taken from url params
 	const { id, isOwner } = useUserDetails()
 
+	const { ref } = useSmoothAppearance(!isLoading)
+
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
@@ -22,9 +23,13 @@ export const Profile = () => {
 	}, [dispatch, id])
 
 	return (
-		<WithLoading isLoading={isLoading}>
-			<WithError isError={isError || !id}>
-				<Container sx={{ pt: '10px' }} className={'noNavigationHeight scroll'}>
+		<Container
+			sx={{ pt: '10px' }}
+			className={'noNavigationHeight scroll'}
+			ref={ref}
+		>
+			<WithLoading isLoading={isLoading}>
+				<WithError isError={isError || !id}>
 					<Grid container>
 						<Grid item xs={12} sm={6} md={4}>
 							<MainInfo isOwner={isOwner} />
@@ -33,8 +38,8 @@ export const Profile = () => {
 							<JobInfo />
 						</Grid>
 					</Grid>
-				</Container>
-			</WithError>
-		</WithLoading>
+				</WithError>
+			</WithLoading>
+		</Container>
 	)
 }

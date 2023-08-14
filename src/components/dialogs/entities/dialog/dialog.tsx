@@ -1,11 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material'
 import clsx from 'clsx'
-import { useAnimate, useInView } from 'framer-motion'
-import { memo, useEffect } from 'react'
+import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDialogsTime } from '@/shared/model/hooks.ts'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { DialogsResponse } from '../../api/types.ts'
+import { useDialogsTime } from '../../model/hooks'
 import s from './dialog.module.css'
 
 interface PropsType extends DialogsResponse {
@@ -22,13 +22,7 @@ export const Dialog = memo(
 	}: PropsType) => {
 		const navigate = useNavigate()
 
-		const [scope, animate] = useAnimate()
-		const isInView = useInView(scope)
-
-		useEffect(() => {
-			if (isInView) animate(scope.current, { opacity: 1 }, { duration: 0.2 })
-			else animate(scope.current, { opacity: 0 }, { duration: 0 })
-		}, [animate, isInView, scope])
+		const { ref } = useSmoothAppearance()
 
 		const handleDialogClick = () => navigate('/dialogs/' + id)
 
@@ -38,7 +32,7 @@ export const Dialog = memo(
 			<Stack
 				onClick={handleDialogClick}
 				className={clsx(s.dialog, isSelected && s.selected)}
-				ref={scope}
+				ref={ref}
 				direction={'row'}
 			>
 				<Box className={s.avatar} sx={{ mr: '5px' }}>

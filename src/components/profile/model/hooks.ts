@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
-import { useAppSelector } from '@/shared/model/hooks.ts'
+import { useAppSelector } from '@/shared/model/hooks'
+import { ProfileResponseBody } from '../api/types.ts'
+import { selectProfile } from './slice.ts'
 import { useAuthInfo } from '@/components/authorization'
 import { useGetProfileQuery } from '@/components/profile'
-import { ProfileResponseBody } from '@/components/profile/api/types.ts'
-import { selectProfile } from '@/components/profile/model/slice.ts'
 
 export const useProfile = () => {
 	return useAppSelector(selectProfile)

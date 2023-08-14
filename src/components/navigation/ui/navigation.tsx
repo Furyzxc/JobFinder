@@ -1,7 +1,6 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
-import { useAnimate, useInView } from 'framer-motion'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAnimation } from '@/shared/model/hooks'
 import { useIcons } from '../model/hooks/useIcons.tsx'
 
 type PropsType = {
@@ -9,19 +8,10 @@ type PropsType = {
 	navRef: any
 }
 
-const SECOND = 1
-
 export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 	const icons = useIcons()
 
-	const [scope, animate] = useAnimate()
-	const isInView = useInView(scope)
-
-	useEffect(() => {
-		if (isInView) {
-			animate(scope.current, { left: 0 }, { duration: 0.1 * SECOND })
-		}
-	}, [animate, isInView, scope])
+	const { ref } = useAnimation({ left: 0 }, { left: -300 }, 0.1)
 
 	const navigate = useNavigate()
 
@@ -32,7 +22,7 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 
 	return (
 		<Stack
-			ref={scope}
+			ref={ref}
 			className={'height'}
 			sx={{
 				overflow: 'hidden',

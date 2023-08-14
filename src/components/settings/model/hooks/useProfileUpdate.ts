@@ -19,6 +19,8 @@ export const useProfileUpdate = (): Output => {
 	const {
 		name,
 		bio,
+		isLookingForJob,
+		jobDescription,
 		socialAccounts: { telegram: mainLink, linkedin: vk, ...socialAccounts },
 	} = useProfileSettings()
 	const { info } = useOwnerInfo()
@@ -50,14 +52,12 @@ export const useProfileUpdate = (): Output => {
 	return [
 		() => {
 			if (info) {
-				const { lookingForAJob, lookingForAJobDescription, userId } = info
-
 				const editProfileBody = createEditProfileBody(
 					name,
-					userId,
+					info.userId,
 					bio,
-					lookingForAJob,
-					lookingForAJobDescription
+					isLookingForJob,
+					jobDescription
 				)
 
 				editProfile(editProfileBody)

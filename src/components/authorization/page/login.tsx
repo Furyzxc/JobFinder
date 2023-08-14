@@ -1,15 +1,18 @@
 import { LockOutlined } from '@mui/icons-material'
 import { Avatar, Box, Container, Typography } from '@mui/material'
-import { WithLoading } from '@/shared/hoc/withLoading.tsx'
+import { WithLoading } from '@/shared/hoc'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Form } from '../features/form'
 import { useAuth } from '../model/hooks.ts'
 
 export const Login = () => {
 	const { isLoading } = useAuth()
 
+	const { ref } = useSmoothAppearance()
+
 	return (
-		<WithLoading isLoading={isLoading}>
-			<Container component='main' maxWidth='xs'>
+		<Container component='main' maxWidth='xs' ref={ref}>
+			<WithLoading isLoading={isLoading}>
 				<Box
 					sx={{
 						marginTop: 8,
@@ -26,7 +29,7 @@ export const Login = () => {
 					</Typography>
 					<Form />
 				</Box>
-			</Container>
-		</WithLoading>
+			</WithLoading>
+		</Container>
 	)
 }
