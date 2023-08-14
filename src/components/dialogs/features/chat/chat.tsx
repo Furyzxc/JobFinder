@@ -8,7 +8,7 @@ import { Messages } from '../messages'
 export const Chat = memo(({ setIsShow }: BackBtnTypes) => {
 	return (
 		<Grid
-			sx={{ position: 'relative' }}
+			// sx={{ position: 'relative' }}
 			direction={'column'}
 			container
 			className={'noNavigationHeight'}

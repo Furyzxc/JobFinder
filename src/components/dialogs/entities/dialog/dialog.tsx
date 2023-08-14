@@ -40,7 +40,7 @@ export const Dialog = memo(
 				ref={ref}
 				direction={'row'}
 			>
-				<Box sx={{ mr: '5px' }}>
+				<Box sx={{ mr: '10px' }}>
 					<UserAvatar avatar={small} name={userName} />
 				</Box>
 				<Box sx={{ pt: '10px' }}>

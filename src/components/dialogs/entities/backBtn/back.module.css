@@ -1,6 +1,7 @@
 .back {
     display: none;
     cursor: pointer;
+    margin: 4px;
 }
 
 @media (max-width: 768px) {

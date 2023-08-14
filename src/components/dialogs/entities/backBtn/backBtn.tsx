@@ -7,10 +7,7 @@ export type BackBtnTypes = {
 }
 
 export const BackBtn = ({ setIsShow }: BackBtnTypes) => {
-	const handleBtnClick = () => {
-		console.log('click')
-		setIsShow(prev => !prev)
-	}
+	const handleBtnClick = () => setIsShow(prev => !prev)
 
 	return (
 		<div className={s.back} onClick={handleBtnClick}>
