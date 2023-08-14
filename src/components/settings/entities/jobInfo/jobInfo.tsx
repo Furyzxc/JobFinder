@@ -12,7 +12,7 @@ export const JobInfo = () => {
 	useEffect(() => {
 		// check on undefined
 		if (isLookingForJob && description) {
-			// setting initial isLookingForAJob and jobDesctiption values to store's state
+			// setting initial isLookingForAJob and description values to store's state
 			setFieldValue('isLookingForJob', isLookingForJob.value)
 			setFieldValue('jobDescription', description.value)
 		}
@@ -37,7 +37,7 @@ export const JobInfo = () => {
 					<Section name={isLookingForJob.name}>
 						<RadioGroup
 							onChange={handleRadioGroupChange}
-							sx={{ ml: '13px' }}
+							sx={{ pl: '13px' }}
 							row
 							aria-labelledby='demo-row-radio-buttons-group-label'
 							name='row-radio-buttons-group'

@@ -4,6 +4,7 @@ import { DialogsForm } from '@/components/dialogs/features/dialogsForm'
 import { Messages } from '@/components/dialogs/features/messages'
 import { useGetProfileQuery } from '@/components/profile'
 
+
 type PropsType = {
 	id: number
 }

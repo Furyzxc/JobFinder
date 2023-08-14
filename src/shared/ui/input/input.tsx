@@ -10,6 +10,7 @@ interface InputProps {
 	defaultValue?: string | null | boolean
 	placeholder?: string
 	disabled?: boolean
+	width?: string
 }
 
 export const Input = ({
@@ -21,6 +22,7 @@ export const Input = ({
 	defaultValue,
 	placeholder,
 	disabled,
+	width,
 }: InputProps) => {
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) =>
 		onChange && onChange(e.target.value)
@@ -36,8 +38,7 @@ export const Input = ({
 			multiline={multiline}
 			hiddenLabel={!!label}
 			label={label}
-			autoComplete='off'
-			sx={{ width: '80%' }}
+			sx={{ width: width || '80%' }}
 			value={value}
 			onChange={handleInputChange}
 			onBlur={handleBlur}

@@ -3,6 +3,7 @@ import dayjs from 'dayjs'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc/withError.tsx'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { useRequestMessagesQuery } from '../../api/api.ts'
 import s from './messages.module.css'
@@ -33,14 +34,16 @@ export const Messages = () => {
 		return true
 	}
 
+	const { ref } = useSmoothAppearance(!isFetching)
+
 	return (
-		<WithLoading isLoading={isFetching}>
-			<WithError isError={isError}>
-				<div className={s.flexbox}>
+		<div className={s.flexbox} ref={ref}>
+			<WithLoading isLoading={isFetching}>
+				<WithError isError={isError}>
 					{messages && messages.length > 0 ? (
 						messages.map(message => {
 							return (
-								<div className={s.mesContainer} key={message.id}>
+								<div key={message.id}>
 									{!isExist(message.addedAt) && (
 										<Divider sx={{ mb: '10px', textTransform: 'none' }}>
 											<Chip
@@ -56,8 +59,8 @@ export const Messages = () => {
 					) : (
 						<Div>Enter your first message</Div>
 					)}
-				</div>
-			</WithError>
-		</WithLoading>
+				</WithError>
+			</WithLoading>
+		</div>
 	)
 }
