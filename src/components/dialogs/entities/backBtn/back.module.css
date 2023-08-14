@@ -1,0 +1,10 @@
+.back {
+    display: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .back {
+        display: block;
+    }
+}

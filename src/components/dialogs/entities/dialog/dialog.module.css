@@ -27,9 +27,3 @@
     top: 0;
     right: 4px;
 }
-
-@media (max-width: 840px) {
-    .avatar {
-        display: none;
-    }
-}

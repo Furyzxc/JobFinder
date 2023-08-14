@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
@@ -6,6 +7,7 @@ import { Div } from '@/shared/ui/div'
 import { useRequestDialogsQuery } from '../api/api.ts'
 import { Chat } from '../features/chat'
 import { DialogsList } from '../features/dialogsList'
+import s from './dialogs.module.css'
 
 export const Dialogs = () => {
 	const { userId } = useParams()
@@ -13,20 +15,31 @@ export const Dialogs = () => {
 
 	const { ref } = useSmoothAppearance()
 
+	const [showDialogsList, setShowDialogsList] = useState(true)
+
+	const documentWidth = document.documentElement.clientWidth
+
 	return (
 		<Grid container ref={ref}>
 			<WithError isError={isError}>
 				<Grid
 					item
-					xs={4}
-					sm={3}
-					sx={{ position: 'relative' }}
-					className={'noNavigationHeight'}
+					container
+					xs={12}
+					md={3}
+					sm={12}
+					className={s.list + ' noNavigationHeight'}
 				>
-					<DialogsList />
+					{(showDialogsList || documentWidth >= 900) && (
+						<DialogsList setIsShow={setShowDialogsList} />
+					)}
 				</Grid>
-				<Grid sx={{ position: 'relative' }} item xs={8} sm={9}>
-					{userId ? <Chat id={+userId} /> : <Div>Start Chatting</Div>}
+				<Grid sx={{ position: 'relative' }} item xs={12} md={9} sm={12}>
+					{userId ? (
+						<Chat setIsShow={setShowDialogsList} />
+					) : (
+						<Div>Start Chatting</Div>
+					)}
 				</Grid>
 			</WithError>
 		</Grid>

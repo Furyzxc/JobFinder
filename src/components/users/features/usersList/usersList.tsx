@@ -9,6 +9,7 @@ import { User } from '../../entities/user'
 import s from './users.module.css'
 import { usePaginator, useUsersState } from '@/components/users/model/hooks.ts'
 
+
 export const UsersList = memo(() => {
 	const { page, count } = usePaginator()
 	const { term, friend } = useUsersState()

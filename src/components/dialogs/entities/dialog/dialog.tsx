@@ -6,9 +6,10 @@ import { useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { DialogsResponse } from '../../api/types.ts'
 import { useDialogsTime } from '../../model/hooks'
+import { BackBtnTypes } from '../backBtn'
 import s from './dialog.module.css'
 
-interface PropsType extends DialogsResponse {
+interface PropsType extends DialogsResponse, BackBtnTypes {
 	isSelected: boolean
 }
 
@@ -19,12 +20,16 @@ export const Dialog = memo(
 		id,
 		lastDialogActivityDate,
 		photos: { small },
+		setIsShow,
 	}: PropsType) => {
 		const navigate = useNavigate()
 
 		const { ref } = useSmoothAppearance()
 
-		const handleDialogClick = () => navigate('/dialogs/' + id)
+		const handleDialogClick = () => {
+			setIsShow(false)
+			navigate('/dialogs/' + id)
+		}
 
 		const time = useDialogsTime(lastDialogActivityDate)
 
@@ -35,7 +40,7 @@ export const Dialog = memo(
 				ref={ref}
 				direction={'row'}
 			>
-				<Box className={s.avatar} sx={{ mr: '5px' }}>
+				<Box sx={{ mr: '5px' }}>
 					<UserAvatar avatar={small} name={userName} />
 				</Box>
 				<Box sx={{ pt: '10px' }}>
