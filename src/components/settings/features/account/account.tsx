@@ -1,5 +1,6 @@
 import { Stack } from '@mui/material'
 import { WithError, WithLoading } from '@/shared/hoc'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { SignoutSection } from '../../entities/logoutSection'
 import { Title } from '../../entities/title'
 import { useLogoutMutation } from '@/components/authorization'
@@ -7,14 +8,20 @@ import { useLogoutMutation } from '@/components/authorization'
 export const Account = () => {
 	const [signoutFromAccount, { isLoading, isError }] = useLogoutMutation()
 
+	const { ref } = useSmoothAppearance()
 	return (
-		<WithLoading isLoading={isLoading}>
-			<WithError isError={isError}>
-				<Stack direction={'column'} spacing={2} sx={{ overflowX: 'hidden' }}>
+		<Stack
+			direction={'column'}
+			spacing={2}
+			sx={{ overflowX: 'hidden' }}
+			ref={ref}
+		>
+			<WithLoading isLoading={isLoading}>
+				<WithError isError={isError}>
 					<Title name={'Account'} />
 					<SignoutSection signoutFromAccount={signoutFromAccount} />
-				</Stack>
-			</WithError>
-		</WithLoading>
+				</WithError>
+			</WithLoading>
+		</Stack>
 	)
 }

@@ -31,10 +31,10 @@ export const Profile = () => {
 			<WithLoading isLoading={isLoading}>
 				<WithError isError={isError || !id}>
 					<Grid container>
-						<Grid item xs={12} sm={6} md={4}>
+						<Grid item xs={12} sm={7} md={4}>
 							<MainInfo isOwner={isOwner} />
 						</Grid>
-						<Grid item xs={12} sm={6} md={8} sx={{ mb: '20px' }}>
+						<Grid item xs={12} sm={5} md={8} sx={{ mb: '20px' }}>
 							<JobInfo />
 						</Grid>
 					</Grid>

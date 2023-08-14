@@ -11,7 +11,7 @@ export const JobInfo = () => {
 			<Stack spacing={2}>
 				{entities.map(({ textValue, ...sectionProps }) => (
 					<Section {...sectionProps}>
-						<Input disabled defaultValue={textValue} />
+						<Input disabled multiline defaultValue={textValue} />
 					</Section>
 				))}
 			</Stack>

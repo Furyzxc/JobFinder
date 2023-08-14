@@ -1,14 +1,22 @@
 import { FormControlLabel, Radio, RadioGroup, Stack } from '@mui/material'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useEffect } from 'react'
 import { Input } from '@/shared/ui/input'
-import { useJobInfo } from '../../model/hooks'
+import { useJobInfo, useSetFieldValue } from '../../model/hooks'
 import { Section } from '../profileSection'
-import { useSetFieldValue } from '@/components/settings/model/hooks/useSetFieldValue.ts'
 
 export const JobInfo = () => {
 	const { isLookingForJob, description } = useJobInfo()
 
 	const [setFieldValue] = useSetFieldValue()
+
+	useEffect(() => {
+		// check on undefined
+		if (isLookingForJob && description) {
+			// setting initial isLookingForAJob and jobDesctiption values to store's state
+			setFieldValue('isLookingForJob', isLookingForJob.value)
+			setFieldValue('jobDescription', description.value)
+		}
+	}, [description, isLookingForJob, setFieldValue])
 
 	const handleRadioGroupChange = ({
 		target,

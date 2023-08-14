@@ -8,17 +8,17 @@ interface Owner {
 	isError: boolean
 }
 
-// Custom hook to fetch owner information and status.
+// Custom hook to fetch owner information.
 export const useOwnerInfo = (): Owner => {
+	// taking profile id from auth reducer state
 	const { id } = useAuthInfo()
 
 	const {
 		data: profile,
 		isLoading,
 		isError,
-		// @ts-ignore
-	} = useGetProfileQuery(id, {
-		skip: !id,
+	} = useGetProfileQuery(id || 0, {
+		skip: !id, // if no userid, request will not be sent
 	})
 
 	return {

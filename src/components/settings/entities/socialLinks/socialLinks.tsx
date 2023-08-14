@@ -1,8 +1,8 @@
 import { Box, Grid, Stack, TextField } from '@mui/material'
 import { ChangeEvent, FocusEvent, memo, useEffect, useMemo } from 'react'
 import { useActions } from '@/shared/model/hooks'
-import { useSocialLinks } from '../../model/hooks'
-import { Link, useSocialAccounts } from '../../model/hooks'
+import { Link, useSocialAccounts, useSocialLinks } from '../../model/hooks'
+import { Section } from '../profileSection'
 
 const SocialAccount = memo(({ icon, defaultValue, name }: Link) => {
 	const socialAccounts = useSocialAccounts()
@@ -63,10 +63,12 @@ export const SocialLinks = () => {
 	const links = useSocialLinks()
 
 	return (
-		<Stack direction={'column'} spacing={1}>
-			{links.map(linkProps => (
-				<SocialAccount {...linkProps} />
-			))}
-		</Stack>
+		<Section name={'Social Accounts'}>
+			<Stack direction={'column'} spacing={1}>
+				{links.map(linkProps => (
+					<SocialAccount {...linkProps} />
+				))}
+			</Stack>
+		</Section>
 	)
 }
