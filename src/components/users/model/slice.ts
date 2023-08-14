@@ -3,60 +3,69 @@ import { RootState } from '@/app/appStore.ts'
 import { countPages } from '@/shared/utils/count-pages.ts'
 import { api } from '../api/api.ts'
 
-interface Paginator {
-	// amount of pages
-	pagesCount: number
-	// users amount
-	count: number
-	// chosen page
-	page: number
-	// searching term
+interface Users {
+	paginator: {
+		// amount of pages
+		pagesCount: number
+		// users amount
+		count: number
+		// chosen page
+		page: number
+	}
+	// searching users by term
 	term: string
+	// filtering users by followed(true)/unfollowed(false)/all(null)
 	friend: boolean | null
 }
 
-const initialState: Paginator = {
-	pagesCount: 0,
-	count: 60,
-	page: 1,
+const initialState: Users = {
+	paginator: {
+		pagesCount: 0,
+		count: 60,
+		page: 1,
+	},
+
 	term: '',
 	friend: null,
 }
 
-export const paginatorSlice = createSlice({
-	name: 'paginator',
+export const usersSlice = createSlice({
+	name: 'users',
 	initialState,
 	reducers: {
 		setPage(state, action: PayloadAction<number>) {
-			state.page = action.payload
+			state.paginator.page = action.payload
 		},
 
 		setSearchingTerm(state, action: PayloadAction<string>) {
 			state.term = action.payload
-			state.page = 1
+			state.paginator.page = 1
 		},
 
 		setFriend(state, action: PayloadAction<boolean>) {
 			state.friend = action.payload
-			state.page = 1
+			state.paginator.page = 1
 		},
 	},
 
 	extraReducers: builder => {
 		const { getUsers } = api.endpoints
 
-		builder.addMatcher(getUsers.matchFulfilled, (state, action) => {
-			state.pagesCount = countPages(action.payload.totalCount, state.count)
+		// paginator destructured from state
+		builder.addMatcher(getUsers.matchFulfilled, ({ paginator }, action) => {
+			paginator.pagesCount = countPages(
+				action.payload.totalCount,
+				paginator.count
+			)
 		})
 
 		builder.addMatcher(getUsers.matchRejected, state => {
-			state.pagesCount = 0
+			state.paginator.pagesCount = 0
 		})
 	},
 })
 
-export const paginatorActions = paginatorSlice.actions
+export const paginatorActions = usersSlice.actions
 
-export const getPagesCount = (state: RootState) => state.paginator.pagesCount
-export const getPaginator = (state: RootState) => state.paginator
-export const getFriend = (state: RootState) => state.paginator.friend
+export const selectUsersState = (state: RootState) => state.users
+export const selectPaginator = (state: RootState) => state.users.paginator

@@ -10,28 +10,11 @@ import {
 	useState,
 } from 'react'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { rootActions } from '@/app/rootActions.ts'
 import { MessageResponseType } from '@/components/dialogs'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
-interface UserIdFromParamsOutput {
-	id: number | undefined
-	isOwner: boolean
-}
-
-export const useUserDetails = (id?: number | null): UserIdFromParamsOutput => {
-	// if no user id in url returns id from parameters and sets isOwner on true
-
-	const { userId = id } = useParams()
-
-	return {
-		id: userId ? +userId : undefined,
-		isOwner: userId === id,
-	}
-}
 
 export const useActions = () => {
 	const dispatch = useAppDispatch()

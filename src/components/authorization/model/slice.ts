@@ -72,17 +72,14 @@ export const authSlice = createSlice({
 			}
 		)
 
-		builder.addMatcher(
-			api.endpoints.logout.matchFulfilled,
-			({ userInfo, ...state }) => {
-				state.isAuthorized = false
+		builder.addMatcher(api.endpoints.logout.matchFulfilled, state => {
+			state.isAuthorized = false
 
-				// clearing state's user info
-				userInfo.id = null
-				userInfo.email = null
-				userInfo.login = null
-			}
-		)
+			// clearing state's user info
+			state.userInfo.id = null
+			state.userInfo.email = null
+			state.userInfo.login = null
+		})
 	},
 })
 

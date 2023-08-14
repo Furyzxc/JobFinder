@@ -32,7 +32,7 @@ export const UserAvatar = memo(({ avatar, name, size }: PropsType) => {
 
 	const randomColor = COLORS[Math.floor(Math.random() * COLORS.length)]
 
-	if (size) sx = { height: size, width: size }
+	if (size) sx = { height: size, width: size, fontSize: '40px' }
 
 	return avatar ? (
 		<Avatar src={avatar} alt='user avatar' sx={sx} />

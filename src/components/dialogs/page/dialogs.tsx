@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { useRequestDialogsQuery } from '../api/api.ts'
+import { Chat } from '../features/chat'
+import { DialogsList } from '../features/dialogsList'
 import s from './dialogs.module.css'
-import { Chat } from '@/components/dialogs/features/chat'
-import { DialogsList } from '@/components/dialogs/features/dialogsList'
 
 export const Dialogs = () => {
 	const { userId } = useParams()

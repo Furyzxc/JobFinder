@@ -1,8 +1,8 @@
 import { Box, Button, Stack, Typography } from '@mui/material'
 import { useAnimate, useInView } from 'framer-motion'
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useIcons } from '@/components/navigation/model/hooks/useIcons.tsx'
+import { useNavigate } from 'react-router-dom'
+import { useIcons } from '../model/hooks/useIcons.tsx'
 
 type PropsType = {
 	setIsShow: (value: boolean) => void
@@ -12,8 +12,6 @@ type PropsType = {
 export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 	const icons = useIcons()
 
-	const handleClick = () => setIsShow(false)
-
 	const [scope, animate] = useAnimate()
 	const isInView = useInView(scope)
 
@@ -22,6 +20,13 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 			animate(scope.current, { left: 0 })
 		}
 	}, [animate, isInView, scope])
+
+	const navigate = useNavigate()
+
+	const handleNavElementClick = (pathname: string) => () => {
+		setIsShow(false)
+		navigate(pathname)
+	}
 
 	return (
 		<Stack
@@ -45,27 +50,33 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 				}}
 				ref={navRef}
 			>
-				{icons.map(({ name, path, icon }) => (
-					<Link to={path} key={name}>
-						<Button
+				{icons.map(({ name, path, icon, isClickAccepted, endIcon }) => (
+					<Button
+						key={name}
+						sx={{
+							textAlign: 'none',
+							minWidth: '100%',
+							justifyContent: 'flex-start',
+							height: '32px',
+							color: '#7D8590',
+						}}
+						onClick={isClickAccepted && handleNavElementClick(path)}
+						startIcon={icon}
+						endIcon={endIcon}
+					>
+						<Typography
+							variant={'h1'}
 							sx={{
-								textAlign: 'none',
-								minWidth: '100%',
-								justifyContent: 'flex-start',
-								height: '32px',
-								color: '#7D8590',
+								color: '#E6EDF3',
+								fontSize: '13px',
+								textAlign: 'start',
+								pt: '5px',
+								flexGrow: 1,
 							}}
-							onClick={handleClick}
-							startIcon={icon}
 						>
-							<Typography
-								variant={'h1'}
-								sx={{ color: '#E6EDF3', fontSize: '13px', pt: '5px' }}
-							>
-								{name}
-							</Typography>
-						</Button>
-					</Link>
+							{name}
+						</Typography>
+					</Button>
 				))}
 			</Box>
 		</Stack>

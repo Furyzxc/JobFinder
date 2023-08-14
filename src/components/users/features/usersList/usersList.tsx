@@ -1,25 +1,22 @@
 import { Grid } from '@mui/material'
 import { WithError } from '@/shared/hoc'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
-import { useAppSelector } from '@/shared/model/hooks.ts'
 import { Div } from '@/shared/ui/div'
 import { useGetUsersQuery } from '../../api/api.ts'
 import { User } from '../../entities/user'
-import { getPaginator } from '../../model/slice.ts'
 import s from './users.module.css'
+import { usePaginator, useUsersState } from '@/components/users/model/hooks.ts'
 
 export const UsersList = () => {
-	const { page, term, count, friend } = useAppSelector(getPaginator)
+	const { page, count } = usePaginator()
+	const { term, friend } = useUsersState()
 
-	const { isFetching, data, isError } = useGetUsersQuery(
-		{
-			count,
-			page,
-			term,
-			friend,
-		},
-		{ refetchOnMountOrArgChange: page }
-	)
+	const { isFetching, data, isError } = useGetUsersQuery({
+		count,
+		page,
+		term,
+		friend,
+	})
 
 	return (
 		<Grid container className={s.usersList + ' scroll'}>

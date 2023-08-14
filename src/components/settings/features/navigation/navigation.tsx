@@ -1,10 +1,10 @@
 import { Button, Stack, Typography } from '@mui/material'
 import { Link, useParams } from 'react-router-dom'
+import s from './style.module.css'
 import {
 	IEntity,
 	useSettingsNavigation,
-} from '../../model/hooks/useSettingsNavigation.tsx'
-import s from './style.module.css'
+} from '@/components/settings/model/hooks'
 
 type PropsType = {
 	entities: IEntity[]

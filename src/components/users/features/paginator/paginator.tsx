@@ -1,13 +1,13 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material'
 import { Pagination, PaginationItem } from '@mui/material'
-import { useActions, useAppSelector } from '@/shared/model/hooks.ts'
-import { getPagesCount } from '../../model/slice.ts'
+import { useActions } from '@/shared/model/hooks.ts'
+import { usePaginator } from '../../model/hooks.ts'
 
 export const Paginator = () => {
 	const { setPage } = useActions()
 
-	const pagesCount = useAppSelector(getPagesCount)
-	const handleChange = (_: any, value: number) => setPage(value)
+	const { page, pagesCount } = usePaginator()
+	const handleChange = (_: unknown, value: number) => setPage(value)
 
 	return (
 		<Pagination
@@ -15,6 +15,7 @@ export const Paginator = () => {
 			color={'primary'}
 			sx={{ margin: 'auto' }}
 			count={pagesCount}
+			page={page}
 			renderItem={item => {
 				return (
 					<PaginationItem

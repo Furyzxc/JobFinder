@@ -1,11 +1,11 @@
 import { Grid, Stack } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import { WithError, WithLoading } from '@/shared/hoc'
+import { Account } from '../features/account'
 import { Header } from '../features/header'
 import { Navigation } from '../features/navigation'
 import { Profile } from '../features/profile'
-import { Account } from '@/components/settings/features/account'
-import { useOwnerInfo } from '@/components/settings/model/hooks'
+import { useOwnerInfo } from '../model/hooks'
 
 export const Settings = () => {
 	const { isLoading, isError } = useOwnerInfo()
