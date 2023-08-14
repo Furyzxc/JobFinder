@@ -16,8 +16,8 @@ export const DialogsList = memo(({ setIsShow }: BackBtnTypes) => {
 
 	return (
 		<WithLoading isLoading={isLoading}>
-			<Grid item container sx={{ bgcolor: '#161B22', width: '100%' }}>
-				<Grid item xs={6} md={12} sm={6}>
+			<Grid item container sx={{ width: '100%', bgcolor: '#343942BD' }}>
+				<Grid item xs={6} md={12} sm={6} sx={{ bgcolor: '#161B22' }}>
 					<Stack
 						direction={'column'}
 						className={'noNavigationHeight scroll'}
