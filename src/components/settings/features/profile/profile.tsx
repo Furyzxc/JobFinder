@@ -7,7 +7,6 @@ import { Title } from '../../entities/title'
 import { UpdateProfile } from '../../entities/updateProfileBtn'
 import { UpdateErrorMessage } from '../../entities/updateProfileErrorMessage'
 
-
 export const Profile = () => {
 	const { ref } = useSmoothAppearance()
 

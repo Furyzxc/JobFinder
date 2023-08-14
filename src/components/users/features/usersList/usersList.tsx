@@ -2,6 +2,7 @@ import { Grid } from '@mui/material'
 import { memo } from 'react'
 import { WithError } from '@/shared/hoc'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
+import { useScroll } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div'
 import { useGetUsersQuery } from '../../api/api.ts'
 import { User } from '../../entities/user'
@@ -19,8 +20,10 @@ export const UsersList = memo(() => {
 		friend,
 	})
 
+	const scroll = useScroll()
+
 	return (
-		<Grid container className={s.usersList + ' scroll'}>
+		<Grid container className={s.usersList + ' scroll'} {...scroll}>
 			<WithLoading isLoading={isFetching}>
 				<WithError isError={isError}>
 					{data?.items && data?.items.length > 0 ? (

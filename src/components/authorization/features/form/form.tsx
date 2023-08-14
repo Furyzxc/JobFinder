@@ -57,7 +57,6 @@ export const Form = memo(() => {
 				label={errors?.email?.message || 'Email Address'}
 				name='email'
 				autoComplete='email'
-				autoFocus
 				error={!!(errors.email || error)}
 			/>
 			<Field

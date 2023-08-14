@@ -1,59 +1,37 @@
-import { Chip, Divider } from '@mui/material'
-import dayjs from 'dayjs'
 import { memo } from 'react'
-import { useParams } from 'react-router-dom'
-import { WithError } from '@/shared/hoc'
-import { WithLoading } from '@/shared/hoc'
-import { useSmoothAppearance } from '@/shared/model/hooks'
+import { WithError, WithLoading } from '@/shared/hoc'
+import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div/div.tsx'
-import { useRequestMessagesQuery } from '../../api/api.ts'
 import { Message } from '../../entities/message'
+import { TimeChip } from '../../entities/timeChip'
 import s from './messages.module.css'
+import { useMessagesRequest } from '@/components/dialogs/model/hooks'
+import { useIsDateExist } from '@/components/dialogs/model/hooks/useIsDateExist.ts'
 
 export const Messages = memo(() => {
-	const { userId = 0 } = useParams()
+	const { messagesData, isFetching, isError, urlId } = useMessagesRequest()
 
-	const { data, isFetching, isError } = useRequestMessagesQuery(
-		{ id: +userId },
-		{ skip: !userId }
-	)
-
-	const messages = data?.items
-
-	const dates: string[] = []
-
-	const formattedToDDMMYYYY = (addedAt: string) =>
-		dayjs(addedAt).format('DD/MM/YYYY')
-
-	const isExist = (addedAt: string) => {
-		const formattedTime = formattedToDDMMYYYY(addedAt)
-
-		if (!dates.includes(formattedTime)) {
-			dates.push(formattedTime)
-			return false
-		}
-		return true
-	}
+	const messages = messagesData?.items
 
 	const { ref } = useSmoothAppearance(!isFetching)
 
+	const { formattedToMMMM_D, isDateExist } = useIsDateExist()
+
+	const scroll = useScroll()
+
 	return (
-		<div className={s.flexbox} ref={ref}>
+		<div className={s.flexbox + ' scroll'} ref={ref} {...scroll}>
 			<WithLoading isLoading={isFetching}>
 				<WithError isError={isError}>
 					{messages && messages.length > 0 ? (
-						messages.map(message => {
+						messages.map(({ id, ...message }) => {
 							return (
-								<div key={message.id}>
-									{!isExist(message.addedAt) && (
-										<Divider sx={{ mb: '10px', textTransform: 'none' }}>
-											<Chip
-												color={'primary'}
-												label={formattedToDDMMYYYY(message.addedAt)}
-											/>
-										</Divider>
+								<div key={id}>
+									{!isDateExist(message.addedAt) && (
+										<TimeChip time={formattedToMMMM_D(message.addedAt)} />
 									)}
-									<Message {...message} me={message.senderId !== userId} />
+									{/*        comparing sender id with id in url, if its not equal me = true*/}
+									<Message {...message} me={message.senderId !== urlId} />
 								</div>
 							)
 						})

@@ -47,6 +47,11 @@ input::placeholder {
 	scrollbar-track-color: #293038;
 	scrollbar-color:  #2d343c #54595f;
 	scrollbar-width: thin;
+	overflow-x: hidden;
+}
+
+.scroll:hover {
+	overflow-y: auto;
 }
 
 

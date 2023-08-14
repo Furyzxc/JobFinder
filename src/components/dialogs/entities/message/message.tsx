@@ -4,11 +4,13 @@ import { useFormattedTime } from '@/shared/model/hooks'
 import { MessageResponseType } from '../../api/types.ts'
 import s from './message.module.css'
 
-interface MessageProps extends MessageResponseType {
+interface MessageProps extends Omit<MessageResponseType, 'id'> {
+	// is it your own message or your friend, if true its your own
 	me: boolean
 }
 
 export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
+	// converting time to 12:32 PM format
 	const time = useFormattedTime(addedAt, 'HH:mm A')
 
 	return (

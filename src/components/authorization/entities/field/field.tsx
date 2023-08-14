@@ -7,7 +7,6 @@ interface LoginFormFieldProps {
 	label: string
 	type?: string
 	autoComplete: string
-	autoFocus?: boolean
 	register: UseFormRegister<FormValues>
 	error?: boolean
 }
@@ -17,7 +16,6 @@ export const Field = ({
 	label,
 	type,
 	autoComplete,
-	autoFocus,
 	register,
 	error,
 }: LoginFormFieldProps) => {
@@ -30,7 +28,6 @@ export const Field = ({
 			label={label}
 			type={type}
 			autoComplete={autoComplete}
-			autoFocus={autoFocus}
 			error={error}
 		/>
 	)

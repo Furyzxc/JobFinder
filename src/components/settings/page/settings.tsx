@@ -1,7 +1,7 @@
 import { Grid, Stack } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import { WithError, WithLoading } from '@/shared/hoc'
-import { useSmoothAppearance } from '@/shared/model/hooks'
+import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
 import { Account } from '../features/account'
 import { Header } from '../features/header'
 import { Navigation } from '../features/navigation'
@@ -13,11 +13,14 @@ export const Settings = () => {
 
 	const { ref } = useSmoothAppearance()
 
+	const scroll = useScroll()
+
 	return (
 		<div ref={ref}>
 			<WithLoading isLoading={isLoading}>
 				<WithError isError={isError}>
 					<Stack
+						{...scroll}
 						sx={{ p: '15px 0 0 20px' }}
 						spacing={4}
 						className={'noNavigationHeight scroll'}
