@@ -1,10 +1,11 @@
 import { Grid, Stack, Typography } from '@mui/material'
+import { memo } from 'react'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { Input } from '@/shared/ui/input'
 import { Section } from '@/components/settings/entities/profileSection'
 import { useEntities, useOwnerInfo } from '@/components/settings/model/hooks'
 
-export const MainProfileInfo = () => {
+export const MainProfileInfo = memo(() => {
 	const entities = useEntities()
 
 	const { info } = useOwnerInfo()
@@ -34,4 +35,4 @@ export const MainProfileInfo = () => {
 			</Grid>
 		)
 	}
-}
+})

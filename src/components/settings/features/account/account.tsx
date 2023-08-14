@@ -1,4 +1,5 @@
 import { Stack } from '@mui/material'
+import { memo } from 'react'
 import { WithError, WithLoading } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { SignoutSection } from '../../entities/logoutSection'

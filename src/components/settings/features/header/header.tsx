@@ -1,8 +1,8 @@
 import { Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
+import { useOwnerInfo } from '../../model/hooks'
 import { useAuthInfo } from '@/components/authorization'
-import { ProfileResponseBody } from '@/components/profile/api/types.ts'
-import { useOwnerInfo } from '@/components/settings/model/hooks'
+import { ProfileResponseBody } from '@/components/profile'
 
 export const Header = () => {
 	const { login } = useAuthInfo()

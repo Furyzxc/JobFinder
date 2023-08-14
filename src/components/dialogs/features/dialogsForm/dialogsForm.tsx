@@ -1,6 +1,6 @@
 import SendIcon from '@mui/icons-material/Send'
 import { TextField } from '@mui/material'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, memo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 import { useSendMessageMutation } from '../../api/api.ts'
@@ -9,7 +9,7 @@ interface FormValues {
 	input: string
 }
 
-export const DialogsForm = () => {
+export const DialogsForm = memo(() => {
 	const { userId } = useParams()
 
 	const [inputValue, setInputValue] = useState('')
@@ -55,4 +55,4 @@ export const DialogsForm = () => {
 			/>
 		</form>
 	)
-}
+})

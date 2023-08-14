@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { UserAvatar } from '@/shared/ui/avatar'
 import s from './user.module.css'
 
@@ -15,27 +15,36 @@ export interface UserProps {
 }
 
 export const User = ({ name, status, photos, id }: UserProps) => {
-	return (
-		<Grid container item xs={2} sx={{ minWidth: '240px', p: '5px' }}>
-			<Link to={'/profile/' + id} className={s.user}>
-				<Grid item xl={1}>
-					<Typography variant='h6'>{name}</Typography>
-				</Grid>
+	const navigate = useNavigate()
 
-				<Grid container item xl={3}>
-					<Grid xs={3} item>
-						<UserAvatar avatar={photos.small} name={name} />
-					</Grid>
-					<Grid
-						item
-						xs={8}
-						className={s.status}
-						sx={{ color: 'white', fontSize: '12px' }}
-					>
-						{status}
-					</Grid>
+	const handleUserClick = () => navigate('/profile/' + id)
+
+	return (
+		<Grid
+			container
+			item
+			xs={2}
+			sx={{ minWidth: '240px', p: '5px' }}
+			className={s.user}
+			onClick={handleUserClick}
+		>
+			<Grid item xl={1}>
+				<Typography variant='h6'>{name}</Typography>
+			</Grid>
+
+			<Grid container item xl={3}>
+				<Grid xs={3} item>
+					<UserAvatar avatar={photos.small} name={name} />
 				</Grid>
-			</Link>
+				<Grid
+					item
+					xs={8}
+					className={s.status}
+					sx={{ color: 'white', fontSize: '12px' }}
+				>
+					{status}
+				</Grid>
+			</Grid>
 		</Grid>
 	)
 }

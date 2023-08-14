@@ -1,15 +1,16 @@
 import { Chip, Divider } from '@mui/material'
 import dayjs from 'dayjs'
+import { memo } from 'react'
 import { useParams } from 'react-router-dom'
-import { WithError } from '@/shared/hoc/withError.tsx'
-import { WithLoading } from '@/shared/hoc/withLoading.tsx'
+import { WithError } from '@/shared/hoc'
+import { WithLoading } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div/div.tsx'
 import { useRequestMessagesQuery } from '../../api/api.ts'
+import { Message } from '../../entities/message'
 import s from './messages.module.css'
-import { Message } from '@/components/dialogs/entities/message'
 
-export const Messages = () => {
+export const Messages = memo(() => {
 	const { userId = 0 } = useParams()
 
 	const { data, isFetching, isError } = useRequestMessagesQuery(
@@ -63,4 +64,4 @@ export const Messages = () => {
 			</WithLoading>
 		</div>
 	)
-}
+})

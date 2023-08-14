@@ -1,15 +1,15 @@
 import { Grid } from '@mui/material'
+import { memo } from 'react'
+import { DialogsForm } from '../dialogsForm'
+import { Messages } from '../messages'
 import s from './chat.module.css'
-import { DialogsForm } from '@/components/dialogs/features/dialogsForm'
-import { Messages } from '@/components/dialogs/features/messages'
 import { useGetProfileQuery } from '@/components/profile'
-
 
 type PropsType = {
 	id: number
 }
 
-export const Chat = ({ id }: PropsType) => {
+export const Chat = memo(({ id }: PropsType) => {
 	const { data: profile } = useGetProfileQuery(id)
 
 	const dialogName = profile?.name
@@ -27,4 +27,4 @@ export const Chat = ({ id }: PropsType) => {
 			</Grid>
 		</Grid>
 	)
-}
+})

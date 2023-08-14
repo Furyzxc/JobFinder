@@ -1,8 +1,9 @@
 import { Button } from '@mui/material'
+import { memo } from 'react'
 import { useProfileUpdate } from '../../model/hooks'
 import s from './btn.module.css'
 
-export const UpdateProfile = () => {
+export const UpdateProfile = memo(() => {
 	// trigger that sends ajax request that changes profile data
 	const [updateProfile] = useProfileUpdate()
 
@@ -19,4 +20,4 @@ export const UpdateProfile = () => {
 			Update profile
 		</Button>
 	)
-}
+})

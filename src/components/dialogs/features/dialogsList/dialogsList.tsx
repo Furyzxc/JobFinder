@@ -1,11 +1,12 @@
 import { Stack } from '@mui/material'
+import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { WithLoading } from '@/shared/hoc'
 import { useRequestDialogsQuery } from '../../api/api.ts'
 import { Dialog } from '../../entities/dialog'
 import s from './list.module.css'
 
-export const DialogsList = () => {
+export const DialogsList = memo(() => {
 	const { isLoading, data } = useRequestDialogsQuery()
 
 	const { userId = 0 } = useParams()
@@ -23,4 +24,4 @@ export const DialogsList = () => {
 			</Stack>
 		</WithLoading>
 	)
-}
+})

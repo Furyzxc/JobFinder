@@ -1,8 +1,9 @@
+import { memo } from 'react'
 import { useActions } from '@/shared/model/hooks'
 import { Input } from '@/shared/ui/input'
 import { useUsersState } from '@/components/users/model/hooks.ts'
 
-export const SearchInput = () => {
+export const SearchInput = memo(() => {
 	const { setSearchingTerm } = useActions()
 
 	const { term } = useUsersState()
@@ -15,4 +16,4 @@ export const SearchInput = () => {
 	return (
 		<Input placeholder={'Search'} onChange={handleInputChange} value={term} />
 	)
-}
+})

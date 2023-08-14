@@ -1,5 +1,8 @@
-import { Box, Button, Stack, Typography } from '@mui/material'
+import { CloseSharp } from '@mui/icons-material'
+import { Avatar, Box, Button, Grid, Stack, Typography } from '@mui/material'
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import siteIcon from '@/assets/melon.png'
 import { useAnimation } from '@/shared/model/hooks'
 import { useIcons } from '../model/hooks/useIcons.tsx'
 
@@ -15,13 +18,15 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 
 	const navigate = useNavigate()
 
+	const closeNavigation = useCallback(() => setIsShow(false), [setIsShow])
+
 	const handleNavElementClick = (pathname: string) => () => {
-		setIsShow(false)
+		closeNavigation()
 		navigate(pathname)
 	}
 
 	return (
-		<Stack
+		<Box
 			ref={ref}
 			className={'height'}
 			sx={{
@@ -34,16 +39,27 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 				backgroundColor: '#343942BD',
 			}}
 		>
-			<Box
+			<Stack
 				className={'height'}
 				sx={{
 					background: '#161B22',
 					width: '300px',
-					p: '0 10px',
+					p: '10px 10px 0 10px',
 					overflow: 'hidden',
 				}}
 				ref={navRef}
 			>
+				<Grid container>
+					<Grid item xs>
+						<Avatar
+							src={siteIcon}
+							sx={{ height: '31px', width: '31px', mb: '10px' }}
+						/>
+					</Grid>
+					<Grid item sx={{ cursor: 'pointer' }} onClick={closeNavigation}>
+						<CloseSharp fontSize={'small'} />
+					</Grid>
+				</Grid>
 				{icons.map(({ name, path, icon, isClickAccepted, endIcon }) => (
 					<Button
 						key={name}
@@ -72,7 +88,7 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 						</Typography>
 					</Button>
 				))}
-			</Box>
-		</Stack>
+			</Stack>
+		</Box>
 	)
 }

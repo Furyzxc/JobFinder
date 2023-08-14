@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material'
+import { memo } from 'react'
 import { WithError } from '@/shared/hoc'
 import { WithLoading } from '@/shared/hoc/withLoading.tsx'
 import { Div } from '@/shared/ui/div'
@@ -7,7 +8,7 @@ import { User } from '../../entities/user'
 import s from './users.module.css'
 import { usePaginator, useUsersState } from '@/components/users/model/hooks.ts'
 
-export const UsersList = () => {
+export const UsersList = memo(() => {
 	const { page, count } = usePaginator()
 	const { term, friend } = useUsersState()
 
@@ -31,4 +32,4 @@ export const UsersList = () => {
 			</WithLoading>
 		</Grid>
 	)
-}
+})

@@ -1,8 +1,9 @@
 import { GroupRounded } from '@mui/icons-material'
+import { memo } from 'react'
 import { useActions } from '@/shared/model/hooks'
 import { useUsersState } from '../../model/hooks.ts'
 
-export const SearchFilterByFriend = () => {
+export const SearchFilterByFriend = memo(() => {
 	const { friend } = useUsersState()
 
 	const { setFriend } = useActions()
@@ -16,4 +17,4 @@ export const SearchFilterByFriend = () => {
 			onClick={handleIconClick}
 		/>
 	)
-}
+})

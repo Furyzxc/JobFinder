@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, Checkbox, FormControlLabel } from '@mui/material'
+import { memo } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { useAppDispatch } from '@/shared/model/hooks'
@@ -23,7 +24,7 @@ const validationSchema = Yup.object().shape({
 	rememberMe: Yup.boolean(),
 })
 
-export const Form = () => {
+export const Form = memo(() => {
 	const dispatch = useAppDispatch()
 	const { error } = useAuth()
 
@@ -87,4 +88,4 @@ export const Form = () => {
 			{error && <Error error={error} />}
 		</Box>
 	)
-}
+})

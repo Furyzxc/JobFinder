@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Section } from '../profileSection'
 import s from './btn.module.css'
 
@@ -5,7 +6,7 @@ type PropsType = {
 	signoutFromAccount: () => void
 }
 
-export const SignoutSection = ({ signoutFromAccount }: PropsType) => {
+export const SignoutSection = memo(({ signoutFromAccount }: PropsType) => {
 	const handleClick = () => signoutFromAccount()
 
 	return (
@@ -25,4 +26,4 @@ export const SignoutSection = ({ signoutFromAccount }: PropsType) => {
 			</summary>
 		</Section>
 	)
-}
+})
