@@ -28,7 +28,7 @@ export const Dialogs = () => {
 					xs={12}
 					md={3}
 					sm={12}
-					style={{ display: !showDialogsList && 'none' }}
+					style={{ display: !showDialogsList ? 'none' : undefined }}
 					className={s.list + ' noNavigationHeight'}
 				>
 					{(showDialogsList || documentWidth >= 900) && (
