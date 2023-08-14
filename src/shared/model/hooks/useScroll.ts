@@ -35,7 +35,7 @@ export const useScroll = (): Scroll => {
 		// Add a delay before removing the overflow style
 		const newTimeoutId = setTimeout(() => {
 			setIsOverflowActive(false)
-		}, 1000) // Adjust the delay as needed
+		}, 3000) // Adjust the delay as needed
 
 		setTimeoutId(newTimeoutId) // Store the new timeout ID
 	}
