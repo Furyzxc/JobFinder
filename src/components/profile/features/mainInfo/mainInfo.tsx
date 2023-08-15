@@ -13,7 +13,12 @@ export const MainInfo = () => {
 
 		return (
 			<Stack spacing={1} sx={{ mb: '20px', opacity: 0 }} ref={ref}>
-				<UserAvatar avatar={avatar} name={name} size={'296px'} />
+				<UserAvatar
+					avatar={avatar}
+					name={name}
+					size={'296px'}
+					fontSize={'25px'}
+				/>
 				<Stack>
 					<Typography variant={'h6'} sx={{ fontSize: '25px' }}>
 						{name}

@@ -1,16 +1,17 @@
+import { Stack } from '@mui/material'
+import { useParams } from 'react-router-dom'
 import { Follow } from '../../entities/follow'
-import s from './btns.module.css'
-import { ProfileSendBtn } from '@/components/profile/entities/profileSendBtn/profileSendBtn.tsx'
+import { ProfileSendBtn } from '../../entities/profileSendBtn'
 
-interface PropsType {
-	userId: number
-}
+export const UserProfileBtns = () => {
+	const { userId } = useParams()
 
-export const UserProfileBtns = ({ userId }: PropsType) => {
-	return (
-		<div className={s.btns}>
-			<ProfileSendBtn userId={userId} />
-			<Follow userId={userId} />
-		</div>
-	)
+	if (userId) {
+		return (
+			<Stack direction={'row'} spacing={2}>
+				<ProfileSendBtn userId={+userId} />
+				<Follow />
+			</Stack>
+		)
+	}
 }

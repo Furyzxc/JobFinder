@@ -34,13 +34,16 @@ export const api = baseApi.injectEndpoints({
 
 		getIsFollowed: build.query<boolean, number>({
 			query: userId => 'follow/' + userId,
+			providesTags: () => ['FOLLOW'],
 		}),
 
 		toggleIsFollowed: build.mutation<ToggleFollowResponse, FollowRequestBody>({
 			query: ({ userId, follow }) => ({
 				url: 'follow/' + userId,
+				// true = follow, false = unfollow
 				method: follow ? 'post' : 'delete',
 			}),
+			invalidatesTags: ['FOLLOW'],
 		}),
 
 		// Start dialog with a person

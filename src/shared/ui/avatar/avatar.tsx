@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const COLORS = [
@@ -25,20 +25,26 @@ type PropsType = {
 	avatar?: string | null
 	name: string
 	size?: string
+	fontSize?: string
 }
 
-export const UserAvatar = memo(({ avatar, name, size }: PropsType) => {
-	let sx
+export const UserAvatar = memo(
+	({ avatar, name, size, fontSize }: PropsType) => {
+		let sx
 
-	const randomColor = COLORS[Math.floor(Math.random() * COLORS.length)]
+		const randomColor = useMemo(
+			() => COLORS[Math.floor(Math.random() * COLORS.length)],
+			[]
+		)
 
-	if (size) sx = { height: size, width: size, fontSize: '40px' }
+		if (size) sx = { height: size, width: size, fontSize }
 
-	return avatar ? (
-		<Avatar src={avatar} alt='user avatar' sx={sx} />
-	) : (
-		<Avatar sx={{ backgroundColor: randomColor, ...sx }} alt='user avatar'>
-			{name[0].toUpperCase()}
-		</Avatar>
-	)
-})
+		return avatar ? (
+			<Avatar src={avatar} alt='user avatar' sx={sx} />
+		) : (
+			<Avatar sx={{ backgroundColor: randomColor, ...sx }} alt='user avatar'>
+				{name[0].toUpperCase()}
+			</Avatar>
+		)
+	}
+)

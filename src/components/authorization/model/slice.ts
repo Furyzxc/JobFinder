@@ -127,5 +127,3 @@ export const authLogin = createAsyncThunk(
 		}
 	}
 )
-
-export const authActions = authSlice.actions

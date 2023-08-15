@@ -17,7 +17,12 @@ export const Header = () => {
 	if (name) {
 		return (
 			<Stack direction={'row'} spacing={1}>
-				<UserAvatar avatar={avatar} name={name} size={'48px'} />
+				<UserAvatar
+					avatar={avatar}
+					name={name}
+					size={'48px'}
+					fontSize={'18px'}
+				/>
 				<Stack direction={'column'}>
 					<Stack direction={'row'} spacing={1}>
 						<Typography

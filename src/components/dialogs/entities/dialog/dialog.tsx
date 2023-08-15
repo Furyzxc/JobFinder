@@ -21,6 +21,7 @@ export const Dialog = memo(
 		lastDialogActivityDate,
 		photos: { small },
 		setIsShow,
+		hasNewMessages,
 	}: PropsType) => {
 		const navigate = useNavigate()
 
@@ -39,16 +40,20 @@ export const Dialog = memo(
 				className={clsx(s.dialog, isSelected && s.selected)}
 				ref={ref}
 				direction={'row'}
+				alignItems={'center'}
 			>
-				<Box sx={{ mr: '10px' }}>
+				<Box sx={{ m: '0 10px 0 3px' }}>
 					<UserAvatar avatar={small} name={userName} />
 				</Box>
-				<Box sx={{ pt: '10px' }}>
+				<Box>
 					<Typography noWrap>{userName}</Typography>
 				</Box>
 				<Typography
 					variant={'h1'}
-					sx={{ fontSize: '12px', color: '#8696a8' }}
+					sx={{
+						fontSize: '12px',
+						color: hasNewMessages ? '#2299D5' : '#8696a8',
+					}}
 					className={s.time}
 				>
 					{time}
