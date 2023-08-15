@@ -13,7 +13,7 @@ export const Dialogs = () => {
 	const { userId } = useParams()
 	const { isError } = useRequestDialogsQuery()
 
-	const { ref } = useSmoothAppearance()
+	const { ref } = useSmoothAppearance(0.1)
 
 	const [showDialogsList, setShowDialogsList] = useState(true)
 

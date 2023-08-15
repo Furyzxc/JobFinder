@@ -9,14 +9,13 @@ interface Animate {
 export const useAnimation = (
 	styles: CSSProperties,
 	exitStyles: CSSProperties,
-	duration_seconds?: number,
-	startAccepted = true
+	duration_seconds?: number
 ): Animate => {
 	const [scope, animate] = useAnimate()
 	const isInView = useInView(scope)
 
 	useEffect(() => {
-		if (isInView && startAccepted) {
+		if (isInView) {
 			animate(
 				scope.current,
 				styles,
@@ -33,7 +32,6 @@ export const useAnimation = (
 		isInView,
 		scope,
 		styles,
-		startAccepted,
 	])
 
 	return { ref: scope }

@@ -1,6 +1,6 @@
 import DoneAllIcon from '@mui/icons-material/DoneAll'
 import { clsx } from 'clsx'
-import { useFormattedTime } from '@/shared/model/hooks'
+import { useCopyText, useFormattedTime } from '@/shared/model/hooks'
 import { MessageResponseType } from '../../api/types.ts'
 import s from './message.module.css'
 
@@ -13,10 +13,20 @@ export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
 	// converting time to 12:32 PM format
 	const time = useFormattedTime(addedAt, 'HH:mm A')
 
+	const { textRef, copyText } = useCopyText()
+
+	// copies text to clipboard
+	const handleMessageClick = () => copyText()
+
 	return (
 		<div>
-			<div className={clsx(s.message, me ? s.myMessage : s.friendMessage)}>
-				<div className={s.text}>{body}</div>
+			<div
+				className={clsx(s.message, me ? s.myMessage : s.friendMessage)}
+				onClick={handleMessageClick}
+			>
+				<div className={s.text} ref={textRef}>
+					{body}
+				</div>
 				<div className={s.time}>{time}</div>
 				<div className={s.tick}>
 					<DoneAllIcon
