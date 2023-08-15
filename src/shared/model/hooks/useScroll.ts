@@ -7,7 +7,7 @@ type ElementStyle = {
 interface Scroll {
 	onTouchEnd: () => void
 	onTouchStart: () => void
-	style: ElementStyle
+	style: ElementStyle | NonNullable<unknown>
 }
 
 /* usage:
@@ -40,7 +40,13 @@ export const useScroll = (): Scroll => {
 		setTimeoutId(newTimeoutId) // Store the new timeout ID
 	}
 
-	const style: ElementStyle = {
+	const deviceWidth = document.documentElement.clientWidth
+
+	const style = {
+		// overflowY: isOverflowActive ? 'auto' : 'hidden',
+	}
+
+	const smallDeviceStyle: ElementStyle = {
 		// Apply the overflow style conditionally based on isOverflowActive
 		overflowY: isOverflowActive ? 'auto' : 'hidden',
 	}
@@ -54,5 +60,9 @@ export const useScroll = (): Scroll => {
 		}
 	}, [timeoutId])
 
-	return { onTouchStart, onTouchEnd, style }
+	return {
+		onTouchStart,
+		onTouchEnd,
+		style: deviceWidth > 900 ? style : smallDeviceStyle,
+	}
 }

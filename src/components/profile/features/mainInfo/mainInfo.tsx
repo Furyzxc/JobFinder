@@ -1,24 +1,22 @@
 import { Stack, Typography } from '@mui/material'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
-import { useAuthInfo } from '@/components/authorization'
-import { useGetProfile, useMainInfo } from '@/components/profile/model/hooks.ts'
+import { useMainInfo } from '@/components/profile/model/hooks'
 
 export const MainInfo = () => {
-	const entities = useMainInfo()
-	const { profileData, isOwner } = useGetProfile()
-	const { login } = useAuthInfo()
+	const { ref } = useSmoothAppearance()
 
-	if (entities && profileData && login) {
+	const mainInfo = useMainInfo()
+
+	if (mainInfo) {
+		const { login, isOwner, bio, name, avatar } = mainInfo
+
 		return (
-			<Stack spacing={1} sx={{ mb: '20px' }}>
-				<UserAvatar
-					avatar={profileData.photos.avatar}
-					name={profileData.name}
-					size={'296px'}
-				/>
+			<Stack spacing={1} sx={{ mb: '20px', opacity: 0 }} ref={ref}>
+				<UserAvatar avatar={avatar} name={name} size={'296px'} />
 				<Stack>
 					<Typography variant={'h6'} sx={{ fontSize: '25px' }}>
-						{profileData.name}
+						{name}
 					</Typography>
 					{isOwner && (
 						<Typography
@@ -29,12 +27,12 @@ export const MainInfo = () => {
 						</Typography>
 					)}
 				</Stack>
-				<Typography variant={'h2'} sx={{ fontSize: '20px' }}>
-					{profileData.bio}
-				</Typography>
+				{bio && (
+					<Typography variant={'h2'} sx={{ fontSize: '20px' }}>
+						{bio}
+					</Typography>
+				)}
 			</Stack>
 		)
 	}
-
-	return null
 }

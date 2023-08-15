@@ -1,7 +1,7 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material'
 import { Pagination, PaginationItem } from '@mui/material'
 import { useActions } from '@/shared/model/hooks'
-import { usePaginator } from '../../model/hooks.ts'
+import { usePaginator } from '../../model/hooks'
 
 export const Paginator = () => {
 	const { setPage } = useActions()

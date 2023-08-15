@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { BackBtn, BackBtnTypes } from '../backBtn'
-import { useGetProfile } from '@/components/profile/model/hooks.ts'
+import { useGetProfile } from '@/components/profile'
 
 export const ChatHeader = ({ setIsShow }: BackBtnTypes) => {
 	const { profileData } = useGetProfile()

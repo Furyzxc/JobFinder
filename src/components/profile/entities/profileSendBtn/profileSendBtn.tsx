@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useStartChattingMutation } from '../../api/api.ts'
-import { useGetProfile } from '../../model/hooks.ts'
+import { useGetProfile } from '../../model/hooks'
 import s from './sendBtn.module.css'
 
 interface PropsType {

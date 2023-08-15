@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useActions } from '@/shared/model/hooks'
 import { Input } from '@/shared/ui/input'
-import { useUsersState } from '@/components/users/model/hooks.ts'
+import { useUsersState } from '../../model/hooks'
 
 export const SearchInput = memo(() => {
 	const { setSearchingTerm } = useActions()

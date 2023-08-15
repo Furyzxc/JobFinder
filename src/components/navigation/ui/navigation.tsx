@@ -35,7 +35,7 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 				width: '100%',
 				top: 0,
 				left: -300,
-				zIndex: 1,
+				zIndex: 2,
 				backgroundColor: '#343942BD',
 			}}
 		>

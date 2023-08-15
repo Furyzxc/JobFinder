@@ -1,7 +1,7 @@
 import { GroupRounded } from '@mui/icons-material'
 import { memo } from 'react'
 import { useActions } from '@/shared/model/hooks'
-import { useUsersState } from '../../model/hooks.ts'
+import { useUsersState } from '../../model/hooks'
 
 export const SearchFilterByFriend = memo(() => {
 	const { friend } = useUsersState()
