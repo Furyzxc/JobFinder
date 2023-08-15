@@ -19,6 +19,8 @@ export const Dialogs = () => {
 
 	const documentWidth = document.documentElement.clientWidth
 
+	const displayDialogsList = showDialogsList || documentWidth >= 900
+
 	return (
 		<Grid container ref={ref}>
 			<WithError isError={isError}>
@@ -28,12 +30,10 @@ export const Dialogs = () => {
 					xs={12}
 					md={3}
 					sm={12}
-					style={{ display: !showDialogsList ? 'none' : undefined }}
+					style={{ display: displayDialogsList ? undefined : 'none' }}
 					className={s.list + ' noNavigationHeight'}
 				>
-					{(showDialogsList || documentWidth >= 900) && (
-						<DialogsList setIsShow={setShowDialogsList} />
-					)}
+					{displayDialogsList && <DialogsList setIsShow={setShowDialogsList} />}
 				</Grid>
 				<Grid sx={{ position: 'relative' }} item xs={12} md={9} sm={12}>
 					{userId ? (

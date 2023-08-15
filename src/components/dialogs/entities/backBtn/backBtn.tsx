@@ -11,7 +11,7 @@ export const BackBtn = ({ setIsShow }: BackBtnTypes) => {
 
 	return (
 		<div className={s.back} onClick={handleBtnClick}>
-			<ArrowBackRounded />
+			<ArrowBackRounded sx={{ color: '#E6EDF3' }} />
 		</div>
 	)
 }
