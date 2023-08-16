@@ -42,7 +42,11 @@ export const UserAvatar = memo(
 		return avatar ? (
 			<Avatar src={avatar} alt='user avatar' sx={sx} />
 		) : (
-			<Avatar sx={{ backgroundColor: randomColor, ...sx }} alt='user avatar'>
+			<Avatar
+				className='notranslate'
+				sx={{ backgroundColor: randomColor, ...sx }}
+				alt='user avatar'
+			>
 				{name[0].toUpperCase()}
 			</Avatar>
 		)

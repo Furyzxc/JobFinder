@@ -19,8 +19,12 @@ export const MainInfo = () => {
 					size={'296px'}
 					fontSize={'25px'}
 				/>
-				<Stack>
-					<Typography variant={'h6'} sx={{ fontSize: '25px' }}>
+				<Stack className='notranslate'>
+					<Typography
+						variant={'h6'}
+						sx={{ fontSize: '25px' }}
+						className='notranslate'
+					>
 						{name}
 					</Typography>
 					{isOwner && (

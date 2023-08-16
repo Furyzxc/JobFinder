@@ -24,7 +24,7 @@ export const Header = () => {
 					fontSize={'18px'}
 				/>
 				<Stack direction={'column'}>
-					<Stack direction={'row'} spacing={1}>
+					<Stack direction={'row'} spacing={1} className='notranslate'>
 						<Typography
 							variant={'h6'}
 							sx={{ color: 'white', fontSize: '18px' }}

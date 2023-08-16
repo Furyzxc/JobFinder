@@ -29,7 +29,9 @@ export const User = ({ name, status, photos, id }: UserProps) => {
 			onClick={handleUserClick}
 		>
 			<Grid item xl={1}>
-				<Typography variant='h6'>{name}</Typography>
+				<Typography variant='h6' className={'notranslate'}>
+					{name}
+				</Typography>
 			</Grid>
 
 			<Grid container item xl={3}>

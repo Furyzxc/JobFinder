@@ -37,7 +37,7 @@ export const Dialog = memo(
 		return (
 			<Stack
 				onClick={handleDialogClick}
-				className={clsx(s.dialog, isSelected && s.selected)}
+				className={clsx(s.dialog, isSelected && s.selected, 'notranslate')}
 				ref={ref}
 				direction={'row'}
 				alignItems={'center'}

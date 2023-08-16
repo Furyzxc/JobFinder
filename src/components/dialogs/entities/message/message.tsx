@@ -27,8 +27,8 @@ export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
 				<div className={s.text} ref={textRef}>
 					{body}
 				</div>
-				<div className={s.time}>{time}</div>
-				<div className={s.tick}>
+				<div className={s.time + ' notranslate'}>{time}</div>
+				<div className={s.tick + ' notranslate'}>
 					<DoneAllIcon
 						sx={{ fontSize: '12px', color: viewed ? '#66B7F6' : 'white' }}
 					/>

@@ -20,7 +20,9 @@ export const ChatHeader = ({ setIsShow }: BackBtnTypes) => {
 			>
 				<BackBtn setIsShow={setIsShow} />
 				<UserAvatar avatar={avatar} name={dialogName} />
-				<Typography variant={'h5'}>{dialogName}</Typography>
+				<Typography className={'notranslate'} variant={'h5'}>
+					{dialogName}
+				</Typography>
 			</Stack>
 		)
 	}
