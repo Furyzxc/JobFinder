@@ -1,9 +1,9 @@
 import { Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
-import { BackBtn, BackBtnTypes } from '../backBtn'
+import { BackBtn } from '../backBtn'
 import { useGetProfile } from '@/components/profile'
 
-export const ChatHeader = ({ setIsShow }: BackBtnTypes) => {
+export const ChatHeader = () => {
 	const { profileData } = useGetProfile()
 
 	const dialogName = profileData?.name
@@ -18,7 +18,7 @@ export const ChatHeader = ({ setIsShow }: BackBtnTypes) => {
 				sx={{ bgColor: '#161B22', pl: '10px', height: '100%', zIndex: 3 }}
 				spacing={2}
 			>
-				<BackBtn setIsShow={setIsShow} />
+				<BackBtn />
 				<UserAvatar avatar={avatar} name={dialogName} />
 				<Typography className={'notranslate'} variant={'h5'}>
 					{dialogName}

@@ -5,9 +5,8 @@ import { WithLoading } from '@/shared/hoc'
 import { useScroll } from '@/shared/model/hooks'
 import { useRequestDialogsQuery } from '../../api/api.ts'
 import { Dialog } from '../../entities/dialog'
-import { BackBtnTypes } from '@/components/dialogs/entities/backBtn'
 
-export const DialogsList = memo(({ setIsShow }: BackBtnTypes) => {
+export const DialogsList = memo(() => {
 	const { isLoading, data } = useRequestDialogsQuery()
 
 	const { userId = 0 } = useParams()
@@ -25,7 +24,6 @@ export const DialogsList = memo(({ setIsShow }: BackBtnTypes) => {
 					>
 						{data?.map(dialog => (
 							<Dialog
-								setIsShow={setIsShow}
 								isSelected={+userId === dialog.id}
 								key={dialog.id}
 								{...dialog}

@@ -1,13 +1,11 @@
 import { ArrowBackRounded } from '@mui/icons-material'
-import { Dispatch, SetStateAction } from 'react'
+import { useNavigate } from 'react-router-dom'
 import s from './back.module.css'
 
-export type BackBtnTypes = {
-	setIsShow: Dispatch<SetStateAction<boolean>>
-}
+export const BackBtn = () => {
+	const navigate = useNavigate()
 
-export const BackBtn = ({ setIsShow }: BackBtnTypes) => {
-	const handleBtnClick = () => setIsShow(prev => !prev)
+	const handleBtnClick = () => navigate('/dialogs')
 
 	return (
 		<div className={s.back} onClick={handleBtnClick}>

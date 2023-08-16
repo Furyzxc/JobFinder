@@ -1,24 +1,18 @@
 import { Grid } from '@mui/material'
 import { memo } from 'react'
 import { WithError, WithLoading } from '@/shared/hoc'
-import { BackBtnTypes } from '../../entities/backBtn'
 import { ChatHeader } from '../../entities/chatHeader'
+import { useMessagesRequest } from '../../model/hooks'
 import { DialogsForm } from '../dialogsForm'
 import { Messages } from '../messages'
-import { useMessagesRequest } from '@/components/dialogs/model/hooks'
 
-export const Chat = memo(({ setIsShow }: BackBtnTypes) => {
+export const Chat = memo(() => {
 	const { messagesData, isFetching, isError, urlId } = useMessagesRequest()
 
 	return (
-		<Grid
-			// sx={{ position: 'relative' }}
-			direction={'column'}
-			container
-			className={'noNavigationHeight'}
-		>
+		<Grid direction={'column'} container className={'noNavigationHeight'}>
 			<Grid item xs={1} sx={{ bgcolor: '#161B22', minHeight: '50px' }}>
-				<ChatHeader setIsShow={setIsShow} />
+				<ChatHeader />
 			</Grid>
 			<Grid
 				item

@@ -10,8 +10,8 @@ interface MessageProps extends Omit<MessageResponseType, 'id'> {
 }
 
 export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
-	// converting time to 12:32 PM format
-	const time = useFormattedTime(addedAt, 'HH:mm A')
+	// converting time to 0:32 PM format
+	const time = useFormattedTime(addedAt, 'h:mm A')
 
 	const { textRef, copyText } = useCopyText()
 
