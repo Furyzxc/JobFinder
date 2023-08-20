@@ -16,13 +16,23 @@ export const UsersList = memo(({ usersData }: PropsType) => {
 	const scroll = useScroll()
 
 	return (
-		<Grid container className={s.usersList + ' scroll'} {...scroll} ref={ref}>
-			{usersData?.items && usersData?.items.length > 0 ? (
-				usersData?.items.map(user => <User {...user} key={user.id} />)
-			) : (
-				<Div>Users not found</Div>
-			)}
-			<Paginator />
+		<Grid
+			container
+			className={'scroll'}
+			{...scroll}
+			ref={ref}
+			sx={{ textAlign: 'center', height: '100%' }}
+		>
+			<Grid xs item container className={s.usersList}>
+				{usersData?.items && usersData?.items.length > 0 ? (
+					usersData?.items.map(user => <User {...user} key={user.id} />)
+				) : (
+					<Div>Users not found</Div>
+				)}
+			</Grid>
+			<Grid xs={12} sx={{ flexGrow: 1, alignSelf: 'end' }}>
+				<Paginator />
+			</Grid>
 		</Grid>
 	)
 })

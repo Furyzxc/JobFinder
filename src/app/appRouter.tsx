@@ -1,12 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { WithSuspense } from '@/shared/hoc'
 import { MainLayout } from '../shared/layout/mainLayout.tsx'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
 import { Login } from '@/components/authorization'
 import { Dialogs } from '@/components/dialogs'
 import { NotFound } from '@/components/notFound'
 import { Profile } from '@/components/profile'
-import { Settings } from '@/components/settings'
-import { Users } from '@/components/users'
 
 export const appRouter = createBrowserRouter([
 	{
@@ -57,20 +56,36 @@ export const appRouter = createBrowserRouter([
 	},
 	{
 		path: '/users',
-		element: (
-			<MainLayout>
-				<Users />
-			</MainLayout>
-		),
+		async lazy() {
+			const { Users } = await import('@/components/users')
+
+			return {
+				element: (
+					<MainLayout>
+						<WithSuspense>
+							<Users />
+						</WithSuspense>
+					</MainLayout>
+				),
+			}
+		},
 	},
 	{
 		path: '/settings/*',
-		element: (
-			<MainLayout>
-				<GuestGuard>
-					<Settings />
-				</GuestGuard>
-			</MainLayout>
-		),
+		async lazy() {
+			const { Settings } = await import('@/components/settings')
+
+			return {
+				element: (
+					<MainLayout>
+						<GuestGuard>
+							<WithSuspense>
+								<Settings />
+							</WithSuspense>
+						</GuestGuard>
+					</MainLayout>
+				),
+			}
+		},
 	},
 ])

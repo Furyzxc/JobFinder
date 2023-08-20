@@ -3,15 +3,20 @@ import { GetUsersResponse, RequestUsersBody } from './types.ts'
 
 export const api = baseApi.injectEndpoints({
 	endpoints: build => ({
-		// recieves
+		// response contains:
 		// 1. array of users
-		// 2. total count of users
+		// 2. total count of users - number
 		// 3. error - string or null
 		getUsers: build.query<GetUsersResponse, RequestUsersBody>({
-			query: ({ count = 20, page = 1, term = '', friend = null }) =>
-				`users?count=${count}&page=${page}&term=${term}${
-					friend ? `&friend=${friend}` : ''
-				}`,
+			query: ({ term, friend = null, ...requiredParams }) => ({
+				url: 'users',
+				params: {
+					...requiredParams,
+
+					term: term || undefined,
+					friend: friend || undefined,
+				},
+			}),
 		}),
 	}),
 })

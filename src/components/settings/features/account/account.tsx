@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material'
-import { WithError, WithLoading } from '@/shared/hoc'
+import { WithLoadingAndError } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { SignoutSection } from '../../entities/logoutSection'
 import { Title } from '../../entities/title'
@@ -16,12 +16,10 @@ export const Account = () => {
 			sx={{ overflowX: 'hidden' }}
 			ref={ref}
 		>
-			<WithLoading isLoading={isLoading}>
-				<WithError isError={isError}>
-					<Title name={'Account'} />
-					<SignoutSection signoutFromAccount={signoutFromAccount} />
-				</WithError>
-			</WithLoading>
+			<WithLoadingAndError isLoading={isLoading} isError={isError}>
+				<Title name={'Account'} />
+				<SignoutSection signoutFromAccount={signoutFromAccount} />
+			</WithLoadingAndError>
 		</Stack>
 	)
 }

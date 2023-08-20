@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
-import { countPages } from '@/shared/utils/count-pages.ts'
 import { api } from '../api/api.ts'
 
 interface Users {
@@ -37,6 +36,11 @@ export const usersSlice = createSlice({
 			state.paginator.page = action.payload
 		},
 
+		setPagesCount(state, action: PayloadAction<number>) {
+			// setting amount of pages to state
+			state.paginator.pagesCount = action.payload
+		},
+
 		setSearchingTerm(state, action: PayloadAction<string>) {
 			state.term = action.payload
 			state.paginator.page = 1
@@ -50,14 +54,6 @@ export const usersSlice = createSlice({
 
 	extraReducers: builder => {
 		const { getUsers } = api.endpoints
-
-		// paginator destructured from state
-		builder.addMatcher(getUsers.matchFulfilled, ({ paginator }, action) => {
-			paginator.pagesCount = countPages(
-				action.payload.totalCount,
-				paginator.count
-			)
-		})
 
 		builder.addMatcher(getUsers.matchRejected, state => {
 			state.paginator.pagesCount = 0

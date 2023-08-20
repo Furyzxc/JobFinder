@@ -23,7 +23,9 @@ export const User = ({ name, status, photos, id }: UserProps) => {
 		<Grid
 			container
 			item
-			xs={2}
+			xs={12}
+			sm={3.5}
+			md={2.5}
 			sx={{ minWidth: '240px', p: '5px' }}
 			className={s.user}
 			onClick={handleUserClick}

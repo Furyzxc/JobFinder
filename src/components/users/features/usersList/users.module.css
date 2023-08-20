@@ -1,16 +1,5 @@
 .usersList {
     justify-content: space-around;
     gap: max(2%, 10px);
-    height: calc(100vh - 50px);
-    opacity: 0;
-}
-
-.usersList:last-child {
-    padding-bottom: 10px;
-}
-
-@media (max-width: 768px) {
-    .usersList {
-        height: calc(100vh - 56px - 50px);
-    }
+    padding: 10px;
 }

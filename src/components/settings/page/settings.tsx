@@ -1,6 +1,6 @@
 import { Grid, Stack } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
-import { WithError, WithLoading } from '@/shared/hoc'
+import { WithLoadingAndError } from '@/shared/hoc'
 import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
 import { Account } from '../features/account'
 import { Header } from '../features/header'
@@ -17,31 +17,29 @@ export const Settings = () => {
 
 	return (
 		<div ref={ref}>
-			<WithLoading isLoading={isLoading}>
-				<WithError isError={isError}>
-					<Stack
-						{...scroll}
-						sx={{ p: '15px 0 0 20px' }}
-						spacing={4}
-						className={'noNavigationHeight scroll'}
-					>
-						<div>
-							<Header />
-						</div>
-						<Grid container>
-							<Grid item xs={11} sm={3} sx={{ mb: '30px' }}>
-								<Navigation />
-							</Grid>
-							<Grid item xs={12} sm={9}>
-								<Routes>
-									<Route path='*' element={<Profile />} />
-									<Route path='account' element={<Account />} />
-								</Routes>
-							</Grid>
+			<WithLoadingAndError isLoading={isLoading} isError={isError}>
+				<Stack
+					{...scroll}
+					sx={{ p: '15px 0 0 20px' }}
+					spacing={4}
+					className={'noNavigationHeight scroll'}
+				>
+					<div>
+						<Header />
+					</div>
+					<Grid container>
+						<Grid item xs={11} sm={3} sx={{ mb: '30px' }}>
+							<Navigation />
 						</Grid>
-					</Stack>
-				</WithError>
-			</WithLoading>
+						<Grid item xs={12} sm={9}>
+							<Routes>
+								<Route path='*' element={<Profile />} />
+								<Route path='account' element={<Account />} />
+							</Routes>
+						</Grid>
+					</Grid>
+				</Stack>
+			</WithLoadingAndError>
 		</div>
 	)
 }

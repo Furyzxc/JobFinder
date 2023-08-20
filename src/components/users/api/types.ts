@@ -16,8 +16,8 @@ export interface GetUsersResponse {
 }
 
 export interface RequestUsersBody {
-	count?: number
-	page?: number
+	count: number
+	page: number
 	term?: string
 	friend?: boolean | null
 }

@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import { memo } from 'react'
-import { WithError, WithLoading } from '@/shared/hoc'
+import { WithLoadingAndError } from '@/shared/hoc'
 import { ChatHeader } from '../../entities/chatHeader'
 import { useMessagesRequest } from '../../model/hooks'
 import { DialogsForm } from '../dialogsForm'
@@ -20,11 +20,9 @@ export const Chat = memo(() => {
 				sx={{ width: '100%', position: 'relative', bgcolor: '#0D1117' }}
 				className={' scroll'}
 			>
-				<WithLoading isLoading={isFetching}>
-					<WithError isError={isError}>
-						<Messages messages={messagesData?.items} urlId={urlId} />
-					</WithError>
-				</WithLoading>
+				<WithLoadingAndError isLoading={isFetching} isError={isError}>
+					<Messages messages={messagesData?.items} urlId={urlId} />
+				</WithLoadingAndError>
 			</Grid>
 			<Grid item xs={0.6}>
 				<DialogsForm />
