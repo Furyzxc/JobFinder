@@ -1,5 +1,5 @@
 import { ErrorMessage } from '@/shared/ui/errorMessage'
-import { setError } from '@/components/authorization'
+import { setError } from '@/components/authorization/model'
 
 type PropsType = {
 	error: string

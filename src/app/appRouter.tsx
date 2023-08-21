@@ -1,11 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { WithSuspense } from '@/shared/hoc'
+import { lazyPageImport } from '@/shared/utils/lazy-import.ts'
 import { MainLayout } from '../shared/layout/mainLayout.tsx'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
-import { Login } from '@/components/authorization'
-import { Dialogs } from '@/components/dialogs'
-import { NotFound } from '@/components/notFound'
-import { Profile } from '@/components/profile'
+import { Dialogs } from '@/components/dialogs/page'
+import { NotFound } from '@/components/notFound/page'
+import { Profile } from '@/components/profile/page'
+
+const Login = lazyPageImport('authorization', 'Login')
+const Users = lazyPageImport('users', 'Users')
+const Settings = lazyPageImport('settings', 'Settings')
 
 export const appRouter = createBrowserRouter([
 	{
@@ -24,14 +28,6 @@ export const appRouter = createBrowserRouter([
 					<Profile />
 				</GuestGuard>
 			</MainLayout>
-		),
-	},
-	{
-		path: '/login',
-		element: (
-			<AuthGuard>
-				<Login />
-			</AuthGuard>
 		),
 	},
 	{
@@ -56,36 +52,35 @@ export const appRouter = createBrowserRouter([
 	},
 	{
 		path: '/users',
-		async lazy() {
-			const { Users } = await import('@/components/users')
+		element: (
+			<MainLayout>
+				<WithSuspense>
+					<Users />
+				</WithSuspense>
+			</MainLayout>
+		),
+	},
+	{
+		path: '/login',
 
-			return {
-				element: (
-					<MainLayout>
-						<WithSuspense>
-							<Users />
-						</WithSuspense>
-					</MainLayout>
-				),
-			}
-		},
+		element: (
+			<AuthGuard>
+				<WithSuspense>
+					<Login />
+				</WithSuspense>
+			</AuthGuard>
+		),
 	},
 	{
 		path: '/settings/*',
-		async lazy() {
-			const { Settings } = await import('@/components/settings')
-
-			return {
-				element: (
-					<MainLayout>
-						<GuestGuard>
-							<WithSuspense>
-								<Settings />
-							</WithSuspense>
-						</GuestGuard>
-					</MainLayout>
-				),
-			}
-		},
+		element: (
+			<MainLayout>
+				<GuestGuard>
+					<WithSuspense>
+						<Settings />
+					</WithSuspense>
+				</GuestGuard>
+			</MainLayout>
+		),
 	},
 ])

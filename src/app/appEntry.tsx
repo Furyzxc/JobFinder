@@ -8,7 +8,7 @@ import '@/shared/style/index.css'
 import { appTheme } from '@/shared/style/theme'
 import { appRouter } from './appRouter.tsx'
 import { appStore } from './appStore.ts'
-import { authMe } from '@/components/authorization'
+import { authMe } from '@/components/authorization/model'
 
 dayjs.extend(relativeTime)
 

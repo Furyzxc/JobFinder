@@ -30,7 +30,7 @@ export const UsersList = memo(({ usersData }: PropsType) => {
 					<Div>Users not found</Div>
 				)}
 			</Grid>
-			<Grid xs={12} sx={{ flexGrow: 1, alignSelf: 'end' }}>
+			<Grid xs={12} item sx={{ flexGrow: 1, alignSelf: 'end' }}>
 				<Paginator />
 			</Grid>
 		</Grid>

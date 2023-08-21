@@ -1,8 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
 import { baseApi } from '@/shared/api/baseApi.ts'
-import { authSlice } from '@/components/authorization'
-import { profileSettingsSlice } from '@/components/settings'
-import { usersSlice } from '@/components/users'
+import { authSlice } from '@/components/authorization/model'
+import { profileSettingsSlice } from '@/components/settings/model'
+import { usersSlice } from '@/components/users/model'
 
 export const rootReducer = combineReducers({
 	[authSlice.name]: authSlice.reducer,
