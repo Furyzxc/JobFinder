@@ -1,16 +1,69 @@
-.homepageBtn {
-	position: absolute;
-	top: 70%;
-	left: 47%;
-	display: inline-block;
-	padding: 12px 24px;
-	background-color: #333;
-	color: #fff;
-	border: none;
-	border-radius: 4px;
-	font-size: 20px;
+.box {
+	position: relative;
+	height: 100vh;
+	background: #E6EDF3;
+}
+
+.notfound {
+	max-width: 410px;
+	width: 100%;
 	text-align: center;
-	text-decoration: none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.notfound404 {
+	text-align: center;
+	position: relative;
+	height: 142px;
+}
+
+.notfound404 h1 {
+	text-align: center;
+	font-family: montserrat,sans-serif;
+	font-weight: 900;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	background: url(https://colorlib.com/etc/404/colorlib-error-404-10/img/bg.jpg) no-repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: cover;
+	background-position: center;
+	font-size: 112px;
+}
+
+.notfound h2 {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	color: #000;
+	font-size: 24px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.notfound p {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	color: #000;
+	font-size: 14px;
+	font-weight: 400;
+	margin-bottom: 20px;
+}
+
+.notfound button {
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	text-transform: uppercase;
+	background: #0046d5;
+	display: inline-block;
+	padding: 15px 30px;
+	border-radius: 40px;
+	color: #fff;
+	font-weight: 700;
+	box-shadow: 0 4px 15px -5px #0046d5;
 	cursor: pointer;
-	transition: background-color 0.3s ease-in-out;
 }

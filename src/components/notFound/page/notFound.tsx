@@ -1,26 +1,23 @@
-import { Button, Typography } from '@mui/material'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import s from './notFound.module.css'
 
 export const NotFound = () => {
-	const [count, setCount] = useState(0)
+	const navigate = useNavigate()
+
+	const handleGoToHmPageClick = () => navigate('/profile')
 
 	return (
-		<div>
-			<div>
-				<Button
-					variant='outlined'
-					sx={{ position: 'absolute', top: '50%', left: '47%', width: '143px' }}
-					onClick={() => setCount(prev => prev + 1)}
-				>
-					{count}
-				</Button>
-			</div>
-			<div>
-				<Link className={s.homepageBtn} to='/profile'>
-					<Typography variant={'h6'}>Home page</Typography>
-				</Link>
+		<div className={s.box}>
+			<div className={s.notfound}>
+				<div className={s.notfound404}>
+					<h1>Oops!</h1>
+				</div>
+				<h2>404 - Page not found</h2>
+				<p>
+					The page you are looking for might have been removed had its name
+					changed or is temporarily unavailable.
+				</p>
+				<button onClick={handleGoToHmPageClick}>Go To Homepage</button>
 			</div>
 		</div>
 	)

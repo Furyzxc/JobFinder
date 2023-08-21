@@ -10,7 +10,7 @@ export const lazyPageImport = (
 	componentName: ComponentName
 ) =>
 	lazy(() =>
-		import(`./src/components/${path}/page`).then(module => ({
+		import(`../../components/${path}/page`).then(module => ({
 			default: module[componentName],
 		}))
 	)
