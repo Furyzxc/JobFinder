@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material'
 import { UseFormRegister } from 'react-hook-form'
-import { FormValues } from '@/components/authorization/features/form'
+import { FormValues } from '../../features/form'
 
 interface LoginFormFieldProps {
 	name: 'email' | 'password' | 'rememberMe'

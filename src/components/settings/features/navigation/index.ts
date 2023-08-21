@@ -1,1 +1,1 @@
-export * from '@/components/settings/features/navigation/navigation.tsx'
+export * from './navigation.tsx'

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
-import { useRequestMessagesQuery } from '@/components/dialogs/api/api.ts'
-import { MessagesResponse } from '@/components/dialogs/api/types.ts'
+import { useRequestMessagesQuery } from '../../api/api.ts'
+import { MessagesResponse } from '../../api/types.ts'
 
 interface UseMessagesRequest {
 	messagesData: MessagesResponse | undefined

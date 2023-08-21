@@ -2,8 +2,8 @@ import { Container, Grid, Stack } from '@mui/material'
 import { WithLoadingAndError } from '@/shared/hoc'
 import { JobInfo } from '../features/jobInfo'
 import { MainInfo } from '../features/mainInfo'
+import { UserProfileBtns } from '../features/userProfileBtns'
 import { useGetProfile } from '../model/hooks'
-import { UserProfileBtns } from '@/components/profile/features/userProfileBtns'
 
 export const Profile = () => {
 	// requesting profile data

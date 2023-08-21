@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useOwnerInfo } from './useOwnerInfo.ts'
-import { useSetFieldValue } from '@/components/settings/model/hooks/useSetFieldValue.ts'
+import { useSetFieldValue } from './useSetFieldValue.ts'
 
 interface Entity {
 	name: string

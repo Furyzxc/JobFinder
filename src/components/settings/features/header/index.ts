@@ -1,1 +1,1 @@
-export * from '@/components/settings/features/header/header.tsx'
+export * from './header.tsx'

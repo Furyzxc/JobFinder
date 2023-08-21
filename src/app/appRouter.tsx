@@ -1,15 +1,27 @@
+import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { WithSuspense } from '@/shared/hoc'
-import { lazyPageImport } from '@/shared/utils/lazy-import.ts'
-import { MainLayout } from '../shared/layout/mainLayout.tsx'
-import { AuthGuard, GuestGuard } from './routeGuards.tsx'
+import { MainLayout } from '@/shared/layout/mainLayout.tsx'
 import { Dialogs } from '@/components/dialogs/page'
 import { NotFound } from '@/components/notFound/page'
 import { Profile } from '@/components/profile/page'
+import { AuthGuard, GuestGuard } from './routeGuards.tsx'
 
-const Login = lazyPageImport('authorization', 'Login')
-const Users = lazyPageImport('users', 'Users')
-const Settings = lazyPageImport('settings', 'Settings')
+// lazy imports
+const Login = lazy(() =>
+	import('@/components/authorization/page').then(module => ({
+		default: module.Login,
+	}))
+)
+const Users = lazy(() =>
+	import('@/components/users/page').then(module => ({ default: module.Users }))
+)
+
+const Settings = lazy(() =>
+	import('@/components/settings/page').then(module => ({
+		default: module.Settings,
+	}))
+)
 
 export const appRouter = createBrowserRouter([
 	{

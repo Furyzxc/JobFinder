@@ -1,5 +1,5 @@
-import { useUserDetails } from './useUserDetails.ts'
 import { ProfileResponseBody, useGetProfileQuery } from '@/components/profile'
+import { useUserDetails } from './useUserDetails.ts'
 
 interface GetProfile {
 	profileData: ProfileResponseBody | undefined

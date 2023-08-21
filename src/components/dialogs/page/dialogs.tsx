@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div'
-import { useRequestDialogsQuery } from '../api/api.ts'
 import { Chat } from '../features/chat'
 import { DialogsList } from '../features/dialogsList'
+import { useRequestDialogsQuery } from '../api/api.ts'
 import s from './dialogs.module.css'
 
 export const Dialogs = () => {

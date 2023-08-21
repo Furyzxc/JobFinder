@@ -1,6 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 import { useAuthInfo } from '@/components/authorization'
-
 
 interface UserIdFromParamsOutput {
 	id: number | undefined

@@ -1,5 +1,5 @@
-import { useGetProfile } from './useGetProfile.ts'
 import { useAuthInfo } from '@/components/authorization'
+import { useGetProfile } from './useGetProfile.ts'
 
 interface MainInfo {
 	login: string | null

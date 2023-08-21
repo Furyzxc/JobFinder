@@ -1,6 +1,5 @@
 import { useAuthInfo } from '@/components/authorization'
-import { useGetProfileQuery } from '@/components/profile'
-import { ProfileResponseBody } from '@/components/profile/api/types.ts'
+import { ProfileResponseBody, useGetProfileQuery } from '@/components/profile'
 
 interface Owner {
 	info: ProfileResponseBody | undefined

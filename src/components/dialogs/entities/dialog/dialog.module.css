@@ -1,28 +1,27 @@
 .dialog {
-    user-select: none;
-    text-decoration: none;
-    color: white;
-    opacity: 0;
-    position: relative;
-    min-height: 54px;
+	user-select: none;
+	text-decoration: none;
+	color: white;
+	opacity: 0;
+	position: relative;
+	min-height: 54px;
 }
 
-
 .selected {
-    background-color: #2b5278;
+	background-color: #2b5278;
 }
 
 .dialog:hover {
-    background-color: #212b35;
-    cursor: pointer;
+	background-color: #212b35;
+	cursor: pointer;
 }
 
 .selected:hover {
-    background-color: #2b5278;
+	background-color: #2b5278;
 }
 
 .time {
-    position: absolute;
-    top: 0;
-    right: 4px;
+	position: absolute;
+	top: 0;
+	right: 4px;
 }

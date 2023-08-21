@@ -10,6 +10,6 @@ module.exports = {
 	plugins: ['react-refresh'],
 	rules: {
 		'react-refresh/only-export-components': 'off',
-		'no-mixed-spaces-and-tabs': 'off'
+		'no-mixed-spaces-and-tabs': 'off',
 	},
 };

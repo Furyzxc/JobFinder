@@ -2,8 +2,8 @@ import { Grid, Stack, Typography } from '@mui/material'
 import { memo } from 'react'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { Input } from '@/shared/ui/input'
-import { Section } from '@/components/settings/entities/profileSection'
-import { useEntities, useOwnerInfo } from '@/components/settings/model/hooks'
+import { useEntities, useOwnerInfo } from '../../model/hooks'
+import { Section } from '../profileSection'
 
 export const MainProfileInfo = memo(() => {
 	const entities = useEntities()

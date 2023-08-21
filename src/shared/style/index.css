@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Mono:wght@600&family=Roboto:wght@400;500&display=swap');
 @import url('./reset.css');
 
-
 .height {
 	height: 100vh;
 }
@@ -21,9 +20,8 @@ html {
 	overflow: hidden;
 }
 
-
 body {
-	background: #0D1117;
+	background: #0d1117;
 	font-size: 14px;
 	line-height: 1;
 }
@@ -36,7 +34,7 @@ input::placeholder {
 	scrollbar-gutter: stable;
 	overflow-y: auto;
 	scrollbar-track-color: #293038;
-	scrollbar-color:  #2d343c #54595f;
+	scrollbar-color: #2d343c #54595f;
 	scrollbar-width: thin;
 	overflow-x: hidden;
 }
@@ -44,7 +42,6 @@ input::placeholder {
 .scroll:hover {
 	overflow-y: auto;
 }
-
 
 .scroll::-webkit-scrollbar {
 	width: 5px;

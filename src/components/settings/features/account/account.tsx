@@ -1,9 +1,9 @@
 import { Stack } from '@mui/material'
 import { WithLoadingAndError } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
+import { useLogoutMutation } from '@/components/authorization'
 import { SignoutSection } from '../../entities/logoutSection'
 import { Title } from '../../entities/title'
-import { useLogoutMutation } from '@/components/authorization'
 
 export const Account = () => {
 	const [signoutFromAccount, { isLoading, isError }] = useLogoutMutation()

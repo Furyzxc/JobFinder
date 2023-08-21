@@ -1,1 +1,1 @@
-export * from '@/components/dialogs/features/dialogsList/dialogsList.tsx'
+export * from './dialogsList.tsx'

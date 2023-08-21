@@ -1,11 +1,11 @@
 .back {
-    display: none;
-    cursor: pointer;
-    margin: 4px;
+	display: none;
+	cursor: pointer;
+	margin: 4px;
 }
 
 @media (max-width: 768px) {
-    .back {
-        display: block;
-    }
+	.back {
+		display: block;
+	}
 }

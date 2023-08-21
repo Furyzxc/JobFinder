@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import { useFollow } from '@/components/profile/model/hooks/useFollow.ts'
+import { useFollow } from '../../model/hooks'
 
 type PropsType = {
 	isLoading: boolean

@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
-import { api } from '@/components/settings/api/api.ts'
+import { api } from '../api/api.ts'
 
 interface SocialAccounts {
 	github: string

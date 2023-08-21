@@ -6,9 +6,9 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 import '@/shared/style/index.css'
 import { appTheme } from '@/shared/style/theme'
+import { authMe } from '@/components/authorization/model'
 import { appRouter } from './appRouter.tsx'
 import { appStore } from './appStore.ts'
-import { authMe } from '@/components/authorization/model'
 
 dayjs.extend(relativeTime)
 

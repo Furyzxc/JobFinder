@@ -1,7 +1,7 @@
 .btn:focus {
-    background-color: #238636;
+	background-color: #238636;
 }
 
 .btn:focus:hover {
-    background-color: #1F57A9;
+	background-color: #1f57a9;
 }

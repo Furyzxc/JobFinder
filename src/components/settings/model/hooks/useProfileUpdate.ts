@@ -1,9 +1,9 @@
-import { useOwnerInfo } from './useOwnerInfo.ts'
-import { useProfileSettings } from './useProfileSettings.ts'
 import {
 	EditProfileRequest,
 	useEditProfileInfoMutation,
-} from '@/components/settings/api/api.ts'
+} from '../../api/api.ts'
+import { useOwnerInfo } from './useOwnerInfo.ts'
+import { useProfileSettings } from './useProfileSettings.ts'
 
 type Output = [
 	// function that call update

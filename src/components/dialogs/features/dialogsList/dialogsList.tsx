@@ -3,8 +3,8 @@ import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { WithLoading } from '@/shared/hoc'
 import { useScroll } from '@/shared/model/hooks'
-import { useRequestDialogsQuery } from '../../api/api.ts'
 import { Dialog } from '../../entities/dialog'
+import { useRequestDialogsQuery } from '../../api/api.ts'
 
 export const DialogsList = memo(() => {
 	const { isLoading, data } = useRequestDialogsQuery()

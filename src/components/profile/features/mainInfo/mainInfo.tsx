@@ -1,7 +1,7 @@
 import { Stack, Typography } from '@mui/material'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
-import { useMainInfo } from '@/components/profile/model/hooks'
+import { useMainInfo } from '../../model/hooks'
 
 export const MainInfo = () => {
 	const { ref } = useSmoothAppearance()

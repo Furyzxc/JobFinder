@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 import site_icon from '@/assets/melon.png'
 import { useOutside } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
-import { useHeaderPageName } from '../model/hooks.ts'
 import { Navigation } from '@/components/navigation'
 import { useOwnerInfo } from '@/components/settings/model'
+import { useHeaderPageName } from '../model/hooks.ts'
 
 export const AuthorizedHeader = () => {
 	const { isShow, setIsShow, ref } = useOutside(false)

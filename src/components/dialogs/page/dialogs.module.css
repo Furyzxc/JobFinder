@@ -1,12 +1,12 @@
 .list {
-    position: relative;
+	position: relative;
 }
 
 @media (max-width: 900px) {
-    .list {
-        position: absolute;
-        top: 50px;
-        left: 0;
-        z-index: 1;
-    }
+	.list {
+		position: absolute;
+		top: 50px;
+		left: 0;
+		z-index: 1;
+	}
 }

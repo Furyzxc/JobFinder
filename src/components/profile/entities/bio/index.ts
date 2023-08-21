@@ -1,1 +1,1 @@
-export * from '@/components/profile/entities/bio/bio.tsx'
+export * from './bio.tsx'

@@ -1,4 +1,5 @@
 import { baseApi } from '@/shared/api/baseApi.ts'
+import { transformProfileRes } from './transformProfileRes.ts'
 import {
 	FollowRequestBody,
 	ProfileResponseBody,
@@ -8,7 +9,6 @@ import {
 	ToggleFollowResponse,
 	TransformType,
 } from './types.ts'
-import { transformProfileRes } from '@/components/profile/api/transformProfileRes.ts'
 
 export const api = baseApi.injectEndpoints({
 	endpoints: build => ({

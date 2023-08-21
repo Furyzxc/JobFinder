@@ -1,4 +1,4 @@
-import { useOwnerInfo } from '@/components/settings/model/hooks/useOwnerInfo.ts'
+import { useOwnerInfo } from './useOwnerInfo.ts'
 
 interface JobInfo {
 	isLookingForJob:

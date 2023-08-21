@@ -1,4 +1,4 @@
-import { useGetProfile } from '@/components/profile/model/hooks/useGetProfile.ts'
+import { useGetProfile } from './useGetProfile.ts'
 
 interface JobInfo {
 	key: number

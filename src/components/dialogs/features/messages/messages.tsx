@@ -1,11 +1,11 @@
 import { memo } from 'react'
 import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
-import { Div } from '@/shared/ui/div/div.tsx'
+import { Div } from '@/shared/ui/div'
+import { MessageResponseType } from '../../api/types.ts'
 import { Message } from '../../entities/message'
 import { TimeChip } from '../../entities/timeChip'
+import { useIsDateExist } from '../../model/hooks'
 import s from './messages.module.css'
-import { MessageResponseType } from '@/components/dialogs'
-import { useIsDateExist } from '@/components/dialogs/model/hooks/useIsDateExist.ts'
 
 type PropsType = {
 	messages: MessageResponseType[] | undefined
