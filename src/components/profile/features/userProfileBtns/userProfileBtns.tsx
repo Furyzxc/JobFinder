@@ -1,17 +1,18 @@
 import { Stack } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { memo } from 'react'
 import { Follow } from '../../entities/follow'
 import { ProfileSendBtn } from '../../entities/profileSendBtn'
 
-export const UserProfileBtns = () => {
-	const { userId } = useParams()
-
-	if (userId) {
-		return (
-			<Stack direction={'row'} spacing={2}>
-				<ProfileSendBtn userId={+userId} />
-				<Follow />
-			</Stack>
-		)
-	}
+type PropsType = {
+	name: string
+	avatar: string | null
 }
+
+export const UserProfileBtns = memo(({ name, avatar }: PropsType) => {
+	return (
+		<Stack direction={'row'} spacing={2}>
+			<ProfileSendBtn name={name} avatar={avatar} />
+			<Follow />
+		</Stack>
+	)
+})

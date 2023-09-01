@@ -1,14 +1,21 @@
+import { PermIdentityOutlined, SettingsOutlined } from '@mui/icons-material'
 import { Stack } from '@mui/material'
-import { useSettingsNavigation } from '../../model/hooks'
-import { NavigationGroup } from '../../entities/navigationGroup'
+import { NavigationElement } from '../../entities/navigationElement'
 
 // settings navigation on left side
 export const Navigation = () => {
-	const entities = useSettingsNavigation()
-
 	return (
-		<Stack direction={'column'}>
-			<NavigationGroup entities={entities} />
+		<Stack direction={'column'} sx={{ pr: '10px' }}>
+			<NavigationElement
+				icon={<PermIdentityOutlined />}
+				name={'Public profile'}
+				path={'profile'}
+			/>
+			<NavigationElement
+				icon={<SettingsOutlined />}
+				name={'Account'}
+				path={'account'}
+			/>
 		</Stack>
 	)
 }

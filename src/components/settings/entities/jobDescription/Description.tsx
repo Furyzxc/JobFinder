@@ -14,7 +14,7 @@ export const Description = ({ initialValue }: PropsType) => {
 		setMainValue({ fieldName: 'lookingForAJobDescription', value })
 
 	return (
-		<Section name={'Additional Job Information'}>
+		<Section name={'Additional Information'}>
 			<Input {...bind} multiline onBlur={handleBlur} />
 		</Section>
 	)

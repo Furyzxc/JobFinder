@@ -7,5 +7,6 @@ export const useAuth = () => {
 
 export const useAuthInfo = () => {
 	const { userInfo } = useAuth()
+
 	return userInfo
 }

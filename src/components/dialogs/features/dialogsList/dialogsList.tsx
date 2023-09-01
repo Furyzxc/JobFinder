@@ -1,30 +1,32 @@
 import { Grid, Stack } from '@mui/material'
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
-import { WithLoading } from '@/shared/hoc'
 import { Dialog } from '../../entities/dialog'
+import { DialogsListSkeletons } from '../../entities/dialogsListSkeletons'
 import { useRequestDialogsQuery } from '../../api/api.ts'
 
 export const DialogsList = memo(() => {
-	const { isLoading, data } = useRequestDialogsQuery()
+	const { data } = useRequestDialogsQuery()
 
 	const { userId = 0 } = useParams()
 
 	return (
-		<WithLoading isLoading={isLoading}>
-			<Grid item container sx={{ width: '100%', bgcolor: '#343942BD' }}>
-				<Grid item xs={12} md={12} sm={8} sx={{ bgcolor: '#161B22' }}>
-					<Stack direction={'column'} className={'noNavigationHeight scroll'}>
-						{data?.map(dialog => (
+		<Grid item container sx={{ width: '100%', bgcolor: '#343942BD' }}>
+			<Grid item xs={12} md={12} sm={8} sx={{ bgcolor: '#161B22' }}>
+				<Stack direction={'column'} className={'noNavigationHeight scroll'}>
+					{data ? (
+						data.map(dialog => (
 							<Dialog
 								isSelected={+userId === dialog.id}
 								key={dialog.id}
 								{...dialog}
 							/>
-						))}
-					</Stack>
-				</Grid>
+						))
+					) : (
+						<DialogsListSkeletons />
+					)}
+				</Stack>
 			</Grid>
-		</WithLoading>
+		</Grid>
 	)
 })

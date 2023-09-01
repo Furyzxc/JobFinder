@@ -13,13 +13,10 @@ interface UseSocialAccount {
 
 /**
  * Custom hook for managing social account input field.
- * @param fieldName - The name of social account.
- * @param initialValue - The initial value for the input field.
- * @returns object for the social account input field.
  */
 export const useSocialAccount = (
-	fieldName: SocialAccountType,
-	initialValue: string
+	fieldName: SocialAccountType, // - The name of social account
+	initialValue: string // - The initial value for the input field
 ): UseSocialAccount => {
 	const { setValue, bind } = useInput(initialValue)
 

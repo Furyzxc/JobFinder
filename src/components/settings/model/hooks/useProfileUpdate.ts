@@ -20,9 +20,7 @@ type ProfileUpdate = [
 
 /**
  * Custom hook for handling profile updates.
- * @returns {ProfileUpdate} The trigger function and status/data object.
  */
-
 export const useProfileUpdate = (): ProfileUpdate => {
 	const {
 		userId,

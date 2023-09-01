@@ -4,7 +4,6 @@ import {
 	FollowRequestBody,
 	ProfileResponseBody,
 	SetStatusRequestBody,
-	StartChattingResponse,
 	StatusCode,
 	ToggleFollowResponse,
 	TransformType,
@@ -45,15 +44,6 @@ export const api = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ['FOLLOW'],
 		}),
-
-		// Start dialog with a person
-		startChatting: build.mutation<StartChattingResponse, number>({
-			query: userId => ({
-				url: 'dialogs/' + userId,
-				method: 'put',
-			}),
-			invalidatesTags: ['DIALOGS'],
-		}),
 	}),
 })
 
@@ -61,5 +51,4 @@ export const {
 	useGetProfileQuery,
 	useGetIsFollowedQuery,
 	useToggleIsFollowedMutation,
-	useStartChattingMutation,
 } = api

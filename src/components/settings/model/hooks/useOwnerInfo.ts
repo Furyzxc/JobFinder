@@ -9,7 +9,7 @@ interface Owner {
 
 // Custom hook to fetch owner information.
 export const useOwnerInfo = (): Owner => {
-	// taking profile id from auth reducer state
+	// taking profile id from auth state
 	const { id } = useAuthInfo()
 
 	const {
