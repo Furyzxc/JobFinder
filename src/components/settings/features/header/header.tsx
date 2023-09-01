@@ -1,7 +1,6 @@
 import { Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { useAuthInfo } from '@/components/authorization'
-import { ProfileResponseBody } from '@/components/profile'
 import { useOwnerInfo } from '../../model/hooks'
 
 export const Header = () => {
@@ -9,17 +8,12 @@ export const Header = () => {
 
 	const { info } = useOwnerInfo()
 
-	const {
-		name,
-		photos: { avatar },
-	} = info as ProfileResponseBody
-
-	if (name) {
+	if (info)
 		return (
 			<Stack direction={'row'} spacing={1}>
 				<UserAvatar
-					avatar={avatar}
-					name={name}
+					avatar={info.photos.avatar}
+					name={info.name}
 					size={'48px'}
 					fontSize={'18px'}
 				/>
@@ -29,7 +23,7 @@ export const Header = () => {
 							variant={'h6'}
 							sx={{ color: 'white', fontSize: '18px' }}
 						>
-							{name}
+							{info.name}
 						</Typography>
 						<Typography variant={'h6'} sx={{ color: '#768590', pt: '1px' }}>
 							({login})
@@ -44,7 +38,4 @@ export const Header = () => {
 				</Stack>
 			</Stack>
 		)
-	}
-
-	return null
 }

@@ -1,7 +1,8 @@
-import { LockOutlined } from '@mui/icons-material'
-import { Avatar, Box, Container, Typography } from '@mui/material'
+import { Container, Stack } from '@mui/material'
 import { WithLoading } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
+import { Icon } from '@/components/authorization/entities/icon'
+import { Title } from '../entities/title'
 import { Form } from '../features/form'
 import { useAuth } from '../model/hooks.ts'
 
@@ -13,22 +14,11 @@ export const Login = () => {
 	return (
 		<Container component='main' maxWidth='xs' ref={ref}>
 			<WithLoading isLoading={isLoading}>
-				<Box
-					sx={{
-						marginTop: 8,
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}
-				>
-					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<LockOutlined />
-					</Avatar>
-					<Typography component='h1' variant='h5'>
-						Sign in
-					</Typography>
+				<Stack sx={{ mt: 8, alignItems: 'center' }}>
+					<Icon />
+					<Title />
 					<Form />
-				</Box>
+				</Stack>
 			</WithLoading>
 		</Container>
 	)

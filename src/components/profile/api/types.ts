@@ -7,6 +7,17 @@ export interface ToggleFollowResponse {
 	resultCode: number
 }
 
+export interface SocialAccounts {
+	github: string | null
+	linkedin: string | null
+	facebook: string | null
+	instagram: string | null
+	twitter: string | null
+	website: string | null
+	youtube: string | null
+	telegram: string | null
+}
+
 export interface ProfileResponseBody {
 	userId: number
 	lookingForAJob: boolean
@@ -14,16 +25,7 @@ export interface ProfileResponseBody {
 	name: string
 	bio: string | null
 
-	socialAccounts: {
-		github: string | null
-		linkedin: string | null
-		facebook: string | null
-		instagram: string | null
-		twitter: string | null
-		website: string | null
-		youtube: string | null
-		telegram: string | null
-	}
+	socialAccounts: SocialAccounts
 
 	photos: {
 		avatar: string | null

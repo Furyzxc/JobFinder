@@ -14,10 +14,11 @@ export const Dialogs = () => {
 
 	const { ref } = useSmoothAppearance(0.1)
 
-	const documentWidth = document.documentElement.clientWidth
+	const { clientWidth } = document.documentElement
 
-	// we show dialogs list if we dont have user id in url params or device width is larger that 900 px
-	const displayDialogsList = !userId || documentWidth >= 900
+	// we show dialogs list if we don't have user id in url params
+	// or device width is larger than 900 px
+	const displayDialogsList = !userId || clientWidth >= 900
 
 	return (
 		<Grid container ref={ref}>
@@ -28,10 +29,10 @@ export const Dialogs = () => {
 					xs={12}
 					md={3}
 					sm={12}
-					style={{ display: displayDialogsList ? undefined : 'none' }}
+					sx={{ display: displayDialogsList ? undefined : 'none' }}
 					className={s.list + ' noNavigationHeight'}
 				>
-					{displayDialogsList && <DialogsList />}
+					<DialogsList />
 				</Grid>
 				<Grid
 					sx={{ position: 'relative' }}

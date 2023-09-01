@@ -1,6 +1,7 @@
 import DoneAllIcon from '@mui/icons-material/DoneAll'
 import { clsx } from 'clsx'
-import { useCopyText, useFormattedTime } from '@/shared/model/hooks'
+import { formatTime } from '@/shared/lib/format-time.ts'
+import { useCopyText } from '@/shared/model/hooks'
 import { MessageResponseType } from '../../api/types.ts'
 import s from './message.module.css'
 
@@ -11,7 +12,7 @@ interface MessageProps extends Omit<MessageResponseType, 'id'> {
 
 export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
 	// converting time to 0:32 PM format
-	const time = useFormattedTime(addedAt, 'h:mm A')
+	const time = formatTime(addedAt, 'h:mm A')
 
 	const { textRef, copyText } = useCopyText()
 

@@ -1,85 +1,65 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
-import { api } from '../api/api.ts'
+import { ProfileResponseBody, SocialAccounts } from '@/components/profile'
 
-interface SocialAccounts {
-	github: string
-	linkedin: string
-	facebook: string
-	instagram: string
-	twitter: string
-	website: string
-	youtube: string
-	telegram: string
-}
-
-interface ProfileSettings {
-	name: string
-	bio: string
-	isLookingForJob: boolean
-	jobDescription: string
-
-	socialAccounts: SocialAccounts
-
-	updateProfileErrorMessage: string | undefined
-	isLoading: boolean
-	isError: boolean
+interface ProfileSettings extends ProfileResponseBody {
+	updateProfileErrorMessage: string | null
 }
 
 const initialState: ProfileSettings = {
+	userId: 0,
 	name: '',
-	bio: '',
-	isLookingForJob: false,
-	jobDescription: '',
-
-	socialAccounts: {
-		github: '',
-		linkedin: '',
-		facebook: '',
-		instagram: '',
-		twitter: '',
-		website: '',
-		youtube: '',
-		telegram: '',
+	bio: null,
+	lookingForAJob: false,
+	lookingForAJobDescription: '',
+	photos: {
+		avatar: null,
+		backgroundImg: null,
 	},
 
-	updateProfileErrorMessage: undefined,
-	isLoading: false,
-	isError: false,
+	socialAccounts: {
+		github: null,
+		linkedin: null,
+		facebook: null,
+		instagram: null,
+		twitter: null,
+		website: null,
+		youtube: null,
+		telegram: null,
+	},
+
+	updateProfileErrorMessage: null,
 }
 
 export type MainFieldType =
 	| 'name'
 	| 'bio'
-	| 'jobDescription'
-	| 'isLookingForJob'
+	| 'lookingForAJobDescription'
+	| 'lookingForAJob'
 
 type SetMainValueAction = {
-	fieldName: 'name' | 'bio' | 'jobDescription' | 'isLookingForJob'
+	fieldName: MainFieldType
 	value: string | boolean
 }
 
-export type SocialAccountsType =
-	| 'github'
-	| 'linkedin'
-	| 'facebook'
-	| 'instagram'
-	| 'twitter'
-	| 'website'
-	| 'youtube'
-	| 'telegram'
+export type SocialAccountType = keyof SocialAccounts
 
 interface SetAccountValueAction {
-	fieldName: SocialAccountsType
+	fieldName: SocialAccountType
 	value: string | null
 }
-
-const SUCCESS_CODE = 0
 
 export const profileSettingsSlice = createSlice({
 	name: 'profileSettings',
 	initialState,
 	reducers: {
+		setProfileInfo(state, action: PayloadAction<ProfileResponseBody>) {
+			return {
+				...state,
+				...action.payload,
+			}
+		},
+
 		setMainValue(state, { payload }: PayloadAction<SetMainValueAction>) {
 			const { fieldName, value } = payload
 
@@ -88,17 +68,17 @@ export const profileSettingsSlice = createSlice({
 				typeof value === 'string' &&
 				(fieldName === 'name' ||
 					fieldName === 'bio' ||
-					fieldName === 'jobDescription')
+					fieldName === 'lookingForAJobDescription')
 			) {
 				// setting string value
 				state[fieldName] = value
 			} else if (
 				// if payload refers boolean value (radio buttons)
-				fieldName === 'isLookingForJob' &&
+				fieldName === 'lookingForAJob' &&
 				typeof value === 'boolean'
 			) {
 				// setting boolean value
-				state.isLookingForJob = value
+				state.lookingForAJob = value
 			}
 		},
 
@@ -106,39 +86,9 @@ export const profileSettingsSlice = createSlice({
 			state.socialAccounts[payload.fieldName] = payload.value || ''
 		},
 
-		setAccountsValues(state, action: PayloadAction<SocialAccounts>) {
-			state.socialAccounts = action.payload
-		},
-
 		clearErrorMessage(state) {
-			state.updateProfileErrorMessage = undefined
+			state.updateProfileErrorMessage = null
 		},
-	},
-
-	extraReducers: builder => {
-		builder.addMatcher(api.endpoints.editProfileInfo.matchPending, state => {
-			state.isLoading = true
-			state.isError = false
-		})
-		builder.addMatcher(
-			api.endpoints.editProfileInfo.matchFulfilled,
-			(state, { payload }) => {
-				state.isLoading = false
-				state.isError = false
-
-				// checking result code and if it is success clear error message
-				if (payload.resultCode === SUCCESS_CODE) {
-					state.updateProfileErrorMessage = undefined
-				}
-				// setting error message to state if this message exist
-				else if (payload.messages.length >= 1) {
-					state.updateProfileErrorMessage = payload.messages[0]
-				}
-			}
-		)
-		builder.addMatcher(api.endpoints.editProfileInfo.matchFulfilled, state => {
-			state.isError = true
-		})
 	},
 })
 

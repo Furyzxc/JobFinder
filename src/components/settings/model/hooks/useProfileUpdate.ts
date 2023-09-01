@@ -2,12 +2,15 @@ import {
 	EditProfileRequest,
 	useEditProfileInfoMutation,
 } from '../../api/api.ts'
-import { useOwnerInfo } from './useOwnerInfo.ts'
 import { useProfileSettings } from './useProfileSettings.ts'
 
-type Output = [
-	// function that call update
+/**
+ * Represents the output structure of the profile update hook.
+ */
+type ProfileUpdate = [
+	// Function to trigger the profile update
 	trigger: () => void,
+	// Status and response data
 	data: {
 		isLoading: boolean
 		isError: boolean
@@ -15,54 +18,39 @@ type Output = [
 	},
 ]
 
-export const useProfileUpdate = (): Output => {
+/**
+ * Custom hook for handling profile updates.
+ * @returns {ProfileUpdate} The trigger function and status/data object.
+ */
+
+export const useProfileUpdate = (): ProfileUpdate => {
 	const {
-		name,
-		bio,
-		isLookingForJob,
-		jobDescription,
+		userId,
+		name: fullName,
+		bio: aboutMe,
+		lookingForAJob,
+		lookingForAJobDescription,
 		socialAccounts: { telegram: mainLink, linkedin: vk, ...socialAccounts },
 	} = useProfileSettings()
-	const { info } = useOwnerInfo()
 
-	const createEditProfileBody = (
-		fullName: string,
-		userId: number,
-		aboutMe: string,
-		lookingForAJob: boolean,
-		lookingForAJobDescription: string | null
-	): EditProfileRequest => {
-		return {
-			fullName,
-			userId,
-			aboutMe,
-			lookingForAJob,
-			lookingForAJobDescription: lookingForAJobDescription || '',
-			contacts: {
-				mainLink,
-				vk,
-				...socialAccounts,
-			},
-		}
+	const editProfileBody: EditProfileRequest = {
+		fullName,
+		userId,
+		aboutMe: aboutMe || '',
+		lookingForAJob,
+		lookingForAJobDescription,
+		contacts: {
+			vk,
+			mainLink,
+			...socialAccounts,
+		},
 	}
 
 	const [editProfile, { isLoading, isError, data }] =
 		useEditProfileInfoMutation()
 
 	return [
-		() => {
-			if (info) {
-				const editProfileBody = createEditProfileBody(
-					name,
-					info.userId,
-					bio,
-					isLookingForJob,
-					jobDescription
-				)
-
-				editProfile(editProfileBody)
-			}
-		},
+		() => editProfile(editProfileBody),
 		{
 			isLoading,
 			isError,

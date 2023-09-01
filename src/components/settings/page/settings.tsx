@@ -1,25 +1,31 @@
 import { Grid, Stack } from '@mui/material'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { WithLoadingAndError } from '@/shared/hoc'
-import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
+import { useActions, useSmoothAppearance } from '@/shared/model/hooks'
+import { useOwnerInfo } from '../model/hooks'
 import { Account } from '../features/account'
 import { Header } from '../features/header'
 import { Navigation } from '../features/navigation'
 import { Profile } from '../features/profile'
-import { useOwnerInfo } from '../model/hooks'
 
 export const Settings = () => {
-	const { isLoading, isError } = useOwnerInfo()
+	const { info, isError } = useOwnerInfo()
+
+	const { setProfileInfo } = useActions()
+	const [isLoading, setIsLoading] = useState(true)
+	useEffect(() => {
+		// setting initial values to state
+		if (info) setProfileInfo(info)
+		setIsLoading(false)
+	}, [info, setProfileInfo])
 
 	const { ref } = useSmoothAppearance()
-
-	const scroll = useScroll()
 
 	return (
 		<div ref={ref}>
 			<WithLoadingAndError isLoading={isLoading} isError={isError}>
 				<Stack
-					{...scroll}
 					sx={{ p: '15px 0 0 20px' }}
 					spacing={4}
 					className={'noNavigationHeight scroll'}

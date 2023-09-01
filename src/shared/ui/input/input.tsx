@@ -3,7 +3,7 @@ import { ChangeEvent, FocusEvent } from 'react'
 
 interface InputProps {
 	onBlur?: (value: string) => void
-	onChange?: (value: string) => void
+	onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 	value?: string
 	label?: string
 	multiline?: boolean
@@ -13,37 +13,19 @@ interface InputProps {
 	width?: string
 }
 
-export const Input = ({
-	onBlur,
-	value,
-	onChange,
-	label,
-	multiline,
-	defaultValue,
-	placeholder,
-	disabled,
-	width,
-}: InputProps) => {
-	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) =>
-		onChange && onChange(e.target.value)
-
+export const Input = ({ onBlur, label, width, ...inputProps }: InputProps) => {
 	const handleBlur = (e: FocusEvent<HTMLInputElement>) =>
 		onBlur && onBlur(e.target.value)
 
 	return (
 		<TextField
+			{...inputProps}
 			size={'small'}
-			defaultValue={defaultValue}
 			maxRows={4}
-			multiline={multiline}
 			hiddenLabel={!!label}
 			label={label}
 			sx={{ width: width || '80%' }}
-			value={value}
-			onChange={handleInputChange}
 			onBlur={handleBlur}
-			placeholder={placeholder}
-			disabled={disabled}
 			InputProps={{
 				style: {
 					borderColor: 'white',

@@ -1,10 +1,8 @@
 import { CloseSharp } from '@mui/icons-material'
-import { Avatar, Box, Button, Grid, Stack, Typography } from '@mui/material'
-import { useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Avatar, Box, Grid, Stack } from '@mui/material'
 import siteIcon from '@/assets/melon.png'
-import { useAnimation } from '@/shared/model/hooks'
-import { useIcons } from '../model/hooks/useIcons.tsx'
+import { Button } from '@/shared/ui/button'
+import { useNavigation } from '../model/hooks'
 
 type PropsType = {
 	setIsShow: (value: boolean) => void
@@ -12,22 +10,12 @@ type PropsType = {
 }
 
 export const Navigation = ({ setIsShow, navRef }: PropsType) => {
-	const icons = useIcons()
-
-	const { ref } = useAnimation({ left: 0 }, { left: -300 }, 0.1)
-
-	const navigate = useNavigate()
-
-	const closeNavigation = useCallback(() => setIsShow(false), [setIsShow])
-
-	const handleNavElementClick = (pathname: string) => () => {
-		closeNavigation()
-		navigate(pathname)
-	}
+	const { animationRef, icons, closeNavigation, handleNavElementClick } =
+		useNavigation(setIsShow)
 
 	return (
 		<Box
-			ref={ref}
+			ref={animationRef}
 			className={'height'}
 			sx={{
 				overflow: 'hidden',
@@ -62,30 +50,11 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 				</Grid>
 				{icons.map(({ name, path, icon, isClickAccepted, endIcon }) => (
 					<Button
-						key={name}
-						sx={{
-							textAlign: 'none',
-							minWidth: '100%',
-							justifyContent: 'flex-start',
-							height: '32px',
-							color: '#7D8590',
-						}}
-						onClick={isClickAccepted && handleNavElementClick(path)}
 						startIcon={icon}
 						endIcon={endIcon}
+						onClick={isClickAccepted && handleNavElementClick(path)}
 					>
-						<Typography
-							variant={'h1'}
-							sx={{
-								color: '#E6EDF3',
-								fontSize: '13px',
-								textAlign: 'start',
-								pt: '5px',
-								flexGrow: 1,
-							}}
-						>
-							{name}
-						</Typography>
+						{name}
 					</Button>
 				))}
 			</Stack>

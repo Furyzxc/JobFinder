@@ -1,10 +1,10 @@
 import { memo } from 'react'
-import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div'
-import { MessageResponseType } from '../../api/types.ts'
+import { useIsDateExist } from '../../model/hooks'
 import { Message } from '../../entities/message'
 import { TimeChip } from '../../entities/timeChip'
-import { useIsDateExist } from '../../model/hooks'
+import { MessageResponseType } from '../../api/types.ts'
 import s from './messages.module.css'
 
 type PropsType = {
@@ -17,10 +17,8 @@ export const Messages = memo(({ messages, urlId }: PropsType) => {
 
 	const { formattedToMMMM_D, isDateExist } = useIsDateExist()
 
-	const scroll = useScroll()
-
 	return (
-		<div className={s.flexbox + ' scroll'} ref={ref} {...scroll}>
+		<div className={s.flexbox + ' scroll'} ref={ref}>
 			{messages && messages.length > 0 ? (
 				messages.map(({ id, ...message }) => {
 					return (

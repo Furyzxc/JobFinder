@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
+import { countPages } from '@/shared/lib/count-pages.ts'
 import { useActions } from '@/shared/model/hooks'
-import { countPages } from '@/shared/utils/count-pages.ts'
 import { useGetUsersQuery } from '../../api/api.ts'
 import { GetUsersResponse } from '../../api/types.ts'
 import { usePaginator } from './usePaginator.ts'

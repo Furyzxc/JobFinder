@@ -1,12 +1,15 @@
+import { useAppDispatch } from '@/shared/model/hooks'
 import { ErrorMessage } from '@/shared/ui/errorMessage'
-import { setError } from '@/components/authorization/model'
+import { setError } from '../../model'
 
 type PropsType = {
 	error: string
 }
 
 export const Error = ({ error }: PropsType) => {
-	const handleCrossClick = () => setError('')
+	const dispatch = useAppDispatch()
+
+	const handleCrossClick = () => dispatch(setError(null))
 
 	return <ErrorMessage message={error} onCrossClick={handleCrossClick} />
 }

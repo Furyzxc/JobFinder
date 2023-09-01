@@ -1,11 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material'
-import clsx from 'clsx'
+import { clsx } from 'clsx'
 import { memo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSmoothAppearance } from '@/shared/model/hooks'
+import { useActions, useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
+import { formatTimeByDate } from '../../lib/format-time.ts'
 import { DialogsResponse } from '../../api/types.ts'
-import { useDialogsTime } from '../../model/hooks'
 import s from './dialog.module.css'
 
 interface PropsType extends DialogsResponse {
@@ -15,21 +15,24 @@ interface PropsType extends DialogsResponse {
 export const Dialog = memo(
 	({
 		isSelected,
-		userName,
+		userName: name,
 		id,
 		lastDialogActivityDate,
-		photos: { small },
+		photos: { small: avatar },
 		hasNewMessages,
 	}: PropsType) => {
 		const navigate = useNavigate()
+
+		const { setChatInfo } = useActions()
 
 		const { ref } = useSmoothAppearance()
 
 		const handleDialogClick = () => {
 			navigate('/dialogs/' + id)
+			setChatInfo({ name, avatar })
 		}
 
-		const time = useDialogsTime(lastDialogActivityDate)
+		const time = formatTimeByDate(lastDialogActivityDate)
 
 		return (
 			<Stack
@@ -40,10 +43,10 @@ export const Dialog = memo(
 				alignItems={'center'}
 			>
 				<Box sx={{ m: '0 10px 0 3px' }}>
-					<UserAvatar avatar={small} name={userName} />
+					<UserAvatar avatar={avatar} name={name} />
 				</Box>
 				<Box>
-					<Typography noWrap>{userName}</Typography>
+					<Typography noWrap>{name}</Typography>
 				</Box>
 				<Typography
 					variant={'h1'}

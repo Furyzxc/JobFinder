@@ -6,7 +6,7 @@ export const NotFound = () => {
 	const navigate = useNavigate()
 
 	const { ref } = useSmoothAppearance()
-	const handleGoToHmPageClick = () => navigate('/profile')
+	const navigateToProfilePage = () => navigate('/profile')
 
 	return (
 		<div className={s.box} ref={ref}>
@@ -19,7 +19,7 @@ export const NotFound = () => {
 					The page you are looking for might have been removed had its name
 					changed or is temporarily unavailable.
 				</p>
-				<button onClick={handleGoToHmPageClick}>Go To Homepage</button>
+				<button onClick={navigateToProfilePage}>Go To Homepage</button>
 			</div>
 		</div>
 	)

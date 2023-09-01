@@ -2,27 +2,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Box, Button, Checkbox, FormControlLabel } from '@mui/material'
 import { memo } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import * as Yup from 'yup'
 import { useAppDispatch } from '@/shared/model/hooks'
-import { Error } from '../../entities/error'
-import { Field } from '../../entities/field'
 import { useAuth } from '../../model/hooks.ts'
 import { authLogin } from '../../model/slice.ts'
+import { validationSchema } from '../../lib/validation.ts'
+import { Error } from '../../entities/error'
+import { Field } from '../../entities/field'
 
 export interface FormValues {
 	email: string
 	password: string
 	rememberMe: boolean | undefined
 }
-
-const validationSchema = Yup.object().shape({
-	email: Yup.string().required('Enter your email').email('Enter valid email'),
-	password: Yup.string()
-		.min(7, 'Too short')
-		.max(20, 'Too long')
-		.required('Enter your password'),
-	rememberMe: Yup.boolean(),
-})
 
 export const Form = memo(() => {
 	const dispatch = useAppDispatch()
@@ -70,11 +61,10 @@ export const Form = memo(() => {
 			<Controller
 				name='rememberMe'
 				control={control}
-				rules={{ required: true }}
 				render={({ field }) => (
 					<FormControlLabel
 						{...field}
-						control={<Checkbox value='remember' color='primary' />}
+						control={<Checkbox value='remember' />}
 						label='Remember me'
 					/>
 				)}

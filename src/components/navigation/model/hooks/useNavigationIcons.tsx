@@ -9,7 +9,7 @@ import {
 } from '@mui/icons-material'
 import { ReactNode } from 'react'
 
-interface Icon {
+export interface Icon {
 	icon: ReactNode
 	path: string
 	name: string
@@ -17,7 +17,7 @@ interface Icon {
 	isClickAccepted: undefined | true // onClick cannot take boolean value
 }
 
-export const useIcons = (): Icon[] => {
+export const useNavigationIcons = (): Icon[] => {
 	return [
 		{
 			name: 'Home',

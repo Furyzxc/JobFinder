@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import { memo } from 'react'
-import { useScroll, useSmoothAppearance } from '@/shared/model/hooks'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div'
 import { User } from '../../entities/user'
 import { GetUsersResponse } from '../../api/types.ts'
@@ -13,13 +13,11 @@ type PropsType = {
 
 export const UsersList = memo(({ usersData }: PropsType) => {
 	const { ref } = useSmoothAppearance()
-	const scroll = useScroll()
 
 	return (
 		<Grid
 			container
 			className={'scroll'}
-			{...scroll}
 			ref={ref}
 			sx={{ textAlign: 'center', height: '100%' }}
 		>

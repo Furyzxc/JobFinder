@@ -5,7 +5,7 @@ import {
 	isAnyOf,
 } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
-import { handleError } from '@/shared/utils/handleError.ts'
+import { handleError } from '@/shared/lib/handleError.ts'
 import { api } from '../api/api.ts'
 import { RequestLoginBody } from '../api/types.ts'
 
@@ -41,7 +41,7 @@ export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setError(state, action: PayloadAction<string>) {
+		setError(state, action: PayloadAction<string | null>) {
 			state.error = action.payload
 		},
 	},

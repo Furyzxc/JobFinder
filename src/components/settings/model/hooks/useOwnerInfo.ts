@@ -13,7 +13,7 @@ export const useOwnerInfo = (): Owner => {
 	const { id } = useAuthInfo()
 
 	const {
-		data: profile,
+		data: info,
 		isLoading,
 		isError,
 	} = useGetProfileQuery(id || 0, {
@@ -21,7 +21,7 @@ export const useOwnerInfo = (): Owner => {
 	})
 
 	return {
-		info: profile,
+		info,
 		isLoading,
 		isError,
 	}
