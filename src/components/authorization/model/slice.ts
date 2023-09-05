@@ -9,7 +9,7 @@ import { handleError } from '@/shared/lib/handleError.ts'
 import { api } from '../api/api.ts'
 import { RequestLoginBody } from '../api/types.ts'
 
-const SUCCESS_CODE = 0 as number
+const SUCCESS_CODE = 0
 
 interface Auth {
 	isAuthorized: boolean

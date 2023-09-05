@@ -1,20 +1,40 @@
-import { GroupRounded } from '@mui/icons-material'
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { memo } from 'react'
-import { useActions } from '@/shared/model/hooks'
-import { useUsersState } from '../../model/hooks'
+import { useSearchParams } from 'react-router-dom'
+import { addNewParamWithParamsReturn } from '@/shared/lib/addNewParam.ts'
+import { useInput } from '@/shared/model/hooks'
 
 export const SearchFilterByFriend = memo(() => {
-	const { friend } = useUsersState()
+	const [searchParams, setSearchParams] = useSearchParams()
+	const friend = searchParams.get('friend') || 'null'
 
-	const { setFriend } = useActions()
+	const { bind } = useInput(friend)
 
-	// if friend = true, sets friend to false
-	const handleIconClick = () => setFriend(!friend)
+	const handleBlur = () => {
+		setSearchParams(prevParams =>
+			addNewParamWithParamsReturn(prevParams, {
+				friend: bind.value !== 'null' ? bind.value : '',
+			})
+		)
+	}
 
 	return (
-		<GroupRounded
-			sx={{ color: friend ? '#265D97' : 'white' }}
-			onClick={handleIconClick}
-		/>
+		<RadioGroup {...bind} sx={{ pl: '13px' }} row onBlur={handleBlur}>
+			<FormControlLabel
+				value='null'
+				control={<Radio size={'small'} />}
+				label='All users'
+			/>
+			<FormControlLabel
+				value='true'
+				control={<Radio size={'small'} />}
+				label='Friends only'
+			/>
+			<FormControlLabel
+				value='false'
+				control={<Radio size={'small'} />}
+				label='Only unfollowed'
+			/>
+		</RadioGroup>
 	)
 })

@@ -1,16 +1,10 @@
 import { Stack } from '@mui/material'
-import { ReactNode } from 'react'
+import { Outlet } from 'react-router-dom'
 import { AuthorizedHeader } from '@/components/header'
 
-interface MainLayoutProps {
-	children: ReactNode
-}
-
-export const MainLayout = ({ children }: MainLayoutProps) => {
-	return (
-		<Stack className={'height'}>
-			<AuthorizedHeader />
-			{children}
-		</Stack>
-	)
-}
+export const mainLayout = (
+	<Stack className={'height'}>
+		<AuthorizedHeader />
+		<Outlet />
+	</Stack>
+)

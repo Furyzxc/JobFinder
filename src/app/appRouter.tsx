@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { WithSuspense } from '@/shared/hoc'
-import { MainLayout } from '@/shared/layout/mainLayout.tsx'
+import { mainLayout } from '@/shared/layout/mainLayout.tsx'
 import { Dialogs } from '@/components/dialogs/page'
 import { NotFound } from '@/components/notFound/page'
 import { Profile } from '@/components/profile/page'
@@ -25,53 +25,58 @@ const Settings = lazy(() =>
 
 export const appRouter = createBrowserRouter([
 	{
-		path: '*',
-		element: (
-			<MainLayout>
-				<NotFound />
-			</MainLayout>
-		),
+		element: mainLayout,
+		children: [
+			{
+				path: '*',
+				element: <NotFound />,
+			},
+			{
+				path: '/',
+				element: (
+					<GuestGuard>
+						<Profile />
+					</GuestGuard>
+				),
+			},
+			{
+				path: '/profile/:userId?',
+				element: (
+					<GuestGuard>
+						<Profile />
+					</GuestGuard>
+				),
+			},
+			{
+				path: '/dialogs/:userId?',
+				element: (
+					<GuestGuard>
+						<Dialogs />
+					</GuestGuard>
+				),
+			},
+			{
+				path: '/users',
+				element: (
+					<WithSuspense>
+						<Users />
+					</WithSuspense>
+				),
+			},
+
+			{
+				path: '/settings/*',
+				element: (
+					<GuestGuard>
+						<WithSuspense>
+							<Settings />
+						</WithSuspense>
+					</GuestGuard>
+				),
+			},
+		],
 	},
-	{
-		path: '/',
-		element: (
-			<MainLayout>
-				<GuestGuard>
-					<Profile />
-				</GuestGuard>
-			</MainLayout>
-		),
-	},
-	{
-		path: '/profile/:userId?',
-		element: (
-			<MainLayout>
-				<GuestGuard>
-					<Profile />
-				</GuestGuard>
-			</MainLayout>
-		),
-	},
-	{
-		path: '/dialogs/:userId?',
-		element: (
-			<MainLayout>
-				<GuestGuard>
-					<Dialogs />
-				</GuestGuard>
-			</MainLayout>
-		),
-	},
-	{
-		path: '/users',
-		element: (
-			<MainLayout>
-				<WithSuspense>
-					<Users />
-				</WithSuspense>
-			</MainLayout>
-		),
-	},
+
 	{
 		path: '/login',
 
@@ -81,18 +86,6 @@ export const appRouter = createBrowserRouter([
 					<Login />
 				</WithSuspense>
 			</AuthGuard>
-		),
-	},
-	{
-		path: '/settings/*',
-		element: (
-			<MainLayout>
-				<GuestGuard>
-					<WithSuspense>
-						<Settings />
-					</WithSuspense>
-				</GuestGuard>
-			</MainLayout>
 		),
 	},
 ])

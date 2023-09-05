@@ -8,8 +8,9 @@ type PropsType = {
 }
 
 export const RadioButtons = ({ initialValue }: PropsType) => {
-	const { bind } = useInput(initialValue)
+	const { bind } = useInput(initialValue + '')
 	const { setMainValue } = useActions()
+
 	const handleBlur = (e: FocusEvent<HTMLDivElement, Element>) => {
 		// parsing string ('true') value to boolean type
 		const value: boolean = JSON.parse((e.target as any).value)
@@ -26,7 +27,6 @@ export const RadioButtons = ({ initialValue }: PropsType) => {
 				row
 				aria-labelledby='demo-row-radio-buttons-group-label'
 				name='row-radio-buttons-group'
-				// setting default value from state
 			>
 				<FormControlLabel
 					value='true'

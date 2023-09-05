@@ -10,7 +10,6 @@ type PropsType = {
 }
 
 export const MainProfileInfo = memo(({ name, bio, avatar }: PropsType) => {
-	console.log(name)
 	return (
 		<Grid container wrap={'wrap-reverse'} spacing={2}>
 			<Grid item xs={12} sm={7}>

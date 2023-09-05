@@ -1,13 +1,20 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material'
 import { Box, Pagination, PaginationItem } from '@mui/material'
-import { useActions } from '@/shared/model/hooks'
-import { usePaginator } from '../../model/hooks'
+import { useSearchParams } from 'react-router-dom'
+import { addNewParamWithParamsReturn } from '@/shared/lib/addNewParam.ts'
 
-export const Paginator = () => {
-	const { setPage } = useActions()
+type PropsType = {
+	pagesCount: number
+}
 
-	const { page, pagesCount } = usePaginator()
-	const handleChange = (_: unknown, value: number) => setPage(value)
+export const Paginator = ({ pagesCount }: PropsType) => {
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const page = searchParams.get('page') || 1
+	const handleChange = (_: unknown, value: number) =>
+		setSearchParams(prevParams =>
+			addNewParamWithParamsReturn(prevParams, { page: value + '' })
+		)
 
 	return (
 		<Box sx={{ width: '100%' }}>
@@ -16,7 +23,7 @@ export const Paginator = () => {
 				onChange={handleChange}
 				color={'primary'}
 				count={pagesCount}
-				page={page}
+				page={+page}
 				renderItem={item => {
 					return (
 						<PaginationItem

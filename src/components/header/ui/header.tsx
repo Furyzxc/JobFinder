@@ -1,5 +1,6 @@
 import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
+import { useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import site_icon from '@/assets/melon.png'
 import { useOutside } from '@/shared/model/hooks'
@@ -11,7 +12,10 @@ import { useHeaderPageName } from '../model/hooks.ts'
 export const AuthorizedHeader = () => {
 	const { isShow, setIsShow, ref } = useOutside(false)
 
-	const handleMenuClik = () => setIsShow(!isShow)
+	const handleMenuClik = useCallback(
+		() => setIsShow(!isShow),
+		[isShow, setIsShow]
+	)
 
 	const { info } = useOwnerInfo()
 

@@ -3,15 +3,16 @@ import { memo } from 'react'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div'
 import { User } from '../../entities/user'
-import { GetUsersResponse } from '../../api/types.ts'
+import { UserResData } from '../../api/types.ts'
 import { Paginator } from '../paginator'
 import s from './users.module.css'
 
 type PropsType = {
-	usersData: GetUsersResponse | undefined
+	users: UserResData[]
+	pagesCount: number
 }
 
-export const UsersList = memo(({ usersData }: PropsType) => {
+export const UsersList = memo(({ users, pagesCount }: PropsType) => {
 	const { ref } = useSmoothAppearance()
 
 	return (
@@ -22,14 +23,14 @@ export const UsersList = memo(({ usersData }: PropsType) => {
 			sx={{ textAlign: 'center', height: '100%' }}
 		>
 			<Grid xs item container className={s.usersList}>
-				{usersData?.items && usersData?.items.length > 0 ? (
-					usersData?.items.map(user => <User {...user} key={user.id} />)
+				{users.length > 0 ? (
+					users.map(user => <User {...user} key={user.id} />)
 				) : (
 					<Div>Users not found</Div>
 				)}
 			</Grid>
 			<Grid xs={12} item sx={{ flexGrow: 1, alignSelf: 'end' }}>
-				<Paginator />
+				<Paginator pagesCount={pagesCount} />
 			</Grid>
 		</Grid>
 	)

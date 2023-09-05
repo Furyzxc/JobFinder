@@ -1,16 +1,44 @@
 import { Grid } from '@mui/material'
-import { SearchFilterByFriend } from '../../entities/searchFilterByFriend'
-import { SearchInput } from '../../entities/searchInput'
+import { ChangeEvent, memo, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { addNewParamWithParamsReturn } from '@/shared/lib/addNewParam.ts'
+import { useDebounce, useInput } from '@/shared/model/hooks'
+import { Input } from '@/shared/ui/input'
 
-export const Search = () => {
+export const Search = memo(() => {
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const {
+		bind: { value: term, onChange },
+	} = useInput(searchParams.get('term') || '')
+
+	const debouncedTermChange = useDebounce(
+		() =>
+			setSearchParams(prevParams =>
+				addNewParamWithParamsReturn(prevParams, { page: '1', term })
+			),
+		1000
+	)
+
+	useEffect(() => {
+		debouncedTermChange()
+	}, [term])
+
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+		onChange(event)
+	}
+
 	return (
-		<Grid container alignItems={'center'} sx={{ p: '10px 0 0 20px' }}>
-			<Grid item xs={9} md={4} sm={6}>
-				<SearchInput />
-			</Grid>
-			<Grid item xs={2}>
-				<SearchFilterByFriend />
+		<Grid container>
+			<Grid item md={5} xs={12} sm={9}>
+				<Input
+					value={term}
+					onChange={handleChange}
+					placeholder={'Search'}
+					autoComplete={'off'}
+					width={'100%'}
+				/>
 			</Grid>
 		</Grid>
 	)
-}
+})
