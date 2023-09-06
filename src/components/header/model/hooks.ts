@@ -4,6 +4,15 @@ function capitalizeFirstLetter(str: string) {
 	return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
+const TITLE_LIST = [
+	'profile',
+	'dialogs',
+	'users',
+	'music',
+	'news',
+	'settings',
+] as const
+
 export const useHeaderPageName = () => {
 	const { pathname } = useLocation()
 	// pathname example /settings/account
@@ -11,6 +20,12 @@ export const useHeaderPageName = () => {
 	const segments = pathname.split('/')
 	// ['', 'settings', 'account']
 
-	return capitalizeFirstLetter(segments[1])
+	const title = segments[1]
+
+	if (TITLE_LIST.some(TITLE => TITLE === title)) {
+		return capitalizeFirstLetter(segments[1])
+	}
+
+	return 'This page is not available'
 	// will return 'Settings'
 }
