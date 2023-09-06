@@ -1,7 +1,6 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
-import { addNewParamWithParamsReturn } from '@/shared/lib/addNewParam.ts'
 
 type PropsType = {
 	pagesCount: number
@@ -11,10 +10,10 @@ export const Paginator = ({ pagesCount }: PropsType) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const page = searchParams.get('page') || 1
-	const handleChange = (_: unknown, value: number) =>
-		setSearchParams(prevParams =>
-			addNewParamWithParamsReturn(prevParams, { page: value + '' })
-		)
+	const handleChange = (_: unknown, value: number) => {
+		searchParams.set('page', value + '')
+		setSearchParams(searchParams)
+	}
 
 	return (
 		<Box sx={{ width: '100%' }}>

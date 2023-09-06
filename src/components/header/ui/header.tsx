@@ -1,7 +1,7 @@
 import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import site_icon from '@/assets/melon.png'
 import { useOutside } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
@@ -17,6 +17,10 @@ export const AuthorizedHeader = () => {
 		[isShow, setIsShow]
 	)
 
+	const navigate = useNavigate()
+
+	const navigateToProfilePage = useCallback(() => navigate('/profile'), [])
+
 	const { info } = useOwnerInfo()
 
 	const pageName = useHeaderPageName()
@@ -25,10 +29,11 @@ export const AuthorizedHeader = () => {
 		return (
 			<Box>
 				<Stack
+					alignItems={'center'}
 					direction={'row'}
 					sx={{
 						minHeight: '50px',
-						p: '10px 0 0 40px',
+						p: '0 0 0 40px',
 						bgcolor: '#010409',
 					}}
 					spacing={3}
@@ -42,13 +47,10 @@ export const AuthorizedHeader = () => {
 						alt='user avatar'
 						sx={{ height: '31px', width: '31px' }}
 					/>
-					<Typography sx={{ pt: '4px', width: '85%' }}>{pageName}</Typography>
-					<Link
-						to={'/profile'}
-						style={{ marginTop: '-5px', cursor: 'pointer' }}
-					>
+					<Typography sx={{ width: '85%' }}>{pageName}</Typography>
+					<span onClick={navigateToProfilePage} style={{ cursor: 'pointer' }}>
 						<UserAvatar avatar={info.photos.avatar} name={info.name} />
-					</Link>
+					</span>
 				</Stack>
 				{isShow && <Navigation setIsShow={setIsShow} navRef={ref} />}
 			</Box>

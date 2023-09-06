@@ -1,25 +1,34 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
 import { memo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { addNewParamWithParamsReturn } from '@/shared/lib/addNewParam.ts'
 import { useInput } from '@/shared/model/hooks'
 
 export const SearchFilterByFriend = memo(() => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const friend = searchParams.get('friend') || 'null'
 
-	const { bind } = useInput(friend)
+	const {
+		bind: { value, onChange },
+	} = useInput(friend)
 
 	const handleBlur = () => {
-		setSearchParams(prevParams =>
-			addNewParamWithParamsReturn(prevParams, {
-				friend: bind.value !== 'null' ? bind.value : '',
-			})
-		)
+		if (value !== 'null') {
+			searchParams.set('friend', value)
+		} else {
+			searchParams.delete('friend')
+		}
+
+		setSearchParams(searchParams)
 	}
 
 	return (
-		<RadioGroup {...bind} sx={{ pl: '13px' }} row onBlur={handleBlur}>
+		<RadioGroup
+			value={value}
+			onChange={onChange}
+			sx={{ pl: '13px' }}
+			row
+			onBlur={handleBlur}
+		>
 			<FormControlLabel
 				value='null'
 				control={<Radio size={'small'} />}
