@@ -14,11 +14,11 @@ dayjs.extend(relativeTime)
 
 const root = document.getElementById('root') as HTMLElement
 
-const initApp = () => {
+const initApp = async () => {
 	appStore.dispatch(authMe())
 }
 
-initApp()
+await initApp()
 
 ReactDOM.createRoot(root).render(
 	<ThemeProvider theme={appTheme}>
