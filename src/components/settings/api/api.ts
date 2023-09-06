@@ -1,5 +1,6 @@
 import { baseApi } from '@/shared/api/baseApi.ts'
 import { TransformType } from '@/components/profile'
+import { EditProfileResponse } from './types.ts'
 
 export type EditProfileRequest = Omit<TransformType, 'photos'>
 

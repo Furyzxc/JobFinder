@@ -19,7 +19,10 @@ export const AuthorizedHeader = () => {
 
 	const navigate = useNavigate()
 
-	const navigateToProfilePage = useCallback(() => navigate('/profile'), [])
+	const navigateToProfilePage = useCallback(
+		() => navigate('/profile'),
+		[navigate]
+	)
 
 	const { info } = useOwnerInfo()
 

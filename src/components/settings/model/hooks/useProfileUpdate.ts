@@ -1,3 +1,4 @@
+import { EditProfileResponse } from '@/components/settings/api/types.ts'
 import {
 	EditProfileRequest,
 	useEditProfileInfoMutation,

@@ -44,6 +44,7 @@ export const Form = memo(() => {
 	return (
 		<Box component='form' onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
 			<Field
+				defaultValue={'free.fury.acc@gmail.com'}
 				register={register}
 				label={errors?.email?.message || 'Email Address'}
 				name='email'
@@ -51,6 +52,7 @@ export const Form = memo(() => {
 				error={!!(errors.email || error)}
 			/>
 			<Field
+				defaultValue={'fury.free'}
 				register={register}
 				name='password'
 				label={errors?.password?.message || 'Password'}

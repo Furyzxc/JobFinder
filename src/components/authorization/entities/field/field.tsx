@@ -9,6 +9,7 @@ interface LoginFormFieldProps {
 	autoComplete: string
 	register: UseFormRegister<FormValues>
 	error?: boolean
+	defaultValue: string
 }
 
 export const Field = ({
@@ -18,10 +19,12 @@ export const Field = ({
 	autoComplete,
 	register,
 	error,
+	defaultValue,
 }: LoginFormFieldProps) => {
 	return (
 		<TextField
 			{...register(name)}
+			defaultValue={defaultValue}
 			margin='normal'
 			fullWidth
 			name={name}

@@ -20,11 +20,12 @@ export const UsersList = memo(() => {
 		if (data) {
 			const portion =
 				Number(queryParams.match(/count=([0-9]+)/)) || DEFAULT_API_PORTION
+
 			return countPages(data.totalCount, portion)
 		}
 
 		return 0
-	}, [data])
+	}, [data, queryParams])
 
 	const users = data?.items
 
