@@ -14,16 +14,16 @@ dayjs.extend(relativeTime)
 
 const root = document.getElementById('root') as HTMLElement
 
-const initApp = async () => {
+const initApp = () => {
 	appStore.dispatch(authMe())
 }
 
-initApp().then(() =>
-	ReactDOM.createRoot(root).render(
-		<ThemeProvider theme={appTheme}>
-			<ReduxProvider store={appStore}>
-				<RouterProvider router={appRouter} />
-			</ReduxProvider>
-		</ThemeProvider>
-	)
+initApp()
+
+ReactDOM.createRoot(root).render(
+	<ThemeProvider theme={appTheme}>
+		<ReduxProvider store={appStore}>
+			<RouterProvider router={appRouter} />
+		</ReduxProvider>
+	</ThemeProvider>
 )
