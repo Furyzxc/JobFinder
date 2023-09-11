@@ -19,7 +19,7 @@ export const Button = ({
 			startIcon={startIcon}
 			disabled={disabled}
 			onClick={onClick}
-			color={'secondary'}
+			color={'primary'}
 		>
 			<Typography variant={'h4'} fontSize={'12px'} color={'inherit'}>
 				{children}

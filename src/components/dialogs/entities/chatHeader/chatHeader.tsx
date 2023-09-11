@@ -1,13 +1,15 @@
-import { Stack, Typography } from '@mui/material'
+import { Skeleton, Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
+import { AvatarSkeleton } from '@/shared/ui/avatarSkeleton'
 import { BackBtn } from '../backBtn'
 
 type PropsType = {
-	dialogName: string
+	dialogName?: string
 	avatar?: string | null
+	isLoading: boolean
 }
 
-export const ChatHeader = ({ dialogName, avatar }: PropsType) => {
+export const ChatHeader = ({ dialogName, avatar, isLoading }: PropsType) => {
 	return (
 		<Stack
 			alignItems={'center'}
@@ -16,9 +18,17 @@ export const ChatHeader = ({ dialogName, avatar }: PropsType) => {
 			spacing={2}
 		>
 			<BackBtn />
-			<UserAvatar avatar={avatar} name={dialogName} />
-			<Typography className={'notranslate'} variant={'h5'}>
-				{dialogName}
+			{isLoading ? (
+				<AvatarSkeleton />
+			) : (
+				<UserAvatar avatar={avatar} name={dialogName || '?'} />
+			)}
+			<Typography
+				className={'notranslate'}
+				sx={{ width: 'max-content', minWidth: '80px' }}
+				variant={'h5'}
+			>
+				{isLoading ? <Skeleton /> : dialogName}
 			</Typography>
 		</Stack>
 	)

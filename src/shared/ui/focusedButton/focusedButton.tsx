@@ -26,8 +26,8 @@ export const FocusedButton = ({
 				minWidth: '100%',
 				justifyContent: 'flex-start',
 				height: '32px',
-				color: 'primary.dark',
-				bgcolor: bgColor ? 'primary.dark' : 'inherit',
+				color: 'secondary',
+				bgcolor: bgColor ? 'secondary' : 'inherit',
 			}}
 			startIcon={startIcon}
 			endIcon={endIcon}
@@ -35,7 +35,7 @@ export const FocusedButton = ({
 			<Typography
 				variant={'h1'}
 				sx={{
-					color: 'secondary.light',
+					color: 'secondary',
 					fontSize: '13px',
 					pt: '5px',
 					flexGrow: 1,

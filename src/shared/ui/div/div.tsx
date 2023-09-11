@@ -22,9 +22,9 @@ export const Div = ({ children }: DivProps) => {
 					severity='success'
 					color='info'
 					sx={{
+						color: 'info.light',
 						width: '100%',
-						// color: '#98C1D2',
-						backgroundColor: '#21262D',
+						bgcolor: 'info.main',
 					}}
 				>
 					{children}

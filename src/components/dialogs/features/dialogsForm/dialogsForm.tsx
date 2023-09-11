@@ -25,7 +25,7 @@ export const DialogsForm = memo(() => {
 					<SendIcon
 						sx={{
 							cursor: 'pointer',
-							color: bind.value && 'white',
+							color: bind.value && 'primary.dark',
 						}}
 						onClick={submit}
 					/>

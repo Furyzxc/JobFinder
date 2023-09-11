@@ -1,7 +1,8 @@
 import { Grid, Stack } from '@mui/material'
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
-import { WithLoadingAndError } from '@/shared/hoc'
+import { WithError } from '@/shared/hoc'
+import { DialogsSkeletons } from '@/components/dialogs/features/dialogsSkeletons'
 import { Dialog } from '../../entities/dialog'
 import { useRequestDialogsQuery } from '../../api/api.ts'
 
@@ -11,18 +12,32 @@ export const DialogsList = memo(() => {
 	const { userId = 0 } = useParams()
 
 	return (
-		<Grid item container sx={{ width: '100%', bgcolor: '#343942BD' }}>
+		<Grid item container>
 			<Grid item xs={12} md={12} sm={8} sx={{ bgcolor: 'primary.light' }}>
-				<Stack direction={'column'} className={'noNavigationHeight scroll'}>
-					<WithLoadingAndError isLoading={isFetching} isError={isError}>
-						{data.map(dialog => (
-							<Dialog
-								isSelected={+userId === dialog.id}
-								key={dialog.id}
-								{...dialog}
-							/>
-						))}
-					</WithLoadingAndError>
+				<Stack
+					direction={'column'}
+					className={'noNavigationHeight scroll'}
+					sx={{
+						width: '100%',
+						bgcolor: 'primary.light',
+						borderRight: 'max(1px, 0.0625rem) solid',
+						borderRightColor: 'secondary',
+						ml: '3px',
+					}}
+				>
+					<WithError isError={isError}>
+						{isFetching ? (
+							<DialogsSkeletons />
+						) : (
+							data.map(dialog => (
+								<Dialog
+									isSelected={+userId === dialog.id}
+									key={dialog.id}
+									{...dialog}
+								/>
+							))
+						)}
+					</WithError>
 				</Stack>
 			</Grid>
 		</Grid>

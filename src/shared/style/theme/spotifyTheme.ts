@@ -1,29 +1,30 @@
 import { createTheme } from '@mui/material'
 
-export const darkTheme = createTheme({
+export const spotifyTheme = createTheme({
 	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#2F80F6', // preloader color
-			light: '#0d1117', // background
-			dark: '#fff', // header
+			main: '#1ED760', // preloader color
+			light: '#121212', // background
+			dark: '#fff', // navigation
 		},
 		secondary: {
-			main: '#1A1F24', // navigation
-			dark: '#010409',
-			light: '#E6EDF3',
+			// '#1A1F24' - navigation
+			main: '#1A1F24', // dialog text, header color
+			light: '#fff',
+			dark: '#000',
 		},
 		info: {
 			main: '#21262D', // start chatting background
 			light: '#F2EFE8', // start chatting text
+			dark: '#000',
 		},
 	},
-
 	components: {
 		MuiSvgIcon: {
 			styleOverrides: {
 				root: {
-					color: '#7D8590',
+					color: '#A7A398',
 				},
 			},
 		},
@@ -40,7 +41,7 @@ export const darkTheme = createTheme({
 		MuiPaginationItem: {
 			styleOverrides: {
 				ellipsis: {
-					color: 'white',
+					color: '#1ED760',
 				},
 			},
 		},

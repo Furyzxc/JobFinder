@@ -3,13 +3,19 @@ import { Outlet } from 'react-router-dom'
 import { WithSuspense } from '@/shared/hoc'
 import { useAppSelector } from '@/shared/model/hooks'
 import { darkTheme, lightTheme } from '@/shared/style/theme'
+import { spotifyTheme } from '@/shared/style/theme/spotifyTheme.ts'
 import { AppHeader } from '@/components/header'
 import { selectTheme } from '@/components/settings/model'
 
 export const MainLayout = () => {
 	const themeName = useAppSelector(selectTheme)
 
-	const theme = themeName === 'dark' ? darkTheme : lightTheme
+	const theme =
+		themeName === 'dark'
+			? darkTheme
+			: themeName === 'light'
+			? lightTheme
+			: spotifyTheme
 
 	return (
 		<ThemeProvider theme={theme}>

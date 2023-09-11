@@ -3,7 +3,7 @@ import { Avatar } from '@mui/material'
 
 export const Icon = () => {
 	return (
-		<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+		<Avatar sx={{ m: 1, bgcolor: 'secondary' }}>
 			<LockOutlined />
 		</Avatar>
 	)

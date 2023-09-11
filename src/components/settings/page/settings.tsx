@@ -18,7 +18,7 @@ export const Settings = () => {
 		<div ref={ref}>
 			<WithLoadingAndError isLoading={isLoading} isError={isError}>
 				<Stack
-					sx={{ p: '15px 0 0 20px' }}
+					sx={{ p: '15px 20px 0 20px' }}
 					spacing={4}
 					className={'noNavigationHeight scroll'}
 				>

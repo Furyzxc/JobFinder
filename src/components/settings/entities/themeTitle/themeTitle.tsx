@@ -9,7 +9,7 @@ type PropsType = {
 
 export const ThemeTitle = ({ text, icon, isSelected }: PropsType) => {
 	return (
-		<Stack direction={'row'}>
+		<Stack direction={'row'} position={'relative'}>
 			{icon}
 			<Typography flexGrow={1} pl={'10px'}>
 				{text}
@@ -17,6 +17,9 @@ export const ThemeTitle = ({ text, icon, isSelected }: PropsType) => {
 			{isSelected && (
 				<Typography
 					sx={{
+						position: 'absolute',
+						right: '0',
+						top: '0',
 						fontSize: '12px',
 						border: '1px solid',
 						borderColor: 'primary',

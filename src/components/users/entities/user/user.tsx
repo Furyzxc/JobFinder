@@ -28,7 +28,7 @@ export const User = ({ name, status, photos, id, followed }: UserProps) => {
 			sm={5}
 			md={3}
 			sx={{
-				minWidth: '385px',
+				minWidth: '300px',
 				minHeight: '170px',
 				p: '5px',
 				position: 'relative',

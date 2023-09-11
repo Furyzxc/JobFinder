@@ -1,8 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
 
+export type ThemeType = 'dark' | 'light' | 'spotify'
+
 interface Theme {
-	theme: 'dark' | 'light'
+	theme: ThemeType
 }
 
 const initialState: Theme = {

@@ -1,19 +1,21 @@
 import { createTheme } from '@mui/material'
-import { defaultTheme } from './defaultTheme.ts'
 
 export const lightTheme = createTheme({
-	...defaultTheme,
 	palette: {
 		mode: 'light',
 		primary: {
-			main: '#2F80F6',
-			light: '#F2EFE8',
-			dark: '#E6E1DD',
+			main: '#2F80F6', // preloader
+			light: '#F2EFE8', // background
+			dark: '#000', // header
 		},
 		secondary: {
-			main: '#000',
-			light: '#66615D',
-			dark: '#FEFBF6',
+			main: '#E6E1DD', // navigation
+			light: '#000',
+			dark: '#fff',
+		},
+		info: {
+			main: '#2B5278', // start chatting background
+			light: '#F2EFE8', // start chatting text
 		},
 	},
 	components: {
@@ -29,6 +31,14 @@ export const lightTheme = createTheme({
 			styleOverrides: {
 				root: {
 					fontSize: '16px',
+				},
+			},
+		},
+
+		MuiPaginationItem: {
+			styleOverrides: {
+				ellipsis: {
+					color: 'white',
 				},
 			},
 		},

@@ -1,6 +1,7 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/avatar'
+import { AvatarSkeleton } from '@/shared/ui/avatarSkeleton'
 
 type PropsType = {
 	login: string | null
@@ -24,7 +25,7 @@ export const MainInfo = ({
 	return (
 		<Stack spacing={1} sx={{ mb: '20px', opacity: 0 }} ref={ref}>
 			{isLoading ? (
-				<Skeleton variant={'circular'} width={'296px'} height={'296px'} />
+				<AvatarSkeleton size={'296px'} />
 			) : (
 				<UserAvatar
 					avatar={avatar}

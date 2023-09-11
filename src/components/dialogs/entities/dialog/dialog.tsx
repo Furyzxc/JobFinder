@@ -42,11 +42,13 @@ export const Dialog = memo(
 				direction={'row'}
 				alignItems={'center'}
 			>
-				<Box sx={{ m: '0 10px 0 3px' }}>
+				<Box sx={{ mr: '10px' }}>
 					<UserAvatar avatar={avatar} name={name} />
 				</Box>
 				<Box>
-					<Typography noWrap>{name}</Typography>
+					<Typography color={'secondary.light'} noWrap>
+						{name}
+					</Typography>
 				</Box>
 				<Typography
 					variant={'h1'}
