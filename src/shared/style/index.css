@@ -60,11 +60,11 @@ input::placeholder {
 
 @media (max-width: 768px) {
 	.height {
-		height: calc(100vh - 56px);
+		height: calc(100vh - 55px);
 	}
 
 	.noNavigationHeight {
-		height: calc(100vh - 50px - 56px);
+		height: calc(100vh - 50px - 55px);
 	}
 
 	.scroll::-webkit-scrollbar {

@@ -9,7 +9,7 @@ export const BackBtn = () => {
 
 	return (
 		<div className={s.back} onClick={handleBtnClick}>
-			<ArrowBackRounded sx={{ color: '#E6EDF3' }} />
+			<ArrowBackRounded sx={{ color: 'primary' }} />
 		</div>
 	)
 }
