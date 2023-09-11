@@ -1,4 +1,4 @@
-import { ArrowBackRounded, ArrowForwardRouded } from '@mui/icons-material'
+import { ArrowBackRounded, ArrowForwardRounded } from '@mui/icons-material'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
 
@@ -28,7 +28,7 @@ export const Paginator = ({ pagesCount }: PropsType) => {
 					return (
 						<PaginationItem
 							sx={{ color: 'primary.dark', maxWidth: '32px' }}
-							slots={{ previous: ArrowBackRounded, next: ArrowForwardRouded }}
+							slots={{ previous: ArrowBackRounded, next: ArrowForwardRounded }}
 							{...item}
 						/>
 					)
