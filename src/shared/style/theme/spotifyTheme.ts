@@ -4,7 +4,7 @@ export const spotifyTheme = createTheme({
 	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#1ED760', // preloader color
+			main: '#107433', // preloader color
 			light: '#121212', // background
 			dark: '#fff', // navigation
 		},

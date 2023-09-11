@@ -7,12 +7,14 @@ import { Grid, Stack } from '@mui/material'
 import darkTheme from '@/assets/darkTheme.svg'
 import lightTheme from '@/assets/lightTheme.svg'
 import spotifyTheme from '@/assets/spotifyTheme.svg'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Theme } from '../../entities/theme'
 import { Title } from '../../entities/title'
 
 export const Appearance = () => {
+	const { ref } = useSmoothAppearance()
 	return (
-		<Stack>
+		<Stack ref={ref}>
 			<Title name={'Theme preferences'} />
 			<Grid
 				container

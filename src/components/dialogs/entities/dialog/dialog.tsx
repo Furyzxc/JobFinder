@@ -38,6 +38,13 @@ export const Dialog = memo(
 			<Stack
 				onClick={handleDialogClick}
 				className={clsx(s.dialog, isSelected && s.selected, 'notranslate')}
+				sx={{
+					bgcolor: isSelected ? 'primary.main' : undefined,
+					'&:hover': {
+						bgcolor: isSelected ? 'primary.main' : 'info.dark',
+						cursor: 'pointer',
+					},
+				}}
 				ref={ref}
 				direction={'row'}
 				alignItems={'center'}

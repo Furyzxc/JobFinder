@@ -22,7 +22,7 @@ export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
 
 	return (
 		<Box
-			bgcolor={me ? 'primary' : 'primary.light'}
+			sx={{ bgcolor: me ? 'primary.main' : 'secondary.main' }}
 			className={clsx(s.message, me ? s.myMessage : s.friendMessage)}
 			onClick={handleMessageClick}
 		>

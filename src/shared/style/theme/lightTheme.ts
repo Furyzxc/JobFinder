@@ -14,8 +14,9 @@ export const lightTheme = createTheme({
 			dark: '#fff',
 		},
 		info: {
-			main: '#2B5278', // start chatting background
+			main: '#2B5278', // start chatting background and pagination bg
 			light: '#F2EFE8', // start chatting text
+			dark: '#60A0FF', // hover dialog
 		},
 	},
 	components: {

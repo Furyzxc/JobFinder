@@ -1,7 +1,7 @@
 .friendMessage {
 	grid-template-columns: 1fr 40px;
 	margin: 0 0 10px 5%;
-	background-color: #182533;
+	/*background-color: #182533;*/
 }
 
 .friendMessage .time {
@@ -48,7 +48,7 @@
 }
 
 .myMessage {
-	background-color: #2b5278;
+	/*background-color: #2b5278;*/
 	grid-template-columns: 1fr 40px 20px;
 	margin: 0 20px 10px auto;
 }

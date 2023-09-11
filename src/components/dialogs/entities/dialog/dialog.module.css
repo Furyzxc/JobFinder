@@ -5,20 +5,9 @@
 	opacity: 0;
 	position: relative;
 	min-height: 54px;
-}
-
-.selected {
-	background-color: #2b5278;
-}
-
-.dialog:hover {
-	background-color: #212b35;
 	cursor: pointer;
 }
 
-.selected:hover {
-	background-color: #2b5278;
-}
 
 .time {
 	position: absolute;
