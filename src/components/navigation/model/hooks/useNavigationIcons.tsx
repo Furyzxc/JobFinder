@@ -47,7 +47,7 @@ export const useNavigationIcons = (): Icon[] => {
 		},
 		{
 			name: 'Users',
-			path: '/users',
+			path: '/users?count=30',
 			icon: <PeopleOutline />,
 			isClickAccepted: true,
 		},

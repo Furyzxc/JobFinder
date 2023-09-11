@@ -12,13 +12,13 @@ export const Chat = memo(() => {
 	return (
 		<WithLoadingAndError isLoading={isFetching} isError={isError}>
 			<Grid direction={'column'} container className={'noNavigationHeight'}>
-				<Grid item xs={1} sx={{ bgcolor: '#161B22', minHeight: '50px' }}>
+				<Grid item xs={1} sx={{ bgcolor: 'primary.light', minHeight: '50px' }}>
 					<ChatHeader dialogName={name || ''} avatar={avatar} />
 				</Grid>
 				<Grid
 					item
 					xs
-					sx={{ width: '100%', position: 'relative', bgcolor: '#0D1117' }}
+					sx={{ width: '100%', position: 'relative', bgcolor: 'primary.light' }}
 					className={' scroll'}
 				>
 					<Messages messages={messagesData?.items} urlId={urlId} />

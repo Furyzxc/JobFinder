@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent } from 'react'
 import { useActions, useInput } from '@/shared/model/hooks'
-import { SocialAccountType } from '../slice.ts'
+import { SocialAccountType } from '@/components/settings/model/slices/accountSlice.ts'
 
 /**
  * managing a social account input field.

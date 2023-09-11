@@ -15,7 +15,7 @@ export const Preloader = () => {
 				textAlign: 'center',
 			}}
 		>
-			<CircularProgress />
+			<CircularProgress size={'3rem'} thickness={7} />
 		</Box>
 	)
 }

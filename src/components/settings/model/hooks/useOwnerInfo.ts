@@ -9,6 +9,7 @@ interface Owner {
 
 // Custom hook to fetch owner information.
 export const useOwnerInfo = (): Owner => {
+	let data
 	// taking profile id from auth state
 	const { id } = useAuthInfo()
 
@@ -17,11 +18,13 @@ export const useOwnerInfo = (): Owner => {
 		isLoading,
 		isError,
 	} = useGetProfileQuery(id || 0, {
-		skip: !id, // if no userid, request will not be sent
+		skip: !id, // if no userid, request will not be sent,
 	})
 
+	if (id) data = info
+
 	return {
-		info,
+		info: data,
 		isLoading,
 		isError,
 	}

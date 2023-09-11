@@ -1,103 +1,78 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import { WithSuspense } from '@/shared/hoc'
-import { mainLayout } from '@/shared/layout/mainLayout.tsx'
+import { MainLayout } from '@/shared/layout/mainLayout.tsx'
+import { defaultLazyImport } from '@/shared/lib/defaultLazyImport.ts'
 import { Div } from '@/shared/ui/div'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
 
+
 // lazy imports
-const NotFound = lazy(() =>
-	import('@/components/notFound/page').then(module => ({
-		default: module.NotFound,
-	}))
-)
+const NotFound = lazy(() => import('@/components/notFound/page').then(module =>
+	defaultLazyImport(module, 'NotFound')))
 
-const Profile = lazy(() =>
-	import('@/components/profile/page').then(module => ({
-		default: module.Profile,
-	}))
-)
+const Profile = lazy(() => import('@/components/profile/page').then(module =>
+	defaultLazyImport(module, 'Profile')))
 
-const Dialogs = lazy(() =>
-	import('@/components/dialogs/page').then(module => ({
-		default: module.Dialogs,
-	}))
-)
+const Dialogs = lazy(() => import('@/components/dialogs/page').then(module =>
+	defaultLazyImport(module, 'Dialogs')))
 
-const Login = lazy(() =>
-	import('@/components/authorization/page').then(module => ({
-		default: module.Login,
-	}))
-)
+const Login = lazy(() => import('@/components/authorization/page').then(module =>
+	defaultLazyImport(module, 'Login')))
 
-const Users = lazy(() =>
-	import('@/components/users/page').then(module => ({ default: module.Users }))
-)
+const Users = lazy(() => import('@/components/users/page').then(module =>
+	defaultLazyImport(module, 'Users')))
 
-const Settings = lazy(() =>
-	import('@/components/settings/page').then(module => ({
-		default: module.Settings,
-	}))
-)
+const Settings = lazy(() => import('@/components/settings/page').then(module =>
+	defaultLazyImport(module, 'Settings')))
 
 export const appRouter = createBrowserRouter([
 	{
-		element: mainLayout,
+		element: <MainLayout />,
 		errorElement: <Div>Some error occurred...</Div>,
 		children: [
+			{
+				element: <GuestGuard />,
+				children: [
+					{
+						path: '/',
+						element: <Profile />,
+					},
+					{
+						path: '/profile',
+						element: <Profile />,
+					},
+					{
+						path: '/dialogs/:userId?',
+						element: <Dialogs />,
+					},
+
+					{
+						path: '/settings/*',
+						element: <Settings />,
+					},
+				],
+			},
 			{
 				path: '*',
 				element: <NotFound />,
 			},
 			{
-				path: '/',
-				element: (
-					<GuestGuard>
-						<Profile />
-					</GuestGuard>
-				),
-			},
-			{
-				path: '/profile/:userId?',
-				element: (
-					<GuestGuard>
-						<Profile />
-					</GuestGuard>
-				),
-			},
-			{
-				path: '/dialogs/:userId?',
-				element: (
-					<GuestGuard>
-						<Dialogs />
-					</GuestGuard>
-				),
+				path: '/profile/:userId',
+				element: <Profile />,
 			},
 			{
 				path: '/users',
 				element: <Users />,
 			},
-
 			{
-				path: '/settings/*',
-				element: (
-					<GuestGuard>
-						<Settings />
-					</GuestGuard>
-				),
+				element: <AuthGuard />,
+				children: [
+					{
+						path: '/login',
+						element: <Login />,
+					},
+				],
 			},
 		],
-	},
-
-	{
-		path: '/login',
-
-		element: (
-			<AuthGuard>
-				<WithSuspense>
-					<Login />
-				</WithSuspense>
-			</AuthGuard>
-		),
 	},
 ])

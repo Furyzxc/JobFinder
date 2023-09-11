@@ -1,24 +1,16 @@
 import { Grid, Stack } from '@mui/material'
-import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { WithLoadingAndError } from '@/shared/hoc'
-import { useActions, useSmoothAppearance } from '@/shared/model/hooks'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { useOwnerInfo } from '../model/hooks'
 import { Account } from '../features/account'
+import { Appearance } from '../features/appearance'
 import { Header } from '../features/header'
 import { Navigation } from '../features/navigation'
 import { Profile } from '../features/profile'
 
 export const Settings = () => {
-	const { info, isError } = useOwnerInfo()
-
-	const { setProfileInfo } = useActions()
-	const [isLoading, setIsLoading] = useState(true)
-	useEffect(() => {
-		// setting initial values to state
-		if (info) setProfileInfo(info)
-		setIsLoading(false)
-	}, [info, setProfileInfo])
+	const { isLoading, isError } = useOwnerInfo()
 
 	const { ref } = useSmoothAppearance()
 
@@ -41,6 +33,7 @@ export const Settings = () => {
 							<Routes>
 								<Route path='*' element={<Profile />} />
 								<Route path='account' element={<Account />} />
+								<Route path='appearance' element={<Appearance />} />
 							</Routes>
 						</Grid>
 					</Grid>

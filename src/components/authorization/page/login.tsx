@@ -1,10 +1,10 @@
 import { Container, Stack } from '@mui/material'
 import { WithLoading } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
-import { Icon } from '@/components/authorization/entities/icon'
+import { useAuth } from '../model/hooks.ts'
+import { Icon } from '../entities/icon'
 import { Title } from '../entities/title'
 import { Form } from '../features/form'
-import { useAuth } from '../model/hooks.ts'
 
 export const Login = () => {
 	const { isLoading } = useAuth()

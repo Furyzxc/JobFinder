@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useActions } from '@/shared/model/hooks'
 
 interface PropsType {
-	name: string
-	avatar: string | null
+	name?: string
+	avatar?: string | null
 }
 
 export const ProfileSendBtn = ({ name, avatar }: PropsType) => {

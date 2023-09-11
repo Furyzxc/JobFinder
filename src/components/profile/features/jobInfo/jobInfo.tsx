@@ -4,16 +4,21 @@ import { DisabledInput } from '@/shared/ui/disabledInput'
 import { Section } from '../section'
 
 type PropsType = {
-	isLookingForJob: boolean
-	additionalInfo: string
+	isLookingForJob?: boolean
+	additionalInfo?: string
+	isLoading: boolean
 }
 
-export const JobInfo = ({ isLookingForJob, additionalInfo }: PropsType) => {
+export const JobInfo = ({
+	isLookingForJob,
+	additionalInfo,
+	isLoading,
+}: PropsType) => {
 	const { ref } = useSmoothAppearance()
 
 	return (
 		<Stack sx={{ opacity: 0 }} spacing={2} ref={ref}>
-			<Section name={'Looking for a job'}>
+			<Section name={'Looking for a job'} isLoading={isLoading}>
 				<DisabledInput
 					value={
 						isLookingForJob
@@ -22,8 +27,8 @@ export const JobInfo = ({ isLookingForJob, additionalInfo }: PropsType) => {
 					}
 				/>
 			</Section>
-			<Section name={'Additional Information'}>
-				<DisabledInput value={additionalInfo} />
+			<Section name={'Additional Information'} isLoading={isLoading}>
+				<DisabledInput value={additionalInfo || ''} />
 			</Section>
 		</Stack>
 	)

@@ -1,7 +1,7 @@
 import { CloseSharp } from '@mui/icons-material'
 import { Avatar, Box, Grid, Stack } from '@mui/material'
 import siteIcon from '@/assets/melon.png'
-import { Button } from '@/shared/ui/button'
+import { FocusedButton } from '@/shared/ui/focusedButton'
 import { useNavigation } from '../model/hooks'
 
 type PropsType = {
@@ -30,7 +30,7 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 			<Stack
 				className={'height'}
 				sx={{
-					background: '#161B22',
+					bgcolor: 'primary.light',
 					width: '300px',
 					p: '10px 10px 0 10px',
 					overflow: 'hidden',
@@ -49,13 +49,14 @@ export const Navigation = ({ setIsShow, navRef }: PropsType) => {
 					</Grid>
 				</Grid>
 				{icons.map(({ name, path, icon, isClickAccepted, endIcon }) => (
-					<Button
+					<FocusedButton
+						key={name}
 						startIcon={icon}
 						endIcon={endIcon}
 						onClick={isClickAccepted && handleNavElementClick(path)}
 					>
 						{name}
-					</Button>
+					</FocusedButton>
 				))}
 			</Stack>
 		</Box>

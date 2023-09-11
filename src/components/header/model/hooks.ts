@@ -5,6 +5,7 @@ function capitalizeFirstLetter(str: string) {
 }
 
 const TITLE_LIST = [
+	'login',
 	'profile',
 	'dialogs',
 	'users',
@@ -25,6 +26,8 @@ export const useHeaderPageName = () => {
 	if (TITLE_LIST.some(TITLE => TITLE === title)) {
 		return capitalizeFirstLetter(segments[1])
 	}
+
+	if (title === '') return 'Profile'
 
 	return 'This page is not available'
 	// will return 'Settings'

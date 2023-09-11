@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material'
-import { memo } from 'react'
-import { useSmoothAppearance } from '@/shared/model/hooks'
-import { useProfileSettings } from '../../model/hooks'
+import { memo, useEffect } from 'react'
+import { useActions, useSmoothAppearance } from '@/shared/model/hooks'
+import { useOwnerInfo, useProfileSettings } from '../../model/hooks'
 import { JobInfo } from '../../entities/jobInfo'
 import { MainProfileInfo } from '../../entities/mainProfileInfo'
 import { SocialAccountsInfo } from '../../entities/socialAccountsInfo'
@@ -11,6 +11,13 @@ import { UpdateErrorMessage } from '../../entities/updateProfileErrorMessage'
 
 export const Profile = memo(() => {
 	const { ref } = useSmoothAppearance()
+	const { info } = useOwnerInfo()
+	const { setProfileInfo } = useActions()
+
+	useEffect(() => {
+		// Setting initial values to state
+		if (info) setProfileInfo(info)
+	}, [info, setProfileInfo])
 
 	const {
 		name,
@@ -29,17 +36,23 @@ export const Profile = memo(() => {
 			sx={{ overflowX: 'hidden' }}
 			ref={ref}
 		>
-			{error && <UpdateErrorMessage error={error} />}
-			<Title name={'Public Profile'} />
-			<MainProfileInfo name={name} bio={bio || ''} avatar={avatar} />
-			<SocialAccountsInfo {...socialAccounts} />
-			<JobInfo
-				lookingForAJob={lookingForAJob}
-				lookingForAJobDescription={lookingForAJobDescription || ''}
-			/>
-			<UpdateProfile />
-			<br />
-			<br />
+			{name && (
+				<>
+					{error && <UpdateErrorMessage error={error} />}
+					<Title name={'Public Profile'} />
+					<MainProfileInfo name={name} bio={bio || ''} avatar={avatar} />
+					<SocialAccountsInfo {...socialAccounts} />
+					<JobInfo
+						lookingForAJob={lookingForAJob}
+						lookingForAJobDescription={lookingForAJobDescription || ''}
+					/>
+					<UpdateProfile />
+					<br />
+					<br />
+				</>
+			)}
 		</Stack>
 	)
 })
+
+export default Profile

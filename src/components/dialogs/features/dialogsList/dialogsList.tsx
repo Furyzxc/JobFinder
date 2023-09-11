@@ -12,7 +12,7 @@ export const DialogsList = memo(() => {
 
 	return (
 		<Grid item container sx={{ width: '100%', bgcolor: '#343942BD' }}>
-			<Grid item xs={12} md={12} sm={8} sx={{ bgcolor: '#161B22' }}>
+			<Grid item xs={12} md={12} sm={8} sx={{ bgcolor: 'primary.light' }}>
 				<Stack direction={'column'} className={'noNavigationHeight scroll'}>
 					<WithLoadingAndError isLoading={isFetching} isError={isError}>
 						{data.map(dialog => (

@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, TextField } from '@mui/material'
 import { ReactNode, memo } from 'react'
+import { SocialAccountType } from '@/components/settings/model/slices/accountSlice.ts'
 import { useSocialAccount } from '../../model/hooks'
-import { SocialAccountType } from '../../model/slice.ts'
 
 type PropsType = {
 	icon: ReactNode
@@ -26,7 +26,7 @@ export const SocialAccount = memo(
 								fontSize: '12px',
 								fontWeight: '100',
 								width: '100%',
-								backgroundColor: '#0D1117',
+								backgroundColor: 'primary.light',
 							}}
 							size={'small'}
 						/>

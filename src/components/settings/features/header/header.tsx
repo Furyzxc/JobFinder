@@ -21,7 +21,7 @@ export const Header = () => {
 					<Stack direction={'row'} spacing={1} className='notranslate'>
 						<Typography
 							variant={'h6'}
-							sx={{ color: 'white', fontSize: '18px' }}
+							sx={{ color: 'secondary', fontSize: '18px' }}
 						>
 							{info.name}
 						</Typography>

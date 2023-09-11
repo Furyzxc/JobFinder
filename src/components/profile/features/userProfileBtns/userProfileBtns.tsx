@@ -4,8 +4,8 @@ import { Follow } from '../../entities/follow'
 import { ProfileSendBtn } from '../../entities/profileSendBtn'
 
 type PropsType = {
-	name: string
-	avatar: string | null
+	name?: string
+	avatar?: string | null
 }
 
 export const UserProfileBtns = memo(({ name, avatar }: PropsType) => {

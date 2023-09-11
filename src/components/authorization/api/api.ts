@@ -20,6 +20,7 @@ export const api = baseApi.injectEndpoints({
 				url: 'auth/logout',
 				method: 'post',
 			}),
+			invalidatesTags: ['PROFILE'],
 		}),
 	}),
 })

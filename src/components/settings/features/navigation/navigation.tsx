@@ -1,4 +1,8 @@
-import { PermIdentityOutlined, SettingsOutlined } from '@mui/icons-material'
+import {
+	BrushOutlined,
+	PermIdentityOutlined,
+	SettingsOutlined,
+} from '@mui/icons-material'
 import { Stack } from '@mui/material'
 import { NavigationElement } from '../../entities/navigationElement'
 
@@ -15,6 +19,11 @@ export const Navigation = () => {
 				icon={<SettingsOutlined />}
 				name={'Account'}
 				path={'account'}
+			/>
+			<NavigationElement
+				icon={<BrushOutlined />}
+				name={'Appearance'}
+				path={'appearance'}
 			/>
 		</Stack>
 	)

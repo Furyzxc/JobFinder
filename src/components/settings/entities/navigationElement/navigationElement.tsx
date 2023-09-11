@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Button } from '@/shared/ui/button'
+import { FocusedButton } from '@/shared/ui/focusedButton'
 
 type PropsType = {
 	icon: ReactNode
@@ -19,8 +19,12 @@ export const NavigationElement = ({ name, path, icon }: PropsType) => {
 	}
 
 	return (
-		<Button startIcon={icon} bgColor={urlPath === path} onClick={handleClick}>
+		<FocusedButton
+			startIcon={icon}
+			bgColor={urlPath === path}
+			onClick={handleClick}
+		>
 			{name}
-		</Button>
+		</FocusedButton>
 	)
 }

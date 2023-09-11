@@ -1,22 +1,23 @@
 import { createTheme } from '@mui/material'
+import { defaultTheme } from './defaultTheme.ts'
 
-export const appTheme = createTheme({
+export const darkTheme = createTheme({
+	...defaultTheme,
 	palette: {
 		mode: 'dark',
 		primary: {
 			main: '#2F80F6',
+			light: '#0d1117',
+			dark: '#1A1F24',
+		},
+		secondary: {
+			main: '#fff',
+			dark: '#010409',
+			light: '#E6EDF3',
 		},
 	},
 
 	components: {
-		MuiPaginationItem: {
-			styleOverrides: {
-				ellipsis: {
-					color: 'white',
-				},
-			},
-		},
-
 		MuiSvgIcon: {
 			styleOverrides: {
 				root: {

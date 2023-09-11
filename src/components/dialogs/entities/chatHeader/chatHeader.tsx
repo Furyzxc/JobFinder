@@ -12,7 +12,7 @@ export const ChatHeader = ({ dialogName, avatar }: PropsType) => {
 		<Stack
 			alignItems={'center'}
 			direction={'row'}
-			sx={{ bgColor: '#161B22', pl: '10px', height: '100%', zIndex: 3 }}
+			sx={{ bgColor: 'primary.light', pl: '10px', height: '100%', zIndex: 3 }}
 			spacing={2}
 		>
 			<BackBtn />

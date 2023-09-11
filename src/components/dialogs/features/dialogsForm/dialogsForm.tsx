@@ -17,7 +17,7 @@ export const DialogsForm = memo(() => {
 				placeholder='Type your message here...'
 				autoComplete={'off'}
 				className={s.input}
-				sx={{ fontSize: '14px', fontWeight: 200 }}
+				sx={{ fontSize: '14px', fontWeight: 200, bgcolor: 'primary.light' }}
 				value={bind.value}
 				onChange={bind.onChange}
 				onKeyDown={sendOnEnterClick}

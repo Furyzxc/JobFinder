@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import { memo, useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { WithLoadingAndError } from '@/shared/hoc'
 import { countPages } from '@/shared/lib/count-pages.ts'
 import { Div } from '@/shared/ui/div'
@@ -9,23 +9,23 @@ import { User } from '../../entities/user'
 import { Paginator } from '../paginator'
 import s from './users.module.css'
 
-const DEFAULT_API_PORTION = 10
+const DEFAULT_API_PORTION = 30
 
 export const UsersList = memo(() => {
+	const [searchParams] = useSearchParams()
 	const { search: queryParams } = useLocation()
 
 	const { data, isFetching, isError } = useGetUsersQuery(queryParams)
 
 	const pagesCount = useMemo(() => {
 		if (data) {
-			const portion =
-				Number(queryParams.match(/count=([0-9]+)/)) || DEFAULT_API_PORTION
+			const portion = searchParams.get('count') || DEFAULT_API_PORTION
 
-			return countPages(data.totalCount, portion)
+			return countPages(data.totalCount, +portion)
 		}
 
 		return 0
-	}, [data, queryParams])
+	}, [data, searchParams])
 
 	const users = data?.items
 
