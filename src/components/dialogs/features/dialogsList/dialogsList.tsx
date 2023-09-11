@@ -22,7 +22,7 @@ export const DialogsList = memo(() => {
 						bgcolor: 'primary.light',
 						borderRight: 'max(1px, 0.0625rem) solid',
 						borderRightColor: 'secondary',
-						ml: '3px',
+						pl: '3px',
 					}}
 				>
 					<WithError isError={isError}>
