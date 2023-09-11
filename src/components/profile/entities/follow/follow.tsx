@@ -1,5 +1,7 @@
 import { Button } from '@mui/material'
-import { useFollow } from '../../model/hooks'
+import { useParams } from 'react-router-dom'
+import { useGetIsFollowedQuery } from '@/components/profile/api/api.ts'
+import { Follow } from '@/components/users/entities/follow'
 
 type PropsType = {
 	isLoading: boolean
@@ -20,16 +22,10 @@ export const FollowButton = ({ isLoading, onClick, children }: PropsType) => {
 	)
 }
 
-export const Follow = () => {
-	const { isFollowed, isLoading, follow, unfollow } = useFollow()
+export const FollowProfile = () => {
+	const { userId = 0 } = useParams()
 
-	return isFollowed ? (
-		<FollowButton onClick={unfollow} isLoading={isLoading}>
-			Unfollow
-		</FollowButton>
-	) : (
-		<FollowButton onClick={follow} isLoading={isLoading}>
-			Follow
-		</FollowButton>
-	)
+	const { data, isLoading } = useGetIsFollowedQuery(+userId)
+
+	return <Follow followed={data} disabled={isLoading} userId={+userId} />
 }

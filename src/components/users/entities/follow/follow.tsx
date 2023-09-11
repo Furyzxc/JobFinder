@@ -2,6 +2,7 @@ import { BookmarkBorderOutlined } from '@mui/icons-material'
 import {
 	Dispatch,
 	SetStateAction,
+	memo,
 	useCallback,
 	useEffect,
 	useState,
@@ -12,22 +13,29 @@ import { useToggleIsFollowedMutation } from '@/components/profile/api'
 const SUCCESS_CODE = 0
 
 type PropsType = {
-	followed: boolean
+	followed?: boolean
 	userId: number
+	disabled?: boolean
 }
 
 type ButtonProps = {
 	userId: number
 	setIsFollowed: Dispatch<SetStateAction<boolean>>
-	follow: boolean
+	follow?: boolean
+	disabled?: boolean
 }
 
-const FollowButton = ({ userId, setIsFollowed, follow }: ButtonProps) => {
+const FollowButton = ({
+	userId,
+	setIsFollowed,
+	follow,
+	disabled,
+}: ButtonProps) => {
 	const [toggleIsFollowed, { isLoading, data, isError }] =
 		useToggleIsFollowedMutation()
 
 	const toggleFollow = useCallback(() => {
-		if (!isLoading) {
+		if (!isLoading && follow !== undefined) {
 			setIsFollowed(prev => !prev)
 			toggleIsFollowed({ userId, follow })
 		}
@@ -43,23 +51,26 @@ const FollowButton = ({ userId, setIsFollowed, follow }: ButtonProps) => {
 		<Button
 			startIcon={<BookmarkBorderOutlined />}
 			onClick={toggleFollow}
-			disabled={isLoading}
+			disabled={disabled || isLoading}
 		>
 			{follow ? 'Follow' : 'Unfollow'}
 		</Button>
 	)
 }
 
-export const Follow = ({ followed, userId }: PropsType) => {
-	const [isFollowed, setIsFollowed] = useState(followed)
+export const Follow = memo(({ followed, userId, disabled }: PropsType) => {
+	const [isFollowed, setIsFollowed] = useState(!!followed)
+
+	useEffect(() => {
+		if (followed !== undefined) setIsFollowed(followed)
+	}, [followed])
 
 	return (
-		<div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-			<FollowButton
-				userId={userId}
-				setIsFollowed={setIsFollowed}
-				follow={!isFollowed}
-			/>
-		</div>
+		<FollowButton
+			disabled={disabled}
+			userId={userId}
+			setIsFollowed={setIsFollowed}
+			follow={!isFollowed}
+		/>
 	)
-}
+})

@@ -1,22 +1,13 @@
-import { EditProfileResponse } from '@/components/settings/api/types.ts'
 import {
 	EditProfileRequest,
 	useEditProfileInfoMutation,
 } from '../../api/api.ts'
 import { useProfileSettings } from './useProfileSettings.ts'
 
-/**
- * Represents the output structure of the profile update hook.
- */
 type ProfileUpdate = [
 	// Function to trigger the profile update
 	trigger: () => void,
-	// Status and response data
-	data: {
-		isLoading: boolean
-		isError: boolean
-		data: EditProfileResponse | undefined
-	},
+	data: { isLoading: boolean },
 ]
 
 /**
@@ -45,15 +36,7 @@ export const useProfileUpdate = (): ProfileUpdate => {
 		},
 	}
 
-	const [editProfile, { isLoading, isError, data }] =
-		useEditProfileInfoMutation()
+	const [editProfile, { isLoading }] = useEditProfileInfoMutation()
 
-	return [
-		() => editProfile(editProfileBody),
-		{
-			isLoading,
-			isError,
-			data,
-		},
-	]
+	return [() => editProfile(editProfileBody), { isLoading }]
 }

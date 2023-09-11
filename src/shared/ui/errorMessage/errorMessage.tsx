@@ -13,7 +13,7 @@ export const ErrorMessage = ({ message, onCrossClick }: PropsType) => {
 			container
 			className={s.error}
 			sx={{
-				backgroundColor: '#25171C',
+				backgroundColor: 'error.light',
 				p: '20px 16px',
 				fontSize: '14px',
 			}}
@@ -22,7 +22,7 @@ export const ErrorMessage = ({ message, onCrossClick }: PropsType) => {
 				<Typography variant={'h1'}>{message}</Typography>
 			</Grid>
 			<Grid item sx={{ cursor: 'pointer' }} onClick={onCrossClick}>
-				<CloseSharp sx={{ color: '#E34B45', fontSize: '15px', mt: '2px' }} />
+				<CloseSharp sx={{ color: 'error.main', fontSize: '15px', mt: '2px' }} />
 			</Grid>
 		</Grid>
 	)

@@ -29,7 +29,7 @@ export const AppHeader = () => {
 				sx={{
 					minHeight: '50px',
 					p: '0 0 0 40px',
-					bgcolor: 'secondary.dark',
+					bgcolor: 'primary.dark',
 				}}
 				spacing={3}
 			>

@@ -1,6 +1,7 @@
 import { Container, Grid, Stack } from '@mui/material'
 import { WithError } from '@/shared/hoc'
 import { useAuth } from '@/components/authorization'
+import { SocialAccountsLinks } from '@/components/profile/features/socialAccountsLinks'
 import { useGetProfile } from '../model/hooks'
 import { JobInfo } from '../features/jobInfo'
 import { MainInfo } from '../features/mainInfo'
@@ -35,6 +36,7 @@ export const Profile = () => {
 								isLookingForJob={p?.lookingForAJob}
 								additionalInfo={p?.lookingForAJobDescription || ''}
 							/>
+							{p && <SocialAccountsLinks {...p?.socialAccounts} />}
 							{!isOwner && isAuthorized && !isLoading && (
 								<UserProfileBtns name={p?.name} avatar={p?.photos.avatar} />
 							)}

@@ -1,6 +1,7 @@
-import { Button } from '@mui/material'
+import { ForwardToInboxOutlined } from '@mui/icons-material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useActions } from '@/shared/model/hooks'
+import { Button } from '@/shared/ui/button'
 
 interface PropsType {
 	name?: string
@@ -19,11 +20,7 @@ export const ProfileSendBtn = ({ name, avatar }: PropsType) => {
 		setChatInfo({ name, avatar })
 	}
 	return (
-		<Button
-			variant='outlined'
-			onClick={handleSendBtnClick}
-			sx={{ minWidth: '140px' }}
-		>
+		<Button onClick={handleSendBtnClick} startIcon={<ForwardToInboxOutlined />}>
 			Send Message
 		</Button>
 	)

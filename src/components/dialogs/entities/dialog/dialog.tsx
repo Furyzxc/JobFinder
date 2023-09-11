@@ -39,9 +39,9 @@ export const Dialog = memo(
 				onClick={handleDialogClick}
 				className={clsx(s.dialog, isSelected && s.selected, 'notranslate')}
 				sx={{
-					bgcolor: isSelected ? 'primary.main' : undefined,
+					bgcolor: isSelected ? 'warning.light' : undefined,
 					'&:hover': {
-						bgcolor: isSelected ? 'primary.main' : 'info.dark',
+						bgcolor: isSelected ? 'warning.light' : 'info.dark',
 						cursor: 'pointer',
 					},
 				}}
@@ -61,7 +61,7 @@ export const Dialog = memo(
 					variant={'h1'}
 					sx={{
 						fontSize: '12px',
-						color: hasNewMessages ? '#2299D5' : '#8696a8',
+						color: hasNewMessages ? 'primary.main' : 'warning.main',
 					}}
 					className={s.time}
 				>

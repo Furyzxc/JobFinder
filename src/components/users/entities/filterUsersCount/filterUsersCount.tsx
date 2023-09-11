@@ -8,7 +8,10 @@ export const FilterUsersCount = () => {
 	const { bind } = useInput(Number(searchParams.get('count')) || 10)
 
 	const handleBlur = () => {
+		// go back on first page after changing count
 		searchParams.set('count', bind.value)
+		searchParams.delete('page')
+
 		setSearchParams(searchParams)
 	}
 	return (

@@ -6,7 +6,7 @@ type PropsType = {
 
 export const TimeChip = ({ time }: PropsType) => {
 	return (
-		<Divider sx={{ mb: '10px', textTransform: 'none', color: 'white' }}>
+		<Divider sx={{ mb: '10px', textTransform: 'none', color: 'warning.light' }}>
 			{time}
 		</Divider>
 	)

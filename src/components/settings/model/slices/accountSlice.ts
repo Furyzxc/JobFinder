@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
 import { ProfileResponseBody, SocialAccounts } from '@/components/profile'
+import { api } from '../../api/api.ts'
 
 interface ProfileSettings extends ProfileResponseBody {
 	updateProfileErrorMessage: string | null
@@ -31,20 +32,21 @@ const initialState: ProfileSettings = {
 	updateProfileErrorMessage: null,
 }
 
-export type MainFieldType =
-	| 'name'
-	| 'bio'
-	| 'lookingForAJobDescription'
-	| 'lookingForAJob'
+type MainFieldType = 'name' | 'bio' | 'lookingForAJobDescription'
 
-type SetMainValueAction = {
-	fieldName: MainFieldType
-	value: string | boolean
-}
+type SetMainValueAction =
+	| {
+			fieldName: MainFieldType
+			value: string
+	  }
+	| {
+			fieldName: 'lookingForAJob'
+			value: boolean
+	  }
 
 export type SocialAccountType = keyof SocialAccounts
 
-interface SetAccountValueAction {
+type SetAccountValueAction = {
 	fieldName: SocialAccountType
 	value: string | null
 }
@@ -62,24 +64,8 @@ export const profileSettingsSlice = createSlice({
 
 		setMainValue(state, { payload }: PayloadAction<SetMainValueAction>) {
 			const { fieldName, value } = payload
-
-			if (
-				// if payload refers to string value
-				typeof value === 'string' &&
-				(fieldName === 'name' ||
-					fieldName === 'bio' ||
-					fieldName === 'lookingForAJobDescription')
-			) {
-				// setting string value
-				state[fieldName] = value
-			} else if (
-				// if payload refers boolean value (radio buttons)
-				fieldName === 'lookingForAJob' &&
-				typeof value === 'boolean'
-			) {
-				// setting boolean value
-				state.lookingForAJob = value
-			}
+			// @ts-ignore
+			state[fieldName] = value
 		},
 
 		setAccountValue(state, { payload }: PayloadAction<SetAccountValueAction>) {
@@ -89,6 +75,27 @@ export const profileSettingsSlice = createSlice({
 		clearErrorMessage(state) {
 			state.updateProfileErrorMessage = null
 		},
+	},
+
+	extraReducers: builder => {
+		const { editProfileInfo } = api.endpoints
+
+		builder
+			.addMatcher(editProfileInfo.matchPending, state => {
+				// sending new request we clear errors
+				state.updateProfileErrorMessage = null
+			})
+			.addMatcher(editProfileInfo.matchFulfilled, (state, action) => {
+				const error = action.payload.messages[0]
+				// if response consist error we set it to state
+				if (error) {
+					state.updateProfileErrorMessage = error
+				}
+			})
+			.addMatcher(editProfileInfo.matchRejected, state => {
+				// if rejected, set error
+				state.updateProfileErrorMessage = 'Some error occured...'
+			})
 	},
 })
 

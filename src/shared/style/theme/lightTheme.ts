@@ -4,19 +4,27 @@ export const lightTheme = createTheme({
 	palette: {
 		mode: 'light',
 		primary: {
-			main: '#2F80F6', // preloader
+			main: '#569CFF', // preloader and my message bg
 			light: '#F2EFE8', // background
-			dark: '#000', // header
+			dark: '#fff', // header
 		},
 		secondary: {
 			main: '#E6E1DD', // navigation
-			light: '#000',
-			dark: '#fff',
+			light: '#000', // dialog name text and send message icon
+			dark: '#000', // pagination
 		},
 		info: {
-			main: '#2B5278', // start chatting background and pagination bg
-			light: '#F2EFE8', // start chatting text
+			main: '#4B8ED1', // start chatting background and pagination bg
+			light: '#F2EFE8', // start chatting text and pagination
 			dark: '#60A0FF', // hover dialog
+		},
+		warning: {
+			main: '#212b35', // last dialog activity time and message time
+			light: '#8BC5FF', // selected dialog bg and messages divider
+		},
+		error: {
+			main: '#25171C', // error text and cross
+			light: '#E34B45', // error bg
 		},
 	},
 	components: {

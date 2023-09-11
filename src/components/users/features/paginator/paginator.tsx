@@ -27,7 +27,7 @@ export const Paginator = ({ pagesCount }: PropsType) => {
 				renderItem={item => {
 					return (
 						<PaginationItem
-							sx={{ color: 'primary.dark', maxWidth: '32px' }}
+							sx={{ color: 'secondary.dark', maxWidth: '32px' }}
 							slots={{ previous: ArrowBackRounded, next: ArrowForwardRounded }}
 							{...item}
 						/>

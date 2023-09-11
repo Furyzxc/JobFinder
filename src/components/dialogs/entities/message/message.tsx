@@ -1,5 +1,5 @@
 import DoneAllIcon from '@mui/icons-material/DoneAll'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { clsx } from 'clsx'
 import { formatTime } from '@/shared/lib/format-time.ts'
 import { useCopyText } from '@/shared/model/hooks'
@@ -22,14 +22,19 @@ export const Message = ({ body, addedAt, me, viewed }: MessageProps) => {
 
 	return (
 		<Box
-			sx={{ bgcolor: me ? 'primary.main' : 'secondary.main' }}
+			sx={{ bgcolor: me ? 'primary.main' : 'info.main' }}
 			className={clsx(s.message, me ? s.myMessage : s.friendMessage)}
 			onClick={handleMessageClick}
 		>
 			<div className={s.text} ref={textRef}>
 				{body}
 			</div>
-			<div className={s.time + ' notranslate'}>{time}</div>
+			<Typography
+				color={me ? 'warning.main' : 'warning.light'}
+				className={s.time + ' notranslate'}
+			>
+				{time}
+			</Typography>
 			<div className={s.tick + ' notranslate'}>
 				<DoneAllIcon
 					sx={{ fontSize: '12px', color: viewed ? '#66B7F6' : 'white' }}

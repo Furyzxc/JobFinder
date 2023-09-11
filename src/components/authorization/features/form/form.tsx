@@ -72,7 +72,20 @@ export const Form = memo(() => {
 				)}
 			/>
 
-			<Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+			<Button
+				type='submit'
+				fullWidth
+				variant='contained'
+				color={'primary'}
+				sx={{
+					mt: 3,
+					mb: 2,
+					'&:hover': {
+						bgcolor: 'primary.dark',
+						color: 'primary.main',
+					},
+				}}
+			>
 				Sign In
 			</Button>
 

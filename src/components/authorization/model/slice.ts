@@ -50,6 +50,7 @@ export const authSlice = createSlice({
 		builder.addMatcher(isAnyOf(authMe.pending, authLogin.pending), state => {
 			// turning isLoading when requests are processing
 			state.isLoading = true
+			state.error = null
 		})
 
 		builder.addMatcher(
@@ -60,19 +61,18 @@ export const authSlice = createSlice({
 			}
 		)
 
-		builder.addMatcher(
-			api.endpoints.me.matchFulfilled,
-			(state, { payload }) => {
-				if (payload.resultCode === SUCCESS_CODE) {
-					// if request is successful we set authorized to true
-					// and setting user data from server response
-					state.isAuthorized = true
-					state.userInfo = payload.data
-				}
-			}
-		)
+		const { me, logout } = api.endpoints
 
-		builder.addMatcher(api.endpoints.logout.matchFulfilled, state => {
+		builder.addMatcher(me.matchFulfilled, (state, { payload }) => {
+			if (payload.resultCode === SUCCESS_CODE) {
+				// if request is successful we set authorized to true
+				// and setting user data from server response
+				state.isAuthorized = true
+				state.userInfo = payload.data
+			}
+		})
+
+		builder.addMatcher(logout.matchFulfilled, state => {
 			state.isAuthorized = false
 
 			// clearing state's user info

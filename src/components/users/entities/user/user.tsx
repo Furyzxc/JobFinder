@@ -53,7 +53,9 @@ export const User = ({ name, status, photos, id, followed }: UserProps) => {
 				>
 					{status}
 				</Grid>
-				<Follow userId={id} followed={followed} />
+				<div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+					<Follow userId={id} followed={followed} />
+				</div>
 			</Grid>
 		</Grid>
 	)
