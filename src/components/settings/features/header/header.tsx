@@ -20,12 +20,17 @@ export const Header = () => {
 				<Stack direction={'column'}>
 					<Stack direction={'row'} spacing={1} className='notranslate'>
 						<Typography
+							noWrap
 							variant={'h6'}
 							sx={{ color: 'secondary', fontSize: '18px' }}
 						>
 							{info.name}
 						</Typography>
-						<Typography variant={'h6'} sx={{ color: '#768590', pt: '1px' }}>
+						<Typography
+							noWrap
+							variant={'h6'}
+							sx={{ color: '#768590', pt: '1px' }}
+						>
 							({login})
 						</Typography>
 					</Stack>

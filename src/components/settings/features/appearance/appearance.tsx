@@ -14,7 +14,7 @@ import { Title } from '../../entities/title'
 export const Appearance = () => {
 	const { ref } = useSmoothAppearance()
 	return (
-		<Stack ref={ref}>
+		<Stack ref={ref} sx={{ mb: '20px' }}>
 			<Title name={'Theme preferences'} />
 			<Grid
 				container
