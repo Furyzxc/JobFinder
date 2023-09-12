@@ -1,7 +1,5 @@
 # JobFinder - A Social Network for Connecting People and Finding Jobs
 
-![JobFinder Logo](https://github.com/Furyzxc/social-network-2023/blob/f8bebba9648ccf8455b1928f94d27b105677ee3e/public/melon.png)
-
 ## Table of Contents
 
 - [Introduction](#introduction)

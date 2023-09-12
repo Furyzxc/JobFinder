@@ -2,10 +2,10 @@ import { Container, Grid, Stack } from '@mui/material'
 import { WithError } from '@/shared/hoc'
 import { Div } from '@/shared/ui/div'
 import { useAuth } from '@/components/authorization'
-import { SocialAccountsLinks } from '@/components/profile/features/socialAccountsLinks'
 import { useGetProfile } from '../model/hooks'
 import { JobInfo } from '../features/jobInfo'
 import { MainInfo } from '../features/mainInfo'
+import { SocialAccountsLinks } from '../features/socialAccountsLinks'
 import { UserProfileBtns } from '../features/userProfileBtns'
 
 export const Profile = () => {
