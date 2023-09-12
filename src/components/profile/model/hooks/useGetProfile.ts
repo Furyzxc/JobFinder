@@ -9,9 +9,9 @@ interface GetProfile {
 }
 
 export const useGetProfile = (): GetProfile => {
-	const { id = 0, isOwner } = useUserDetails()
+	const { id, isOwner } = useUserDetails()
 
-	const { data, isLoading, isError } = useGetProfileQuery(id, {
+	const { data, isLoading, isError } = useGetProfileQuery(id || 0, {
 		skip: !id,
 	})
 
