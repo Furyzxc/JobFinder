@@ -10,14 +10,17 @@ export const SocialAccountsLinks = (accounts: PropsType) => {
 	return (
 		<Stack direction={'row'} flexWrap='wrap'>
 			{Object.keys(accounts).map((key) => {
-				const linkToAccount = accounts[key]
+				const link = accounts[key]
 
-				if (linkToAccount) {
+				if (link) {
+					// adding https to link
+					const linkToAccount = link.startsWith('https://') ? link : '//' + link
+
 					return (
 						<Link
 							color={'primary.main'}
 							key={key}
-							href={'//' + linkToAccount}
+							href={linkToAccount}
 							sx={{ m: '0 10px 10px 0' }}
 						>
 							{accountsNames[key]}
