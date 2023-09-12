@@ -8,17 +8,15 @@ import { AppHeader } from '@/components/header'
 import { selectTheme } from '@/components/settings/model'
 
 export const MainLayout = () => {
-	const themeName = useAppSelector(selectTheme)
+	const { previewTheme, choosenTheme } = useAppSelector(selectTheme)
 
-	const theme =
-		themeName === 'dark'
-			? darkTheme
-			: themeName === 'light'
-			? lightTheme
-			: spotifyTheme
+	const theme = previewTheme || choosenTheme
+
+	const appTheme =
+		theme === 'dark' ? darkTheme : theme === 'light' ? lightTheme : spotifyTheme
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={appTheme}>
 			<Stack className={'height'} sx={{ bgcolor: 'primary.light' }}>
 				<AppHeader />
 				<WithSuspense>

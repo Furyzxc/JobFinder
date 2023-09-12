@@ -4,24 +4,36 @@ import { RootState } from '@/app/appStore.ts'
 export type ThemeType = 'dark' | 'light' | 'spotify'
 
 interface Theme {
-	theme: ThemeType
+	choosenTheme: ThemeType
+	previewTheme: ThemeType | null // theme on hover
 }
 
 const initialState: Theme = {
-	theme: (localStorage.getItem('theme') as ThemeType) || 'dark',
+	choosenTheme: (localStorage.getItem('theme') as ThemeType) || 'dark',
+	previewTheme: null,
 }
 
 export const themeSlice = createSlice({
 	name: 'theme',
 	initialState,
 	reducers: {
-		setTheme(state, { payload }: PayloadAction<typeof initialState.theme>) {
-			state.theme = payload
+		setTheme(
+			state,
+			{ payload }: PayloadAction<typeof initialState.choosenTheme>
+		) {
+			state.choosenTheme = payload
 			localStorage.setItem('theme', payload)
+		},
+
+		setPreviewTheme(
+			state,
+			action: PayloadAction<typeof initialState.previewTheme>
+		) {
+			state.previewTheme = action.payload
 		},
 	},
 })
 
 export const themeActions = themeSlice.actions
 
-export const selectTheme = (state: RootState) => state.theme.theme
+export const selectTheme = (state: RootState) => state.theme

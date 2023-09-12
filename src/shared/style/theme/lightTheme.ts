@@ -10,7 +10,7 @@ export const lightTheme = createTheme({
 		},
 		secondary: {
 			main: '#E6E1DD', // navigation
-			light: '#000', // dialog name text and send message icon
+			light: '#000', // dialog name text and send message icon  and user status
 			dark: '#000', // pagination
 		},
 		info: {

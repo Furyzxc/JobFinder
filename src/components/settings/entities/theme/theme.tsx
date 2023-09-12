@@ -1,7 +1,8 @@
 import { Grid, Stack } from '@mui/material'
-import { ReactNode } from 'react'
-import { useActions, useTheme } from '@/shared/model/hooks'
+import { ReactNode, memo, useCallback, useEffect } from 'react'
+import { useActions, useHover } from '@/shared/model/hooks'
 import { ThemeType } from '@/components/settings/model'
+import { useTheme } from '@/components/settings/model/hooks'
 import { ThemeBody } from '../themeBody'
 import { ThemeTitle } from '../themeTitle'
 
@@ -12,19 +13,28 @@ type PropsType = {
 	theme: ThemeType
 }
 
-export const Theme = ({ titleIcon, title, imgSrc, theme }: PropsType) => {
-	const themeName = useTheme()
+export const Theme = memo(({ titleIcon, title, imgSrc, theme }: PropsType) => {
+	const { setTheme, setPreviewTheme } = useActions()
+	const { choosenTheme } = useTheme()
+	const { isHovered, ref } = useHover()
 
-	const isSelected = themeName === theme
+	const isSelected = choosenTheme === theme
 
 	const borderColor = isSelected ? 'primary.main' : '#2E343B'
 
-	const { setTheme } = useActions()
+	const changeTheme = useCallback(() => setTheme(theme), [setTheme, theme])
 
-	const changeTheme = () => setTheme(theme)
+	useEffect(() => {
+		if (isHovered) {
+			setPreviewTheme(theme)
+		} // if theme is not hovered clearing preview theme
+		else {
+			setPreviewTheme(null)
+		}
+	}, [isHovered, setPreviewTheme, theme])
 
 	return (
-		<Grid item xs={12} sm={6} md={4}>
+		<Grid item xs={12} sm={6} md={4} ref={ref}>
 			<Stack
 				onClick={changeTheme}
 				sx={{
@@ -33,11 +43,11 @@ export const Theme = ({ titleIcon, title, imgSrc, theme }: PropsType) => {
 					borderRadius: '5px',
 					p: '20px',
 				}}
-				spacing={2}
+				spacing={4}
 			>
 				<ThemeTitle isSelected={isSelected} text={title} icon={titleIcon} />
 				<ThemeBody imgSrc={imgSrc} />
 			</Stack>
 		</Grid>
 	)
-}
+})

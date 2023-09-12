@@ -10,13 +10,13 @@ export const spotifyTheme = createTheme({
 		},
 		secondary: {
 			main: '#1A1F24', // navigation
-			light: '#fff', // dialog name text and send message icon
+			light: '#fff', // dialog name text and send message icon  and user status
 			dark: '#fff', //  pagination
 		},
 		info: {
 			main: '#21262D', // start chatting background and friend message bg
 			light: '#F2EFE8', // start chatting text
-			dark: '#121212', // hover dialog
+			dark: '#2A2A2A', // hover dialog
 		},
 		warning: {
 			main: '#A1A1A1', // last dialog activity time  and message time

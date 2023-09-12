@@ -10,7 +10,7 @@ export const darkTheme = createTheme({
 		},
 		secondary: {
 			main: '#1A1F24', // navigation
-			light: '#E6EDF3', // dialog name text and send message icon
+			light: '#E6EDF3', // dialog name text and send message icon and user status
 			dark: '#fff', // pagination
 		},
 		info: {

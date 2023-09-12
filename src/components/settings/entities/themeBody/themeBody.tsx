@@ -6,8 +6,8 @@ type PropsType = {
 
 export const ThemeBody = ({ imgSrc }: PropsType) => {
 	return (
-		<Box sx={{ cursor: 'pointer' }}>
-			<img src={imgSrc} alt={'theme view'} />
+		<Box>
+			<img src={imgSrc} alt={'theme view'} style={{ margin: '0 auto' }} />
 		</Box>
 	)
 }

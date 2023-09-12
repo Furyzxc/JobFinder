@@ -17,7 +17,6 @@ export interface UserProps {
 
 export const User = ({ name, status, photos, id, followed }: UserProps) => {
 	const navigate = useNavigate()
-
 	const navigateToProfile = () => navigate('/profile/' + id)
 
 	return (
@@ -49,7 +48,7 @@ export const User = ({ name, status, photos, id, followed }: UserProps) => {
 					item
 					xs={8}
 					className={s.status}
-					sx={{ color: 'white', fontSize: '12px', pt: '30px' }}
+					sx={{ color: 'secondary.light', fontSize: '12px', pt: '30px' }}
 				>
 					{status}
 				</Grid>
