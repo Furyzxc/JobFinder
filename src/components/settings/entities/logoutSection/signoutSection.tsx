@@ -1,13 +1,13 @@
+import { Button } from '@mui/material'
 import { memo } from 'react'
 import { Section } from '../profileSection'
-import s from './btn.module.css'
 
 type PropsType = {
 	signoutFromAccount: () => void
 }
 
 export const SignoutSection = memo(({ signoutFromAccount }: PropsType) => {
-	const handleClick = () => signoutFromAccount()
+	const signout = () => signoutFromAccount()
 
 	return (
 		<Section
@@ -16,14 +16,23 @@ export const SignoutSection = memo(({ signoutFromAccount }: PropsType) => {
 			paragraphColor={'#F85149'}
 			paragraphPL={'4px'}
 		>
-			<summary
-				data-view-component='true'
-				className={s.btn}
-				role='button'
-				onClick={handleClick}
+			<Button
+				id={'signout'}
+				onClick={signout}
+				sx={{
+					width: '175px',
+					bgcolor: 'error.dark',
+					color: 'error.light',
+					borderRadius: '6px',
+					textTransform: 'none',
+					'&:hover, &:focus': {
+						color: 'secondary.light',
+						bgcolor: 'error.main',
+					},
+				}}
 			>
 				Sign out from account
-			</summary>
+			</Button>
 		</Section>
 	)
 })

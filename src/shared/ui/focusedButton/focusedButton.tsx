@@ -1,13 +1,12 @@
 import { Button as MuiButton, Typography } from '@mui/material'
 import { ReactNode } from 'react'
-import s from './focusedButton.module.css'
 
 type PropsType = {
 	onClick?: () => void
 	startIcon?: ReactNode
 	endIcon?: ReactNode
 	children: ReactNode
-	bgColor?: string | boolean
+	selected?: string | boolean
 }
 
 export const FocusedButton = ({
@@ -15,19 +14,24 @@ export const FocusedButton = ({
 	startIcon,
 	endIcon,
 	children,
-	bgColor,
+	selected,
 }: PropsType) => {
 	return (
 		<MuiButton
 			onClick={onClick}
-			className={s.btn}
 			sx={{
 				textAlign: 'none',
 				minWidth: '100%',
 				justifyContent: 'flex-start',
 				height: '32px',
-				color: 'secondary',
-				bgcolor: bgColor ? 'secondary' : 'inherit',
+				color: 'warning.main',
+				bgcolor: selected ? 'warning.dark' : 'inherit',
+				'&:focus': {
+					bgcolor: 'warning.dark',
+				},
+				'&:focus, &:hover': {
+					bgcolor: selected ? 'warning.dark' : 'secondary.main',
+				},
 			}}
 			startIcon={startIcon}
 			endIcon={endIcon}

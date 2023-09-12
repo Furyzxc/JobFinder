@@ -6,7 +6,7 @@ export const lightTheme = createTheme({
 	palette: {
 		mode: 'light',
 		primary: {
-			main: '#4B8ED1', // unfollow icon, preloader
+			main: '#4B8ED1', // unfollow icon, preloader, update profile button bg, hover slider track
 			light: '#F2EFE8', // background
 			dark: '#fff', // header
 		},
@@ -26,8 +26,9 @@ export const lightTheme = createTheme({
 			dark: '#569CFF', // my message bg
 		},
 		error: {
-			main: '#25171C', // error text and cross
-			light: '#E34B45', // error bg
+			main: '#da3633', // error text and cross and signout btn hover bg
+			light: '#fff', // error bg, signout btn text
+			dark: '#da3633', // signout btn bg
 		},
 	},
 })

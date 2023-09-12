@@ -6,13 +6,13 @@ export const darkTheme = createTheme({
 	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#004BFC', // unfollow icon, preloader
+			main: '#004BFC', // unfollow icon, preloader, update profile button bg,  hover slider track
 			light: '#0d1117', // background
 			dark: '#010409', // header
 		},
 		secondary: {
 			main: '#1A1F24', // navigation
-			light: '#E6EDF3', // dialog name text and send message icon and user status and unfollow icon, slider thumb
+			light: '#E6EDF3', // dialog name text, send message icon, user status, unfollow icon, slider thumb, hover singout btn text
 			dark: '#fff', // pagination
 		},
 		info: {
@@ -26,8 +26,9 @@ export const darkTheme = createTheme({
 			dark: '#2B5278', // my message bg
 		},
 		error: {
-			main: '#E34B45', // error text and cross
-			light: '#25171C', // error bg
+			main: '#da3633', // error text and cross and signout btn hover bg
+			light: '#F85149', // error bg, signout btn text
+			dark: '#21262D', // signout btn bg
 		},
 	},
 })

@@ -18,13 +18,11 @@ export const Paginator = ({ pagesCount }: PropsType) => {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Pagination
-				sx={{ m: '0 auto', width: 'max-content' }}
+				sx={{ m: '0 auto', width: 'max-content', color: 'info.main' }}
 				onChange={handleChange}
-				// @ts-ignore
-				color={'info'}
 				count={pagesCount}
 				page={+page}
-				renderItem={item => {
+				renderItem={(item) => {
 					return (
 						<PaginationItem
 							sx={{ color: 'secondary.dark', maxWidth: '32px' }}

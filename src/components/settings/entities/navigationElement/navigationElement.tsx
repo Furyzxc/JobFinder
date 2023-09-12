@@ -21,7 +21,7 @@ export const NavigationElement = ({ name, path, icon }: PropsType) => {
 	return (
 		<FocusedButton
 			startIcon={icon}
-			bgColor={urlPath === path}
+			selected={urlPath === path}
 			onClick={handleClick}
 		>
 			{name}

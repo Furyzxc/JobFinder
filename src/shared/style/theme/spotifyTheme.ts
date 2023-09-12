@@ -6,7 +6,7 @@ export const spotifyTheme = createTheme({
 	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#1ED760', // unfollow icon and focused slider track and preloader
+			main: '#1ED760', // unfollow icon, hover slider track and preloader, update profile button bg
 			light: '#121212', // background
 			dark: '#000', // header
 		},
@@ -26,8 +26,9 @@ export const spotifyTheme = createTheme({
 			dark: '#107433', // my message
 		},
 		error: {
-			main: '#E34B45', // error text and cross
-			light: '#25171C', // error bg
+			main: '#da3633', // error text and cross and signout btn hover bg
+			light: '#F85149', // error bg, signout btn text
+			dark: '#21262D', // signout btn bg
 		},
 	},
 })
