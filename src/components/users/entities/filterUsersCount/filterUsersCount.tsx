@@ -37,15 +37,17 @@ export const FilterUsersCount = () => {
 						},
 					},
 					'& .MuiSlider-thumb': {
+						opacity: 0,
 						width: 10,
 						color: 'secondary.light',
 						boxShadow: 'none !important',
 						height: 10,
 						transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
-						'&:hover, &.Mui-focusVisible, &:focus:hover': {
-							color: 'secondary.light',
+						'&:hover, &.Mui-focusVisible': {
+							opacity: 1,
 						},
 						'&.Mui-active': {
+							opacity: 1,
 							width: 15,
 							height: 15,
 						},
