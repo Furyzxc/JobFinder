@@ -23,7 +23,7 @@ export const FilterBody = memo(() => {
 					sx={{
 						m: '20px',
 						textAlign: 'center',
-						overflow: 'none',
+						p: '10px',
 					}}
 					spacing={2}
 				>

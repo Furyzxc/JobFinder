@@ -1,4 +1,4 @@
-import { BookmarkBorderOutlined } from '@mui/icons-material'
+import { Bookmark, BookmarkBorderOutlined } from '@mui/icons-material'
 import {
 	Dispatch,
 	SetStateAction,
@@ -36,20 +36,26 @@ const FollowButton = ({
 
 	const toggleFollow = useCallback(() => {
 		if (!isLoading && follow !== undefined) {
-			setIsFollowed(prev => !prev)
+			setIsFollowed((prev) => !prev)
 			toggleIsFollowed({ userId, follow })
 		}
 	}, [isLoading, setIsFollowed, toggleIsFollowed, userId, follow])
 
 	useEffect(() => {
 		if ((data && data.resultCode !== SUCCESS_CODE) || isError) {
-			setIsFollowed(prev => !prev)
+			setIsFollowed((prev) => !prev)
 		}
 	}, [data, isError, setIsFollowed])
 
 	return (
 		<Button
-			startIcon={<BookmarkBorderOutlined />}
+			startIcon={
+				follow ? (
+					<BookmarkBorderOutlined />
+				) : (
+					<Bookmark sx={{ color: 'primary.main' }} />
+				)
+			}
 			onClick={toggleFollow}
 			disabled={disabled || isLoading}
 		>

@@ -7,7 +7,9 @@ export interface WithLoadingTypes {
 }
 
 export const WithLoading = ({ isLoading, children }: WithLoadingTypes) => {
-	if (isLoading) return <Preloader />
+	if (isLoading) {
+		return <Preloader />
+	}
 
 	return <>{children}</>
 }

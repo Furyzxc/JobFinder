@@ -1,11 +1,8 @@
 .dialog {
 	user-select: none;
-	text-decoration: none;
-	color: white;
-	opacity: 0;
+	cursor: pointer;
 	position: relative;
 	min-height: 54px;
-	cursor: pointer;
 }
 
 

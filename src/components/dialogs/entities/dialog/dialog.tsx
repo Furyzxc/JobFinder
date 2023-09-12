@@ -42,7 +42,6 @@ export const Dialog = memo(
 					bgcolor: isSelected ? 'warning.light' : undefined,
 					'&:hover': {
 						bgcolor: isSelected ? 'warning.light' : 'info.dark',
-						cursor: 'pointer',
 					},
 				}}
 				ref={ref}

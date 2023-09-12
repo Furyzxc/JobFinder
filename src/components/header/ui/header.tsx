@@ -1,7 +1,7 @@
 import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { useCallback } from 'react'
-import site_icon from '@/assets/melon.png'
+import JobFinderLogo from '@/assets/melon.png'
 import { useOutside } from '@/shared/model/hooks'
 import { Navigation } from '@/components/navigation'
 import { useOwnerInfo } from '@/components/settings/model'
@@ -38,8 +38,8 @@ export const AppHeader = () => {
 					onClick={handleMenuClik}
 				/>
 				<Avatar
-					src={site_icon}
-					alt='user avatar'
+					src={JobFinderLogo}
+					alt='JobFinder Logo'
 					sx={{ height: '31px', width: '31px' }}
 				/>
 				<Typography sx={{ width: '85%' }}>{pageName}</Typography>

@@ -9,12 +9,17 @@ interface PropsType extends SocialAccounts {
 export const SocialAccountsLinks = (accounts: PropsType) => {
 	return (
 		<Stack direction={'row'} flexWrap='wrap'>
-			{Object.keys(accounts).map(key => {
+			{Object.keys(accounts).map((key) => {
 				const linkToAccount = accounts[key]
 
 				if (linkToAccount) {
 					return (
-						<Link key={key} href={linkToAccount} sx={{ m: '0 10px 10px 0' }}>
+						<Link
+							color={'primary.main'}
+							key={key}
+							href={'//' + linkToAccount}
+							sx={{ m: '0 10px 10px 0' }}
+						>
 							{accountsNames[key]}
 						</Link>
 					)

@@ -14,7 +14,6 @@ const LeftSkeleton = ({ width }: PropsType) => (
 
 const RightGroup = () => (
 	<>
-		<RightSkeleton width={'200px'} />
 		<RightSkeleton width={'150px'} />
 		<RightSkeleton width={'230px'} />
 		<RightSkeleton width={'100px'} />
@@ -34,6 +33,7 @@ export const MessagesSkeletons = () => {
 		<Stack sx={{ p: '10px' }} spacing={1}>
 			<RightGroup />
 			<LeftGroup />
+			<RightSkeleton width={'200px'} />
 			<RightGroup />
 		</Stack>
 	)

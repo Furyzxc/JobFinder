@@ -1,16 +1,18 @@
 import { createTheme } from '@mui/material'
+import { defaultTheme } from '@/shared/style/theme/defaultTheme.ts'
 
 export const darkTheme = createTheme({
+	...defaultTheme('#7D8590', '#E6EDF3', 'white'),
 	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#2B5278', // preloader and my message bg
+			main: '#004BFC', // unfollow icon, preloader
 			light: '#0d1117', // background
 			dark: '#010409', // header
 		},
 		secondary: {
 			main: '#1A1F24', // navigation
-			light: '#E6EDF3', // dialog name text and send message icon and user status
+			light: '#E6EDF3', // dialog name text and send message icon and user status and unfollow icon, slider thumb
 			dark: '#fff', // pagination
 		},
 		info: {
@@ -21,37 +23,11 @@ export const darkTheme = createTheme({
 		warning: {
 			main: '#758495', // last dialog activity time and message time
 			light: '#2B5278', // selected dialog bg  and messages divider
+			dark: '#2B5278', // my message bg
 		},
 		error: {
 			main: '#E34B45', // error text and cross
 			light: '#25171C', // error bg
-		},
-	},
-
-	components: {
-		MuiSvgIcon: {
-			styleOverrides: {
-				root: {
-					color: '#7D8590',
-				},
-			},
-		},
-
-		MuiTypography: {
-			styleOverrides: {
-				root: {
-					color: '#E6EDF3',
-					fontSize: '16px',
-				},
-			},
-		},
-
-		MuiPaginationItem: {
-			styleOverrides: {
-				ellipsis: {
-					color: 'white',
-				},
-			},
 		},
 	},
 })

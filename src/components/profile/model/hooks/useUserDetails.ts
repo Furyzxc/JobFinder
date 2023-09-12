@@ -12,7 +12,7 @@ export const useUserDetails = (): UserIdFromParamsOutput => {
 
 	const { userId = authId } = useParams()
 
-	const id = Number(userId) || undefined
+	const id = Number(userId) || authId || undefined
 
 	return {
 		id,

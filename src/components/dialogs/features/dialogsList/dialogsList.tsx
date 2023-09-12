@@ -29,7 +29,7 @@ export const DialogsList = memo(() => {
 						{isFetching ? (
 							<DialogsSkeletons />
 						) : (
-							data.map(dialog => (
+							data.map((dialog) => (
 								<Dialog
 									isSelected={+userId === dialog.id}
 									key={dialog.id}

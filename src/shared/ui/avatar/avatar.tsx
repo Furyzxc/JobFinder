@@ -18,12 +18,12 @@ export const UserAvatar = memo(
 		if (size) sx = { height: size, width: size, fontSize }
 
 		return avatar ? (
-			<Avatar src={avatar} alt='user avatar' sx={sx} />
+			<Avatar src={avatar} alt={name} sx={sx} />
 		) : (
 			<Avatar
 				className='notranslate'
 				sx={{ bgcolor: randomColor, ...sx }}
-				alt='user avatar'
+				alt={name}
 			>
 				{name[0].toUpperCase()}
 			</Avatar>
