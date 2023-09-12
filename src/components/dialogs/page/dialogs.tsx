@@ -10,6 +10,8 @@ import s from './dialogs.module.css'
 
 export const Dialogs = () => {
 	const { userId } = useParams()
+	const id = Number(userId) // possible NaN
+
 	const { isError } = useRequestDialogsQuery()
 
 	const { ref } = useSmoothAppearance(0.1)
@@ -18,7 +20,7 @@ export const Dialogs = () => {
 
 	// we show dialogs list if we don't have user id in url params
 	// or device width is larger than 900 px
-	const displayDialogsList = !userId || clientWidth >= 900
+	const displayDialogsList = !id || clientWidth >= 900
 
 	return (
 		<Grid container ref={ref}>
@@ -42,7 +44,7 @@ export const Dialogs = () => {
 					md={9}
 					sm={12}
 				>
-					{userId ? <Chat /> : <Div>Start Chatting</Div>}
+					{id ? <Chat /> : <Div>Start Chatting</Div>}
 				</Grid>
 			</WithError>
 		</Grid>

@@ -8,7 +8,7 @@ type PropsType = {
 
 export const WithError = ({ children, isError }: PropsType) => {
 	if (isError) {
-		return <Div>Something went wrong during loading!</Div>
+		return <Div>Some error occured...</Div>
 	}
 
 	return <>{children}</>
