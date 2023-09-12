@@ -28,7 +28,7 @@ const Settings = lazy(() => import('@/components/settings/page').then(module =>
 export const appRouter = createBrowserRouter([
 	{
 		element: <MainLayout />,
-		errorElement: <Div color={'#F2EFE8'} bg={'#21262D'}>Some error occurred...</Div>,
+		errorElement: <Div>Some error occurred...</Div>,
 		children: [
 			{
 				element: <GuestGuard />,

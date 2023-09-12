@@ -7,17 +7,15 @@ interface UserIdFromParamsOutput {
 }
 
 export const useUserDetails = (): UserIdFromParamsOutput => {
-	const { id: authId } = useAuthInfo()
-	// if no user id in url returns id from auth state and sets isOwner on true
+	const { id } = useAuthInfo()
+	// if no user id in url returns id from parameters and sets isOwner on true
 
-	const { userId = authId } = useParams()
-
-	const id = Number(userId) || undefined
+	const { userId = id } = useParams()
 
 	return {
-		id,
+		id: userId ? +userId : undefined,
 		// if isOwner = true, then id is owner id (id from authorization state)
-		// otherwise id is taken from url params (if params id is not good, id = undefined)
+		// otherwise id is taken from url params
 		isOwner: userId === id,
 	}
 }
