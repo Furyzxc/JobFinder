@@ -3,11 +3,9 @@ import { ReactNode } from 'react'
 
 interface DivProps {
 	children: ReactNode
-	color?: string
-	bg?: string
 }
 
-export const Div = ({ children, bg, color }: DivProps) => {
+export const Div = ({ children }: DivProps) => {
 	return (
 		<Grid container sx={{ position: 'absolute', top: '40%', left: 0 }}>
 			<Grid
@@ -24,9 +22,9 @@ export const Div = ({ children, bg, color }: DivProps) => {
 					severity='success'
 					color='info'
 					sx={{
-						color: color || 'info.light',
+						color: 'info.light',
 						width: '100%',
-						bgcolor: bg || 'info.main',
+						bgcolor: 'info.main',
 					}}
 				>
 					{children}
