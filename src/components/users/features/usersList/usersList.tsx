@@ -38,7 +38,7 @@ export const UsersList = memo(() => {
 			>
 				<Grid xs item container className={s.usersList}>
 					{users && users.length > 0 ? (
-						users.map(user => <User {...user} key={user.id} />)
+						users.map((user) => <User {...user} key={user.id} />)
 					) : (
 						<Div>Users not found</Div>
 					)}
