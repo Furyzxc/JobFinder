@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { useCallback } from 'react'
 
 interface IsDateExist {
 	// function that formats time to MMMM_D format
@@ -13,18 +14,24 @@ export const useIsDateExist = (): IsDateExist => {
 	// initial dates
 	const dates: string[] = []
 
-	const formattedToMMMM_D = (addedAt: string) => dayjs(addedAt).format('MMMM D')
+	const formattedToMMMM_D = useCallback(
+		(addedAt: string) => dayjs(addedAt).format('MMMM D'),
+		[]
+	)
 
-	const isDateExist = (addedAt: string) => {
-		const formattedTime = formattedToMMMM_D(addedAt)
+	const isDateExist = useCallback(
+		(addedAt: string) => {
+			const formattedTime = formattedToMMMM_D(addedAt)
 
-		// if time in array of dates, says that isExist = true
-		if (dates.includes(formattedTime)) return true
-		// otherwise pushes date to array and says that isExist = false
-		dates.push(formattedTime)
+			// if time in array of dates, says that isExist = true
+			if (dates.includes(formattedTime)) return true
+			// otherwise pushes date to array and says that isExist = false
+			dates.push(formattedTime)
 
-		return false
-	}
+			return false
+		},
+		[dates, formattedToMMMM_D]
+	)
 
 	return { formattedToMMMM_D, isDateExist }
 }

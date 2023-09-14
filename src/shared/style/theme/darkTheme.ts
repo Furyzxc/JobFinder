@@ -6,7 +6,7 @@ export const darkTheme = createTheme({
 	palette: {
 		mode: 'dark',
 		primary: {
-			main: '#004BFC', // unfollow icon, preloader, update profile button bg,  hover slider track
+			main: '#2B5278', // unfollow icon, preloader, update profile button bg,  hover slider track
 			light: '#0d1117', // background
 			dark: '#010409', // header
 		},

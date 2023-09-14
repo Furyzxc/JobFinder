@@ -25,12 +25,9 @@ export const FocusedButton = ({
 				justifyContent: 'flex-start',
 				height: '32px',
 				color: 'warning.main',
-				bgcolor: selected ? 'warning.dark' : 'inherit',
-				'&:focus': {
-					bgcolor: 'warning.dark',
-				},
+				bgcolor: selected ? 'secondary.main' : 'inherit',
 				'&:focus, &:hover': {
-					bgcolor: selected ? 'warning.dark' : 'secondary.main',
+					bgcolor: 'secondary.main',
 				},
 			}}
 			startIcon={startIcon}

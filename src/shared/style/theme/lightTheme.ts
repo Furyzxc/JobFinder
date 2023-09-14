@@ -11,7 +11,7 @@ export const lightTheme = createTheme({
 			dark: '#fff', // header
 		},
 		secondary: {
-			main: '#E6E1DD', // navigation
+			main: '#E6E1DD', // navigation bg on focus
 			light: '#000', // dialog name text and send message icon  and user status, slider thumb
 			dark: '#000', // pagination
 		},
