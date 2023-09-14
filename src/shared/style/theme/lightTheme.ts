@@ -18,11 +18,11 @@ export const lightTheme = createTheme({
 		info: {
 			main: '#4B8ED1', // start chatting background and pagination bg
 			light: '#F2EFE8', // start chatting text and pagination
-			dark: '#60A0FF', // hover dialog
+			dark: '#8BC5FF', // hover dialog
 		},
 		warning: {
 			main: '#212b35', // last dialog activity time and message time
-			light: '#8BC5FF', // selected dialog bg and messages divider
+			light: '#60A0FF', // selected dialog bg and messages divider
 			dark: '#569CFF', // my message bg
 		},
 		error: {
