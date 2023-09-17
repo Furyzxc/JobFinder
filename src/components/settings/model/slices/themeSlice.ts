@@ -9,7 +9,7 @@ interface Theme {
 }
 
 const initialState: Theme = {
-	choosenTheme: (localStorage.getItem('theme') as ThemeType) || 'dark',
+	choosenTheme: (localStorage.getItem('theme') as ThemeType | null) || 'dark',
 	previewTheme: null,
 }
 
