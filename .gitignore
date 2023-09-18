@@ -9,6 +9,7 @@ lerna-debug.log*
 
 .env
 
+index.html
 
 node_modules
 dist

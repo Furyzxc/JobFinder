@@ -1,5 +1,6 @@
 import { Grid, Stack } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
+import { GuestGuard } from '@/app/routeGuards.tsx'
 import { WithLoadingAndError } from '@/shared/hoc'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { useOwnerInfo } from '../model/hooks'
@@ -31,8 +32,10 @@ export const Settings = () => {
 						</Grid>
 						<Grid item xs={12} sm={9}>
 							<Routes>
-								<Route path='*' element={<Profile />} />
-								<Route path='account' element={<Account />} />
+								<Route element={<GuestGuard />}>
+									<Route path='*' element={<Profile />} />
+									<Route path='account' element={<Account />} />
+								</Route>
 								<Route path='appearance' element={<Appearance />} />
 							</Routes>
 						</Grid>

@@ -11,17 +11,17 @@ export const Navigation = () => {
 	return (
 		<Stack direction={'column'} sx={{ pr: '10px' }}>
 			<NavigationElement
-				icon={<PermIdentityOutlined />}
+				startIcon={<PermIdentityOutlined />}
 				name={'Public profile'}
 				path={'profile'}
 			/>
 			<NavigationElement
-				icon={<SettingsOutlined />}
+				startIcon={<SettingsOutlined />}
 				name={'Account'}
 				path={'account'}
 			/>
 			<NavigationElement
-				icon={<BrushOutlined />}
+				startIcon={<BrushOutlined />}
 				name={'Appearance'}
 				path={'appearance'}
 			/>

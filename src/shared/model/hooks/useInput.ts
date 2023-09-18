@@ -4,6 +4,7 @@ export const useInput = (initialValue: any = '') => {
 	const [value, setValue] = useState(initialValue)
 
 	return {
+		value,
 		setValue,
 		reset: () => setValue(''),
 		bind: {

@@ -22,11 +22,11 @@ export const Input = ({ onBlur, width, ...inputProps }: InputProps) => {
 			{...inputProps}
 			size={'small'}
 			maxRows={4}
-			sx={{ width: width || '80%' }}
+			sx={{ width: width || '80%', bgcolor: 'primary.dark' }}
 			onBlur={handleBlur}
 			InputProps={{
 				style: {
-					borderColor: 'white',
+					borderRadius: 0,
 				},
 			}}
 		/>

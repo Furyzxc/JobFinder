@@ -1,8 +1,7 @@
 import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import JobFinderLogo from '@/assets/melon.png'
-import { useOutside } from '@/shared/model/hooks'
 import { Navigation } from '@/components/navigation'
 import { useOwnerInfo } from '@/components/settings/model'
 import { useHeaderPageName } from '../model/hooks.ts'
@@ -10,16 +9,15 @@ import { HeaderAvatar } from './headerAvatar.tsx'
 import { LoginButton } from './loginButton.tsx'
 
 export const AppHeader = () => {
-	const { isShow, setIsShow, ref } = useOutside(false)
-
-	const handleMenuClik = useCallback(
-		() => setIsShow(!isShow),
-		[isShow, setIsShow]
-	)
-
 	const { info } = useOwnerInfo()
 
 	const pageName = useHeaderPageName()
+
+	const [open, setOpen] = useState(false)
+
+	const showNavigation = () => setOpen(true)
+
+	const closeNavigation = useCallback(() => setOpen(false), [])
 
 	return (
 		<Box>
@@ -35,7 +33,7 @@ export const AppHeader = () => {
 			>
 				<Menu
 					sx={{ height: '31px', cursor: 'pointer' }}
-					onClick={handleMenuClik}
+					onClick={showNavigation}
 				/>
 				<Avatar
 					src={JobFinderLogo}
@@ -49,7 +47,7 @@ export const AppHeader = () => {
 					<LoginButton />
 				)}
 			</Stack>
-			{isShow && <Navigation setIsShow={setIsShow} navRef={ref} />}
+			<Navigation open={open} closeNavigation={closeNavigation} />
 		</Box>
 	)
 }

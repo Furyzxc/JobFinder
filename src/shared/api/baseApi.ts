@@ -14,7 +14,7 @@ export const baseApi = createApi({
 			return headers
 		},
 	}),
-	tagTypes: ['MESSAGES', 'DIALOGS', 'PROFILE', 'FOLLOW'],
+	tagTypes: ['MESSAGES', 'DIALOGS', 'PROFILE', 'FOLLOW', 'STATUS'],
 
 	endpoints: () => ({}),
 })

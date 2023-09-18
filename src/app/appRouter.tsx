@@ -25,6 +25,49 @@ const Users = lazy(() => import('@/components/users/page').then(module =>
 const Settings = lazy(() => import('@/components/settings/page').then(module =>
 	defaultLazyImport(module, 'Settings')))
 
+const requireAuthorizationRoutes = [
+	{
+		path: '/',
+		element: <Profile />,
+	},
+	{
+		path: '/profile',
+		element: <Profile />,
+	},
+	{
+		path: '/dialogs/:userId?',
+		element: <Dialogs />,
+	},
+]
+
+const withoutAuthorizationRoutes = [
+	{
+		path: '*',
+		element: <NotFound />,
+	},
+	{
+		path: '/profile/:userId',
+		element: <Profile />,
+	},
+	{
+		path: '/users',
+		element: <Users />,
+	},
+	{
+		path: '/settings/*',
+		element: <Settings />,
+	},
+	{
+		element: <AuthGuard />,
+		children: [
+			{
+				path: '/login',
+				element: <Login />,
+			},
+		],
+	},
+]
+
 export const appRouter = createBrowserRouter([
 	{
 		element: <MainLayout />,
@@ -32,47 +75,9 @@ export const appRouter = createBrowserRouter([
 		children: [
 			{
 				element: <GuestGuard />,
-				children: [
-					{
-						path: '/',
-						element: <Profile />,
-					},
-					{
-						path: '/profile',
-						element: <Profile />,
-					},
-					{
-						path: '/dialogs/:userId?',
-						element: <Dialogs />,
-					},
-
-					{
-						path: '/settings/*',
-						element: <Settings />,
-					},
-				],
+				children: requireAuthorizationRoutes,
 			},
-			{
-				path: '*',
-				element: <NotFound />,
-			},
-			{
-				path: '/profile/:userId',
-				element: <Profile />,
-			},
-			{
-				path: '/users',
-				element: <Users />,
-			},
-			{
-				element: <AuthGuard />,
-				children: [
-					{
-						path: '/login',
-						element: <Login />,
-					},
-				],
-			},
+			...withoutAuthorizationRoutes,
 		],
 	},
 ])

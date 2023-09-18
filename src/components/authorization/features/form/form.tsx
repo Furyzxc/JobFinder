@@ -80,9 +80,11 @@ export const Form = memo(() => {
 				sx={{
 					mt: 3,
 					mb: 2,
+					'&:focus': {
+						bgcolor: 'primary.main',
+					},
 					'&:hover': {
-						bgcolor: 'primary.dark',
-						color: 'primary.main',
+						bgcolor: 'success.main',
 					},
 				}}
 			>

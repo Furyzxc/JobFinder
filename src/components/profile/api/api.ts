@@ -3,36 +3,20 @@ import { transformProfileRes } from './transformProfileRes.ts'
 import {
 	FollowRequestBody,
 	ProfileResponseBody,
-	SetStatusRequestBody,
-	StatusCode,
 	ToggleFollowResponse,
 	TransformType,
 } from './types.ts'
 
 export const api = baseApi.injectEndpoints({
-	endpoints: build => ({
+	endpoints: (build) => ({
 		getProfile: build.query<ProfileResponseBody, number>({
-			query: userId => 'profile/' + userId,
+			query: (userId) => 'profile/' + userId,
 			transformResponse: (res: TransformType) => transformProfileRes(res),
 			providesTags: () => ['PROFILE'],
 		}),
 
-		getUserStatus: build.query<string, number>({
-			query: userId => 'profile/status/' + userId,
-		}),
-
-		setStatus: build.mutation<StatusCode, string>({
-			query: status => ({
-				url: 'profile/status',
-				method: 'put',
-				body: {
-					status,
-				} as SetStatusRequestBody,
-			}),
-		}),
-
 		getIsFollowed: build.query<boolean, number>({
-			query: userId => 'follow/' + userId,
+			query: (userId) => 'follow/' + userId,
 			providesTags: () => ['FOLLOW'],
 		}),
 

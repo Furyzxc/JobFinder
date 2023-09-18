@@ -14,11 +14,8 @@ export const UpdateProfile = memo(() => {
 			sx={{
 				background: '#238636',
 				maxWidth: '130px',
-				'&:hover': { bgcolor: 'primary.main' },
-				'&:focus': {
-					bgcolor: '#238636',
-					'&:hover': { bgcolor: '#1f57a9' },
-				},
+				'&:hover': { bgcolor: 'success.dark' },
+				'&:focus': { bgcolor: 'success.dark' },
 			}}
 			size={'small'}
 			disabled={isLoading}

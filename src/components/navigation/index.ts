@@ -1,1 +1,1 @@
-export * from './ui/navigation.tsx'
+export * from './page/navigation.tsx'

@@ -26,7 +26,7 @@ export const SocialAccount = memo(
 								fontSize: '12px',
 								fontWeight: '100',
 								width: '100%',
-								backgroundColor: 'primary.light',
+								backgroundColor: 'primary.dark',
 							}}
 							size={'small'}
 						/>

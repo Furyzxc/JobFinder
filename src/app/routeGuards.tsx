@@ -1,11 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '@/components/authorization'
+import { Login } from '@/components/authorization/page'
 
 // Component to guard routes accessible only to guests (non-authenticated users)
 export const GuestGuard = () => {
 	const { isAuthorized } = useAuth()
 
-	if (!isAuthorized) return <Navigate to='/login' />
+	if (!isAuthorized) return <Login />
 
 	return <Outlet />
 }
