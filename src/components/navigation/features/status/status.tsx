@@ -43,6 +43,7 @@ export const Status = () => {
 				PaperProps={{
 					sx: {
 						borderRadius: '11px',
+						overflow: 'hidden',
 					},
 				}}
 			>
