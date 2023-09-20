@@ -10,8 +10,12 @@ export const StatusSuggestions = ({ setInputValue, setEmoji }: PropsType) => {
 	return (
 		<Stack spacing={1}>
 			<Typography sx={{ fontSize: '13px' }}>Suggestions:</Typography>
-			<Stack direction={'row'} sx={{ p: '10px' }} flexWrap={'wrap'}>
-				<Stack sx={{ minWidth: '300px', mb: '15px' }} spacing={1}>
+			<Stack
+				direction={'row'}
+				sx={{ p: '10px', justifyContent: 'start' }}
+				flexWrap={'wrap'}
+			>
+				<Stack sx={{ mb: '9px', width: '200px' }} spacing={1}>
 					<Suggestion
 						setEmoji={setEmoji}
 						setInputValue={setInputValue}
@@ -25,7 +29,7 @@ export const StatusSuggestions = ({ setInputValue, setEmoji }: PropsType) => {
 						icon={'🏠'}
 					/>
 				</Stack>
-				<Stack width={'208px'} spacing={1}>
+				<Stack spacing={1} sx={{ justifyContent: 'start' }}>
 					<Suggestion
 						setEmoji={setEmoji}
 						text={'Out sick'}

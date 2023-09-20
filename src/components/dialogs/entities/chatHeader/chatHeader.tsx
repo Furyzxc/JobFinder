@@ -1,15 +1,18 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
 import { UserAvatar } from '@/shared/ui/avatar'
 import { AvatarSkeleton } from '@/shared/ui/avatarSkeleton'
+import { useChatSlice } from '@/components/dialogs/model/hooks'
 import { BackBtn } from '../backBtn'
 
 type PropsType = {
-	dialogName?: string
-	avatar?: string | null
 	isLoading: boolean
 }
 
-export const ChatHeader = ({ dialogName, avatar, isLoading }: PropsType) => {
+export const ChatHeader = ({ isLoading }: PropsType) => {
+	const {
+		profile: { name: dialogName, avatar },
+	} = useChatSlice()
+
 	return (
 		<Stack
 			alignItems={'center'}

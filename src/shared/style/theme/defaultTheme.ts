@@ -28,8 +28,13 @@ export const defaultTheme = (
 				},
 			},
 		},
-		MuiSlider: {
-			styleOverrides: {},
+
+		MuiPaper: {
+			styleOverrides: {
+				root: {
+					background: 'none',
+				},
+			},
 		},
 	},
 })

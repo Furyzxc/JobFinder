@@ -23,7 +23,7 @@ export const darkTheme = createTheme({
 		warning: {
 			main: '#758495', // last dialog activity time and message time
 			light: '#2B5278', // selected dialog bg  and messages divider
-			dark: '#2B5278', // status bg
+			dark: '#07B8F3', // hover slider track
 		},
 		error: {
 			main: '#da3633', // error text and cross and signout btn hover bg
@@ -31,7 +31,7 @@ export const darkTheme = createTheme({
 			dark: '#21262D', // signout btn bg and status emoji bg
 		},
 		success: {
-			main: '#0F4274', // signin button bg on hover
+			main: '#124E8B', // signin button bg on hover
 			light: '#181C20', // navigation element on hover
 			dark: '#0F4274', // update profile hover, set status hover
 		},

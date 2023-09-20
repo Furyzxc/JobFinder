@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { WithError } from '@/shared/hoc'
-import { useSmoothAppearance } from '@/shared/model/hooks'
+import { useClientWidth, useSmoothAppearance } from '@/shared/model/hooks'
 import { Div } from '@/shared/ui/div'
 import { Chat } from '../features/chat'
 import { DialogsList } from '../features/dialogsList'
@@ -12,11 +12,11 @@ export const Dialogs = () => {
 	const { userId } = useParams()
 	const id = Number(userId) // possible NaN
 
+	const clientWidth = useClientWidth()
+
 	const { isError } = useRequestDialogsQuery()
 
 	const { ref } = useSmoothAppearance(0.1)
-
-	const { clientWidth } = document.documentElement
 
 	// we show dialogs list if we don't have user id in url params
 	// or device width is larger than 900 px

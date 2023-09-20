@@ -38,11 +38,12 @@ export const FocusedButton = ({
 			endIcon={endIcon}
 		>
 			<Typography
-				variant={'h4'}
+				variant={'h3'}
 				sx={{
 					color: 'secondary',
 					fontSize: '13px',
 					textTransform: 'none',
+					letterSpacing: 0.8,
 					pt: '2px',
 					flexGrow: 1,
 					textAlign: 'start',

@@ -8,7 +8,7 @@ import {
 } from './types.ts'
 
 export const api = baseApi.injectEndpoints({
-	endpoints: build => ({
+	endpoints: (build) => ({
 		// get list of dialogs with your friend
 		requestDialogs: build.query<DialogsResponse[], void>({
 			query: () => 'dialogs',
@@ -19,7 +19,6 @@ export const api = baseApi.injectEndpoints({
 		requestMessages: build.query<MessagesResponse, MessagesRequest>({
 			query: ({ id, count = 20 }) =>
 				'dialogs/' + id + `/messages?count=${count}`,
-			providesTags: () => ['MESSAGES'],
 		}),
 
 		//send message to your friend
@@ -30,7 +29,6 @@ export const api = baseApi.injectEndpoints({
 				method: 'post',
 				body: { body },
 			}),
-			invalidatesTags: ['MESSAGES'],
 		}),
 	}),
 })

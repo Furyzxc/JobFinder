@@ -26,6 +26,7 @@ export const Suggestion = ({
 		>
 			{icon}
 			<Typography
+				noWrap
 				variant={'h4'}
 				sx={{
 					ml: '10px',

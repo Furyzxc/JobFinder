@@ -76,12 +76,13 @@ export const Form = memo(() => {
 				type='submit'
 				fullWidth
 				variant='contained'
-				color={'primary'}
 				sx={{
+					color: '#fff',
 					mt: 3,
+					bgcolor: '#0F4274',
 					mb: 2,
 					'&:focus': {
-						bgcolor: 'primary.main',
+						bgcolor: '#0F4274',
 					},
 					'&:hover': {
 						bgcolor: 'success.main',

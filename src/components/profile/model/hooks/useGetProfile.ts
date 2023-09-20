@@ -15,5 +15,6 @@ export const useGetProfile = (): GetProfile => {
 		skip: !id,
 	})
 
+
 	return { profileData: data, isLoading, isError, isOwner }
 }

@@ -10,7 +10,7 @@ export const ClearButton = ({ reset }: PropsType) => {
 			onClick={reset}
 			sx={{
 				bgcolor: 'secondary.main',
-				minWidth: '270px',
+				minWidth: '250px',
 				color: 'secondary.light',
 				'&:focus': {
 					bgcolor: 'secondary.main',

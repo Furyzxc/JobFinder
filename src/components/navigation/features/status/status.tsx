@@ -1,5 +1,6 @@
 import { Dialog, Stack } from '@mui/material'
 import { smile } from '@/assets/status/smile.tsx'
+import { WithSlide } from '@/shared/hoc'
 import { useStatus } from '@/components/navigation/model/hooks'
 import { NavigationElement } from '@/components/settings/entities/navigationElement'
 import { ClearButton } from '../../entities/clearButton'
@@ -33,34 +34,45 @@ export const Status = () => {
 				onClick={showStatus}
 				disabled={true}
 			/>
+
 			<Dialog
+				keepMounted
 				open={open}
 				sx={{ bgcolor: '#4B515C9B' }}
 				onClose={closeStatus}
-				PaperProps={{ style: { borderRadius: '11px' } }}
+				PaperProps={{
+					sx: {
+						borderRadius: '11px',
+					},
+				}}
 			>
-				<Stack
-					spacing={3}
-					sx={{
-						bgcolor: 'secondary.dark',
-						p: '20px',
-					}}
-				>
-					<StatusTitle close={closeStatus}>Edit status</StatusTitle>
-					<StatusInput bind={bindInput} emoji={emoji} />
-					<StatusSuggestions
-						setEmoji={setEmoji}
-						setInputValue={setInputValue}
-					/>
+				<WithSlide direction={'up'} open={open}>
 					<Stack
-						direction={'row'}
-						sx={{ justifyContent: 'space-around', gap: '20px' }}
-						flexWrap='wrap'
+						spacing={3}
+						sx={{
+							bgcolor: 'secondary.dark',
+							p: '20px',
+						}}
 					>
-						<SubmitButton disabled={isLoading} onClick={editStatus} />
-						<ClearButton reset={reset} />
+						<StatusTitle close={closeStatus}>Edit status</StatusTitle>
+						<StatusInput bind={bindInput} emoji={emoji} />
+						<StatusSuggestions
+							setEmoji={setEmoji}
+							setInputValue={setInputValue}
+						/>
+						<Stack
+							direction={'row'}
+							sx={{
+								justifyContent: 'space-around',
+								gap: '20px',
+							}}
+							flexWrap='wrap'
+						>
+							<SubmitButton disabled={isLoading} onClick={editStatus} />
+							<ClearButton reset={reset} />
+						</Stack>
 					</Stack>
-				</Stack>
+				</WithSlide>
 			</Dialog>
 		</>
 	)

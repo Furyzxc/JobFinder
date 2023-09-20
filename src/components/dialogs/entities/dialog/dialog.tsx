@@ -23,13 +23,15 @@ export const Dialog = memo(
 	}: PropsType) => {
 		const navigate = useNavigate()
 
-		const { setChatInfo } = useActions()
+		const { setChatProfile } = useActions()
 
 		const { ref } = useSmoothAppearance()
 
 		const handleDialogClick = () => {
 			navigate('/dialogs/' + id)
-			setChatInfo({ name, avatar })
+
+			if (name && avatar !== undefined)
+				setChatProfile({ name, avatar, userId: id })
 		}
 
 		const time = formatTimeByDate(lastDialogActivityDate)

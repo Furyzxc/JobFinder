@@ -1,26 +1,70 @@
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useAppSelector } from '@/shared/model/hooks'
+import { useActions } from '@/shared/model/hooks'
+import { useRequestMessagesQuery } from '@/components/dialogs/api/api.ts'
+import { useChatSlice } from '@/components/dialogs/model/hooks/useChatSlice.ts'
 import { useGetProfileQuery } from '@/components/profile'
 
 interface Chat {
-	name?: string
-	avatar?: string | null
-	isLoading: boolean
+	messagesLoading: boolean
+	profileLoading: boolean
+	isError: boolean
 }
 
 export const useChat = (): Chat => {
-	const { name, avatar } = useAppSelector(state => state.chat)
+	const { userId } = useParams()
 
-	const { userId = 0 } = useParams()
-	const { data, isLoading } = useGetProfileQuery(+userId, {
-		skip: !userId,
+	const {
+		profile: { userId: haveInfoForUser },
+	} = useChatSlice()
+
+	const { setChatProfile, setMessages } = useActions()
+
+	const id = Number(userId)
+	const {
+		data: profile,
+		isLoading: profileLoading,
+		isError: profileError,
+	} = useGetProfileQuery(id, {
+		skip: !id || !!haveInfoForUser,
 	})
 
-	if (name && avatar !== undefined) return { name, avatar, isLoading }
+	const {
+		isFetching: messagesLoading,
+		isError: messagesError,
+		data: messagesData,
+	} = useRequestMessagesQuery(
+		{ id, count: 20 },
+		{
+			skip: !id,
+		}
+	)
+
+	useEffect(() => {
+		if (profile) {
+			setChatProfile({
+				name: profile.name,
+				avatar: profile.photos.avatar,
+				userId: profile.userId,
+			})
+		}
+	}, [profile, setChatProfile])
+
+	useEffect(() => {
+		if (messagesData) {
+			setMessages(
+				// adding pending property to each message
+				messagesData.items.map((message) => ({
+					...message,
+					pending: false,
+				}))
+			)
+		}
+	}, [messagesData, setMessages])
 
 	return {
-		name: data?.name,
-		avatar: data?.photos.avatar,
-		isLoading,
+		profileLoading,
+		messagesLoading,
+		isError: [messagesError, profileError].some((err) => err === true),
 	}
 }

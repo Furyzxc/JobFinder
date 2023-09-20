@@ -13,7 +13,7 @@ export const SubmitButton = ({ onClick, disabled }: PropsType) => {
 			variant={'contained'}
 			sx={{
 				bgcolor: '#238636',
-				minWidth: '270px',
+				minWidth: '250px',
 				'&:hover': { bgcolor: 'success.dark' },
 				'&:focus': { bgcolor: 'success.dark' },
 			}}

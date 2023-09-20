@@ -31,9 +31,12 @@ export const FilterUsersCount = () => {
 				max={100}
 				valueLabelDisplay='off'
 				sx={{
-					'&:hover': {
+					'&:hover, &:active': {
 						'& .MuiSlider-track': {
-							color: 'primary.main',
+							color: 'warning.dark',
+						},
+						'& .MuiSlider-thumb': {
+							opacity: 1,
 						},
 					},
 					'& .MuiSlider-thumb': {

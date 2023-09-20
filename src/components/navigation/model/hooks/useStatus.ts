@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useInput } from '@/shared/model/hooks'
-import { useAuthInfo } from '@/components/authorization'
+import { useAuth, useAuthInfo } from '@/components/authorization'
 import { useGetUserStatusQuery, useSetStatusMutation } from '../../api/api.ts'
 
 type Status = {
@@ -22,7 +23,13 @@ type Status = {
 export const useStatus = (): Status => {
 	const [open, setOpen] = useState(false)
 
-	const showStatus = () => setOpen(true)
+	const { isAuthorized } = useAuth()
+	const navigate = useNavigate()
+
+	const showStatus = () => {
+		// show login page if user is not authourized, otherwise show status
+		isAuthorized ? setOpen(true) : navigate('/login')
+	}
 
 	const closeStatus = () => setOpen(false)
 
@@ -42,6 +49,7 @@ export const useStatus = (): Status => {
 	const [setStatus, { isLoading }] = useSetStatusMutation()
 
 	useEffect(() => {
+		// setting status value from server
 		if (statusValue) setStatusValue(statusValue)
 	}, [setStatusValue, statusValue])
 
@@ -50,6 +58,7 @@ export const useStatus = (): Status => {
 		setStatus(bindInput.value)
 	}
 
+	// function that resets value in input and on server
 	const reset = () => {
 		resetInput()
 		resetEmoji()

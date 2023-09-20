@@ -9,15 +9,16 @@ interface PropsType {
 }
 
 export const ProfileSendBtn = ({ name, avatar }: PropsType) => {
-	const { userId } = useParams()
+	const { userId = 0 } = useParams()
 
 	const navigate = useNavigate()
 
-	const { setChatInfo } = useActions()
+	const { setChatProfile } = useActions()
 
 	const handleSendBtnClick = () => {
 		navigate('/dialogs/' + userId)
-		setChatInfo({ name, avatar })
+		if (name && avatar !== undefined && userId)
+			setChatProfile({ name, avatar, userId: +userId })
 	}
 	return (
 		<Button onClick={handleSendBtnClick} startIcon={<ForwardToInboxOutlined />}>
