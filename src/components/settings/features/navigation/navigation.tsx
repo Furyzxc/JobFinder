@@ -9,7 +9,7 @@ import { NavigationElement } from '../../entities/navigationElement'
 // settings navigation on left side
 export const Navigation = () => {
 	return (
-		<Stack direction={'column'} sx={{ pr: '10px' }}>
+		<Stack sx={{ pr: '10px' }}>
 			<NavigationElement
 				startIcon={<PermIdentityOutlined />}
 				name={'Public profile'}

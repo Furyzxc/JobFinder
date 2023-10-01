@@ -46,7 +46,7 @@ export const Theme = memo(({ titleIcon, title, imgSrc, theme }: PropsType) => {
 				spacing={4}
 			>
 				<ThemeTitle isSelected={isSelected} text={title} icon={titleIcon} />
-				<ThemeBody imgSrc={imgSrc} />
+				<ThemeBody theme={theme} imgSrc={imgSrc} />
 			</Stack>
 		</Grid>
 	)

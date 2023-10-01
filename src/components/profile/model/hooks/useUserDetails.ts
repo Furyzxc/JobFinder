@@ -8,16 +8,16 @@ interface UserIdFromParamsOutput {
 
 export const useUserDetails = (): UserIdFromParamsOutput => {
 	const { id: authId } = useAuthInfo()
-	// if no user id in url returns id from auth state and sets isOwner on true
 
-	const { userId = authId } = useParams()
+	// taking value of id from url params
+	const { userId } = useParams()
 
+	// if Number(userId) = NaN, then it's your profile id
 	const id = Number(userId) || authId || undefined
 
 	return {
 		id,
-		// if isOwner = true, then id is owner id (id from authorization state)
-		// otherwise id is taken from url params (if params id is not good, id = undefined)
-		isOwner: userId === id,
+		// if id is your, isOwner = true
+		isOwner: id === authId,
 	}
 }

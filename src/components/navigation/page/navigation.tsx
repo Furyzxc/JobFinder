@@ -36,15 +36,13 @@ export const Navigation = ({ closeNavigation, open }: PropsType) => {
 						p: '10px 10px 0 10px',
 						overflow: 'hidden',
 					}}
+					spacing={1}
 				>
-					<Grid container>
+					<Grid container alignItems={'center'}>
 						<Grid item xs>
-							<Avatar
-								src={siteIcon}
-								sx={{ height: '31px', width: '31px', mb: '10px' }}
-							/>
+							<Avatar src={siteIcon} sx={{ height: '31px', width: '31px' }} />
 						</Grid>
-						<Grid item sx={{ cursor: 'pointer' }} onClick={closeNavigation}>
+						<Grid item onClick={closeNavigation}>
 							<Cross onClick={closeNavigation} />
 						</Grid>
 					</Grid>

@@ -15,7 +15,6 @@ export const DialogsList = memo(() => {
 		<Grid item container>
 			<Grid item xs={12} md={12} sm={8} sx={{ bgcolor: 'primary.light' }}>
 				<Stack
-					direction={'column'}
 					className={'noNavigationHeight scroll'}
 					sx={{
 						width: '100%',

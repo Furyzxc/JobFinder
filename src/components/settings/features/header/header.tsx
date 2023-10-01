@@ -17,7 +17,7 @@ export const Header = () => {
 					size={'48px'}
 					fontSize={'18px'}
 				/>
-				<Stack direction={'column'}>
+				<Stack>
 					<Stack direction={'row'} spacing={1} className='notranslate'>
 						<Typography
 							noWrap

@@ -30,12 +30,7 @@ export const Profile = memo(() => {
 	} = useProfileSettings()
 
 	return (
-		<Stack
-			direction={'column'}
-			spacing={3}
-			sx={{ overflowX: 'hidden' }}
-			ref={ref}
-		>
+		<Stack spacing={3} sx={{ overflowX: 'hidden' }} ref={ref}>
 			{name && (
 				<>
 					{error && <UpdateErrorMessage error={error} />}

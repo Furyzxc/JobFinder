@@ -27,7 +27,7 @@ export const SocialAccountsInfo = memo(
 	}: SocialAccounts) => {
 		return (
 			<Section name={'Social Accounts'}>
-				<Stack direction={'column'} spacing={1}>
+				<Stack spacing={1}>
 					<SocialAccount
 						initialValue={github}
 						icon={<GitHub />}

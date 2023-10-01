@@ -13,7 +13,6 @@ export const Cross = ({ onClick }: PropsType) => {
 				color: '#7D8590',
 				'&:hover': { bgcolor: 'secondary.main' },
 				borderRadius: '4px',
-				cursor: 'pointer',
 			}}
 		>
 			<CloseSharp onClick={onClick} />
