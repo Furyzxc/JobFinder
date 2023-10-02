@@ -33,6 +33,7 @@ export const Navigates = ({ close }: PropsType) => {
 				icon={<PermIdentityOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
 				path={'profile'}
 				label={'Your Account'}
+				onClick={close}
 			/>
 			<NavigationTab
 				icon={<MailOutline sx={{ mb: '-6px', fontSize: 23 }} />}
