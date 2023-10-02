@@ -25,7 +25,7 @@ export const useAvatarChooser = (img: string | null): AvatarChooser => {
 		? { backgroundImage: `url(${image})` }
 		: { backgroundColor: randomColor }
 
-	const [editPhoto, { data, isLoading, error }] = useEditProfilePhotoMutation()
+	const [editPhoto, { data, isLoading }] = useEditProfilePhotoMutation()
 
 	const handleFileChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
 		const fileName = target.value
