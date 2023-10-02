@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import { RootState } from '@/app/appStore.ts'
 import { ProfileResponseBody, SocialAccounts } from '@/components/profile'
 import { api } from '../../api/api.ts'
@@ -64,6 +64,7 @@ export const profileSettingsSlice = createSlice({
 
 		setMainValue(state, { payload }: PayloadAction<SetMainValueAction>) {
 			const { fieldName, value } = payload
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-ignore
 			state[fieldName] = value
 		},
@@ -77,25 +78,40 @@ export const profileSettingsSlice = createSlice({
 		},
 	},
 
-	extraReducers: builder => {
-		const { editProfileInfo } = api.endpoints
+	extraReducers: (builder) => {
+		const { editProfileInfo, editProfilePhoto } = api.endpoints
 
 		builder
-			.addMatcher(editProfileInfo.matchPending, state => {
-				// sending new request we clear errors
-				state.updateProfileErrorMessage = null
-			})
-			.addMatcher(editProfileInfo.matchFulfilled, (state, action) => {
-				const error = action.payload.messages[0]
-				// if response consist error we set it to state
-				if (error) {
-					state.updateProfileErrorMessage = error
+			.addMatcher(
+				isAnyOf(
+					editProfileInfo.matchFulfilled,
+					editProfilePhoto.matchFulfilled
+				),
+				(state) => {
+					// sending new request we clear errors
+					state.updateProfileErrorMessage = null
 				}
-			})
-			.addMatcher(editProfileInfo.matchRejected, state => {
-				// if rejected, set error
-				state.updateProfileErrorMessage = 'Some error occured...'
-			})
+			)
+			.addMatcher(
+				isAnyOf(
+					editProfileInfo.matchFulfilled,
+					editProfilePhoto.matchFulfilled
+				),
+				(state, action) => {
+					const error = action.payload.messages[0]
+					// if response consist error we set it to state
+					if (error) {
+						state.updateProfileErrorMessage = error
+					}
+				}
+			)
+			.addMatcher(
+				isAnyOf(editProfileInfo.matchRejected, editProfilePhoto.matchRejected),
+				(state) => {
+					// if rejected, set error
+					state.updateProfileErrorMessage = 'Some error occured...'
+				}
+			)
 	},
 })
 

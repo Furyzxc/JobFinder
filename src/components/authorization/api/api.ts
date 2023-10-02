@@ -1,16 +1,19 @@
 import { baseApi } from '@/shared/api/baseApi.ts'
+import { apiTagTypes } from '@/shared/constants'
 import { AuthMeResponse, LoginResponse, RequestLoginBody } from './types.ts'
 
+const { PROFILE } = apiTagTypes
+
 export const api = baseApi.injectEndpoints({
-	endpoints: build => ({
+	endpoints: (build) => ({
 		me: build.query<AuthMeResponse, void>({
 			query: () => 'auth/me',
 		}),
 
 		login: build.mutation<LoginResponse, RequestLoginBody>({
-			query: body => ({
+			query: (body) => ({
 				url: 'auth/login',
-				method: 'post',
+				method: 'POST',
 				body,
 			}),
 		}),
@@ -18,9 +21,9 @@ export const api = baseApi.injectEndpoints({
 		logout: build.mutation<unknown, void>({
 			query: () => ({
 				url: 'auth/logout',
-				method: 'post',
+				method: 'POST',
 			}),
-			invalidatesTags: ['PROFILE'],
+			invalidatesTags: [PROFILE],
 		}),
 	}),
 })

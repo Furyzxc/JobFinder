@@ -11,6 +11,7 @@ export const DialogsForm = memo(() => {
 	return (
 		<form onSubmit={submit}>
 			<InputBase
+				{...bind}
 				{...register('input', { required: true })}
 				disabled={disabled}
 				size={'small'}
@@ -18,8 +19,6 @@ export const DialogsForm = memo(() => {
 				autoComplete={'off'}
 				className={s.input}
 				sx={{ fontSize: '14px', fontWeight: 200, bgcolor: 'primary.light' }}
-				value={bind.value}
-				onChange={bind.onChange}
 				onKeyDown={sendOnEnterClick}
 				endAdornment={
 					<SendIcon

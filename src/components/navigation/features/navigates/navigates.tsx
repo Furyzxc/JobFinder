@@ -1,5 +1,4 @@
 import {
-	LockOutlined,
 	MailOutline,
 	MusicNoteOutlined,
 	Newspaper,
@@ -7,8 +6,9 @@ import {
 	PermIdentityOutlined,
 	SettingsOutlined,
 } from '@mui/icons-material'
-import { Stack } from '@mui/material'
-import { NavigationElement } from '@/components/settings/entities/navigationElement'
+import { Tabs } from '@mui/material'
+import { useState } from 'react'
+import { NavigationTab } from '@/components/settings/entities/navigationElement'
 import { Status } from '../status'
 
 type PropsType = {
@@ -16,49 +16,56 @@ type PropsType = {
 }
 
 export const Navigates = ({ close }: PropsType) => {
+	const [tab, setTab] = useState<number>()
+	const handleChange = (_: any, newValue: number) => {
+		setTab(newValue)
+	}
 	return (
-		<Stack>
+		<Tabs
+			orientation={'vertical'}
+			value={tab}
+			onChange={handleChange}
+			sx={{ alignItems: 'center' }}
+		>
 			<Status />
-			<Stack>
-				<NavigationElement
-					startIcon={<PermIdentityOutlined />}
-					name={'Your Account'}
-					path={'/profile'}
-					onClick={close}
-				/>
-				<NavigationElement
-					startIcon={<MailOutline />}
-					name={'Dialogs'}
-					path={'/dialogs'}
-					onClick={close}
-				/>
-				<NavigationElement
-					startIcon={<MusicNoteOutlined />}
-					disabled={true}
-					name={'Music'}
-					path={'/music'}
-					endIcon={<LockOutlined />}
-				/>
-				<NavigationElement
-					disabled={true}
-					startIcon={<Newspaper />}
-					name={'News'}
-					path={'/news'}
-					endIcon={<LockOutlined />}
-				/>
-				<NavigationElement
-					startIcon={<PeopleOutline />}
-					name={'Users'}
-					path={'/users?count=30'}
-					onClick={close}
-				/>
-				<NavigationElement
-					onClick={close}
-					startIcon={<SettingsOutlined />}
-					name={'Settings'}
-					path={'/settings'}
-				/>
-			</Stack>
-		</Stack>
+
+			<NavigationTab
+				icon={<PermIdentityOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
+				path={'profile'}
+				label={'Your Account'}
+			/>
+			<NavigationTab
+				icon={<MailOutline sx={{ mb: '-6px', fontSize: 23 }} />}
+				label={'Dialogs'}
+				path={'/dialogs'}
+				onClick={close}
+			/>
+			<NavigationTab
+				icon={<MusicNoteOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
+				disabled
+				label={'Music'}
+				path={'/music'}
+				// endIcon={<LockOutlined />}
+			/>
+			<NavigationTab
+				disabled
+				icon={<Newspaper sx={{ mb: '-6px', fontSize: 23 }} />}
+				label={'News'}
+				path={'/news'}
+				// endIcon={<LockOutlined />}
+			/>
+			<NavigationTab
+				icon={<PeopleOutline sx={{ mb: '-6px', fontSize: 23 }} />}
+				label={'Users'}
+				path={'/users?count=30'}
+				onClick={close}
+			/>
+			<NavigationTab
+				onClick={close}
+				icon={<SettingsOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
+				label={'Settings'}
+				path={'/settings'}
+			/>
+		</Tabs>
 	)
 }

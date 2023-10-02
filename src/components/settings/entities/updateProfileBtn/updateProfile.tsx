@@ -6,8 +6,6 @@ export const UpdateProfile = memo(() => {
 	// trigger that sends ajax request that changes profile data
 	const [updateProfile, { isLoading }] = useProfileUpdate()
 
-	const handleUpdateBtnClick = () => updateProfile()
-
 	return (
 		<Button
 			variant={'contained'}
@@ -19,7 +17,7 @@ export const UpdateProfile = memo(() => {
 			}}
 			size={'small'}
 			disabled={isLoading}
-			onClick={handleUpdateBtnClick}
+			onClick={updateProfile}
 		>
 			Update profile
 		</Button>

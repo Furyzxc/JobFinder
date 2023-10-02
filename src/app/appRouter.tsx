@@ -2,8 +2,8 @@ import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { MainLayout } from '@/shared/layout/mainLayout.tsx'
 import { defaultLazyImport } from '@/shared/lib/defaultLazyImport.ts'
-import { Div } from '@/shared/ui/div'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
+import { ErrorLayout } from '@/shared/layout/errorLayout.tsx'
 
 
 // lazy imports
@@ -71,7 +71,7 @@ const withoutAuthorizationRoutes = [
 export const appRouter = createBrowserRouter([
 	{
 		element: <MainLayout />,
-		errorElement: <Div color={'#F2EFE8'} bg={'#21262D'}>Some error occurred...</Div>,
+		errorElement: <ErrorLayout />,
 		children: [
 			{
 				element: <GuestGuard />,

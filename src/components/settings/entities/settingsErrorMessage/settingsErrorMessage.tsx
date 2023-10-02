@@ -5,7 +5,7 @@ type PropsType = {
 	error: string
 }
 
-export const UpdateErrorMessage = ({ error }: PropsType) => {
+export const SettingsErrorMessage = ({ error }: PropsType) => {
 	const { clearErrorMessage } = useActions()
 
 	const handleCrossClick = () => clearErrorMessage()

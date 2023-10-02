@@ -68,6 +68,6 @@ input::placeholder {
 	}
 
 	.scroll::-webkit-scrollbar {
-		width: 2px;
+		width: 0;
 	}
 }

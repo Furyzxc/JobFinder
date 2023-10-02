@@ -1,4 +1,5 @@
 import { baseApi } from '@/shared/api/baseApi.ts'
+import { apiTagTypes } from '@/shared/constants'
 import {
 	DialogsResponse,
 	MessagesRequest,
@@ -7,12 +8,14 @@ import {
 	SendMessageResponse,
 } from './types.ts'
 
+const { DIALOGS } = apiTagTypes
+
 export const api = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		// get list of dialogs with your friend
 		requestDialogs: build.query<DialogsResponse[], void>({
 			query: () => 'dialogs',
-			providesTags: () => ['DIALOGS'],
+			providesTags: () => [DIALOGS],
 		}),
 
 		// get list of messages with your friend, max count is 20

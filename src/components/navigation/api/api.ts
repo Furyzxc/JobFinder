@@ -1,22 +1,25 @@
-import { StatusCode } from 'components/navigation/api/types.ts'
 import { baseApi } from '@/shared/api/baseApi.ts'
+import { apiTagTypes } from '@/shared/constants'
+import { StatusCode } from './types.ts'
+
+const { STATUS } = apiTagTypes
 
 export const api = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getUserStatus: build.query<string, number>({
 			query: (userId) => 'profile/status/' + userId,
-			providesTags: () => ['STATUS'],
+			providesTags: () => [STATUS],
 		}),
 
 		setStatus: build.mutation<StatusCode, string>({
 			query: (status) => ({
 				url: 'profile/status',
-				method: 'put',
+				method: 'PUT',
 				body: {
 					status,
 				},
 			}),
-			invalidatesTags: ['STATUS'],
+			invalidatesTags: [STATUS],
 		}),
 	}),
 })

@@ -4,10 +4,10 @@ import { useActions, useSmoothAppearance } from '@/shared/model/hooks'
 import { useOwnerInfo, useProfileSettings } from '../../model/hooks'
 import { JobInfo } from '../../entities/jobInfo'
 import { MainProfileInfo } from '../../entities/mainProfileInfo'
+import { SettingsErrorMessage } from '../../entities/settingsErrorMessage'
 import { SocialAccountsInfo } from '../../entities/socialAccountsInfo'
 import { Title } from '../../entities/title'
 import { UpdateProfile } from '../../entities/updateProfileBtn'
-import { UpdateErrorMessage } from '../../entities/updateProfileErrorMessage'
 
 export const Profile = memo(() => {
 	const { ref } = useSmoothAppearance()
@@ -33,7 +33,7 @@ export const Profile = memo(() => {
 		<Stack spacing={3} sx={{ overflowX: 'hidden' }} ref={ref}>
 			{name && (
 				<>
-					{error && <UpdateErrorMessage error={error} />}
+					{error && <SettingsErrorMessage error={error} />}
 					<Title name={'Public Profile'} />
 					<MainProfileInfo name={name} bio={bio || ''} avatar={avatar} />
 					<SocialAccountsInfo {...socialAccounts} />

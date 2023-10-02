@@ -1,6 +1,6 @@
 import { Grid, Stack, Typography } from '@mui/material'
 import { memo } from 'react'
-import { UserAvatar } from '@/shared/ui/avatar'
+import { AvatarChooser } from '../avatarChooser'
 import { MainInfoEntity } from '../mainInfoEntity'
 
 type PropsType = {
@@ -32,7 +32,8 @@ export const MainProfileInfo = memo(({ name, bio, avatar }: PropsType) => {
 			<Grid item xs={12} sm={4}>
 				<Stack>
 					<Typography>Public picture</Typography>
-					<UserAvatar avatar={avatar} name={name} size={'150px'} />
+					{/*<UserAvatar avatar={avatar} name={name} size={'150px'} />*/}
+					<AvatarChooser img={avatar} name={name} />
 				</Stack>
 			</Grid>
 		</Grid>

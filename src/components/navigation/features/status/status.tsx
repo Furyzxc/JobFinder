@@ -2,14 +2,24 @@ import { Dialog, Stack } from '@mui/material'
 import { smile } from '@/assets/status/smile.tsx'
 import { WithSlide } from '@/shared/hoc'
 import { useStatus } from '@/components/navigation/model/hooks'
-import { NavigationElement } from '@/components/settings/entities/navigationElement'
+import { NavigationTab } from '@/components/settings/entities/navigationElement'
 import { ClearButton } from '../../entities/clearButton'
 import { StatusInput } from '../../entities/statusInput'
 import { StatusSuggestions } from '../../entities/statusSuggestions'
 import { StatusTitle } from '../../entities/statusTitle'
-import { SubmitButton } from '../../entities/submitButton/submitButton.tsx'
+import { SubmitButton } from '../../entities/submitButton'
 
-const Smile = () => <div style={{ padding: '5px 0 0 4px' }}>{smile}</div>
+const Smile = () => (
+	<span
+		style={{
+			padding: '10px 0 0 4px',
+			margin: '0 10px 0 0',
+			fontSize: 20,
+		}}
+	>
+		{smile}
+	</span>
+)
 
 export const Status = () => {
 	const {
@@ -27,14 +37,11 @@ export const Status = () => {
 
 	return (
 		<>
-			<NavigationElement
-				path={'status'}
-				startIcon={<Smile />}
-				name={'Set Status'}
+			<NavigationTab
+				icon={<Smile />}
+				label={'Set Status'}
 				onClick={showStatus}
-				disabled={true}
 			/>
-
 			<Dialog
 				keepMounted
 				open={open}

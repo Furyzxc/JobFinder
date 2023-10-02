@@ -50,7 +50,13 @@ export const User = ({ name, status, photos, id, followed }: UserProps) => {
 					className={s.status}
 					sx={{ color: 'secondary.light', fontSize: '12px', pt: '30px' }}
 				>
-					{status}
+					<Typography
+						variant={'h5'}
+						noWrap
+						sx={{ fontSize: '12px', color: 'primary.main' }}
+					>
+						{status}
+					</Typography>
 				</Grid>
 				<div style={{ position: 'absolute', top: '10px', right: '10px' }}>
 					<Follow userId={id} followed={followed} />

@@ -1,8 +1,5 @@
 import { useLocation } from 'react-router-dom'
-
-function capitalizeFirstLetter(str: string) {
-	return str.charAt(0).toUpperCase() + str.slice(1)
-}
+import { capitalizeFirstLetter } from '@/shared/lib/capitalize-first-letter.ts'
 
 const TITLE_LIST = [
 	'login',
@@ -23,7 +20,7 @@ export const useHeaderPageName = () => {
 
 	const title = segments[1]
 
-	if (TITLE_LIST.some(TITLE => TITLE === title)) {
+	if (TITLE_LIST.some((TITLE) => TITLE === title)) {
 		return capitalizeFirstLetter(segments[1])
 		// will return 'Settings'
 	}
