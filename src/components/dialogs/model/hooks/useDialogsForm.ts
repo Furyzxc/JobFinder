@@ -1,8 +1,8 @@
 import dayjs from 'dayjs'
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
+import { KeyboardEvent, useEffect, useState } from 'react'
 import { UseFormRegister, useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
-import { useActions, useInput } from '@/shared/model/hooks'
+import { useActions } from '@/shared/model/hooks'
 import { PendingMessage } from '@/components/dialogs/model'
 import { useSendMessageMutation } from '../../api/api.ts'
 
@@ -14,11 +14,8 @@ interface DialogsForm {
 	submit: () => void
 	disabled: boolean
 	sendOnEnterClick: (e: KeyboardEvent<HTMLTextAreaElement>) => void
-	bind: {
-		value: string
-		onChange: (e: ChangeEvent<HTMLInputElement>) => void
-	}
 	register: UseFormRegister<FormValues>
+	isValid: boolean
 }
 
 const SUCCESS_CODE = 0
@@ -27,8 +24,12 @@ export const useDialogsForm = (): DialogsForm => {
 	const [requstIds, setRequstIds] = useState([Math.random()])
 	const { userId = 0 } = useParams()
 	const { addMessage, removePending, removeMessage } = useActions()
-	const { bind, reset } = useInput('')
-	const { handleSubmit, register } = useForm<FormValues>()
+	const {
+		handleSubmit,
+		register,
+		reset,
+		formState: { isValid },
+	} = useForm<FormValues>()
 
 	const [sendMessage, { isLoading: disabled, data, isError }] =
 		useSendMessageMutation()
@@ -64,8 +65,8 @@ export const useDialogsForm = (): DialogsForm => {
 		submit,
 		sendOnEnterClick,
 		disabled,
-		bind,
 		register,
+		isValid,
 	}
 }
 

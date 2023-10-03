@@ -1,7 +1,7 @@
 import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
-import { useCallback, useState } from 'react'
 import JobFinderLogo from '@/assets/melon.png'
+import { useMuiDialog } from '@/shared/model/hooks'
 import { Navigation } from '@/components/navigation'
 import { useOwnerInfo } from '@/components/settings/model'
 import { useHeaderPageName } from '../model/hooks.ts'
@@ -13,11 +13,9 @@ export const AppHeader = () => {
 
 	const pageName = useHeaderPageName()
 
-	const [open, setOpen] = useState(false)
+	const { open, setOpen, onClose } = useMuiDialog(false)
 
 	const showNavigation = () => setOpen(true)
-
-	const closeNavigation = useCallback(() => setOpen(false), [])
 
 	return (
 		<Box>
@@ -47,7 +45,7 @@ export const AppHeader = () => {
 					<LoginButton />
 				)}
 			</Stack>
-			<Navigation open={open} closeNavigation={closeNavigation} />
+			<Navigation open={open} closeNavigation={onClose} />
 		</Box>
 	)
 }

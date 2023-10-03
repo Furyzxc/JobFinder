@@ -8,7 +8,7 @@ import {
 } from '@mui/icons-material'
 import { Tabs } from '@mui/material'
 import { useState } from 'react'
-import { NavigationTab } from '@/components/settings/entities/navigationElement'
+import { NavigationTab } from '@/components/settings/entities/navigationTab'
 import { Status } from '../status'
 
 type PropsType = {
@@ -16,7 +16,7 @@ type PropsType = {
 }
 
 export const Navigates = ({ close }: PropsType) => {
-	const [tab, setTab] = useState<number>()
+	const [tab, setTab] = useState(0)
 	const handleChange = (_: any, newValue: number) => {
 		setTab(newValue)
 	}

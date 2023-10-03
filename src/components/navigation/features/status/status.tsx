@@ -1,8 +1,8 @@
 import { Dialog, Stack } from '@mui/material'
 import { smile } from '@/assets/status/smile.tsx'
 import { WithSlide } from '@/shared/hoc'
-import { useStatus } from '@/components/navigation/model/hooks'
-import { NavigationTab } from '@/components/settings/entities/navigationElement'
+import { NavigationTab } from '@/components/settings/entities/navigationTab'
+import { useStatus } from '../../model/hooks'
 import { ClearButton } from '../../entities/clearButton'
 import { StatusInput } from '../../entities/statusInput'
 import { StatusSuggestions } from '../../entities/statusSuggestions'
@@ -29,9 +29,9 @@ export const Status = () => {
 		isLoading,
 		open,
 		reset,
-		showStatus,
+		openStatus,
 		editStatus,
-		closeStatus,
+		onClose,
 		bindInput,
 	} = useStatus()
 
@@ -40,13 +40,13 @@ export const Status = () => {
 			<NavigationTab
 				icon={<Smile />}
 				label={'Set Status'}
-				onClick={showStatus}
+				onClick={openStatus}
 			/>
 			<Dialog
 				keepMounted
 				open={open}
 				sx={{ bgcolor: '#4B515C9B' }}
-				onClose={closeStatus}
+				onClose={onClose}
 				PaperProps={{
 					sx: {
 						borderRadius: '11px',
@@ -62,7 +62,7 @@ export const Status = () => {
 							p: '20px',
 						}}
 					>
-						<StatusTitle close={closeStatus}>Edit status</StatusTitle>
+						<StatusTitle close={onClose}>Edit status</StatusTitle>
 						<StatusInput bind={bindInput} emoji={emoji} />
 						<StatusSuggestions
 							setEmoji={setEmoji}

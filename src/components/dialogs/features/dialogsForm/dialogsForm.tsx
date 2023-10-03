@@ -1,19 +1,19 @@
 import SendIcon from '@mui/icons-material/Send'
 import { InputBase } from '@mui/material'
 import { memo } from 'react'
-import { useDialogsForm } from '@/components/dialogs/model/hooks'
+import { useDialogsForm } from '../../model/hooks'
 import s from './style.module.css'
 
 export const DialogsForm = memo(() => {
-	const { bind, submit, register, disabled, sendOnEnterClick } =
+	const { submit, register, isValid, disabled, sendOnEnterClick } =
 		useDialogsForm()
 
 	return (
 		<form onSubmit={submit}>
 			<InputBase
-				{...bind}
 				{...register('input', { required: true })}
 				disabled={disabled}
+				//defaultValue={''}
 				size={'small'}
 				placeholder='Type your message here...'
 				autoComplete={'off'}
@@ -24,7 +24,7 @@ export const DialogsForm = memo(() => {
 					<SendIcon
 						sx={{
 							cursor: 'pointer',
-							color: bind.value && 'secondary.light',
+							color: isValid ? 'secondary.light' : undefined,
 						}}
 						onClick={submit}
 					/>

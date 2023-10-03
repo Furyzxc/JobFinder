@@ -15,7 +15,13 @@ export const Description = ({ initialValue }: PropsType) => {
 
 	return (
 		<Section name={'Additional Information'}>
-			<Input {...bind} multiline onBlur={handleBlur} />
+			<Input
+				autoComplete={'off'}
+				id={'Additional Information'}
+				{...bind}
+				multiline
+				onBlur={handleBlur}
+			/>
 		</Section>
 	)
 }

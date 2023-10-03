@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useInput } from '@/shared/model/hooks'
+import { useInput, useMuiDialog } from '@/shared/model/hooks'
 import { useAuth, useAuthInfo } from '@/components/authorization'
 import { useGetUserStatusQuery, useSetStatusMutation } from '../../api/api.ts'
 
 type Status = {
 	open: boolean
-	showStatus: () => void
-	closeStatus: () => void
+	openStatus: () => void
+	onClose: () => void
 	reset: () => void
 	editStatus: () => void
 	isLoading: boolean
@@ -21,17 +21,15 @@ type Status = {
 }
 
 export const useStatus = (): Status => {
-	const [open, setOpen] = useState(false)
+	const { open, setOpen, onClose } = useMuiDialog(false)
 
 	const { isAuthorized } = useAuth()
 	const navigate = useNavigate()
 
-	const showStatus = () => {
+	const openStatus = () => {
 		// show login page if user is not authourized, otherwise show status
 		isAuthorized ? setOpen(true) : navigate('/login')
 	}
-
-	const closeStatus = () => setOpen(false)
 
 	const {
 		bind: bindInput,
@@ -54,7 +52,7 @@ export const useStatus = (): Status => {
 	}, [setStatusValue, statusValue])
 
 	const editStatus = () => {
-		closeStatus()
+		onClose()
 		setStatus(bindInput.value)
 	}
 
@@ -69,8 +67,8 @@ export const useStatus = (): Status => {
 	return {
 		open,
 		reset,
-		showStatus,
-		closeStatus,
+		openStatus,
+		onClose,
 		editStatus,
 		setInputValue,
 		isLoading,

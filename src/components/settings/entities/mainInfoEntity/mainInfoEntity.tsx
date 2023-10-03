@@ -8,6 +8,7 @@ type PropsType = {
 	initialValue: string
 	multiline?: boolean
 	fieldName: 'name' | 'bio'
+	autoComplete: string
 }
 
 export const MainInfoEntity = ({
@@ -15,6 +16,7 @@ export const MainInfoEntity = ({
 	description,
 	initialValue,
 	multiline,
+	autoComplete,
 	fieldName,
 }: PropsType) => {
 	const { setMainValue } = useActions()
@@ -26,7 +28,13 @@ export const MainInfoEntity = ({
 
 	return (
 		<Section name={name} description={description}>
-			<Input {...bind} multiline={multiline} onBlur={handleBlur} />
+			<Input
+				autoComplete={autoComplete}
+				{...bind}
+				multiline={multiline}
+				onBlur={handleBlur}
+				id={name}
+			/>
 		</Section>
 	)
 }

@@ -28,7 +28,7 @@ export const Section = ({
 					pl: paragraphPL,
 				}}
 			>
-				{name}
+				<label htmlFor={name}>{name}</label>
 			</Typography>
 			{children}
 			{description && (

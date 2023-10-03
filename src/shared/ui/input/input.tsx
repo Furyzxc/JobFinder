@@ -1,19 +1,12 @@
 import { TextField } from '@mui/material'
-import { ChangeEvent, FocusEvent } from 'react'
+import { FocusEvent } from 'react'
 
 interface InputProps {
 	onBlur?: (value: string) => void
-	onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-	value?: string
-	multiline?: boolean
-	defaultValue?: string | null | boolean
-	placeholder?: string
-	disabled?: boolean
 	width?: string
-	autoComplete?: 'off'
 }
 
-export const Input = ({ onBlur, width, ...inputProps }: InputProps) => {
+export const Input = ({ onBlur, width, ...inputProps }: InputProps & any) => {
 	const handleBlur = (e: FocusEvent<HTMLInputElement>) =>
 		onBlur && onBlur(e.target.value)
 

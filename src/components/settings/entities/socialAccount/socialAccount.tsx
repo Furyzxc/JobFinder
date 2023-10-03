@@ -1,7 +1,7 @@
 import { Box, Grid, Stack, TextField } from '@mui/material'
 import { ReactNode, memo } from 'react'
-import { SocialAccountType } from '@/components/settings/model/slices/accountSlice.ts'
 import { useSocialAccount } from '../../model/hooks'
+import { SocialAccountType } from '../../model/slices/accountSlice.ts'
 
 type PropsType = {
 	icon: ReactNode
@@ -20,6 +20,8 @@ export const SocialAccount = memo(
 					<Grid item xs={10} md={7} sm={8}>
 						<TextField
 							{...bindInput}
+							name={fieldName}
+							autoComplete={'url'}
 							inputProps={{ style: { fontSize: 12 } }}
 							placeholder={'Link to social profile'}
 							sx={{

@@ -15,13 +15,15 @@ export const MainProfileInfo = memo(({ name, bio, avatar }: PropsType) => {
 			<Grid item xs={12} sm={7}>
 				<Stack spacing={1}>
 					<MainInfoEntity
-						name={'Name'}
+						name={'name'}
+						autoComplete={'nickname'}
 						fieldName={'name'}
 						initialValue={name}
 						description={'Your name will appear around JobFinder.'}
 					/>
 					<MainInfoEntity
 						name={'Bio'}
+						autoComplete={'off'}
 						fieldName={'bio'}
 						initialValue={bio}
 						multiline

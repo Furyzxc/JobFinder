@@ -5,25 +5,25 @@ import {
 } from '@mui/icons-material'
 import { Tabs } from '@mui/material'
 import { useState } from 'react'
-import { NavigationTab } from '../../entities/navigationElement'
+import { NavigationTab } from '../../entities/navigationTab'
 
 // settings navigation on left side
 export const Navigation = () => {
-	const [tab, setTab] = useState<number>()
+	const [tab, setTab] = useState(0)
 	const handleChange = (_: any, newValue: number) => {
 		setTab(newValue)
 	}
 
 	return (
 		<Tabs
-			sx={{ pr: '10px', alignItems: 'center' }}
+			sx={{ pr: '10px' }}
 			onChange={handleChange}
 			orientation={'vertical'}
 			value={tab}
 		>
 			<NavigationTab
 				icon={<PermIdentityOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
-				label={'Profile'}
+				label={'Public profile'}
 				path={'profile'}
 			/>
 			<NavigationTab
@@ -36,22 +36,6 @@ export const Navigation = () => {
 				label={'Appearance'}
 				path={'appearance'}
 			/>
-
-			{/*<NavigationElement*/}
-			{/*	startIcon={<PermIdentityOutlined />}*/}
-			{/*	name={'Public profile'}*/}
-			{/*	path={'profile'}*/}
-			{/*/>*/}
-			{/*<NavigationElement*/}
-			{/*	startIcon={<SettingsOutlined />}*/}
-			{/*	name={'Account'}*/}
-			{/*	path={'account'}*/}
-			{/*/>*/}
-			{/*<NavigationElement*/}
-			{/*	startIcon={<BrushOutlined />}*/}
-			{/*	name={'Appearance'}*/}
-			{/*	path={'appearance'}*/}
-			{/*/>*/}
 		</Tabs>
 	)
 }

@@ -25,9 +25,14 @@ export const StatusInput = ({ emoji, bind }: PropsType) => {
 					borderRadius: '4px 0 0 4px',
 				}}
 			>
-				{emoji || smile}
+				<label htmlFor={'status'}>{emoji || smile}</label>
 			</Box>
-			<Input {...bind} placeholder={"What's happening?"} />
+			<Input
+				autoComplete={'off'}
+				id={'status'}
+				{...bind}
+				placeholder={"What's happening?"}
+			/>
 		</Stack>
 	)
 }

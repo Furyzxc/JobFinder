@@ -1,10 +1,8 @@
 import { Snackbar } from '@mui/material'
-import { useState } from 'react'
+import { useMuiDialog } from '@/shared/model/hooks'
 
 export const ErrorLayout = () => {
-	const [open, setOpen] = useState(true)
-
-	const onClose = () => setOpen(false)
+	const { open, onClose } = useMuiDialog(true)
 
 	return (
 		<Snackbar
