@@ -15,12 +15,14 @@ export const SocialAccount = memo(
 
 		return (
 			<Stack direction={'row'}>
-				<Box sx={{ pt: '5px', mr: '10px' }}>{icon}</Box>
+				<Box sx={{ pt: '5px', mr: '10px' }}>
+					<label htmlFor={fieldName}>{icon}</label>
+				</Box>
 				<Grid container>
 					<Grid item xs={10} md={7} sm={8}>
 						<TextField
 							{...bindInput}
-							name={fieldName}
+							id={fieldName}
 							autoComplete={'url'}
 							inputProps={{ style: { fontSize: 12 } }}
 							placeholder={'Link to social profile'}

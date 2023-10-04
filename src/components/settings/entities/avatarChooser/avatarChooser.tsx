@@ -1,6 +1,7 @@
 import { CameraAlt } from '@mui/icons-material'
 import { Avatar, Button, ButtonProps, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { Preloader } from '@/shared/ui/preloader'
 import { useAvatarChooser } from '../../model/hooks'
 
 // start of styling for logo and overlay
@@ -87,18 +88,30 @@ export const AvatarChooser = ({ img, name }: PropsType) => {
 						{name[0].toUpperCase()}
 					</CenterText>
 				)}
-				<ImageBackdrop className='MuiImageBackdrop-root' />
-				<CameraAlt
-					className='MuiImageMarked-root notranslate'
-					fontSize='large'
+				<ImageBackdrop
+					className='MuiImageBackdrop-root'
 					sx={{
-						position: 'absolute',
-						top: '37%',
-						left: '38%',
-						color: 'white',
-						opacity: 0,
+						backgroundColor: (theme) => {
+							if (isLoading) return theme.palette.common.black
+						},
+						opacity: isLoading ? 0.4 : undefined,
 					}}
 				/>
+				{isLoading ? (
+					<Preloader sx={{ top: '36%' }} />
+				) : (
+					<CameraAlt
+						className='MuiImageMarked-root notranslate'
+						fontSize='large'
+						sx={{
+							position: 'absolute',
+							top: '37%',
+							left: '38%',
+							color: 'white',
+							opacity: 0,
+						}}
+					/>
+				)}
 				<input
 					type='file'
 					accept='.png, .jpg, .jpeg'

@@ -9,19 +9,7 @@ import { StatusSuggestions } from '../../entities/statusSuggestions'
 import { StatusTitle } from '../../entities/statusTitle'
 import { SubmitButton } from '../../entities/submitButton'
 
-const Smile = () => (
-	<span
-		style={{
-			padding: '10px 0 0 4px',
-			margin: '0 10px 0 0',
-			fontSize: 20,
-		}}
-	>
-		{smile}
-	</span>
-)
-
-export const Status = () => {
+export const Status = (props: any) => {
 	const {
 		emoji,
 		setEmoji,
@@ -38,7 +26,8 @@ export const Status = () => {
 	return (
 		<>
 			<NavigationTab
-				icon={<Smile />}
+				{...props}
+				icon={smile}
 				label={'Set Status'}
 				onClick={openStatus}
 			/>

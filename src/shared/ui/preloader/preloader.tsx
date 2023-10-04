@@ -1,7 +1,7 @@
 import { Box, CircularProgress } from '@mui/material'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 
-export const Preloader = () => {
+export const Preloader = (props: any) => {
 	const { ref } = useSmoothAppearance()
 
 	return (
@@ -13,6 +13,7 @@ export const Preloader = () => {
 				left: 0,
 				width: '100%',
 				textAlign: 'center',
+				...props.sx,
 			}}
 		>
 			<CircularProgress
