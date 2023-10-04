@@ -34,7 +34,6 @@ export const MainProfileInfo = memo(({ name, bio, avatar }: PropsType) => {
 			<Grid item xs={12} sm={4}>
 				<Stack>
 					<Typography>Public picture</Typography>
-					{/*<UserAvatar avatar={avatar} name={name} size={'150px'} />*/}
 					<AvatarChooser img={avatar} name={name} />
 				</Stack>
 			</Grid>

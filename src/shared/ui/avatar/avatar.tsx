@@ -16,7 +16,6 @@ export const UserAvatar = memo(
 		const randomColor = useRandomColor()
 
 		if (size) sx = { height: size, width: size, fontSize }
-
 		return avatar ? (
 			<Avatar src={avatar} alt={name} sx={sx} />
 		) : (

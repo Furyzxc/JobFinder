@@ -1,7 +1,7 @@
-import { Skeleton, Stack, Typography } from '@mui/material'
+import { Skeleton, Stack, Tooltip, Typography } from '@mui/material'
 import { useSmoothAppearance } from '@/shared/model/hooks'
-import { UserAvatar } from '@/shared/ui/avatar'
 import { AvatarSkeleton } from '@/shared/ui/avatarSkeleton'
+import { ProfileAvatar } from '@/components/profile/entities/profileAvatar'
 
 type PropsType = {
 	login: string | null
@@ -21,18 +21,16 @@ export const MainInfo = ({
 	isLoading,
 }: PropsType) => {
 	const { ref } = useSmoothAppearance()
-
 	return (
 		<Stack spacing={1} sx={{ mb: '20px', opacity: 0 }} ref={ref}>
 			{isLoading ? (
 				<AvatarSkeleton size={'296px'} />
+			) : isOwner ? (
+				<Tooltip title={'Change your avatar'} placement={'bottom-end'}>
+					<ProfileAvatar avatar={avatar} name={name || ''} isOwner />
+				</Tooltip>
 			) : (
-				<UserAvatar
-					avatar={avatar}
-					name={name || ''}
-					size={'296px'}
-					fontSize={'25px'}
-				/>
+				<ProfileAvatar avatar={avatar} name={name || ''} />
 			)}
 			<Stack className='notranslate'>
 				<Typography

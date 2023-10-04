@@ -33,6 +33,7 @@ export const NavigationTab = ({
 			component={'div'}
 			onClick={handleClick}
 			iconPosition='start'
+			textColor={'transparent'}
 			sx={{
 				fontSize: '13px',
 				fontWeight: 400,

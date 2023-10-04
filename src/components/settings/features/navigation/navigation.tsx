@@ -16,7 +16,7 @@ export const Navigation = () => {
 
 	return (
 		<Tabs
-			sx={{ pr: '10px' }}
+			sx={{ pr: '10px', color: 'secondary.light' }}
 			onChange={handleChange}
 			orientation={'vertical'}
 			value={tab}

@@ -20,6 +20,7 @@ export const Profile = memo(() => {
 	}, [info, setProfileInfo])
 
 	const {
+		userId,
 		name,
 		bio,
 		lookingForAJob,
@@ -31,7 +32,7 @@ export const Profile = memo(() => {
 
 	return (
 		<Stack spacing={3} sx={{ overflowX: 'hidden' }} ref={ref}>
-			{name && (
+			{userId && (
 				<>
 					{error && <SettingsErrorMessage error={error} />}
 					<Title name={'Public Profile'} />
