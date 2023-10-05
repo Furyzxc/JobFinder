@@ -1,6 +1,1 @@
-import { ReactNode } from 'react'
-
-
-export type Children = {
-	children: ReactNode
-}
+export * from './types.ts'

@@ -1,29 +1,18 @@
-import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 import { MainLayout } from '@/shared/layout/mainLayout.tsx'
-import { defaultLazyImport } from '@/shared/lib/defaultLazyImport.ts'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
 import { ErrorLayout } from '@/shared/layout/errorLayout.tsx'
+import { lazily } from 'react-lazily'
 
 
 // lazy imports
-const NotFound = lazy(() => import('@/components/notFound/page').then(module =>
-	defaultLazyImport(module, 'NotFound')))
-
-const Profile = lazy(() => import('@/components/profile/page').then(module =>
-	defaultLazyImport(module, 'Profile')))
-
-const Dialogs = lazy(() => import('@/components/dialogs/page').then(module =>
-	defaultLazyImport(module, 'Dialogs')))
-
-const Login = lazy(() => import('@/components/authorization/page').then(module =>
-	defaultLazyImport(module, 'Login')))
-
-const Users = lazy(() => import('@/components/users/page').then(module =>
-	defaultLazyImport(module, 'Users')))
-
-const Settings = lazy(() => import('@/components/settings/page').then(module =>
-	defaultLazyImport(module, 'Settings')))
+const { NotFound } = lazily(() => import('@/components/notFound/page'))
+const { Profile } = lazily(() => import('@/components/profile/page'))
+const { Dialogs } = lazily(() => import('@/components/dialogs/page'))
+// const { News } = lazily(() => import('@/components/news/page'))
+const { Login } = lazily(() => import('@/components/authorization/page'))
+const { Users } = lazily(() => import('@/components/users/page'))
+const { Settings } = lazily(() => import('@/components/settings/page'))
 
 const requireAuthorizationRoutes = [
 	{
@@ -49,6 +38,10 @@ const withoutAuthorizationRoutes = [
 		path: '/profile/:userId',
 		element: <Profile />,
 	},
+	// {
+	// 	path: '/news',
+	// 	element: <News />
+	// },
 	{
 		path: '/users',
 		element: <Users />,

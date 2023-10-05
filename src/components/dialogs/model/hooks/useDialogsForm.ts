@@ -21,7 +21,8 @@ interface DialogsForm {
 const SUCCESS_CODE = 0
 
 export const useDialogsForm = (): DialogsForm => {
-	const [requstIds, setRequstIds] = useState([Math.random()])
+	// state for handling id of sent message (need id for deleting if error occurred during request)
+	const [requstId, setRequstId] = useState<number>()
 	const { userId = 0 } = useParams()
 	const { addMessage, removePending, removeMessage } = useActions()
 	const {
@@ -31,17 +32,26 @@ export const useDialogsForm = (): DialogsForm => {
 		formState: { isValid },
 	} = useForm<FormValues>()
 
+	// hook that will handle send message request
 	const [sendMessage, { isLoading: disabled, data, isError }] =
 		useSendMessageMutation()
 
 	const submit = handleSubmit(({ input }: FormValues) => {
-		const message = createMessage(input, requstIds[0])
-
+		const messageId = Math.random()
+		// setting id of sent message
+		setRequstId(messageId)
+		// creating body for message
+		const message = createMessage(input, messageId)
+		// optimistic push message to array of messages
 		addMessage(message)
-		setRequstIds((prev) => [...prev, Math.random()])
-		// sending message and reset input
-		sendMessage({ userId: +userId, body: input })
-		reset()
+
+		const id = Number(userId)
+		// check that id is number ( Number('sts') = NaN )
+		if (!isNaN(id)) {
+			// sending message on server and reset input
+			sendMessage({ userId: id, body: input })
+			reset()
+		} else alert('Some error occured during sending...')
 	})
 
 	const sendOnEnterClick = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -51,12 +61,14 @@ export const useDialogsForm = (): DialogsForm => {
 
 	useEffect(() => {
 		if (data?.resultCode === SUCCESS_CODE) {
-			removePending(requstIds[0])
-			setRequstIds((prev) => prev.slice(1))
+			// if request of sending message was success, setting pending flag
+			// of message to false
+			requstId && removePending(requstId)
+			// deleting message from list of
 		}
 		if (isError || (data && data.resultCode !== SUCCESS_CODE)) {
-			removeMessage(requstIds[0])
-			setRequstIds((prev) => prev.slice(1))
+			// if error occured during sending, removing message from array
+			requstId && removeMessage(requstId)
 		}
 		// @ts-ignore
 	}, [data, isError, removeMessage, removePending])

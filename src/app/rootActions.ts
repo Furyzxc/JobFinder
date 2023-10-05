@@ -1,4 +1,5 @@
 import { chatActions } from '@/components/dialogs/model'
+import { navigationActions } from '@/components/navigation/model'
 import {
 	profileSettingsActions,
 	themeActions,
@@ -9,4 +10,5 @@ export const rootActions = {
 	...chatActions,
 	...themeActions,
 	...profileSettingsActions,
+	...navigationActions,
 }

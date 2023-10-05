@@ -3,6 +3,8 @@ import { useSmoothAppearance } from '@/shared/model/hooks'
 import { AvatarSkeleton } from '@/shared/ui/avatarSkeleton'
 import { ProfileAvatar } from '@/components/profile/entities/profileAvatar'
 
+const SECOND = 1000
+
 type PropsType = {
 	login: string | null
 	isOwner: boolean
@@ -26,7 +28,11 @@ export const MainInfo = ({
 			{isLoading ? (
 				<AvatarSkeleton size={'296px'} />
 			) : isOwner ? (
-				<Tooltip title={'Change your avatar'} placement={'bottom-end'}>
+				<Tooltip
+					title={'Change your avatar'}
+					placement={'bottom-end'}
+					enterDelay={0.7 * SECOND}
+				>
 					<ProfileAvatar avatar={avatar} name={name || ''} isOwner />
 				</Tooltip>
 			) : (

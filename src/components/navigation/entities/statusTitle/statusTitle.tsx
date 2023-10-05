@@ -1,10 +1,10 @@
 import { Stack, Typography } from '@mui/material'
-import { Children } from '@/shared/types'
 import { Cross } from '@/shared/ui/cross'
 
 type PropsType = {
 	close: () => void
-} & Children
+	children: string
+}
 
 export const StatusTitle = ({ children, close }: PropsType) => {
 	return (

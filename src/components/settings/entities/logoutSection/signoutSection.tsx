@@ -25,9 +25,12 @@ export const SignoutSection = memo(({ signoutFromAccount }: PropsType) => {
 					color: 'error.light',
 					borderRadius: '6px',
 					textTransform: 'none',
+					border: 'max(1px, 0.0625rem) solid #2E343B',
 					'&:hover, &:focus': {
 						color: 'secondary.light',
 						bgcolor: 'error.main',
+						border: '1px solid',
+						borderColor: 'secondary.light',
 					},
 				}}
 			>

@@ -1,17 +1,12 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import { memo } from 'react'
+import { FocusEvent, memo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useInput } from '@/shared/model/hooks'
 
 export const SearchFilterByFriend = memo(() => {
 	const [searchParams, setSearchParams] = useSearchParams()
-	const friend = searchParams.get('friend') || 'null'
 
-	const {
-		bind: { value, onChange },
-	} = useInput(friend)
-
-	const handleBlur = () => {
+	const handleBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
+		const value = e.target.value
 		if (value !== 'null') {
 			searchParams.set('friend', value)
 		} else {
@@ -22,13 +17,7 @@ export const SearchFilterByFriend = memo(() => {
 	}
 
 	return (
-		<RadioGroup
-			value={value}
-			onChange={onChange}
-			sx={{ pl: '13px' }}
-			row
-			onBlur={handleBlur}
-		>
+		<RadioGroup sx={{ pl: '13px' }} row onBlur={handleBlur}>
 			<FormControlLabel
 				value='null'
 				control={<Radio size={'small'} />}

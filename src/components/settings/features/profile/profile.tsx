@@ -50,5 +50,3 @@ export const Profile = memo(() => {
 		</Stack>
 	)
 })
-
-export default Profile

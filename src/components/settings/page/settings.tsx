@@ -27,10 +27,10 @@ export const Settings = () => {
 						<Header />
 					</div>
 					<Grid container>
-						<Grid item xs={11} sm={3} sx={{ mb: '30px' }}>
+						<Grid item xs={11} md={3} sm={11} sx={{ mb: '30px' }}>
 							<Navigation />
 						</Grid>
-						<Grid item xs={12} sm={9}>
+						<Grid item xs={12} md={9} sm={12}>
 							<Routes>
 								<Route element={<GuestGuard />}>
 									<Route path='*' element={<Profile />} />

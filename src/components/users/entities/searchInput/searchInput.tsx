@@ -8,7 +8,7 @@ export const SearchInput = memo(() => {
 
 	return (
 		<Grid container>
-			<Grid item md={5} xs={12} sm={9} sx={{ pt: '4px' }}>
+			<Grid item md={5} xs={11} sm={9} sx={{ pt: '4px' }}>
 				<Input
 					{...bind}
 					name={'search'}

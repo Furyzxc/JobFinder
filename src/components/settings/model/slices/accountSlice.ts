@@ -30,7 +30,7 @@ const initialState: ProfileSettings = {
 	},
 
 	updateProfileErrorMessage: null,
-}
+} as const
 
 type MainFieldType = 'name' | 'bio' | 'lookingForAJobDescription'
 

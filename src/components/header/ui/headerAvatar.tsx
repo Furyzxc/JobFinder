@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { UserAvatar } from '@/shared/ui/avatar'
+import { UserAvatar } from '@/shared/ui/userAvatar'
 
 type PropsType = {
 	name: string

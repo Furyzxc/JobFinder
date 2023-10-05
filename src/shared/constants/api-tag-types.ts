@@ -3,4 +3,4 @@ export const apiTagTypes = {
 	PROFILE: 'PROFILE',
 	FOLLOW: 'FOLLOW',
 	STATUS: 'STATUS',
-}
+} as const

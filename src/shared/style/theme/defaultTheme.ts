@@ -33,6 +33,7 @@ export const defaultTheme = (
 			styleOverrides: {
 				root: {
 					background: 'none',
+					overflow: 'hidden !important',
 				},
 			},
 		},

@@ -1,8 +1,9 @@
 import { FilterList } from '@mui/icons-material'
-import { Box, Button, Dialog, Stack, Typography } from '@mui/material'
+import { Box, Dialog, Stack } from '@mui/material'
 import { memo } from 'react'
 import { WithSlide } from '@/shared/hoc'
 import { useMuiDialog } from '@/shared/model/hooks'
+import { ContainedButton } from '@/shared/ui/containedButton'
 import { FilterTitle } from '../filterTitle'
 import { FilterUsersCount } from '../filterUsersCount'
 import { SearchFilterByFriend } from '../searchFilterByFriend'
@@ -14,10 +15,11 @@ export const FilterBody = memo(() => {
 
 	return (
 		<>
-			<Button onClick={openDialog} sx={{ height: '100%' }}>
-				<FilterList />
-				<Typography>Filter</Typography>
-			</Button>
+			<div style={{ paddingTop: '10px' }}>
+				<ContainedButton startIcon={<FilterList />} onClick={openDialog}>
+					Filter
+				</ContainedButton>
+			</div>
 			<Dialog onClose={onClose} open={open} sx={{ p: '20px' }}>
 				<WithSlide direction={'up'} open={open}>
 					<Box sx={{ bgcolor: 'primary.light' }}>
