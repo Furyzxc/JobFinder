@@ -1,6 +1,6 @@
 import { Skeleton, Stack, Typography } from '@mui/material'
-import { UserAvatar } from '@/shared/ui/avatar'
 import { AvatarSkeleton } from '@/shared/ui/avatarSkeleton'
+import { UserAvatar } from '@/shared/ui/userAvatar'
 import { useChatSlice } from '@/components/dialogs/model/hooks'
 import { BackBtn } from '../backBtn'
 
