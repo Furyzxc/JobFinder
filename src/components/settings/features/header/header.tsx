@@ -1,5 +1,5 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { navigationTabValues } from '@/shared/constants'
 import { useActions } from '@/shared/model/hooks'
 import { ContainedButton } from '@/shared/ui/containedButton'
@@ -11,9 +11,13 @@ import s from './header.module.css'
 const { PROFILE } = navigationTabValues
 
 export const Header = () => {
+	const navigate = useNavigate()
 	const { setNavigationTab } = useActions()
 
-	const goToProfile = () => setNavigationTab(PROFILE)
+	const goToProfile = () => {
+		navigate('/profile')
+		setNavigationTab(PROFILE)
+	}
 
 	const { login } = useAuthInfo()
 
@@ -55,11 +59,11 @@ export const Header = () => {
 						</Typography>
 					</Stack>
 				</Stack>
-				<Link to={'/profile'} onClick={goToProfile}>
-					<div style={{ paddingTop: '10px' }}>
-						<ContainedButton>Go to your personal profile</ContainedButton>
-					</div>
-				</Link>
+				<div style={{ paddingTop: '10px' }}>
+					<ContainedButton onClick={goToProfile}>
+						Go to your personal profile
+					</ContainedButton>
+				</div>
 			</Box>
 		)
 	}

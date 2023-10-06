@@ -53,9 +53,6 @@ export const NavigationTab = ({
 					borderRadius: '6px',
 					bgcolor: 'success.light',
 				},
-				'&:focus': {
-					bgcolor: 'secondary.main',
-				},
 			}}
 		/>
 	)

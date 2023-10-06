@@ -61,7 +61,7 @@ export const Navigates = ({ close }: PropsType) => {
 				value={NEWS}
 				icon={<Newspaper sx={{ mb: '-6px', fontSize: 23 }} />}
 				onClick={close}
-				label={'News'}
+				label={'News in development'}
 				path={'/news'}
 			/>
 			<NavigationTab

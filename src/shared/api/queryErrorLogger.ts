@@ -1,9 +1,6 @@
 import type { Middleware } from '@reduxjs/toolkit'
 import { isRejectedWithValue } from '@reduxjs/toolkit'
 
-/**
- * Log a warning and show a toast!
- */
 export const queryErrorLogger: Middleware =
 	() =>
 	// api: MiddlewareAPI

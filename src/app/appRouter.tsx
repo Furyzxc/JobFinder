@@ -9,7 +9,7 @@ import { lazily } from 'react-lazily'
 const { NotFound } = lazily(() => import('@/components/notFound/page'))
 const { Profile } = lazily(() => import('@/components/profile/page'))
 const { Dialogs } = lazily(() => import('@/components/dialogs/page'))
-// const { News } = lazily(() => import('@/components/news/page'))
+const { News } = lazily(() => import('@/components/news/page'))
 const { Login } = lazily(() => import('@/components/authorization/page'))
 const { Users } = lazily(() => import('@/components/users/page'))
 const { Settings } = lazily(() => import('@/components/settings/page'))
@@ -38,10 +38,10 @@ const withoutAuthorizationRoutes = [
 		path: '/profile/:userId',
 		element: <Profile />,
 	},
-	// {
-	// 	path: '/news',
-	// 	element: <News />
-	// },
+	{
+		path: '/news',
+		element: <News />
+	},
 	{
 		path: '/users',
 		element: <Users />,

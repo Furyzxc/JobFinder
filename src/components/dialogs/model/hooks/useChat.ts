@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useActions } from '@/shared/model/hooks'
-import { useRequestMessagesQuery } from '@/components/dialogs/api/api.ts'
-import { useChatSlice } from '@/components/dialogs/model/hooks/useChatSlice.ts'
 import { useGetProfileQuery } from '@/components/profile'
+import { useRequestMessagesQuery } from '../../api/api.ts'
+import { useChatSlice } from './useChatSlice.ts'
 
 interface Chat {
 	messagesLoading: boolean
@@ -60,7 +60,8 @@ export const useChat = (): Chat => {
 				}))
 			)
 		}
-	}, [messagesData, setMessages])
+		if (messagesError) setMessages([])
+	}, [messagesData, messagesError, setMessages])
 
 	return {
 		profileLoading,
