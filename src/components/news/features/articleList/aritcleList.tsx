@@ -8,7 +8,7 @@ export const AritcleList = () => {
 	if (data) {
 		return (
 			<Stack direction={'row'} flexWrap={'wrap'} className={'scroll'}>
-				{data.articles.map((article) => (
+				{data.news.map((article) => (
 					<Article {...article} />
 				))}
 			</Stack>

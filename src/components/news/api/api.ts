@@ -1,30 +1,46 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import {
-	GetNewsRequestParams,
-	GetNewsResponse,
-} from '@/components/news/api/types.ts'
+import { GetLatestNewsResponse } from '@/components/news/api/types.ts'
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY
+const BASE_URL = import.meta.env.VITE_NEWS_BASE_URL
 
 export const newsApi = createApi({
 	reducerPath: 'news',
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'https://newsapi.org/v2/',
+		baseUrl: BASE_URL,
 		prepareHeaders(headers) {
-			headers.set('X-Api-Key', API_KEY)
+			// headers.set('Authorization', API_KEY)
 
 			return headers
 		},
 	}),
 	endpoints: (builder) => ({
-		getNews: builder.query<GetNewsResponse, void>({
+		searchNews: builder.query<unknown, unknown>({
 			query: () => ({
-				url: 'everything',
+				url: 'search',
+			}),
+		}),
+		getNews: builder.query<GetLatestNewsResponse, void>({
+			query: () => ({
+				url: 'latest-news',
 				params: {
-					q: 'bodybuilding',
-					language: 'en',
-					pageSize: 20,
-				} as GetNewsRequestParams,
+					apiKey: API_KEY,
+				},
+			}),
+		}),
+		getAvailableLanguages: builder.query<unknown, unknown>({
+			query: () => ({
+				url: 'available/languages',
+			}),
+		}),
+		getAvailableCategories: builder.query<unknown, unknown>({
+			query: () => ({
+				url: 'available/categories',
+			}),
+		}),
+		getAvailableRegions: builder.query<unknown, unknown>({
+			query: () => ({
+				url: 'available/regions',
 			}),
 		}),
 	}),

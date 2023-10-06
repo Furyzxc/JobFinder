@@ -1,23 +1,19 @@
 export interface ArticleType {
-	author: string // The author of the article
-	content: string // The unformatted content of the article, where available. This is truncated to 200 chars.
-	description: string // A description or snippet from the article.
-	publishedAt: string // "2023-09-13T07:39:53Z" The date and time that the article was published, in UTC (+000)
-	source: {
-		id: null | unknown // The identifier id
-		name: string // name for the source this article came from ('Faz.net')
-	}
-	title: string // The headline or title of the article.
-	url: string // The direct URL to the article.
-	urlToImage: string // The URL to a relevant image for the article.
+	id: string //  "e1749cf0-8a49-4729-88b2-e5b4d03464ce",
+	title: string // "US House speaker Nancy Pelosi backs congressional legislation on Hong Kong",
+	description: string // "US House speaker Nancy Pelosi on Wednesday threw her support behind legislation meant to back Hong Kong's anti-government protesters.Speaking at a news conference featuring Hong Kong activists Joshua Wong Chi-fung and Denise Ho, who testified before the Congressional-Executive Commission on China (C...",
+	url: string
+	author: string // "Robert Delaney",
+	image: string // "None",
+	language: string // "en",
+	category: string[] // ["world", "politics"]
+	published: string // "2019-09-18 21:08:58 +0000"
 }
 
-export interface GetNewsResponse {
-	articles: ArticleType[] // The results of the request.
-	status: 'ok' | 'error' // If the request was successful or not.
-	// In the case of error a code and message property will be populated.
-
-	totalResults: number // The total number of results available for your request.
+export interface GetLatestNewsResponse {
+	status: 'ok' | 'error'
+	news: ArticleType[]
+	page: number
 }
 
 export interface GetNewsRequestParams {
