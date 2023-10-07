@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice, isAnyOf } from '@reduxjs/toolkit'
-import { RootState } from '@/app/appStore.ts'
 import { ProfileResponseBody, SocialAccounts } from '@/components/profile'
 import { api } from '../../api/api.ts'
 

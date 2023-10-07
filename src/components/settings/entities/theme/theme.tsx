@@ -15,10 +15,10 @@ type PropsType = {
 
 export const Theme = memo(({ titleIcon, title, imgSrc, theme }: PropsType) => {
 	const { setTheme, setPreviewTheme } = useActions()
-	const { choosenTheme } = useTheme()
+	const { chosenTheme } = useTheme()
 	const { isHovered, ref } = useHover()
 
-	const isSelected = choosenTheme === theme
+	const isSelected = chosenTheme === theme
 
 	const borderColor = isSelected ? 'primary.main' : '#2E343B'
 

@@ -11,9 +11,9 @@ export const RadioButtons = ({ initialValue }: PropsType) => {
 	const { bind } = useInput(initialValue + '')
 	const { setMainValue } = useActions()
 
-	const handleBlur = (e: FocusEvent<HTMLDivElement, Element>) => {
+	const handleBlur = (e: FocusEvent<HTMLInputElement, Element>) => {
 		// parsing string ('true') value to boolean type
-		const value: boolean = JSON.parse((e.target as any).value)
+		const value: boolean = JSON.parse(e.target.value) as boolean
 		// setting boolean value to store's state
 		setMainValue({ fieldName: 'lookingForAJob', value })
 	}

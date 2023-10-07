@@ -1,6 +1,7 @@
 # JobFinder - A Social Network for Connecting People and Finding Jobs
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Features](#features)
 - [Getting Started](#getting-started)
@@ -35,9 +36,6 @@ To get started with JobFinder, follow these steps:
 
 - Front-end: HTML, CSS, JavaScript
 - Additional Libraries: React, Redux Toolkit, Material UI, etc.
-
-
-
 
 I hope JobFinder will provide a valuable platform for networking, job searching, and career growth.
 

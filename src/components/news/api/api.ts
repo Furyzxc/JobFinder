@@ -8,11 +8,9 @@ export const newsApi = createApi({
 	reducerPath: 'news',
 	baseQuery: fetchBaseQuery({
 		baseUrl: BASE_URL,
-		prepareHeaders(headers) {
-			// headers.set('Authorization', API_KEY)
-
-			return headers
-		},
+		// paramsSerializer: (params) => {
+		// 	return { apiKey: API_KEY, ...params }
+		// },
 	}),
 	endpoints: (builder) => ({
 		searchNews: builder.query<unknown, unknown>({
@@ -24,7 +22,7 @@ export const newsApi = createApi({
 			query: () => ({
 				url: 'latest-news',
 				params: {
-					apiKey: API_KEY,
+					apiKey: encodeURIComponent(API_KEY),
 				},
 			}),
 		}),

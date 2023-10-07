@@ -1,15 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { RootState } from '@/app/appStore.ts'
 
 export type ThemeType = 'dark' | 'light' | 'spotify'
 
 interface Theme {
-	choosenTheme: ThemeType
+	chosenTheme: ThemeType
 	previewTheme: ThemeType | null // theme on hover
 }
 
 const initialState: Theme = {
-	choosenTheme: (localStorage.getItem('theme') as ThemeType | null) || 'dark',
+	chosenTheme: (localStorage.getItem('theme') as ThemeType | null) || 'dark',
 	previewTheme: null,
 }
 
@@ -19,9 +18,9 @@ export const themeSlice = createSlice({
 	reducers: {
 		setTheme(
 			state,
-			{ payload }: PayloadAction<typeof initialState.choosenTheme>
+			{ payload }: PayloadAction<typeof initialState.chosenTheme>
 		) {
-			state.choosenTheme = payload
+			state.chosenTheme = payload
 			localStorage.setItem('theme', payload)
 		},
 

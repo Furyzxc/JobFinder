@@ -12,7 +12,7 @@ import { Field } from '../../entities/field'
 export interface FormValues {
 	email: string
 	password: string
-	rememberMe: boolean | undefined
+	rememberMe?: boolean
 }
 
 export const Form = memo(() => {

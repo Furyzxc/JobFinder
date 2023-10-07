@@ -17,7 +17,7 @@ export interface SendMessageRequest {
 
 export interface MessageSent {
 	// From SendMessageResponse
-	id: string // "db1ee4e7-acb3-4b1e-b744-05a76fbee3ad"
+	id: string // "db1ee4e7-acb3-4b1e-b744-05a76free3ad"
 	body: string // message body
 	translatedBody: null | unknown
 	addedAt: string // "2023-07-12T00:53:15.723"

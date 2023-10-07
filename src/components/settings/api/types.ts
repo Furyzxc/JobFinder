@@ -11,7 +11,7 @@ export interface EditProfilePhotoResponse {
 			large: string
 		}
 	}
-	messages: string[] | ['File should has .jpg, .jpeg or .png extendion']
+	messages: string[] | ['File should has .jpg, .jpeg or .png extension']
 	fieldsErrors: unknown[]
 	resultCode: number // 0 = success
 }

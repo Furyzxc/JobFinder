@@ -9,7 +9,7 @@ type PropsType = {
 
 export const WithError = ({ children, isError }: PropsType) => {
 	// if (isError) {
-	// 	return <Div>Some error occured...</Div>
+	// 	return <Div>Some error occurred...</Div>
 	// }
 
 	const { open, onClose } = useMuiDialog(isError)

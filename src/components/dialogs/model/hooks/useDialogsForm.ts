@@ -22,7 +22,7 @@ const SUCCESS_CODE = 0
 
 export const useDialogsForm = (): DialogsForm => {
 	// state for handling id of sent message (need id for deleting if error occurred during request)
-	const [requstId, setRequstId] = useState<number>()
+	const [requestId, setRequestId] = useState<number>()
 	const { userId = 0 } = useParams()
 	const { addMessage, removePending, removeMessage } = useActions()
 	const {
@@ -39,7 +39,7 @@ export const useDialogsForm = (): DialogsForm => {
 	const submit = handleSubmit(({ input }: FormValues) => {
 		const messageId = Math.random()
 		// setting id of sent message
-		setRequstId(messageId)
+		setRequestId(messageId)
 		// creating body for message
 		const message = createMessage(input, messageId)
 		// optimistic push message to array of messages
@@ -63,12 +63,12 @@ export const useDialogsForm = (): DialogsForm => {
 		if (data?.resultCode === SUCCESS_CODE) {
 			// if request of sending message was success, setting pending flag
 			// of message to false
-			requstId && removePending(requstId)
+			requestId && removePending(requestId)
 			// deleting message from list of
 		}
 		if (isError || (data && data.resultCode !== SUCCESS_CODE)) {
 			// if error occured during sending, removing message from array
-			requstId && removeMessage(requstId)
+			requestId && removeMessage(requestId)
 		}
 		// @ts-ignore
 	}, [data, isError, removeMessage, removePending])

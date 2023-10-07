@@ -4,7 +4,6 @@ import {
 	createSlice,
 	isAnyOf,
 } from '@reduxjs/toolkit'
-import { RootState } from '@/app/appStore.ts'
 import { handleError } from '@/shared/lib/handleError.ts'
 import { api } from '../api/api.ts'
 import { RequestLoginBody } from '../api/types.ts'
@@ -46,8 +45,8 @@ export const authSlice = createSlice({
 		},
 	},
 
-	extraReducers: builder => {
-		builder.addMatcher(isAnyOf(authMe.pending, authLogin.pending), state => {
+	extraReducers: (builder) => {
+		builder.addMatcher(isAnyOf(authMe.pending, authLogin.pending), (state) => {
 			// turning isLoading when requests are processing
 			state.isLoading = true
 			state.error = null
@@ -55,7 +54,7 @@ export const authSlice = createSlice({
 
 		builder.addMatcher(
 			isAnyOf(authMe.fulfilled, authLogin.fulfilled),
-			state => {
+			(state) => {
 				// turning isLoading when requests have finished processing
 				state.isLoading = false
 			}
@@ -72,7 +71,7 @@ export const authSlice = createSlice({
 			}
 		})
 
-		builder.addMatcher(logout.matchFulfilled, state => {
+		builder.addMatcher(logout.matchFulfilled, (state) => {
 			state.isAuthorized = false
 
 			// clearing state's user info

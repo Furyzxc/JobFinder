@@ -4,12 +4,17 @@
 		"paths": {
 			"@/*": ["*"]
 		},
+		"typeRoots": ["node_modules/@types", "types/"],
 		"target": "ESNext",
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"module": "ESNext",
 		"skipLibCheck": true,
+		"allowJs": false,
+		"noFallthroughCasesInSwitch": true,
 
 		/* Bundler mode */
+		"esModuleInterop": false,
+		"useDefineForClassFields": true,
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
 		"resolveJsonModule": true,
@@ -21,8 +26,8 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true
+		"forceConsistentCasingInFileNames": true
 	},
-	"include": ["src"],
+	"include": ["src", "types"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }

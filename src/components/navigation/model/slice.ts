@@ -15,7 +15,7 @@ const initialState: Navigation = {
 }
 
 export const navigationSlice = createSlice({
-	name: 'navigation',
+	name: 'siteNavigation',
 	initialState,
 	reducers: {
 		setNavigationTab(state, action: PayloadAction<TabsType>) {

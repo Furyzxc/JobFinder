@@ -4,7 +4,6 @@ import { authSlice } from '@/components/authorization/model'
 import { chatSlice } from '@/components/dialogs/model'
 import { navigationSlice } from '@/components/navigation/model'
 import { newsApi } from '@/components/news/api'
-// import { newsApi } from '@/components/news/api'
 import { profileSettingsSlice, themeSlice } from '@/components/settings/model'
 
 export const rootReducer = combineReducers({

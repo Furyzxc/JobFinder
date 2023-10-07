@@ -8,9 +8,9 @@ import { AppHeader } from '@/components/header'
 import { selectTheme } from '@/components/settings/model'
 
 export const MainLayout = () => {
-	const { previewTheme, choosenTheme } = useAppSelector(selectTheme)
+	const { previewTheme, chosenTheme: chosenTheme } = useAppSelector(selectTheme)
 
-	const theme = previewTheme || choosenTheme
+	const theme = previewTheme || chosenTheme
 
 	const appTheme =
 		theme === 'dark' ? darkTheme : theme === 'light' ? lightTheme : spotifyTheme

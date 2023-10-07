@@ -27,7 +27,7 @@ export const useStatus = (): Status => {
 	const navigate = useNavigate()
 
 	const openStatus = () => {
-		// show login page if user is not authourized, otherwise show status
+		// show login page if user is not authorized, otherwise show status
 		isAuthorized ? setOpen(true) : navigate('/login')
 	}
 
