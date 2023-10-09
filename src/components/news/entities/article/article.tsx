@@ -1,25 +1,50 @@
-import { Avatar, Stack, Typography } from '@mui/material'
+import { Avatar, Link, Paper, Stack, Typography } from '@mui/material'
+import { formatTimeByDate } from '@/components/dialogs/lib/format-time.ts'
 import { ArticleType } from '@/components/news/api/types.ts'
 
 export const Article = ({
-	author,
 	published,
 	description,
+	url,
+	title,
 	image,
 }: Omit<ArticleType, 'id'>) => {
 	return (
-		<Stack spacing={1} direction={'row'} width={'500px'}>
-			<Avatar src={image} sx={{ height: '200px', width: '200px' }} />
-			<Stack>
-				<Typography sx={{ fontSize: '20px' }}>{author}</Typography>
-				<Typography sx={{ fontSize: '12px', color: 'secondary.main' }}>
-					{description}
-				</Typography>
+		<Paper sx={{ mb: '30px' }}>
+			<Stack
+				spacing={1}
+				direction={'row'}
+				sx={{ maxWidth: '600px', height: '200px', alignItems: 'center' }}
+			>
+				<Avatar src={image} sx={{ height: '170px', width: '170px' }} />
+				<Stack>
+					<Link
+						href={url}
+						sx={{
+							textDecoration: 'none',
+							'&:hover': { textDecoration: 'underline' },
+						}}
+					>
+						<Typography sx={{ fontSize: '20px', maxWidth: '180px' }} noWrap>
+							{title}
+						</Typography>
+					</Link>
+					<Typography
+						variant={'h2'}
+						sx={{
+							fontSize: '12px',
+							color: 'secondary.light',
+							letterSpacing: 0.3,
+						}}
+					>
+						{description}
+					</Typography>
 
-				<Typography sx={{ fontSize: '12px', color: 'secondary.main' }}>
-					{published}
-				</Typography>
+					<Typography sx={{ fontSize: '12px', color: 'secondary.main' }}>
+						{formatTimeByDate(published)}
+					</Typography>
+				</Stack>
 			</Stack>
-		</Stack>
+		</Paper>
 	)
 }

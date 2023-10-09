@@ -7,7 +7,12 @@ export const ArticleList = () => {
 
 	if (data) {
 		return (
-			<Stack direction={'row'} flexWrap={'wrap'} className={'scroll'}>
+			<Stack
+				direction={'row'}
+				flexWrap={'wrap'}
+				sx={{ justifyContent: 'space-between' }}
+				className={'scroll'}
+			>
 				{data.news.map(({ id, ...article }) => (
 					<Article {...article} key={id} />
 				))}
