@@ -17,6 +17,7 @@ export const Messages = memo(({ isLoading }: PropsType) => {
 
 	const { userId: urlId = 0 } = useParams()
 
+	// eslint-disable-next-line camelcase
 	const { formattedToMMMM_D, isDateExist } = useIsDateExist()
 
 	const { messages } = useChatSlice()
@@ -31,7 +32,7 @@ export const Messages = memo(({ isLoading }: PropsType) => {
 						{!isDateExist(message.addedAt) && (
 							<TimeChip time={formattedToMMMM_D(message.addedAt)} />
 						)}
-						{/*        comparing sender id with id in url, if its not equal me = true*/}
+						{/*        comparing sender id with id in url, if it's not equal me = true*/}
 						<Message {...message} me={message.senderId !== +urlId} />
 					</div>
 				))

@@ -11,7 +11,7 @@
 
 Welcome to JobFinder, the powerful social network that helps people connect, communicate, and find job opportunities. Whether you're looking to expand your professional network, search for jobs, or collaborate with like-minded individuals, JobFinder is the platform to make it happen.
 
-Visit website: [jobfinder-social-network.netlify.app](jobfinder-social-network.netlify.app)
+Visit website: [jobfinder-social-network.netlify.app](https://jobfinder-social-network.netlify.app)
 
 ## Features
 

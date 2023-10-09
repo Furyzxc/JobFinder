@@ -21,7 +21,6 @@ html {
 }
 
 body {
-	/*background: #0d1117;*/
 	font-size: 14px;
 	line-height: 1;
 }
@@ -57,8 +56,7 @@ input::placeholder {
 	border-radius: 10px;
 }
 
-
-@media (max-width: 768px) {
+@media (width <= 768px) {
 	.height {
 		height: calc(100vh - 55px);
 	}

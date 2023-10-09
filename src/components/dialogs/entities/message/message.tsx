@@ -9,7 +9,7 @@ import { MessageType } from '@/components/dialogs/model'
 import s from './message.module.css'
 
 type MessageProps = {
-	// is it your own message or your friend, if true its your own
+	// is it your own message or your friend, if true it's your own
 	me: boolean
 } & Omit<MessageType, 'id'>
 

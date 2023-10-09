@@ -6,7 +6,7 @@ export const Article = ({
 	published,
 	description,
 	image,
-}: ArticleType) => {
+}: Omit<ArticleType, 'id'>) => {
 	return (
 		<Stack spacing={1} direction={'row'} width={'500px'}>
 			<Avatar src={image} sx={{ height: '200px', width: '200px' }} />

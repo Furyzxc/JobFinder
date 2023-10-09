@@ -1,1 +1,1 @@
-export * from '@/components/news/features/articleList/aritcleList.tsx'
+export * from '@/components/news/features/articleList/articleList.tsx'

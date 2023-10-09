@@ -1,9 +1,8 @@
+import { lazily } from 'react-lazily'
 import { createBrowserRouter } from 'react-router-dom'
+import { ErrorLayout } from '@/shared/layout/errorLayout.tsx'
 import { MainLayout } from '@/shared/layout/mainLayout.tsx'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
-import { ErrorLayout } from '@/shared/layout/errorLayout.tsx'
-import { lazily } from 'react-lazily'
-
 
 // lazy imports
 const { NotFound } = lazily(() => import('@/components/notFound/page'))
@@ -40,7 +39,7 @@ const withoutAuthorizationRoutes = [
 	},
 	{
 		path: '/news',
-		element: <News />
+		element: <News />,
 	},
 	{
 		path: '/users',
