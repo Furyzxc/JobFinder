@@ -18,7 +18,7 @@ export const Profile = () => {
 
 	return (
 		<WithError isError={isError}>
-			<Container sx={{ pt: '10px' }} className={'noNavigationHeight scroll'}>
+			<Container sx={{ pt: '10px' }}>
 				{p || isLoading ? (
 					<Grid container>
 						<Grid item xs={12} sm={7} md={4}>

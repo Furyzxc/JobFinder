@@ -17,7 +17,7 @@ export const MainLayout = () => {
 
 	return (
 		<ThemeProvider theme={appTheme}>
-			<Stack className={'height'} sx={{ bgcolor: 'primary.light' }}>
+			<Stack className={'height scroll'} sx={{ bgcolor: 'primary.light' }}>
 				<AppHeader />
 				<WithSuspense>
 					<Outlet />

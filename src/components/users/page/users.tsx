@@ -8,7 +8,7 @@ export const Users = memo(() => {
 	const { ref } = useSmoothAppearance()
 
 	return (
-		<Stack className={'noNavigationHeight'} ref={ref} spacing={1}>
+		<Stack ref={ref} spacing={1}>
 			<Search />
 			<UsersList />
 		</Stack>

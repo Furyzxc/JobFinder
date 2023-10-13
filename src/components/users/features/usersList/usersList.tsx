@@ -31,11 +31,7 @@ export const UsersList = memo(() => {
 
 	return (
 		<WithLoadingAndError isLoading={isFetching} isError={isError}>
-			<Grid
-				container
-				className={'scroll'}
-				sx={{ textAlign: 'center', height: '100%' }}
-			>
+			<Grid container sx={{ textAlign: 'center', height: '100%' }}>
 				<Grid xs item container className={s.usersList}>
 					{users && users.length > 0 ? (
 						users.map((user) => <User {...user} key={user.id} />)
