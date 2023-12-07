@@ -2,18 +2,17 @@
 	position: relative;
 }
 
-@media (width <= 900px) {
-	.list {
-		display: none;
-		position: absolute;
-		top: 50px;
-		left: 0;
-		z-index: 1;
-	}
-}
-
-@media (width >= 900px) {
-	.list {
-		display: block !important;
-	}
-}
+/*@media (width <= 900px) {*/
+/*	.list {*/
+/*		display: none;*/
+/*		position: absolute;*/
+/*		top: 50px;*/
+/*		left: 0;*/
+/*	}*/
+/*}*/
+/**/
+/*@media (width >= 900px) {*/
+/*	.list {*/
+/*		display: block !important;*/
+/*	}*/
+/*}*/

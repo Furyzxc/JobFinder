@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useActions } from '@/shared/model/hooks'
+import { MessageResponseType } from '@/components/dialogs'
 import { useGetProfileQuery } from '@/components/profile'
 import { useRequestMessagesQuery } from '../../api/api.ts'
 import { useChatSlice } from './useChatSlice.ts'
@@ -9,24 +10,27 @@ interface Chat {
 	messagesLoading: boolean
 	profileLoading: boolean
 	isError: boolean
+	messages: MessageResponseType[]
 }
 
 export const useChat = (): Chat => {
+	// taking user id from params
 	const { userId } = useParams()
-
+	// taking user id from state
 	const {
-		profile: { userId: haveInfoForUser },
+		profile: { userId: profileId },
 	} = useChatSlice()
-
-	const { setChatProfile, setMessages } = useActions()
-
+	// taking functions that dispatch respective actions
+	const { setChatProfile } = useActions()
+	// converting id to type: number, possible NaN
 	const id = Number(userId)
 	const {
 		data: profile,
 		isLoading: profileLoading,
 		isError: profileError,
 	} = useGetProfileQuery(id, {
-		skip: !id || !!haveInfoForUser,
+		// if we don't have id in query params or we have profile id in state - we do not request data
+		skip: !id || !!profileId,
 	})
 
 	const {
@@ -36,34 +40,22 @@ export const useChat = (): Chat => {
 	} = useRequestMessagesQuery(
 		{ id, count: 20 },
 		{
+			// we do not request data if not correct id in query params
 			skip: !id,
 		}
 	)
 
 	useEffect(() => {
-		if (profile) {
+		profile &&
 			setChatProfile({
 				name: profile.name,
 				avatar: profile.photos.avatar,
 				userId: profile.userId,
 			})
-		}
 	}, [profile, setChatProfile])
 
-	useEffect(() => {
-		if (messagesData) {
-			setMessages(
-				// adding pending property to each message
-				messagesData.items.map((message) => ({
-					...message,
-					pending: false,
-				}))
-			)
-		}
-		if (messagesError) setMessages([])
-	}, [messagesData, messagesError, setMessages])
-
 	return {
+		messages: messagesData ? messagesData.items : [],
 		profileLoading,
 		messagesLoading,
 		isError: [messagesError, profileError].some((err) => err === true),

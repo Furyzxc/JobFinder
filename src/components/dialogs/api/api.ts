@@ -8,7 +8,7 @@ import {
 	SendMessageResponse,
 } from './types.ts'
 
-const { DIALOGS } = apiTagTypes
+const { DIALOGS, MESSAGES } = apiTagTypes
 
 export const api = baseApi.injectEndpoints({
 	endpoints: (build) => ({
@@ -22,6 +22,7 @@ export const api = baseApi.injectEndpoints({
 		requestMessages: build.query<MessagesResponse, MessagesRequest>({
 			query: ({ id, count = 20 }) =>
 				'dialogs/' + id + `/messages?count=${count}`,
+			providesTags: () => [MESSAGES],
 		}),
 
 		//send message to your friend
@@ -32,6 +33,7 @@ export const api = baseApi.injectEndpoints({
 				method: 'post',
 				body: { body },
 			}),
+			invalidatesTags: [MESSAGES],
 		}),
 	}),
 })

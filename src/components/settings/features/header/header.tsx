@@ -43,6 +43,10 @@ export const Header = () => {
 								noWrap
 								variant={'h6'}
 								sx={{
+									'&:hover': {
+										textDecoration: 'underline',
+										textDecorationColor: 'secondary.light',
+									},
 									color: 'secondary.light',
 									fontSize: '20px',
 								}}

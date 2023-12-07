@@ -1,10 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { clsx } from 'clsx'
 import { memo } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useActions, useSmoothAppearance } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/userAvatar'
-import { formatTimeByDate } from '../../lib/format-time.ts'
+import { useDialog } from '../../model/hooks'
 import { DialogsResponse } from '../../api/types.ts'
 import s from './dialog.module.css'
 
@@ -21,24 +19,17 @@ export const Dialog = memo(
 		photos: { small: avatar },
 		hasNewMessages,
 	}: PropsType) => {
-		const navigate = useNavigate()
-
-		const { setChatProfile } = useActions()
-
-		const { ref } = useSmoothAppearance()
-
-		const handleDialogClick = () => {
-			navigate('/dialogs/' + id)
-
-			if (name && avatar !== undefined)
-				setChatProfile({ name, avatar, userId: id })
-		}
-
-		const time = formatTimeByDate(lastDialogActivityDate)
+		const { ref, onClick, time } = useDialog(
+			name,
+			avatar,
+			id,
+			lastDialogActivi,
+			tyDate
+		)
 
 		return (
 			<Stack
-				onClick={handleDialogClick}
+				onClick={onClick}
 				className={clsx(s.dialog, isSelected && s.selected, 'notranslate')}
 				sx={{
 					bgcolor: isSelected ? 'warning.light' : undefined,

@@ -7,8 +7,7 @@ import { DialogsForm } from '../dialogsForm'
 import { Messages } from '../messages'
 
 export const Chat = memo(() => {
-	const { isError, profileLoading, messagesLoading } = useChat()
-
+	const { isError, profileLoading, messagesLoading, messages } = useChat()
 	return (
 		<WithError isError={isError}>
 			<Grid direction={'column'} container className={'noNavigationHeight'}>
@@ -23,9 +22,9 @@ export const Chat = memo(() => {
 						position: 'relative',
 						bgcolor: 'primary.light',
 					}}
-					className={' scroll'}
+					className={'scroll'}
 				>
-					<Messages isLoading={messagesLoading} />
+					<Messages isLoading={messagesLoading} messages={messages} />
 				</Grid>
 				<Grid item xs={0.6}>
 					<DialogsForm />

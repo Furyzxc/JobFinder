@@ -1,5 +1,5 @@
 export interface DialogsResponse {
-	id: number
+	id: number | string
 	userName: string
 	hasNewMessages: boolean
 	lastDialogActivityDate: string //'2023-07-11T23:47:06.07'

@@ -2,6 +2,9 @@
 	width: 100%;
 	margin-bottom: 1px;
 	padding: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+	font-weight: 100;
 }
 
 .input::placeholder {

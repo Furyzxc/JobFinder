@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { GetLatestNewsResponse } from '@/components/news/api/types.ts'
+import {
+	GetAvailableCategoriesResponse,
+	GetAvailableLanguagesResponse,
+	GetAvailableRegionseResponse,
+	GetLatestNewsResponse,
+	SearchNewsResponse,
+} from '@/components/news/api/types.ts'
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY
 const BASE_URL = import.meta.env.VITE_NEWS_BASE_URL
@@ -13,7 +19,7 @@ export const newsApi = createApi({
 		// },
 	}),
 	endpoints: (builder) => ({
-		searchNews: builder.query<unknown, unknown>({
+		searchNews: builder.query<SearchNewsResponse, unknown>({
 			query: () => ({
 				url: 'search',
 			}),
@@ -26,17 +32,19 @@ export const newsApi = createApi({
 				},
 			}),
 		}),
-		getAvailableLanguages: builder.query<unknown, unknown>({
+		getAvailableLanguages: builder.query<GetAvailableLanguagesResponse, void>({
 			query: () => ({
 				url: 'available/languages',
 			}),
 		}),
-		getAvailableCategories: builder.query<unknown, unknown>({
-			query: () => ({
-				url: 'available/categories',
-			}),
-		}),
-		getAvailableRegions: builder.query<unknown, unknown>({
+		getAvailableCategories: builder.query<GetAvailableCategoriesResponse, void>(
+			{
+				query: () => ({
+					url: 'available/categories',
+				}),
+			}
+		),
+		getAvailableRegions: builder.query<GetAvailableRegionseResponse, void>({
 			query: () => ({
 				url: 'available/regions',
 			}),
@@ -44,4 +52,8 @@ export const newsApi = createApi({
 	}),
 })
 
-export const { useGetNewsQuery, useLazyGetNewsQuery } = newsApi
+export const {
+	useGetNewsQuery,
+	useLazyGetNewsQuery,
+	useLazyGetAvailableRegionsQuery,
+} = newsApi

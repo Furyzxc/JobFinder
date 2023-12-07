@@ -30,7 +30,7 @@ export const DialogsList = memo(() => {
 						) : (
 							data.map((dialog) => (
 								<Dialog
-									isSelected={+userId === dialog.id}
+									isSelected={userId === dialog.id + ''}
 									key={dialog.id}
 									{...dialog}
 								/>
