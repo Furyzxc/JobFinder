@@ -23,8 +23,7 @@ export const Dialog = memo(
 			name,
 			avatar,
 			id,
-			lastDialogActivi,
-			tyDate
+			lastDialogActivityDate
 		)
 
 		return (
