@@ -1,1 +1,1 @@
-export * from '@/shared/ui/searchField/searchField.tsx'
+export * from './searchField.tsx'

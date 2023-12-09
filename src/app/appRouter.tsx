@@ -10,6 +10,7 @@ const { Profile } = lazily(() => import('@/components/profile/page'))
 const { Dialogs } = lazily(() => import('@/components/dialogs/page'))
 const { News } = lazily(() => import('@/components/news/page'))
 const { Login } = lazily(() => import('@/components/authorization/page'))
+const { Music } = lazily(() => import('@/components/music/page'))
 const { Users } = lazily(() => import('@/components/users/page'))
 const { Settings } = lazily(() => import('@/components/settings/page'))
 
@@ -40,6 +41,10 @@ const withoutAuthorizationRoutes = [
 	{
 		path: '/news',
 		element: <News />,
+	},
+	{
+		path: '/music',
+		element: <Music />,
 	},
 	{
 		path: '/users',

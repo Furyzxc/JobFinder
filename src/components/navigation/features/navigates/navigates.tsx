@@ -53,9 +53,9 @@ export const Navigates = ({ close }: PropsType) => {
 			<NavigationTab
 				value={MUSIC}
 				icon={<MusicNoteOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
-				disabled
 				label={'Music'}
 				path={'/music'}
+				onClick={close}
 			/>
 			<NavigationTab
 				value={NEWS}

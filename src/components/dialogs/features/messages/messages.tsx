@@ -19,7 +19,6 @@ export const Messages = memo(({ isLoading, messages }: PropsType) => {
 
 	const { userId: urlId = 0 } = useParams()
 
-	// eslint-disable-next-line camelcase
 	const { formattedToMMMM_D, isDateExist } = useIsDateExist()
 
 	return (

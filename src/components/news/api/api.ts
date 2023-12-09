@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { config } from '@/shared/lib/config.ts'
 import {
 	GetAvailableCategoriesResponse,
 	GetAvailableLanguagesResponse,
@@ -7,13 +8,12 @@ import {
 	SearchNewsResponse,
 } from '@/components/news/api/types.ts'
 
-const API_KEY = import.meta.env.VITE_NEWS_API_KEY
-const BASE_URL = import.meta.env.VITE_NEWS_BASE_URL
+const { NEWS_API_BASE_URL, NEWS_API_KEY } = config
 
 export const newsApi = createApi({
 	reducerPath: 'news',
 	baseQuery: fetchBaseQuery({
-		baseUrl: BASE_URL,
+		baseUrl: NEWS_API_BASE_URL,
 		// paramsSerializer: (params) => {
 		// 	return { apiKey: API_KEY, ...params }
 		// },
@@ -28,7 +28,7 @@ export const newsApi = createApi({
 			query: () => ({
 				url: 'latest-news',
 				params: {
-					apiKey: encodeURIComponent(API_KEY),
+					apiKey: encodeURIComponent(NEWS_API_KEY),
 				},
 			}),
 		}),
