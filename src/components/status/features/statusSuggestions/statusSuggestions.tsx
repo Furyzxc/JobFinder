@@ -1,5 +1,5 @@
 import { Stack, Typography } from '@mui/material'
-import { Suggestion } from '@/components/navigation/entities/suggestion'
+import { Suggestion } from '../../entities/suggestion'
 
 type PropsType = {
 	setInputValue: (value: string) => void

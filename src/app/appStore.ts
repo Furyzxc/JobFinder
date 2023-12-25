@@ -1,23 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { baseApi } from '@/shared/api/baseApi.ts'
-import { queryErrorLogger } from '@/shared/api/queryErrorLogger.ts'
-import { musicApi, tokenApi } from '@/components/music/api'
-import { newsApi } from '@/components/news/api'
+import { rootMiddleware } from '@/app/rootMiddleware.ts'
 import { rootReducer } from './rootReducer.ts'
 
 const makeStore = () => {
 	const store = configureStore({
 		reducer: rootReducer,
-
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware().concat(
-				baseApi.middleware,
-				newsApi.middleware,
-				tokenApi.middleware,
-				musicApi.middleware,
-				queryErrorLogger
-			),
+			getDefaultMiddleware().concat(rootMiddleware),
 
 		devTools: true,
 	})

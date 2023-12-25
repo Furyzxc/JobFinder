@@ -2,6 +2,8 @@ import { Avatar, Dialog, Grid, Stack } from '@mui/material'
 import siteIcon from '@/assets/melon.png'
 import { WithSlide } from '@/shared/hoc'
 import { Cross } from '@/shared/ui/cross'
+import { Footer } from '@/components/navigation/features/footer'
+import { Status } from '@/components/status/page/status.tsx'
 import { Navigates } from '../features/navigates'
 
 type PropsType = {
@@ -26,6 +28,7 @@ export const Navigation = ({ closeNavigation, open }: PropsType) => {
 				},
 			}}
 		>
+			<Status />
 			<WithSlide open={open} direction={'right'}>
 				<Stack
 					className={'height'}
@@ -47,6 +50,7 @@ export const Navigation = ({ closeNavigation, open }: PropsType) => {
 						</Grid>
 					</Grid>
 					<Navigates close={closeNavigation} />
+					<Footer />
 				</Stack>
 			</WithSlide>
 		</Dialog>

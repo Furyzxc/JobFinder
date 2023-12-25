@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { capitalizeFirstLetter } from '@/shared/lib/capitalize-first-letter.ts'
 
 const TITLE_LIST = [
+	'about',
 	'login',
 	'profile',
 	'dialogs',

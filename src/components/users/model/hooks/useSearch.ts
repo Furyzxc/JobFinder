@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { useDebounce, useInput } from '@/shared/model/hooks'
+import { useInput } from '@/shared/model/hooks'
 
 interface Search {
 	value: string
@@ -25,20 +25,18 @@ export const useSearch = (): Search => {
 		}
 	}, [searchParams, term])
 
-	const modifyParams = () => {
+	const modifyParams = useCallback(() => {
 		changeTermParam()
 		// deleting page param when updating term
 		searchParams.delete('page')
 
 		// setting new query string
 		setSearchParams(searchParams)
-	}
-
-	const debouncedParamsChange = useDebounce(modifyParams, 1000)
+	}, [changeTermParam, searchParams, setSearchParams])
 
 	useEffect(() => {
-		debouncedParamsChange()
-	}, [term])
+		modifyParams()
+	}, [modifyParams, term])
 
 	return {
 		value: term,

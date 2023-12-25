@@ -1,27 +1,25 @@
 import { FilterList } from '@mui/icons-material'
 import { Box, Dialog, Stack } from '@mui/material'
 import { memo } from 'react'
+import { useBoolean } from 'usehooks-ts'
 import { WithSlide } from '@/shared/hoc'
-import { useMuiDialog } from '@/shared/model/hooks'
 import { ContainedButton } from '@/shared/ui/containedButton'
 import { FilterTitle } from '../filterTitle'
 import { FilterUsersCount } from '../filterUsersCount'
 import { SearchFilterByFriend } from '../searchFilterByFriend'
 
 export const FilterBody = memo(() => {
-	const { open, setOpen, onClose } = useMuiDialog(false)
-
-	const openDialog = () => setOpen(true)
+	const { value, setTrue, setFalse } = useBoolean(false)
 
 	return (
 		<>
 			<div style={{ paddingTop: '10px' }}>
-				<ContainedButton startIcon={<FilterList />} onClick={openDialog}>
+				<ContainedButton startIcon={<FilterList />} onClick={setTrue}>
 					Filter
 				</ContainedButton>
 			</div>
-			<Dialog onClose={onClose} open={open} sx={{ p: '20px' }}>
-				<WithSlide direction={'up'} open={open}>
+			<Dialog onClose={setFalse} open={value} sx={{ p: '20px' }}>
+				<WithSlide direction={'up'} open={value}>
 					<Box sx={{ bgcolor: 'primary.light' }}>
 						<Stack
 							sx={{

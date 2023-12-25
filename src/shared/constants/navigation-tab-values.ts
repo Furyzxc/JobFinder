@@ -1,8 +1,9 @@
 export const navigationTabValues = {
-	PROFILE: 'PROFILE',
-	DIALOGS: 'DIALOGS',
-	MUSIC: 'MUSIC',
-	NEWS: 'NEWS',
-	USERS: 'USERS',
-	SETTINGS: 'SETTINGS',
+	STATUS: 'status',
+	PROFILE: 'profile',
+	DIALOGS: 'dialogs',
+	MUSIC: 'music',
+	NEWS: 'news',
+	USERS: 'users',
+	SETTINGS: 'settings',
 } as const

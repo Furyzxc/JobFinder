@@ -1,11 +1,11 @@
 import { Stack } from '@mui/material'
+import { SearchUI } from '@/shared/ui/search'
 import { FilterBody } from '../../entities/filterBody'
-import { SearchInput } from '../../entities/searchInput'
 
 export const Search = () => {
 	return (
-		<Stack direction={'row'} sx={{ p: '0 10px' }}>
-			<SearchInput />
+		<Stack direction={'row'} sx={{ p: '0 10px' }} spacing={2}>
+			<SearchUI param={'term'} />
 			<FilterBody />
 		</Stack>
 	)

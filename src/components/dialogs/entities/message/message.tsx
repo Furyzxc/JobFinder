@@ -2,9 +2,9 @@ import DoneAllIcon from '@mui/icons-material/DoneAll'
 import { Box, Typography } from '@mui/material'
 import { clsx } from 'clsx'
 import { memo } from 'react'
+import { useCopyToClipboard } from 'usehooks-ts'
 import { WithSlide } from '@/shared/hoc'
 import { formatTime } from '@/shared/lib/format-time.ts'
-import { useCopyText } from '@/shared/model/hooks'
 import { MessageResponseType } from '@/components/dialogs'
 import s from './message.module.css'
 
@@ -17,7 +17,7 @@ export const Message = memo(({ body, addedAt, me, viewed }: MessageProps) => {
 	// converting time to 0:32 PM format
 	const time = formatTime(addedAt, 'h:mm A')
 
-	const { textRef, copyText } = useCopyText()
+	const [, copy] = useCopyToClipboard()
 
 	return (
 		<WithSlide direction={'left'} open={true}>
@@ -27,9 +27,9 @@ export const Message = memo(({ body, addedAt, me, viewed }: MessageProps) => {
 					overflow: 'hidden',
 				}}
 				className={clsx(s.message, me ? s.myMessage : s.friendMessage)}
-				onClick={copyText}
+				onClick={() => copy(body)}
 			>
-				<Typography variant={'h2'} className={s.text} ref={textRef}>
+				<Typography variant={'h2'} className={s.text}>
 					{body}
 				</Typography>
 				<Typography

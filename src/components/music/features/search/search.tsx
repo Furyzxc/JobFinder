@@ -1,7 +1,7 @@
-import { useInput } from '@/shared/model/hooks'
-import { useSearchParams } from 'react-router-dom'
-import { ChangeEvent } from 'react'
 import { Grid } from '@mui/material'
+import { ChangeEvent } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useInput } from '@/shared/model/hooks'
 import { Input } from '@/shared/ui/input'
 
 export const Search = () => {
@@ -17,7 +17,17 @@ export const Search = () => {
 		setSearchParams(searchParams)
 	}
 	return (
-		<Grid container sx={{ position: 'absolute', left: 0, top: '10px', width: '100%', justifyContent: 'end' }}>
+		<Grid
+			container
+			sx={{
+				position: 'absolute',
+				left: 0,
+				top: '10px',
+				width: '100%',
+				justifyContent: 'end',
+				zIndex: 1,
+			}}
+		>
 			<Grid item textAlign={'center'} width={'50%'}>
 				<Input value={value} onChange={onChange} />
 			</Grid>

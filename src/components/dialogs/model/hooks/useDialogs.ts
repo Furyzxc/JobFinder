@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useMuiDialog, useSmoothAppearance } from '@/shared/model/hooks'
+import { useBoolean, useMediaQuery } from 'usehooks-ts'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 import { useRequestDialogsQuery } from '@/components/dialogs/api/api.ts'
 
 type Dialogs = {
@@ -11,31 +12,35 @@ type Dialogs = {
 }
 
 export const useDialogs = (): Dialogs => {
+	// taking userId from query string
 	const { userId } = useParams()
-
+	// converting id to type number
 	const id = Number(userId) // possible NaN
-
+	// requesting data
 	const { isError } = useRequestDialogsQuery()
-
+	// ref for animation
 	const { ref } = useSmoothAppearance(0.1)
-
-	const width = document.body.clientWidth
-
-	const { open, setOpen } = useMuiDialog(!id || width >= 900)
+	// if screen width >= 900px -> matches = true
+	const matches = useMediaQuery('(min-width: 900px)')
+	// hook for opening and closing dialogs list
+	const { value, setFalse, setTrue } = useBoolean(!id || matches)
 
 	useEffect(() => {
-		if (width < 900) {
-			if (userId) {
-				setOpen(false)
-				return
-			}
-			setOpen(true)
+		// if screen width >= 900px do nothing
+		if (matches) return
+
+		// if userId in query params we do not display dialogs list on phones
+		if (userId) {
+			setFalse()
+			return
 		}
-	}, [setOpen, userId, width])
+		// if no userId in query params we display dialogs list
+		setTrue()
+	}, [matches, setFalse, setTrue, userId])
 
 	return {
 		id,
-		open,
+		open: value,
 		ref,
 		isError,
 	}

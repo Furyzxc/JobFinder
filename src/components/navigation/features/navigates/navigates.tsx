@@ -7,66 +7,67 @@ import {
 	SettingsOutlined,
 } from '@mui/icons-material'
 import { Tabs } from '@mui/material'
+import { smile } from '@/assets/status/smile.tsx'
 import { navigationTabValues } from '@/shared/constants'
-import { useActions } from '@/shared/model/hooks'
 import { NavigationTab } from '@/components/settings/entities/navigationTab'
-import { useNavigation } from '../../model/hooks'
-import { TabsType } from '../../model'
-import { Status } from '../status'
+import { useNavigates } from '../../model/hooks'
 
-const { PROFILE, DIALOGS, MUSIC, NEWS, USERS, SETTINGS } = navigationTabValues
+const { STATUS, PROFILE, DIALOGS, MUSIC, NEWS, USERS, SETTINGS } =
+	navigationTabValues
 
 type PropsType = {
 	close: () => void
 }
 
+const css = { mb: '-6px', fontSize: 23 }
+
 export const Navigates = ({ close }: PropsType) => {
-	const { value } = useNavigation()
-	const { setNavigationTab } = useActions()
-	const handleChange = (_: any, newValue: TabsType) => {
-		setNavigationTab(newValue)
-	}
+	const { bindTabs } = useNavigates()
 
 	return (
 		<Tabs
+			{...bindTabs}
 			orientation={'vertical'}
-			value={value}
-			onChange={handleChange}
-			sx={{ alignItems: 'center' }}
+			sx={{ alignItems: 'center', flexGrow: 1 }}
 		>
-			<Status />
-
+			<NavigationTab
+				value={STATUS}
+				icon={smile}
+				path={'?st=true'}
+				label={'Set Status'}
+				onClick={close}
+			/>
 			<NavigationTab
 				value={PROFILE}
-				icon={<PermIdentityOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
-				path={'profile'}
+				icon={<PermIdentityOutlined sx={css} />}
+				path={'/profile'}
 				label={'Your Account'}
 				onClick={close}
 			/>
 			<NavigationTab
 				value={DIALOGS}
-				icon={<MailOutline sx={{ mb: '-6px', fontSize: 23 }} />}
+				icon={<MailOutline sx={css} />}
 				label={'Dialogs'}
 				path={'/dialogs'}
 				onClick={close}
 			/>
 			<NavigationTab
 				value={MUSIC}
-				icon={<MusicNoteOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
+				icon={<MusicNoteOutlined sx={css} />}
 				label={'Music'}
 				path={'/music'}
 				onClick={close}
 			/>
 			<NavigationTab
 				value={NEWS}
-				icon={<Newspaper sx={{ mb: '-6px', fontSize: 23 }} />}
+				icon={<Newspaper sx={css} />}
 				onClick={close}
 				label={'News in development'}
 				path={'/news'}
 			/>
 			<NavigationTab
 				value={USERS}
-				icon={<PeopleOutline sx={{ mb: '-6px', fontSize: 23 }} />}
+				icon={<PeopleOutline sx={css} />}
 				label={'Users'}
 				path={'/users?count=30'}
 				onClick={close}
@@ -74,7 +75,7 @@ export const Navigates = ({ close }: PropsType) => {
 			<NavigationTab
 				value={SETTINGS}
 				onClick={close}
-				icon={<SettingsOutlined sx={{ mb: '-6px', fontSize: 23 }} />}
+				icon={<SettingsOutlined sx={css} />}
 				label={'Settings'}
 				path={'/settings'}
 			/>

@@ -9,7 +9,6 @@ type PropsType = {
 
 export const Album = ({ url }: PropsType) => {
 	const ref = useRef(null)
-
 	return (
 		<iframe
 			ref={ref}

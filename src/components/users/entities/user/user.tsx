@@ -1,12 +1,8 @@
 import { Grid, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { navigationTabValues } from '@/shared/constants'
-import { useActions } from '@/shared/model/hooks'
 import { UserAvatar } from '@/shared/ui/userAvatar'
 import { Follow } from '../follow'
 import s from './user.module.css'
-
-const { PROFILE } = navigationTabValues
 
 export interface UserProps {
 	id: number
@@ -20,12 +16,9 @@ export interface UserProps {
 }
 
 export const User = ({ name, status, photos, id, followed }: UserProps) => {
-	const { setNavigationTab } = useActions()
-
 	const navigate = useNavigate()
 	const navigateToProfile = () => {
 		navigate('/profile/' + id)
-		setNavigationTab(PROFILE)
 	}
 
 	return (

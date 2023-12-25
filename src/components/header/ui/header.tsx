@@ -1,7 +1,7 @@
 import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
+import { useBoolean } from 'usehooks-ts'
 import JobFinderLogo from '@/assets/melon.png'
-import { useMuiDialog } from '@/shared/model/hooks'
 import { Navigation } from '@/components/navigation'
 import { useOwnerInfo } from '@/components/settings/model'
 import { useHeaderPageName } from '../model/hooks.ts'
@@ -13,9 +13,7 @@ export const AppHeader = () => {
 
 	const pageName = useHeaderPageName()
 
-	const { open, setOpen, onClose } = useMuiDialog(false)
-
-	const showNavigation = () => setOpen(true)
+	const { value, setTrue, setFalse } = useBoolean(false)
 
 	return (
 		<Box>
@@ -29,10 +27,7 @@ export const AppHeader = () => {
 				}}
 				spacing={3}
 			>
-				<Menu
-					sx={{ height: '31px', cursor: 'pointer' }}
-					onClick={showNavigation}
-				/>
+				<Menu sx={{ height: '31px', cursor: 'pointer' }} onClick={setTrue} />
 				<Avatar
 					src={JobFinderLogo}
 					alt='JobFinder Logo'
@@ -45,7 +40,7 @@ export const AppHeader = () => {
 					<LoginButton />
 				)}
 			</Stack>
-			<Navigation open={open} closeNavigation={onClose} />
+			<Navigation open={value} closeNavigation={setFalse} />
 		</Box>
 	)
 }

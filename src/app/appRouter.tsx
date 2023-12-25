@@ -2,6 +2,7 @@ import { lazily } from 'react-lazily'
 import { createBrowserRouter } from 'react-router-dom'
 import { ErrorLayout } from '@/shared/layout/errorLayout.tsx'
 import { MainLayout } from '@/shared/layout/mainLayout.tsx'
+import { About } from '@/components/about/page'
 import { AuthGuard, GuestGuard } from './routeGuards.tsx'
 
 // lazy imports
@@ -33,6 +34,10 @@ const withoutAuthorizationRoutes = [
 	{
 		path: '*',
 		element: <NotFound />,
+	},
+	{
+		path: '/about',
+		element: <About />,
 	},
 	{
 		path: '/profile/:userId',

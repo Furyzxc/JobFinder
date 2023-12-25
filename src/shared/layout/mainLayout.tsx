@@ -2,18 +2,26 @@ import { Stack, ThemeProvider } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 import { WithSuspense } from '@/shared/hoc'
 import { useAppSelector } from '@/shared/model/hooks'
-import { darkTheme, lightTheme } from '@/shared/style/theme'
-import { spotifyTheme } from '@/shared/style/theme/spotifyTheme.ts'
+import {
+	darkTheme,
+	lightTheme,
+	materialTheme,
+	spotifyTheme,
+} from '@/shared/style/theme'
 import { AppHeader } from '@/components/header'
 import { selectTheme } from '@/components/settings/model'
 
 export const MainLayout = () => {
-	const { previewTheme, chosenTheme: chosenTheme } = useAppSelector(selectTheme)
-
-	const theme = previewTheme || chosenTheme
+	const { chosenTheme: theme } = useAppSelector(selectTheme)
 
 	const appTheme =
-		theme === 'dark' ? darkTheme : theme === 'light' ? lightTheme : spotifyTheme
+		theme === 'dark'
+			? darkTheme
+			: theme === 'light'
+			  ? lightTheme
+			  : theme === 'spotify'
+			    ? spotifyTheme
+			    : materialTheme
 
 	return (
 		<ThemeProvider theme={appTheme}>

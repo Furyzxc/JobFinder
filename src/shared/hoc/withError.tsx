@@ -1,6 +1,6 @@
 import { Snackbar } from '@mui/material'
 import { ReactNode } from 'react'
-import { useMuiDialog } from '@/shared/model/hooks'
+import { useBoolean } from 'usehooks-ts'
 
 type PropsType = {
 	children: ReactNode
@@ -12,7 +12,7 @@ export const WithError = ({ children, isError }: PropsType) => {
 	// 	return <Div>Some error occurred...</Div>
 	// }
 
-	const { open, onClose } = useMuiDialog(isError)
+	const { value, setFalse } = useBoolean(isError)
 
 	return (
 		<>
@@ -20,8 +20,8 @@ export const WithError = ({ children, isError }: PropsType) => {
 			<Snackbar
 				message='Some error occured...'
 				anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-				open={open}
-				onClose={onClose}
+				open={value}
+				onClose={setFalse}
 			/>
 		</>
 	)

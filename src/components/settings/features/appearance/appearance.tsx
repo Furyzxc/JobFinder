@@ -1,11 +1,13 @@
 import {
 	BedtimeOutlined,
+	FiberNewOutlined,
 	GrassOutlined,
 	LightModeOutlined,
 } from '@mui/icons-material'
 import { Grid, Stack } from '@mui/material'
 import darkTheme from '@/assets/darkTheme.svg'
 import lightTheme from '@/assets/lightTheme.svg'
+import materialTheme from '@/assets/materialTheme.svg'
 import spotifyTheme from '@/assets/spotifyTheme.svg'
 import { useSmoothAppearance } from '@/shared/model/hooks'
 import { Theme } from '../../entities/theme'
@@ -39,6 +41,12 @@ export const Appearance = () => {
 					titleIcon={<GrassOutlined />}
 					imgSrc={spotifyTheme}
 					theme={'spotify'}
+				/>
+				<Theme
+					title={'Material theme'}
+					titleIcon={<FiberNewOutlined />}
+					imgSrc={materialTheme}
+					theme={'material'}
 				/>
 			</Grid>
 		</Stack>

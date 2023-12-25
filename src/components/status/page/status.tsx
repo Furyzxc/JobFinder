@@ -1,36 +1,28 @@
 import { Dialog, Stack } from '@mui/material'
-import { smile } from '@/assets/status/smile.tsx'
-import { WithSlide } from '@/shared/hoc'
-import { NavigationTab } from '@/components/settings/entities/navigationTab'
-import { useStatus } from '../../model/hooks'
-import { ClearButton } from '../../entities/clearButton'
-import { StatusInput } from '../../entities/statusInput'
-import { StatusSuggestions } from '../../entities/statusSuggestions'
-import { StatusTitle } from '../../entities/statusTitle'
-import { SubmitButton } from '../../entities/submitButton'
+import { WithAuth, WithSlide } from '@/shared/hoc'
+import { ClearButton } from '@/components/status/features/clearButton'
+import { StatusInput } from '@/components/status/features/statusInput'
+import { StatusSuggestions } from '@/components/status/features/statusSuggestions'
+import { StatusTitle } from '@/components/status/features/statusTitle'
+import { SubmitButton } from '@/components/status/features/submitButton'
+import { useStatus } from '@/components/status/model/hooks'
 
-export const Status = (props: any) => {
+export const Status = () => {
 	const {
 		emoji,
 		setEmoji,
-		setInputValue,
 		isLoading,
 		open,
 		reset,
-		openStatus,
+		setInputValue,
 		editStatus,
 		onClose,
 		bindInput,
+		isAuthorized,
 	} = useStatus()
 
 	return (
-		<>
-			<NavigationTab
-				{...props}
-				icon={smile}
-				label={'Set Status'}
-				onClick={openStatus}
-			/>
+		<WithAuth isAuth={isAuthorized}>
 			<Dialog
 				keepMounted
 				open={open}
@@ -71,6 +63,6 @@ export const Status = (props: any) => {
 					</Stack>
 				</WithSlide>
 			</Dialog>
-		</>
+		</WithAuth>
 	)
 }

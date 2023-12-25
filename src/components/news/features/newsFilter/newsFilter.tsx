@@ -1,24 +1,23 @@
 import { FilterList } from '@mui/icons-material'
 import { Box, Dialog, DialogTitle, Stack } from '@mui/material'
+import { useBoolean } from 'usehooks-ts'
 import { WithSlide } from '@/shared/hoc'
-import { useMuiDialog } from '@/shared/model/hooks'
 import { ContainedButton } from '@/shared/ui/containedButton'
-import { NewsInput } from '@/components/news/entities/newsInput'
+import { SearchUI } from '@/shared/ui/search'
 
 export const NewsFilter = () => {
-	const { open, setOpen, onClose } = useMuiDialog(false)
+	const { value, setTrue, setFalse } = useBoolean(false)
 
-	const openFilter = () => setOpen(true)
 	return (
 		<Stack direction={'row'} spacing={3}>
-			<NewsInput />
+			<SearchUI param={'q'} />
 			<div style={{ padding: '7px 10px 0 0' }}>
-				<ContainedButton onClick={openFilter} startIcon={<FilterList />}>
+				<ContainedButton onClick={setTrue} startIcon={<FilterList />}>
 					Filter
 				</ContainedButton>
 			</div>
-			<Dialog open={open} onClose={onClose} keepMounted>
-				<WithSlide direction={'up'} open={open}>
+			<Dialog open={value} onClose={setFalse} keepMounted>
+				<WithSlide direction={'up'} open={value}>
 					<Stack>
 						<Box sx={{ bgcolor: 'primary.light' }}>
 							<Stack

@@ -1,13 +1,13 @@
 import { Snackbar, Stack } from '@mui/material'
+import { useBoolean } from 'usehooks-ts'
 import { WithLoadingAndError } from '@/shared/hoc'
-import { useMuiDialog } from '@/shared/model/hooks'
 import { Article } from '../../entities/article'
 import { useGetNewsQuery } from '../../api'
 
 export const ArticleList = () => {
 	const { data, isFetching, isError } = useGetNewsQuery()
 
-	const { open, onClose } = useMuiDialog(false)
+	const { value, setFalse } = useBoolean(false)
 	return (
 		<WithLoadingAndError isLoading={isFetching} isError={isError}>
 			<Stack
@@ -23,8 +23,8 @@ export const ArticleList = () => {
 					<Snackbar
 						message='Some error occured...'
 						anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-						open={open}
-						onClose={onClose}
+						open={value}
+						onClose={setFalse}
 					/>
 				)}
 			</Stack>

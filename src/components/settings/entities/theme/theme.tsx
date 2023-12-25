@@ -1,6 +1,6 @@
 import { Grid, Stack } from '@mui/material'
-import { ReactNode, memo, useCallback, useEffect } from 'react'
-import { useActions, useHover } from '@/shared/model/hooks'
+import { ReactNode, memo, useCallback } from 'react'
+import { useActions } from '@/shared/model/hooks'
 import { ThemeType } from '@/components/settings/model'
 import { useTheme } from '@/components/settings/model/hooks'
 import { ThemeBody } from '../themeBody'
@@ -14,9 +14,8 @@ type PropsType = {
 }
 
 export const Theme = memo(({ titleIcon, title, imgSrc, theme }: PropsType) => {
-	const { setTheme, setPreviewTheme } = useActions()
+	const { setTheme } = useActions()
 	const { chosenTheme } = useTheme()
-	const { isHovered, ref } = useHover()
 
 	const isSelected = chosenTheme === theme
 
@@ -24,17 +23,8 @@ export const Theme = memo(({ titleIcon, title, imgSrc, theme }: PropsType) => {
 
 	const changeTheme = useCallback(() => setTheme(theme), [setTheme, theme])
 
-	useEffect(() => {
-		if (isHovered) {
-			setPreviewTheme(theme)
-		} // if theme is not hovered clearing preview theme
-		else {
-			setPreviewTheme(null)
-		}
-	}, [isHovered, setPreviewTheme, theme])
-
 	return (
-		<Grid item xs={12} sm={6} md={4} ref={ref}>
+		<Grid item xs={12} sm={6} md={4}>
 			<Stack
 				onClick={changeTheme}
 				sx={{

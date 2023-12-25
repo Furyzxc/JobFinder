@@ -1,10 +1,7 @@
 import { Avatar } from '@mui/material'
 import { forwardRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { navigationTabValues } from '@/shared/constants'
-import { useActions, useRandomColor } from '@/shared/model/hooks'
-
-const { SETTINGS } = navigationTabValues
+import { useRandomColor } from '@/shared/model/hooks'
 
 type PropsType = {
 	name: string
@@ -15,13 +12,11 @@ type PropsType = {
 export const ProfileAvatar = forwardRef<any, any>(
 	({ avatar, name, isOwner, ...props }: PropsType, ref) => {
 		const randomColor = useRandomColor()
-		const { setNavigationTab } = useActions()
 
 		const navigate = useNavigate()
 
 		const changeYourPhoto = () => {
 			isOwner && navigate('/settings')
-			setNavigationTab(SETTINGS)
 		}
 
 		return (

@@ -1,34 +1,31 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useInput, useMuiDialog } from '@/shared/model/hooks'
+import { Dispatch, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { useInput } from '@/shared/model/hooks'
 import { useAuth, useAuthInfo } from '@/components/authorization'
 import { useGetUserStatusQuery, useSetStatusMutation } from '../../api/api.ts'
 
 type Status = {
 	open: boolean
-	openStatus: () => void
 	onClose: () => void
 	reset: () => void
 	editStatus: () => void
 	isLoading: boolean
-	setInputValue: (value: string) => void
 	emoji: string
 	setEmoji: (value: string) => void
 	bindInput: {
 		value: string
 		onChange: (event: any) => void
 	}
+	setInputValue: Dispatch<any>
+	isAuthorized: boolean
 }
 
 export const useStatus = (): Status => {
-	const { open, setOpen, onClose } = useMuiDialog(false)
+	const [searchParams, setSearchParams] = useSearchParams()
 
-	const { isAuthorized } = useAuth()
-	const navigate = useNavigate()
-
-	const openStatus = () => {
-		// show login page if user is not authorized, otherwise show status
-		isAuthorized ? setOpen(true) : navigate('/login')
+	const closeStatus = () => {
+		searchParams.delete('st')
+		setSearchParams(searchParams)
 	}
 
 	const {
@@ -38,9 +35,7 @@ export const useStatus = (): Status => {
 	} = useInput('')
 
 	const { value: emoji, setValue: setEmoji, reset: resetEmoji } = useInput('')
-
-	const setInputValue = (value: string) => setStatusValue(value)
-
+	const { isAuthorized } = useAuth()
 	const { id } = useAuthInfo()
 
 	const { data: statusValue } = useGetUserStatusQuery(id || 1, { skip: !id })
@@ -52,7 +47,7 @@ export const useStatus = (): Status => {
 	}, [setStatusValue, statusValue])
 
 	const editStatus = () => {
-		onClose()
+		closeStatus()
 		setStatus(bindInput.value)
 	}
 
@@ -65,15 +60,15 @@ export const useStatus = (): Status => {
 	}
 
 	return {
-		open,
+		open: !!searchParams.get('st'),
 		reset,
-		openStatus,
-		onClose,
+		onClose: closeStatus,
 		editStatus,
-		setInputValue,
+		setInputValue: setStatusValue,
 		isLoading,
 		emoji,
 		setEmoji,
 		bindInput,
+		isAuthorized,
 	}
 }

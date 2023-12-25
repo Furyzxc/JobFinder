@@ -1,6 +1,7 @@
 import { Grid } from '@mui/material'
 import { memo, useMemo } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
+import { useDebounce } from 'usehooks-ts'
 import { WithLoadingAndError } from '@/shared/hoc'
 import { countPages } from '@/shared/lib/count-pages.ts'
 import { Div } from '@/shared/ui/div'
@@ -14,8 +15,9 @@ const DEFAULT_API_PORTION = 30
 export const UsersList = memo(() => {
 	const [searchParams] = useSearchParams()
 	const { search: queryParams } = useLocation()
+	const debouncedParams = useDebounce(queryParams, 1000)
 
-	const { data, isFetching, isError } = useGetUsersQuery(queryParams)
+	const { data, isFetching, isError } = useGetUsersQuery(debouncedParams)
 
 	const pagesCount = useMemo(() => {
 		if (data) {

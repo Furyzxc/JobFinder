@@ -1,14 +1,16 @@
-import { Stack } from '@mui/material'
-import { useMusic } from '@/components/music/model/hooks.ts'
-import { Search } from '@/components/music/features/search'
+import { Box, Stack } from '@mui/material'
+import { SearchUI } from '@/shared/ui/search'
 import { ItemsList } from '@/components/music/features/itemsList'
+import { useMusic } from '@/components/music/model/hooks.ts'
 
 export const Music = () => {
 	useMusic()
 
 	return (
 		<Stack position={'relative'}>
-			<Search />
+			<Box sx={{ position: 'absolute', right: 0 }}>
+				<SearchUI param={'q'} />
+			</Box>
 			<ItemsList />
 		</Stack>
 	)
