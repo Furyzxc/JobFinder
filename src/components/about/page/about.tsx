@@ -8,10 +8,6 @@ export const About = () => {
 					pt: '80px',
 					mb: '40px',
 					textAlign: 'center',
-					//background:
-					//"url('src/assets/images/img_1.jpg') 50% 50%/100% 100% no-repeat",
-					//backgroundSize: 'cover',
-					//opacity: 0.4,
 				}}
 			>
 				<Typography sx={{ fontSize: '18px', color: '#2F8DEB' }} variant={'h6'}>

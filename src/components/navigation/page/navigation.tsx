@@ -50,7 +50,7 @@ export const Navigation = ({ closeNavigation, open }: PropsType) => {
 						</Grid>
 					</Grid>
 					<Navigates close={closeNavigation} />
-					<Footer />
+					<Footer onClick={closeNavigation} />
 				</Stack>
 			</WithSlide>
 		</Dialog>

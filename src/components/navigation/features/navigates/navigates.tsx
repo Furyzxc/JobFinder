@@ -1,7 +1,7 @@
 import {
+	ArticleOutlined,
 	MailOutline,
 	MusicNoteOutlined,
-	Newspaper,
 	PeopleOutline,
 	PermIdentityOutlined,
 	SettingsOutlined,
@@ -60,9 +60,9 @@ export const Navigates = ({ close }: PropsType) => {
 			/>
 			<NavigationTab
 				value={NEWS}
-				icon={<Newspaper sx={css} />}
+				icon={<ArticleOutlined sx={css} />}
 				onClick={close}
-				label={'News in development'}
+				label={'News'}
 				path={'/news'}
 			/>
 			<NavigationTab

@@ -3,12 +3,16 @@ import { Link as RouteLink } from 'react-router-dom'
 
 const sx = { fontSize: 12 }
 
-export const Footer = () => {
+type PropsType = {
+	onClick: any
+}
+export const Footer = (props: PropsType) => {
 	return (
 		<Stack sx={{ pb: '6px' }} spacing={1}>
 			<RouteLink
 				to={'/about'}
 				style={{ textDecoration: 'none', textAlign: 'center' }}
+				{...props}
 			>
 				<Link
 					sx={{
