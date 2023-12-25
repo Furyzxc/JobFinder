@@ -37,7 +37,7 @@ export const UsersList = memo(() => {
 					flexWrap={'wrap'}
 					direction={'row'}
 					sx={{
-						justifyContent: 'space-between',
+						justifyContent: 'space-around',
 						minHeight: '100%',
 						flexGrow: 1,
 					}}
