@@ -5,6 +5,8 @@ import {
 	Share,
 } from '@mui/icons-material'
 import {
+	Alert,
+	AlertColor,
 	Avatar,
 	Card,
 	CardActions,
@@ -15,13 +17,14 @@ import {
 	IconButton,
 	IconButtonProps,
 	Link,
+	Snackbar,
 	Stack,
 	Typography,
 	styled,
 } from '@mui/material'
 import { red } from '@mui/material/colors'
 import { useState } from 'react'
-import { useImageOnLoad } from 'usehooks-ts'
+import { useBoolean, useCopyToClipboard, useImageOnLoad } from 'usehooks-ts'
 import { capitalizeFirstLetter } from '@/shared/lib/capitalize-first-letter.ts'
 import { formatTime } from '@/shared/lib/format-time.ts'
 import { ArticleType } from '@/components/news/api/types.ts'
@@ -43,6 +46,24 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 	}),
 }))
 
+type PropsType = {
+	message: string
+	severity: AlertColor
+	open: boolean
+	onClose: () => void
+}
+
+const Snack = (props: PropsType) => (
+	<Snackbar
+		anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+		open={props.open}
+		onClose={props.onClose}
+		autoHideDuration={1000}
+	>
+		<Alert severity={props.severity}>{props.message}</Alert>
+	</Snackbar>
+)
+
 export function Article({
 	image,
 	title,
@@ -59,9 +80,30 @@ export function Article({
 	}
 
 	const { handleImageOnLoad, css } = useImageOnLoad()
+	const { value, setFalse, setTrue } = useBoolean(false)
+	const { value: open, setFalse: onClose, setTrue: onOpen } = useBoolean(false)
+
+	const [, copyToClip] = useCopyToClipboard()
+
+	const copyLink = () => {
+		copyToClip(url)
+		setTrue()
+	}
 
 	return (
 		<Card sx={{ maxWidth: 345 }}>
+			<Snack
+				message={'Link copied to clipboard'}
+				severity={'success'}
+				open={value}
+				onClose={setFalse}
+			/>
+			<Snack
+				message={'You like it!'}
+				severity={'warning'}
+				open={open}
+				onClose={onClose}
+			/>
 			<CardHeader
 				avatar={
 					<Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
@@ -90,10 +132,10 @@ export function Article({
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
-				<IconButton aria-label='add to favorites'>
+				<IconButton aria-label='add to favorites' onClick={onOpen}>
 					<Favorite />
 				</IconButton>
-				<IconButton aria-label='share'>
+				<IconButton aria-label='share' onClick={copyLink}>
 					<Share />
 				</IconButton>
 				<ExpandMore
