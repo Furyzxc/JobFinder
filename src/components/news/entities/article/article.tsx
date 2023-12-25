@@ -22,11 +22,11 @@ import {
 	Typography,
 	styled,
 } from '@mui/material'
-import { red } from '@mui/material/colors'
 import { useState } from 'react'
 import { useBoolean, useCopyToClipboard, useImageOnLoad } from 'usehooks-ts'
 import { capitalizeFirstLetter } from '@/shared/lib/capitalize-first-letter.ts'
 import { formatTime } from '@/shared/lib/format-time.ts'
+import { useRandomColor } from '@/shared/model/hooks'
 import { ArticleType } from '@/components/news/api/types.ts'
 import { cutString } from '@/components/news/lib/cutString.ts'
 
@@ -74,6 +74,7 @@ export function Article({
 	url,
 }: Omit<ArticleType, 'id'>) {
 	const [expanded, setExpanded] = useState(false)
+	const randomColor = useRandomColor()
 
 	const handleExpandClick = () => {
 		setExpanded(!expanded)
@@ -105,11 +106,7 @@ export function Article({
 				onClose={onClose}
 			/>
 			<CardHeader
-				avatar={
-					<Avatar sx={{ bgcolor: red[500] }} aria-label='recipe'>
-						R
-					</Avatar>
-				}
+				avatar={<Avatar sx={{ bgcolor: randomColor }} src={image} />}
 				action={
 					<IconButton aria-label='settings'>
 						<MoreVert />
