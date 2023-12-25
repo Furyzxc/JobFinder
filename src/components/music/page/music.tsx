@@ -9,7 +9,7 @@ export const Music = () => {
 	return (
 		<Stack position={'relative'}>
 			<Box sx={{ position: 'absolute', right: 0 }}>
-				<SearchUI param={'q'} />
+				<SearchUI param={'q'} recentSearchStorage={'recent-music'} />
 			</Box>
 			<ItemsList />
 		</Stack>

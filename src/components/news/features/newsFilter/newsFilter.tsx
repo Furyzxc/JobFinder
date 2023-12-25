@@ -10,7 +10,7 @@ export const NewsFilter = () => {
 
 	return (
 		<Stack direction={'row'} spacing={3}>
-			<SearchUI param={'q'} />
+			<SearchUI param={'q'} recentSearchStorage={'recent-news'} />
 			<div style={{ padding: '7px 10px 0 0' }}>
 				<ContainedButton onClick={setTrue} startIcon={<FilterList />}>
 					Filter

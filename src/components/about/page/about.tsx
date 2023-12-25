@@ -14,7 +14,7 @@ export const About = () => {
 					//opacity: 0.4,
 				}}
 			>
-				<Typography sx={{ fontSize: '15px', color: '#2F8DEB' }} variant={'h6'}>
+				<Typography sx={{ fontSize: '18px', color: '#2F8DEB' }} variant={'h6'}>
 					About us
 				</Typography>
 				<Typography
@@ -32,14 +32,14 @@ export const About = () => {
 			<Typography
 				sx={{
 					fontSize: '15px',
-					width: '400px',
+					maxWidth: '400px',
 					textAlign: 'center',
 					color: '#4C555F',
 				}}
 				variant={'h6'}
 			>
 				Empowering connections, fostering communication, unlocking job
-				opportunities, expanding your network, job hunting, and collaborating
+				opportunities, expanding your network, job hunting and collaborating
 				with like-minded professionals...
 			</Typography>
 		</Stack>

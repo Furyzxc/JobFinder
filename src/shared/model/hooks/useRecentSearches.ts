@@ -1,9 +1,9 @@
 // src/hooks/useRecentSearches.tsx
 import { useLocalStorage } from 'usehooks-ts'
 
-export const useRecentSearches = () => {
+export const useRecentSearches = (recentSearchStorage: string) => {
 	const [recentSearches, setRecentSearches] = useLocalStorage<string[]>(
-		'recent-searches',
+		recentSearchStorage,
 		[]
 	)
 

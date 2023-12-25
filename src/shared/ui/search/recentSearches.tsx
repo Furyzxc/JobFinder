@@ -17,10 +17,17 @@ import { useRecentSearches } from '@/shared/model/hooks'
 // we add an onClose prop in addition to the PopperProps
 type Props = {
 	onClose(): void
+	recentSearchStorage: string
 } & PopperProps
 
-export const RecentSearches = ({ open, anchorEl, onClose }: Props) => {
-	const { recentSearches, setRecentSearches } = useRecentSearches()
+export const RecentSearches = ({
+	open,
+	anchorEl,
+	onClose,
+	recentSearchStorage,
+}: Props) => {
+	const { recentSearches, setRecentSearches } =
+		useRecentSearches(recentSearchStorage)
 	const paperRef = useRef<HTMLDivElement>(null)
 
 	const el = anchorEl as HTMLElement
