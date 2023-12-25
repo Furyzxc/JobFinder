@@ -4,10 +4,10 @@ import {
 	MusicNoteOutlined,
 	PeopleOutline,
 	PermIdentityOutlined,
+	SentimentSatisfiedOutlined,
 	SettingsOutlined,
 } from '@mui/icons-material'
 import { Tabs } from '@mui/material'
-import { smile } from '@/assets/status/smile.tsx'
 import { navigationTabValues } from '@/shared/constants'
 import { NavigationTab } from '@/components/settings/entities/navigationTab'
 import { useNavigates } from '../../model/hooks'
@@ -32,7 +32,7 @@ export const Navigates = ({ close }: PropsType) => {
 		>
 			<NavigationTab
 				value={STATUS}
-				icon={smile}
+				icon={<SentimentSatisfiedOutlined sx={css} />}
 				path={'?st=true'}
 				label={'Set Status'}
 				onClick={close}

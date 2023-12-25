@@ -2,14 +2,13 @@ import { Box } from '@mui/material'
 import { memo, useEffect, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useDebounce } from 'usehooks-ts'
-import { WithLoadingAndError } from '@/shared/hoc'
 import { Div } from '@/shared/ui/div'
 import { useLazySearchMusicQuery } from '@/components/music/api'
 import { Album } from '../../entities/album'
 
 export const ItemsList = memo(() => {
 	const [searchParams] = useSearchParams()
-	const [searchMusic, { data, isLoading, isError }] = useLazySearchMusicQuery()
+	const [searchMusic, { data }] = useLazySearchMusicQuery()
 
 	const params = useMemo(
 		() => ({
@@ -27,18 +26,14 @@ export const ItemsList = memo(() => {
 		shouldMakeAPICall && searchMusic(debouncedParams)
 	}, [debouncedParams, searchMusic])
 
-	return (
-		<WithLoadingAndError isLoading={isLoading} isError={isError}>
-			{data && data.albums && data.albums.items[0] ? (
-				<Album url={data && data.albums && data.albums.items[0].uri} />
-			) : (
-				<Box
-					sx={{ position: 'relative', zIndex: 0 }}
-					className={'noNavigationHeight'}
-				>
-					<Div>Album not found...</Div>
-				</Box>
-			)}
-		</WithLoadingAndError>
+	return data && data.albums && data.albums.items[0] ? (
+		<Album url={data && data.albums && data.albums.items[0].uri} />
+	) : (
+		<Box
+			sx={{ position: 'relative', zIndex: 0 }}
+			className={'noNavigationHeight'}
+		>
+			<Div>Album not found...</Div>
+		</Box>
 	)
 })

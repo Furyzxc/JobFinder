@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import { Stack } from '@mui/material'
 import { memo, useMemo } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { useDebounce } from 'usehooks-ts'
@@ -8,7 +8,6 @@ import { Div } from '@/shared/ui/div'
 import { useGetUsersQuery } from '@/components/users/api/api.ts'
 import { User } from '../../entities/user'
 import { Paginator } from '../paginator'
-import s from './users.module.css'
 
 const DEFAULT_API_PORTION = 30
 
@@ -33,18 +32,24 @@ export const UsersList = memo(() => {
 
 	return (
 		<WithLoadingAndError isLoading={isFetching} isError={isError}>
-			<Grid container sx={{ textAlign: 'center', height: '100%' }}>
-				<Grid xs item container className={s.usersList}>
+			<Stack spacing={1}>
+				<Stack
+					flexWrap={'wrap'}
+					direction={'row'}
+					sx={{
+						justifyContent: 'space-between',
+						minHeight: '100%',
+						flexGrow: 1,
+					}}
+				>
 					{users && users.length > 0 ? (
 						users.map((user) => <User {...user} key={user.id} />)
 					) : (
 						<Div>Users not found</Div>
 					)}
-				</Grid>
-				<Grid xs={12} item sx={{ flexGrow: 1, alignSelf: 'end' }}>
-					<Paginator pagesCount={pagesCount} />
-				</Grid>
-			</Grid>
+				</Stack>
+				<Paginator pagesCount={pagesCount} />
+			</Stack>
 		</WithLoadingAndError>
 	)
 })

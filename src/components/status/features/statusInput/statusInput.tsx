@@ -1,5 +1,5 @@
+import { SentimentSatisfiedOutlined } from '@mui/icons-material'
 import { Box, Stack } from '@mui/material'
-import { smile } from '@/assets/status/smile.tsx'
 import { Input } from '@/shared/ui/input'
 
 type PropsType = {
@@ -25,7 +25,9 @@ export const StatusInput = ({ emoji, bind }: PropsType) => {
 					borderRadius: '4px 0 0 4px',
 				}}
 			>
-				<label htmlFor={'status'}>{emoji || smile}</label>
+				<label htmlFor={'status'}>
+					{emoji || <SentimentSatisfiedOutlined />}
+				</label>
 			</Box>
 			<Input
 				autoComplete={'off'}

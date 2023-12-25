@@ -27,7 +27,7 @@ export const Dialog = memo(
 		)
 
 		return (
-			<Button sx={{ p: 0 }}>
+			<Button sx={{ p: 0, textTransform: 'none' }}>
 				<Stack
 					onClick={onClick}
 					className={clsx(s.dialog, isSelected && s.selected, 'notranslate')}

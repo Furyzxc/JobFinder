@@ -1,8 +1,15 @@
-import { Grid, Typography } from '@mui/material'
+import {
+	Button,
+	Card,
+	CardActions,
+	CardContent,
+	CardMedia,
+	Typography,
+} from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { UserAvatar } from '@/shared/ui/userAvatar'
-import { Follow } from '../follow'
-import s from './user.module.css'
+import { useImageOnLoad } from 'usehooks-ts'
+import { useRandomColor } from '@/shared/model/hooks'
+import { Follow } from '@/components/users/entities/follow'
 
 export interface UserProps {
 	id: number
@@ -15,55 +22,61 @@ export interface UserProps {
 	followed: boolean
 }
 
-export const User = ({ name, status, photos, id, followed }: UserProps) => {
+export function User({
+	photos: { small: avatar },
+	name,
+	status,
+	id,
+	followed,
+}: UserProps) {
+	const bgcolor = useRandomColor()
 	const navigate = useNavigate()
-	const navigateToProfile = () => {
-		navigate('/profile/' + id)
-	}
-
+	const navigateToProfile = () => navigate('/profile/' + id)
+	const { handleImageOnLoad, css } = useImageOnLoad()
 	return (
-		<Grid
-			container
-			item
-			xs={12}
-			sm={5}
-			md={3}
-			sx={{
-				minWidth: '300px',
-				minHeight: '170px',
-				p: '5px',
-				position: 'relative',
-			}}
-			className={s.user}
-		>
-			<Grid item xs={12} textAlign={'start'} sx={{ pl: '10px' }}>
-				<Typography variant='h6' className={'notranslate'}>
+		<Card sx={{ maxWidth: 300, minWidth: 300, flexGrow: 1, mt: '20px' }}>
+			{avatar ? (
+				<CardMedia
+					onClick={navigateToProfile}
+					component='img'
+					height='140'
+					sx={{
+						cursor: 'pointer',
+						...css.fullSize,
+					}}
+					onLoad={handleImageOnLoad}
+					image={avatar}
+				/>
+			) : (
+				<CardMedia
+					onClick={navigateToProfile}
+					sx={{
+						height: 140,
+						bgcolor,
+						textAlign: 'center',
+						fontSize: 30,
+						alignItems: 'center',
+						pt: '50px',
+						cursor: 'pointer',
+					}}
+				>
+					{name}
+				</CardMedia>
+			)}
+			<CardContent sx={{ flexGrow: 1 }}>
+				<Typography gutterBottom variant='h5' component='div'>
 					{name}
 				</Typography>
-			</Grid>
-
-			<Grid container item xs={12}>
-				<Grid xs={5} item onClick={navigateToProfile}>
-					<UserAvatar avatar={photos.small} name={name} size={'120px'} />
-				</Grid>
-				<Grid
-					item
-					xs={8}
-					className={s.status}
-					sx={{ color: 'secondary.light', fontSize: '12px', pt: '30px' }}
-				>
-					<Typography
-						variant={'h5'}
-						noWrap
-						sx={{ fontSize: '12px', color: 'primary.main' }}
-					>
-						{status}
-					</Typography>
-				</Grid>
-				<div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-					<Follow userId={id} followed={followed} />
-				</div>
-			</Grid>
-		</Grid>
+				<Typography variant='body2' color='text.secondary'>
+					{status}
+				</Typography>
+			</CardContent>
+			<CardActions>
+				<Follow userId={id} followed={followed} />
+				<Button size='small' onClick={navigateToProfile}>
+					View Profile
+				</Button>
+			</CardActions>
+		</Card>
 	)
 }
