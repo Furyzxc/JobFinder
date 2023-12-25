@@ -19,9 +19,14 @@ export const newsApi = createApi({
 		// },
 	}),
 	endpoints: (builder) => ({
-		searchNews: builder.query<SearchNewsResponse, unknown>({
+		searchNews: builder.mutation<SearchNewsResponse, unknown>({
 			query: () => ({
 				url: 'search',
+				method: 'post',
+				params: {
+					keywords: 'bodybuilding',
+					apiKey: encodeURIComponent(NEWS_API_KEY),
+				},
 			}),
 		}),
 		getNews: builder.query<GetLatestNewsResponse, void>({

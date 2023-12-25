@@ -6,7 +6,6 @@ import { useGetNewsQuery } from '../../api'
 
 export const ArticleList = () => {
 	const { data, isFetching, isError } = useGetNewsQuery()
-
 	const { value, setFalse } = useBoolean(false)
 	return (
 		<WithLoadingAndError isLoading={isFetching} isError={isError}>
