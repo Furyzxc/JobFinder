@@ -5,15 +5,23 @@ import {
 	PeopleOutline,
 	PermIdentityOutlined,
 	SentimentSatisfiedOutlined,
-	SettingsOutlined,
+	SettingsOutlined, //WorkOutlineOutlined,
 } from '@mui/icons-material'
-import { Tabs } from '@mui/material'
+import { Divider, Tabs } from '@mui/material'
 import { navigationTabValues } from '@/shared/constants'
 import { NavigationTab } from '@/components/settings/entities/navigationTab'
 import { useNavigates } from '../../model/hooks'
 
-const { STATUS, PROFILE, DIALOGS, MUSIC, NEWS, USERS, SETTINGS } =
-	navigationTabValues
+const {
+	STATUS,
+	PROFILE,
+	DIALOGS,
+	MUSIC,
+	NEWS,
+	USERS,
+	// JOBS,
+	SETTINGS,
+} = navigationTabValues
 
 type PropsType = {
 	close: () => void
@@ -37,6 +45,7 @@ export const Navigates = ({ close }: PropsType) => {
 				label={'Set Status'}
 				onClick={close}
 			/>
+			<Divider />
 			<NavigationTab
 				value={PROFILE}
 				icon={<PermIdentityOutlined sx={css} />}
@@ -51,6 +60,7 @@ export const Navigates = ({ close }: PropsType) => {
 				path={'/dialogs'}
 				onClick={close}
 			/>
+			<Divider />
 			<NavigationTab
 				value={MUSIC}
 				icon={<MusicNoteOutlined sx={css} />}
@@ -65,6 +75,13 @@ export const Navigates = ({ close }: PropsType) => {
 				label={'News'}
 				path={'/news'}
 			/>
+			{/*<NavigationTab*/}
+			{/*	value={JOBS}*/}
+			{/*	icon={<WorkOutlineOutlined sx={css} />}*/}
+			{/*	onClick={close}*/}
+			{/*	label={'Jobs'}*/}
+			{/*	path={'/jobs'}*/}
+			{/*/>*/}
 			<NavigationTab
 				value={USERS}
 				icon={<PeopleOutline sx={css} />}
@@ -72,6 +89,7 @@ export const Navigates = ({ close }: PropsType) => {
 				path={'/users?count=30'}
 				onClick={close}
 			/>
+			<Divider />
 			<NavigationTab
 				value={SETTINGS}
 				onClick={close}

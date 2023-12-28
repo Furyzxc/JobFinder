@@ -2,6 +2,7 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { baseApi } from '@/shared/api/baseApi.ts'
 import { authSlice } from '@/components/authorization/model'
 import { chatSlice } from '@/components/dialogs/model'
+import { jobsApi } from '@/components/jobs/api'
 import { musicApi, tokenApi } from '@/components/music/api'
 import { newsApi } from '@/components/news/api'
 import { profileSettingsSlice, themeSlice } from '@/components/settings/model'
@@ -13,6 +14,7 @@ export const rootReducer = combineReducers({
 	[themeSlice.name]: themeSlice.reducer,
 	[baseApi.reducerPath]: baseApi.reducer,
 	[newsApi.reducerPath]: newsApi.reducer,
+	[jobsApi.reducerPath]: jobsApi.reducer,
 	[tokenApi.reducerPath]: tokenApi.reducer,
 	[musicApi.reducerPath]: musicApi.reducer,
 })

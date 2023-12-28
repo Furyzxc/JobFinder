@@ -5,16 +5,6 @@ interface Profile {
 	avatar: string | null
 	userId: number | null
 }
-
-export type PendingMessage = {
-	pending: boolean
-	body: string
-	viewed: boolean
-	addedAt: string
-	senderId: 0
-	id: number
-}
-
 interface Chat {
 	profile: Profile
 }

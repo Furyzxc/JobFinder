@@ -2,11 +2,11 @@ import { Menu } from '@mui/icons-material'
 import { Avatar, Box, Stack, Typography } from '@mui/material'
 import { useBoolean } from 'usehooks-ts'
 import JobFinderLogo from '@/assets/melon.png'
+import { HeaderAvatar } from '@/components/header/features/headerAvatar'
 import { Navigation } from '@/components/navigation'
 import { useOwnerInfo } from '@/components/settings/model'
 import { useHeaderPageName } from '../model/hooks.ts'
-import { HeaderAvatar } from './headerAvatar.tsx'
-import { LoginButton } from './loginButton.tsx'
+import { LoginButton } from '../ui/loginButton.tsx'
 
 export const AppHeader = () => {
 	const { info } = useOwnerInfo()

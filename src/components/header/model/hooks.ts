@@ -30,3 +30,5 @@ export const useHeaderPageName = () => {
 
 	return 'Not found'
 }
+
+export const useHeaderAvatar = () => {}

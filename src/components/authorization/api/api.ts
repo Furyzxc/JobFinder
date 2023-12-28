@@ -2,7 +2,7 @@ import { baseApi } from '@/shared/api/baseApi.ts'
 import { apiTagTypes } from '@/shared/constants'
 import { AuthMeResponse, LoginResponse, RequestLoginBody } from './types.ts'
 
-const { PROFILE } = apiTagTypes
+const { PROFILE, DIALOGS, MESSAGES, STATUS, FOLLOW } = apiTagTypes
 
 export const api = baseApi.injectEndpoints({
 	endpoints: (build) => ({
@@ -23,7 +23,7 @@ export const api = baseApi.injectEndpoints({
 				url: 'auth/logout',
 				method: 'POST',
 			}),
-			invalidatesTags: [PROFILE],
+			invalidatesTags: [PROFILE, DIALOGS, MESSAGES, STATUS, FOLLOW],
 		}),
 	}),
 })

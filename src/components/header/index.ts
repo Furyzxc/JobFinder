@@ -1,1 +1,1 @@
-export * from './ui/header.tsx'
+export * from './page'

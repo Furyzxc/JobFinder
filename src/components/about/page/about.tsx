@@ -1,8 +1,10 @@
 import { Stack, Typography } from '@mui/material'
+import { useSmoothAppearance } from '@/shared/model/hooks'
 
 export const About = () => {
+	const { ref } = useSmoothAppearance()
 	return (
-		<Stack alignItems={'center'}>
+		<Stack alignItems={'center'} ref={ref}>
 			<Stack
 				sx={{
 					pt: '80px',

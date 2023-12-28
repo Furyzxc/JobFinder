@@ -28,4 +28,4 @@ export const musicApi = createApi({
 	}),
 })
 
-export const { useLazySearchMusicQuery } = musicApi
+export const { useSearchMusicQuery } = musicApi

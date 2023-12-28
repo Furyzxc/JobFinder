@@ -12,7 +12,7 @@ export const ArticleList = () => {
 			<Stack
 				direction={'row'}
 				flexWrap={'wrap'}
-				sx={{ justifyContent: 'space-between' }}
+				sx={{ justifyContent: 'space-around' }}
 			>
 				{data ? (
 					data.news.map(({ id, ...article }) => (

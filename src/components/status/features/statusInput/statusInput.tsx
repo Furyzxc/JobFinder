@@ -1,6 +1,5 @@
 import { SentimentSatisfiedOutlined } from '@mui/icons-material'
-import { Box, Stack } from '@mui/material'
-import { Input } from '@/shared/ui/input'
+import { Box, Stack, TextField } from '@mui/material'
 
 type PropsType = {
 	bind: {
@@ -12,7 +11,7 @@ type PropsType = {
 
 export const StatusInput = ({ emoji, bind }: PropsType) => {
 	return (
-		<Stack direction={'row'}>
+		<Stack direction={'row'} spacing={2}>
 			<Box
 				sx={{
 					userSelect: 'none',
@@ -29,11 +28,13 @@ export const StatusInput = ({ emoji, bind }: PropsType) => {
 					{emoji || <SentimentSatisfiedOutlined />}
 				</label>
 			</Box>
-			<Input
+			<TextField
+				sx={{ pb: '20px' }}
 				autoComplete={'off'}
 				id={'status'}
 				{...bind}
-				placeholder={"What's happening?"}
+				variant={'standard'}
+				label={"What's happening?"}
 			/>
 		</Stack>
 	)
