@@ -13,8 +13,7 @@ export const useMusic = (): Music => {
 		data &&
 			localStorage.setItem(
 				'access-token',
-				data.token_type + ' ' + data.access_to,
-				ken
+				data.token_type + ' ' + data.access_token
 			)
 	}, [data])
 
