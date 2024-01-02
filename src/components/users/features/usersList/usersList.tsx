@@ -12,7 +12,6 @@ import { Paginator } from '../paginator'
 const DEFAULT_API_PORTION = 30
 
 export const UsersList = memo(() => {
-	console.log(1)
 	const [searchParams] = useSearchParams()
 	const { search: queryParams } = useLocation()
 	const debouncedParams = useDebounce(queryParams, 1000)

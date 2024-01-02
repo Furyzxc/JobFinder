@@ -15,7 +15,6 @@ export const StatusInput = ({ emoji, bind }: PropsType) => {
 			<Box
 				sx={{
 					userSelect: 'none',
-					bgcolor: 'error.dark',
 					width: '40px',
 					display: 'flex',
 					alignItems: 'center',

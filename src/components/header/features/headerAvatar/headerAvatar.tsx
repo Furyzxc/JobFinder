@@ -14,6 +14,7 @@ import {
 	Stack,
 	Tooltip,
 	Typography,
+	useMediaQuery,
 } from '@mui/material'
 import { MouseEvent, ReactElement, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -40,7 +41,7 @@ export function HeaderAvatar({ avatar, name }: PropsType) {
 		handleClose()
 		navigate(page)
 	}
-
+	const matches = useMediaQuery('(min-width: 780px)')
 	const [logout] = useLogoutMutation()
 	const signout = () => {
 		handleClose()
@@ -59,7 +60,7 @@ export function HeaderAvatar({ avatar, name }: PropsType) {
 				>
 					<UserAvatar avatar={avatar} name={name} />
 				</span>
-				<Typography noWrap>{name}</Typography>
+				{matches && <Typography noWrap>{name}</Typography>}
 				<Tooltip title='Account settings'>
 					<IconButton
 						onClick={handleClick}

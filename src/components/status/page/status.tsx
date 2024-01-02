@@ -19,8 +19,8 @@ export const Status = () => {
 		onClose,
 		bindInput,
 		isAuthorized,
+		initialStatusValue,
 	} = useStatus()
-
 	return (
 		<WithAuth isAuth={isAuthorized}>
 			<Dialog
@@ -46,6 +46,7 @@ export const Status = () => {
 						<StatusTitle close={onClose}>Edit status</StatusTitle>
 						<StatusInput bind={bindInput} emoji={emoji} />
 						<StatusSuggestions
+							statusValue={initialStatusValue}
 							setEmoji={setEmoji}
 							setInputValue={setInputValue}
 						/>

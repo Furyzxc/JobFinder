@@ -18,6 +18,7 @@ type Status = {
 	}
 	setInputValue: Dispatch<any>
 	isAuthorized: boolean
+	initialStatusValue: string
 }
 
 export const useStatus = (): Status => {
@@ -44,7 +45,7 @@ export const useStatus = (): Status => {
 	useEffect(() => {
 		// setting status value from server
 		if (statusValue) setStatusValue(statusValue)
-	}, [setStatusValue, statusValue])
+	}, [setEmoji, setStatusValue, statusValue])
 
 	const editStatus = () => {
 		closeStatus()
@@ -70,5 +71,6 @@ export const useStatus = (): Status => {
 		setEmoji,
 		bindInput,
 		isAuthorized,
+		initialStatusValue: statusValue,
 	}
 }

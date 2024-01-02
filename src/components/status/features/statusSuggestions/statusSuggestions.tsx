@@ -1,12 +1,25 @@
 import { Stack, Typography } from '@mui/material'
+import { useEffect } from 'react'
 import { Suggestion } from '../../entities/suggestion'
 
 type PropsType = {
 	setInputValue: (value: string) => void
 	setEmoji: (value: string) => void
+	statusValue: string
 }
 
-export const StatusSuggestions = ({ setInputValue, setEmoji }: PropsType) => {
+export const StatusSuggestions = ({
+	setInputValue,
+	setEmoji,
+	statusValue,
+}: PropsType) => {
+	useEffect(
+		() => () => {
+			setInputValue(statusValue)
+			setEmoji('')
+		},
+		[setEmoj, i]
+	)
 	return (
 		<Stack spacing={1}>
 			<Typography sx={{ fontSize: '13px' }}>Suggestions:</Typography>
