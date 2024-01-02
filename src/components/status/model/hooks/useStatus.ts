@@ -71,6 +71,6 @@ export const useStatus = (): Status => {
 		setEmoji,
 		bindInput,
 		isAuthorized,
-		initialStatusValue: statusValue,
+		initialStatusValue: statusValue || '',
 	}
 }

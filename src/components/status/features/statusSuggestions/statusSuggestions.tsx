@@ -18,7 +18,7 @@ export const StatusSuggestions = ({
 			setInputValue(statusValue)
 			setEmoji('')
 		},
-		[setEmoj, i]
+		[setInputValue, statusValue, setEmoji]
 	)
 	return (
 		<Stack spacing={1}>
