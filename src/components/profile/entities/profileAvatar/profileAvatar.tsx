@@ -30,15 +30,15 @@ export const ProfileAvatar = forwardRef<any, any>(
 					<Avatar
 						src={avatar}
 						alt={name}
-						sx={{ fontSize: '25px', height: '296px', width: '296px' }}
+						sx={{ fontSize: '25px', height: '200px', width: '200px' }}
 					/>
 				) : (
 					<Avatar
 						className='notranslate'
 						sx={{
 							bgcolor: randomColor,
-							height: '296px',
-							width: '296px',
+							height: '200px',
+							width: '200px',
 							fontSize: '50px',
 						}}
 						alt={name}

@@ -18,8 +18,8 @@ export const Profile = () => {
 
 	return (
 		<WithError isError={isError}>
-			<Container sx={{ pt: '10px' }}>
-				{p || isLoading ? (
+			<Container sx={{ pt: '50px' }}>
+				{p && !isLoading ? (
 					<Grid container>
 						<Grid item xs={12} sm={7} md={4}>
 							<MainInfo
@@ -39,8 +39,12 @@ export const Profile = () => {
 									additionalInfo={p?.lookingForAJobDescription || ''}
 								/>
 								{p && <SocialAccountsLinks {...p?.socialAccounts} />}
-								{!isOwner && isAuthorized && !isLoading && (
-									<UserProfileBtns name={p?.name} avatar={p?.photos.avatar} />
+								{isAuthorized && !isLoading && (
+									<UserProfileBtns
+										isOwner={isOwner}
+										name={p?.name}
+										avatar={p?.photos.avatar}
+									/>
 								)}
 							</Stack>
 						</Grid>

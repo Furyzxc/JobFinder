@@ -1,7 +1,6 @@
 import {
 	ArticleOutlined,
 	MailOutline,
-	MusicNoteOutlined,
 	PeopleOutline,
 	PermIdentityOutlined,
 	SentimentSatisfiedOutlined,
@@ -16,7 +15,7 @@ const {
 	STATUS,
 	PROFILE,
 	DIALOGS,
-	MUSIC,
+	//	MUSIC,
 	NEWS,
 	USERS,
 	// JOBS,
@@ -61,13 +60,13 @@ export const Navigates = ({ close }: PropsType) => {
 				onClick={close}
 			/>
 			<Divider />
-			<NavigationTab
-				value={MUSIC}
-				icon={<MusicNoteOutlined sx={css} />}
-				label={'Music'}
-				path={'/music'}
-				onClick={close}
-			/>
+			{/*<NavigationTab*/}
+			{/*	value={MUSIC}*/}
+			{/*	icon={<MusicNoteOutlined sx={css} />}*/}
+			{/*	label={'Music'}*/}
+			{/*	path={'/music'}*/}
+			{/*	onClick={close}*/}
+			{/*/>*/}
 			<NavigationTab
 				value={NEWS}
 				icon={<ArticleOutlined sx={css} />}

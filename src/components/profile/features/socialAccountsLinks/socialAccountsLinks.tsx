@@ -8,7 +8,7 @@ interface PropsType extends SocialAccounts {
 
 export const SocialAccountsLinks = (accounts: PropsType) => {
 	return (
-		<Stack direction={'row'} flexWrap='wrap'>
+		<Stack direction={'row'} flexWrap='wrap' sx={{ justifyContent: 'center' }}>
 			{Object.keys(accounts).map((key) => {
 				const link = accounts[key]
 
