@@ -7,4 +7,5 @@ export const navigationTabValues = {
 	USERS: 'users',
 	SETTINGS: 'settings',
 	JOBS: 'jobs',
+	SIGNOUT: 'sign out',
 } as const

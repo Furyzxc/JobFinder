@@ -1,13 +1,15 @@
 import {
-	ArticleOutlined,
+	ArticleOutlined, //WorkOutlineOutlined,
+	LogoutOutlined,
 	MailOutline,
 	PeopleOutline,
 	PermIdentityOutlined,
 	SentimentSatisfiedOutlined,
-	SettingsOutlined, //WorkOutlineOutlined,
+	SettingsOutlined,
 } from '@mui/icons-material'
 import { Divider, Tabs } from '@mui/material'
 import { navigationTabValues } from '@/shared/constants'
+import { useLogoutMutation } from '@/components/authorization'
 import { NavigationTab } from '@/components/settings/entities/navigationTab'
 import { useNavigates } from '../../model/hooks'
 
@@ -20,6 +22,7 @@ const {
 	USERS,
 	// JOBS,
 	SETTINGS,
+	SIGNOUT,
 } = navigationTabValues
 
 type PropsType = {
@@ -29,6 +32,12 @@ type PropsType = {
 const css = { mb: '-6px', fontSize: 23 }
 
 export const Navigates = ({ close }: PropsType) => {
+	const [signoutFromAccount] = useLogoutMutation()
+
+	const signout = () => {
+		signoutFromAccount()
+		close()
+	}
 	const { bindTabs } = useNavigates()
 
 	return (
@@ -95,6 +104,12 @@ export const Navigates = ({ close }: PropsType) => {
 				icon={<SettingsOutlined sx={css} />}
 				label={'Settings'}
 				path={'/settings'}
+			/>
+			<NavigationTab
+				value={SIGNOUT}
+				onClick={signout}
+				icon={<LogoutOutlined sx={css} />}
+				label={'Sign out'}
 			/>
 		</Tabs>
 	)

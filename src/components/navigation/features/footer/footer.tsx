@@ -28,9 +28,9 @@ export const Footer = (props: PropsType) => {
 				<Link href={'https://github.com/Furyzxc/jobfinder'} sx={sx}>
 					GitHub
 				</Link>
-				<Link href={'https://sergey-ananyev.netlify.app/'} sx={sx}>
-					Developer
-				</Link>
+				{/*<Link href={'https://sergey-ananyev.netlify.app/'} sx={sx}>*/}
+				{/*	Developer*/}
+				{/*</Link>*/}
 			</Stack>
 		</Stack>
 	)
