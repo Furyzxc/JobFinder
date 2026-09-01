@@ -13,7 +13,7 @@ export const About = () => {
 				}}
 			>
 				<Typography sx={{ fontSize: '18px', color: '#2F8DEB' }} variant={'h6'}>
-					About us
+					About Nexus
 				</Typography>
 				<Typography
 					sx={{
@@ -21,10 +21,10 @@ export const About = () => {
 					}}
 					variant={'h6'}
 				>
-					Embarking on a mission to artfully guide you
+					Connect with people and stay
 				</Typography>
 				<Typography sx={{ color: '#2F8DEB', fontSize: '29px' }} variant={'h6'}>
-					in discovering the path to your ideal career
+					connected with what matters to you
 				</Typography>
 			</Stack>
 			<Typography
@@ -36,9 +36,8 @@ export const About = () => {
 				}}
 				variant={'h6'}
 			>
-				Empowering connections, fostering communication, unlocking job
-				opportunities, expanding your network, job hunting and collaborating
-				with like-minded professionals...
+				Discover new people, chat with your friends, and keep up with the latest
+				news — all in one place.
 			</Typography>
 		</Stack>
 	)
