@@ -21,16 +21,16 @@ export const Footer = (props: PropsType) => {
 					}}
 					color={'warning.main'}
 				>
-					Jobfinder - Social Network
+					Nexus - Social Network
 				</Link>
 			</RouteLink>
 			<Stack direction={'row'} spacing={1}>
 				<Link href={'https://github.com/Furyzxc/jobfinder'} sx={sx}>
 					GitHub
 				</Link>
-				{/*<Link href={'https://sergey-ananyev.netlify.app/'} sx={sx}>*/}
-				{/*	Developer*/}
-				{/*</Link>*/}
+				<Link href={'https://serhii-ananiev.netlify.app/'} sx={sx}>*/
+				Developer
+				</Link>
 			</Stack>
 		</Stack>
 	)
