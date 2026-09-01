@@ -1,42 +1,41 @@
-# JobFinder - A Social Network for Connecting People and Finding Jobs
+# Nexus - Social Network
 
-## Table of Contents
+Nexus is a social networking web application that allows users to discover new people, chat with friends, and read news in one place.
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Technologies Used](#technologies-used)
+## 🌐 Live Demo
 
-## Introduction
+https://jobfinder-social-network.netlify.app/
 
-Welcome to JobFinder, the powerful social network that helps people connect, communicate, and find job opportunities. Whether you're looking to expand your professional network, search for jobs, or collaborate with like-minded individuals, JobFinder is the platform to make it happen.
+## ✨ Features
 
-Visit website: [jobfinder-social-network.netlify.app](https://jobfinder-social-network.netlify.app)
+### 👥 Discover People
+- Find and discover new people
+- Browse user profiles
+- Connect with other users
 
-## Features
+### 💬 Chat
+- Chat with friends
+- Communicate with other users through the messaging interface
 
-- **Communication**: Connect and interact with other users through our secure messaging system. Stay in touch with friends, colleagues, and potential employers.
+### 📰 News
+- Browse and read news
+- Display news content using public APIs
 
-- **People Search**: Easily find and connect with professionals in your field of interest. Build valuable connections to enhance your career prospects.
+## 🛠️ Technologies Used
 
-- **User Profiles**: Create a personalized profile that showcases your skills, work experience, and achievements. Let employers and peers know who you are and what you bring to the table.
+- **React** - Frontend development
+- **Typescript** - Application logic
+- **Redux Toolkit** - State management
+- **Material UI** - UI components and styling
+- **HTML5** - Page structure
+- **Material UI** - Styling
+- **Public APIs** - External data
+- **Git & GitHub** - Version control
+- **Netlify** - Deployment
 
-- **Profile Editing**: Update and manage your profile information at any time. Keep your details fresh and relevant to attract potential employers.
+## 🚀 Getting Started
 
-## Getting Started
+### 1. Clone the repository
 
-To get started with JobFinder, follow these steps:
-
-1. Clone the repository: `git clone https://github.com/Furyzxc/JobFinder.git`
-2. Install the required dependencies: `npm install`
-3. Set up the database and environment variables.
-4. Run the application: `npm run dev`
-
-## Technologies Used
-
-- Front-end: HTML, CSS, JavaScript
-- Additional Libraries: React, Redux Toolkit, Material UI, etc.
-
-I hope JobFinder will provide a valuable platform for networking, job searching, and career growth.
-
-Happy networking and job hunting!
+```bash
+git clone https://github.com/Furyzxc/JobFinder.git
